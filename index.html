@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>酿梦 Brewm · 数字时代的梦想储存与回望</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{font-family:"Microsoft YaHei",sans-serif;color:#2B3A55;
+ background:radial-gradient(1100px 700px at 50% 0%,#FBF7EE 0%,rgba(251,247,238,0) 70%),
+   repeating-linear-gradient(180deg,transparent 0 46px,rgba(43,58,85,.04) 46px 47px),#F1EADA;
+ min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+ padding:26px 14px;position:relative;overflow:hidden}
+.brand{position:absolute;top:20px;left:26px;display:flex;align-items:center;gap:10px;opacity:.85}
+.brand p{font-family:KaiTi,"楷体",serif;font-size:20px;letter-spacing:4px}
+.brand small{display:block;font-family:Georgia,serif;font-style:italic;font-size:10px;
+ letter-spacing:4px;color:#8A6F55}
+.wmark{position:absolute;right:-70px;top:-70px;opacity:.05;pointer-events:none}
+.caption{margin-top:16px;font-size:12px;letter-spacing:3px;color:rgba(43,58,85,.45);text-align:center}
+.stage{display:flex;flex-direction:column;align-items:center}
+.phone{width:440px;height:956px;border-radius:54px;border:1px solid rgba(43,58,85,.28);
+ background:#141632;box-shadow:0 40px 90px rgba(43,58,85,.22);overflow:hidden;
+ display:flex;flex-direction:column;position:relative}
+.sbar{position:absolute;top:0;left:0;right:0;z-index:15;display:flex;justify-content:space-between;
+ align-items:center;padding:14px 24px 6px;font-size:13px;color:rgba(244,241,232,.85);
+ text-shadow:0 1px 6px rgba(10,10,30,.6)}
+.isle{position:absolute;left:50%;top:12px;transform:translateX(-50%);width:110px;height:31px;
+ border-radius:17px;background:#07080F;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.fire{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.fire i{position:absolute;width:3px;height:3px;border-radius:50%;background:#FFE9C4;
+ box-shadow:0 0 6px 1px rgba(255,233,196,.8);opacity:0;animation:rise linear infinite}
+@keyframes rise{0%{transform:translateY(0);opacity:0}14%{opacity:.85}78%{opacity:.45}100%{transform:translateY(-170px);opacity:0}}
+.meteor{position:absolute;z-index:2;width:130px;height:1.5px;pointer-events:none;
+ background:linear-gradient(90deg,rgba(255,233,196,0),rgba(255,233,196,.95));
+ transform:rotate(26deg);opacity:0;animation:shoot 9s linear infinite}
+@keyframes shoot{0%,84%{opacity:0;transform:rotate(26deg) translateX(0)}87%{opacity:.95}95%,100%{opacity:0;transform:rotate(26deg) translateX(360px)}}
+#bg-store .candle{position:absolute;right:30px;top:55%;width:120px;height:120px;border-radius:50%;
+ background:radial-gradient(circle,rgba(255,214,140,.5),rgba(255,214,140,0) 70%);
+ filter:blur(10px);opacity:.7;animation:breathe 3.8s ease-in-out infinite;pointer-events:none}
+@keyframes breathe{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.95;transform:scale(1.12)}}
+#s-night .nite svg{filter:drop-shadow(0 0 10px rgba(255,233,196,.65));animation:glow 4.2s ease-in-out infinite}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 8px rgba(255,233,196,.5))}50%{filter:drop-shadow(0 0 17px rgba(255,233,196,.95))}}
+.noanim .fire,.noanim .meteor{display:none}
+.noanim .ltr,.noanim #bg-store .candle,.noanim #s-night .nite svg{animation:none}
+@media (prefers-reduced-motion: reduce){
+ *{transition:none!important;animation:none!important}
+ .fire,.meteor{display:none}
+}
+.app{position:absolute;inset:0;overflow:hidden}
+.bgart{position:absolute;inset:0;opacity:0;transition:opacity .3s;z-index:0;pointer-events:none}
+.bgart.on{opacity:1}
+.bgart img{width:100%;height:100%;object-fit:cover;display:block}
+.bgart::after{content:"";position:absolute;inset:0;
+ background:linear-gradient(180deg,rgba(20,22,50,.42) 0%,rgba(20,22,50,.18) 26%,rgba(20,22,50,.28) 58%,rgba(23,20,46,.78) 100%)}
+.bgart.soft::after{background:linear-gradient(180deg,rgba(23,20,46,.74),rgba(23,20,46,.82))}
+.noanim *{transition:none!important;animation:none!important}
+.screen{position:absolute;inset:0;padding:56px 22px 84px;overflow-y:auto;opacity:0;z-index:1;
+ transform:translateX(14px);transition:opacity .26s,transform .26s;pointer-events:none;color:#F4F1E8}
+.screen.on{opacity:1;transform:none;pointer-events:auto}
+.h-kai{font-family:KaiTi,"楷体",serif;font-size:30px;line-height:1.35;letter-spacing:2px;margin-top:8px;
+ color:#FFE9C4;text-shadow:0 2px 14px rgba(10,10,30,.65)}
+.h-kai.sm{font-size:24px;margin-top:6px}
+.tcap{font-size:12.5px;color:rgba(244,241,232,.72);margin-top:6px;letter-spacing:1px}
+.letter-in{margin-top:16px;background:#FFFDF6;border:1px solid rgba(43,58,85,.15);border-radius:14px;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 24px rgba(43,58,85,.12);padding:14px;color:#2B3A55}
+.lhead{font-family:KaiTi,"楷体",serif;font-size:16px;color:#A6402F}
+textarea{width:100%;border:none;outline:none;resize:none;background:transparent;
+ font-family:KaiTi,"楷体",serif;font-size:16.5px;line-height:1.9;color:#2B3A55;margin-top:6px;min-height:88px}
+textarea::placeholder{color:rgba(43,58,85,.3)}
+.count{text-align:right;font-size:11px;color:rgba(43,58,85,.4)}
+.hold,.wax,.ghost{width:100%;border-radius:28px;padding:13px 0;font-size:14.5px;cursor:pointer;
+ font-family:inherit;transition:.2s;letter-spacing:4px}
+.hold{margin-top:14px;background:rgba(255,255,255,.08);backdrop-filter:blur(3px);
+ border:1.5px dashed rgba(244,241,232,.55);color:#F4F1E8}
+.hold.rec{border-style:solid;border-color:#D9B36A;color:#A6402F;animation:pulse 1.1s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(217,179,106,.45)}50%{box-shadow:0 0 0 9px rgba(217,179,106,0)}}
+.wax{margin-top:12px;background:#A6402F;color:#F6E7D3;border:none;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 8px 20px rgba(166,64,47,.32)}
+.wax:active{transform:scale(.98)}
+.ghost{margin-top:12px;background:rgba(255,255,255,.08);backdrop-filter:blur(3px);
+ border:1px solid rgba(244,241,232,.4);color:#F4F1E8}
+.vchip{margin-top:10px;font-size:12.5px;color:#6B5426;background:rgba(217,179,106,.16);
+ border:1px solid rgba(217,179,106,.45);border-radius:10px;padding:8px 12px;display:inline-block}
+.tiny{margin-top:9px;text-align:center;font-size:11px;color:rgba(244,241,232,.55);letter-spacing:1px}
+.wglow{position:absolute;top:150px;left:50%;width:230px;height:230px;margin-left:-115px;border-radius:50%;
+ background:radial-gradient(circle,rgba(255,233,196,.9) 0%,rgba(245,184,92,.45) 42%,rgba(245,184,92,0) 72%);
+ filter:blur(6px);opacity:.55;transform:scale(var(--gs,1));transform-origin:center;
+ transition:transform .8s;pointer-events:none;mix-blend-mode:screen}
+.tide{margin-top:18px;position:relative;padding:0 6px}
+.tline{position:absolute;top:7px;left:16px;right:16px;height:2.5px;border-radius:2px;
+ background:linear-gradient(90deg,#D9B36A var(--p,10%),rgba(43,58,85,.14) var(--p,10%))}
+.tnodes{display:flex;position:relative}
+.tn{flex:1;text-align:center;position:relative}
+.tn i{display:block;width:12px;height:12px;border-radius:50%;margin:1px auto 0;background:#fff;
+ border:2.5px solid rgba(43,58,85,.3);position:relative;z-index:1}
+.tn.done i{background:#D9B36A;border-color:#D9B36A;box-shadow:0 0 9px rgba(217,179,106,.75)}
+.tn p{font-size:10.5px;color:rgba(244,241,232,.68);margin-top:7px;line-height:1.5}
+.feed{margin-top:16px;border-radius:14px;background:rgba(20,22,48,.55);backdrop-filter:blur(4px);
+ border:1px solid rgba(217,179,106,.35);padding:12px 14px;font-size:12.5px;color:#F4F1E8;
+ line-height:1.8;min-height:44px;letter-spacing:.5px}
+.ltr{margin-top:14px;background:#FFFDF6;border:1px solid rgba(43,58,85,.14);border-radius:14px;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 24px rgba(43,58,85,.12);padding:14px;cursor:pointer;transition:.2s;color:#2B3A55;
+ animation:bob 5.6s ease-in-out infinite}
+.ltr:nth-child(2n){animation-duration:6.4s;animation-delay:-2.9s}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-4px) rotate(.3deg)}}
+.lfrom{font-size:12px;color:#A6402F;letter-spacing:1px;display:flex;justify-content:space-between}
+.lfrom span{color:rgba(43,58,85,.4)}
+.ltext{font-family:KaiTi,"楷体",serif;font-size:16px;line-height:1.85;margin-top:8px}
+.ask{display:none;margin-top:12px}
+.ltr.open .ask{display:block}
+.ask small{display:block;font-size:10.5px;color:rgba(43,58,85,.5);letter-spacing:1px;margin-bottom:6px}
+.bub{background:#2B3A55;color:#F6F1E7;border-radius:14px 14px 14px 4px;padding:11px 14px;
+ font-size:13px;line-height:1.75}
+.bub.me{background:#D9B36A;color:#2B3A55;border-radius:14px 14px 4px 14px;margin-top:10px}
+.replyarea{display:flex;gap:8px;margin-top:10px}
+.replyarea input{flex:1;border:1px solid rgba(43,58,85,.25);border-radius:10px;padding:9px 12px;
+ font-size:12.5px;font-family:inherit;background:#fff;outline:none;color:#2B3A55}
+.replyarea button{border:none;background:#2B3A55;color:#F6F1E7;border-radius:10px;padding:0 14px;
+ font-size:12.5px;cursor:pointer;font-family:inherit}
+.goShare{margin-top:10px;border:1px solid #D9B36A;color:#FFE9C4;background:rgba(217,179,106,.12);
+ border-radius:10px;padding:8px 12px;font-size:12px;cursor:pointer;font-family:inherit;letter-spacing:2px}
+.sharecard{margin-top:14px;background:#FFFDF6;border:1px solid rgba(43,58,85,.16);border-radius:16px;
+ box-shadow:0 14px 34px rgba(43,58,85,.12);padding:18px;position:relative;color:#2B3A55}
+.sc-top{display:flex;align-items:center;gap:8px}
+.sc-top p{font-family:KaiTi,"楷体",serif;font-size:14px;letter-spacing:3px}
+.sc-top small{display:block;font-family:Georgia,serif;font-style:italic;font-size:8.5px;
+ letter-spacing:3px;color:#8A6F55}
+.sc-quote{font-family:KaiTi,"楷体",serif;font-size:17px;line-height:2;margin-top:14px;min-height:96px}
+.sc-meta{display:flex;align-items:center;gap:10px;margin-top:12px}
+.waxdot{width:40px;height:40px;border-radius:50%;background:#A6402F;color:#F6E7D3;
+ display:flex;align-items:center;justify-content:center;font-family:KaiTi,"楷体",serif;font-size:19px;
+ box-shadow:inset 0 0 0 4px rgba(246,231,211,.25),0 4px 10px rgba(166,64,47,.4)}
+.sc-meta p{font-size:11.5px;color:rgba(43,58,85,.6);letter-spacing:1px}
+.sc-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px;
+ border-top:1px dashed rgba(43,58,85,.2);padding-top:12px}
+.sc-foot .est{font-family:Georgia,serif;font-style:italic;font-size:12.5px;color:#8A6F55;letter-spacing:1px}
+.qr{width:46px;height:46px;border:1.5px dashed rgba(43,58,85,.35);border-radius:8px;
+ display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(43,58,85,.4);
+ writing-mode:vertical-rl;letter-spacing:2px}
+.btnrow{display:flex;gap:10px;margin-top:14px}
+.btnrow button{flex:1}
+.backbtn{display:inline-flex;align-items:center;gap:5px;margin:10px 0 2px;padding:7px 14px;border-radius:20px;
+ border:1px solid rgba(244,241,232,.35);background:rgba(255,255,255,.08);backdrop-filter:blur(3px);
+ color:#F4F1E8;font-size:12px;letter-spacing:2px;cursor:pointer;font-family:inherit}
+.linkrow{display:flex;gap:10px;margin-top:12px}
+.navlink{flex:1;padding:10px 0;border-radius:12px;border:1px dashed rgba(244,241,232,.4);
+ background:rgba(255,255,255,.07);color:#F4F1E8;font-size:12.5px;letter-spacing:2px;cursor:pointer;font-family:inherit}
+.navlink b{color:#FFE9C4;font-weight:400}
+.paper2{margin-top:14px;background:#FFFDF6;border:1px solid rgba(43,58,85,.14);border-radius:14px;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 24px rgba(43,58,85,.12);padding:14px;color:#2B3A55}
+.grow{display:flex;align-items:center;gap:8px;margin-top:10px}
+.grow .bar{flex:1;height:8px;border-radius:4px;background:rgba(43,58,85,.12);overflow:hidden}
+.grow .bar i{display:block;height:100%;width:52%;border-radius:4px;background:linear-gradient(90deg,#D9B36A,#F5B85C)}
+.chatbox{margin-top:14px}
+.rule{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.rule span{font-size:11px;color:#FFE9C4;border:1px solid rgba(217,179,106,.45);background:rgba(217,179,106,.1);
+ border-radius:16px;padding:6px 12px;letter-spacing:1px}
+.statgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.stat{background:rgba(20,22,48,.55);backdrop-filter:blur(4px);border:1px solid rgba(217,179,106,.35);
+ border-radius:14px;padding:12px 14px;text-align:center}
+.stat b{display:block;font-family:Georgia,serif;font-size:22px;color:#FFE9C4;font-weight:400;letter-spacing:1px}
+.stat p{font-size:10.5px;color:rgba(244,241,232,.65);letter-spacing:1px;margin-top:4px}
+.ctide{margin-top:14px;border-left:1.5px dashed rgba(217,179,106,.5);padding-left:16px}
+.citem{position:relative;padding:0 0 13px}
+.citem::before{content:"";position:absolute;left:-21.5px;top:5px;width:9px;height:9px;border-radius:50%;
+ background:#D9B36A;box-shadow:0 0 8px rgba(217,179,106,.8)}
+.citem.dim::before{background:rgba(244,241,232,.25);box-shadow:none}
+.citem b{font-family:KaiTi,"楷体",serif;color:#FFE9C4;font-size:13.5px;letter-spacing:1px;font-weight:400}
+.citem b span{font-size:10px;color:rgba(244,241,232,.5);margin-left:8px;letter-spacing:1px}
+.citem p{font-size:10.5px;color:rgba(244,241,232,.65);margin-top:3px;line-height:1.6}
+.nite{text-align:center;margin-top:16px}
+.nite .h{font-family:KaiTi,"楷体",serif;font-size:30px;letter-spacing:6px;color:#FFE9C4;
+ text-shadow:0 2px 16px rgba(10,10,30,.7)}
+.nite .chip{display:inline-block;margin-top:12px;font-size:11px;color:#FFE9C4;
+ border:1px dashed rgba(217,179,106,.55);background:rgba(217,179,106,.1);border-radius:18px;
+ padding:7px 16px;letter-spacing:2px}
+.sw{position:relative;width:38px;height:21px;border-radius:11px;flex:0 0 38px;cursor:pointer;
+ background:rgba(244,241,232,.16);border:1px solid rgba(244,241,232,.3);transition:.2s}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;
+ background:#F4F1E8;box-shadow:0 1px 4px rgba(10,10,30,.4);transition:.2s}
+.sw.on{background:rgba(217,179,106,.85);border-color:#D9B36A}
+.sw.on::after{left:19px;background:#141632}
+.sgroup{margin-top:12px;background:rgba(20,22,48,.55);backdrop-filter:blur(4px);
+ border:1px solid rgba(217,179,106,.3);border-radius:14px;overflow:hidden}
+.sgroup .gt{font-size:10px;letter-spacing:3px;color:rgba(217,179,106,.9);padding:10px 14px 2px}
+.srow{display:flex;align-items:center;gap:10px;padding:10px 14px}
+.srow+.srow{border-top:1px solid rgba(244,241,232,.08)}
+.srow>svg{flex:0 0 16px;opacity:.85}
+.srow p{flex:1;font-size:12.5px;color:#F4F1E8;letter-spacing:1px}
+.srow p span{display:block;font-size:9.5px;color:rgba(244,241,232,.45);margin-top:2px;letter-spacing:.5px}
+.srow .val{font-size:11px;color:rgba(217,179,106,.9);letter-spacing:1px}
+.seacard{margin-top:12px;background:#FFFDF6;border-radius:14px;padding:12px 14px;color:#2B3A55;
+ border:1px solid rgba(43,58,85,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 24px rgba(43,58,85,.12)}
+.seacard .who{font-size:11px;color:#A6402F;display:flex;justify-content:space-between;letter-spacing:1px}
+.seacard .who span{color:rgba(43,58,85,.4)}
+.seacard p{font-family:KaiTi,"楷体",serif;font-size:14.5px;line-height:1.8;margin-top:6px}
+.riteday{text-align:center;margin-top:14px}
+.riteday .big{font-family:Georgia,serif;font-style:italic;font-size:28px;color:#FFE9C4;letter-spacing:2px}
+.riteday p{font-size:12px;color:rgba(244,241,232,.72);margin-top:6px;letter-spacing:1px}
+.sealfx{position:absolute;inset:0;background:rgba(246,241,232,.88);z-index:20;
+ display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.sealfx svg{animation:stamp .55s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes stamp{0%{transform:scale(2.1) rotate(-10deg);opacity:0}70%{transform:scale(.94) rotate(2deg);opacity:1}100%{transform:scale(1) rotate(0)}}
+.toast{position:absolute;left:50%;bottom:96px;transform:translateX(-50%) translateY(8px);z-index:30;
+ background:#2B3A55;color:#F6F1E7;font-size:12.5px;letter-spacing:1px;padding:10px 18px;
+ border:1px solid rgba(244,241,232,.25);border-radius:22px;opacity:0;transition:.25s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.navbar{position:absolute;left:0;right:0;bottom:0;height:64px;background:rgba(16,17,41,.88);
+ border-top:1px solid rgba(244,241,232,.14);display:flex;z-index:10;backdrop-filter:blur(6px)}
+.navbar button{flex:1;border:none;background:transparent;font-family:inherit;font-size:10.5px;
+ letter-spacing:2px;color:rgba(244,241,232,.48);cursor:pointer;position:relative;
+ display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:8px}
+.navbar button svg{display:block;position:relative;z-index:1}
+.navbar button span{position:relative;z-index:1}
+.navbar button .ico-f{display:none}
+.navbar button.on .ico-l{display:none}
+.navbar button.on .ico-f{display:block}
+.navbar button.on::after{content:"";position:absolute;left:50%;top:5px;transform:translateX(-50%);
+ width:44px;height:44px;border-radius:15px;background:rgba(217,179,106,.13);
+ border:1px solid rgba(217,179,106,.22)}
+.navbar button.on{color:#FFE9C4;font-weight:400}
+.navbar button.on::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+ width:26px;height:3px;border-radius:2px;background:#D9B36A}
+@media (max-width:480px){body{padding:0}.phone{width:100vw;height:100vh;border-radius:0;border:none}
+ .brand,.caption{display:none}}
+body.full{padding:0}
+body.full .stage{align-items:flex-start;position:absolute;top:0;left:0}
+body.full .phone{width:440px;height:956px;flex:0 0 auto;border-radius:0;border:none;box-shadow:none}
+body.full .brand,body.full .caption{display:none}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+ <radialGradient id="ngG" cx="50%" cy="45%"><stop offset="0%" stop-color="#FFE9C4"/><stop offset="55%" stop-color="#F5B85C"/><stop offset="100%" stop-color="rgba(245,184,92,0)"/></radialGradient>
+ <filter id="ngl" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="7"/></filter>
+</defs></svg>
+
+<div class="brand">
+ <svg width="34" height="34" viewBox="0 0 200 200">
+  <defs><mask id="bm"><rect width="200" height="200" fill="#fff"/>
+   <path d="M100,74 C103,90 110,97 126,100 C110,103 103,110 100,126 C97,110 90,103 74,100 C90,97 97,90 100,74 Z" fill="#000"/>
+   <circle cx="100" cy="63" r="3" fill="#000"/><circle cx="100" cy="63" r="3" fill="#000" transform="rotate(60 100 100)"/>
+   <circle cx="100" cy="63" r="3" fill="#000" transform="rotate(120 100 100)"/><circle cx="100" cy="63" r="3" fill="#000" transform="rotate(180 100 100)"/>
+   <circle cx="100" cy="63" r="3" fill="#000" transform="rotate(240 100 100)"/><circle cx="100" cy="63" r="3" fill="#000" transform="rotate(300 100 100)"/>
+  </mask></defs>
+  <g fill="#2B3A55" mask="url(#bm)">
+   <path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/>
+   <path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/>
+   <path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/>
+   <path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/>
+   <path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/>
+   <path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/>
+   <circle cx="100" cy="100" r="14"/>
+  </g>
+ </svg>
+ <div><p>酿梦</p><small>BREWM · H5 PROTOTYPE</small></div>
+</div>
+<svg class="wmark" width="460" height="460" viewBox="0 0 200 200">
+ <g fill="#2B3A55"><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/>
+ <path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/>
+ <path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/>
+ <path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/>
+ <path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/>
+ <path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/>
+ <circle cx="100" cy="100" r="14"/></g>
+</svg>
+
+<div class="stage">
+ <div class="phone">
+  <div class="sbar"><span>21:36</span>
+   <i class="isle"></i>
+   <svg width="15" height="15" viewBox="0 0 200 200"><g fill="#A6402F"><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/><circle cx="100" cy="100" r="14"/></g></svg></div>
+  <div class="app">
+   <div class="bgart on" id="bg-store"><img src="img/bg-desk.jpg" alt=""><i class="candle"></i></div>
+   <div class="bgart" id="bg-world"><img src="img/bg-tree.jpg" alt=""></div>
+   <div class="bgart" id="bg-tide"><img src="img/bg-boat.jpg" alt=""></div>
+   <div class="bgart soft" id="bg-share"><img src="img/bg-galaxy.jpg" alt=""></div>
+   <div class="bgart" id="bg-file"><img src="img/bg-desk.jpg" alt="" style="object-position:50% 78%"></div>
+   <div class="bgart" id="bg-chat"><img src="img/bg-boat.jpg" alt=""></div>
+   <div class="bgart soft" id="bg-sea"><img src="img/bg-galaxy.jpg" alt=""></div>
+   <div class="bgart" id="bg-rite"><img src="img/bg-pour.jpg" alt=""></div>
+   <div class="bgart" id="bg-letter"><img src="img/bg-desk.jpg" alt="" style="object-position:50% 12%"></div>
+   <div class="bgart" id="bg-cal"><img src="img/bg-boat.jpg" alt="" style="object-position:50% 25%"></div>
+   <div class="bgart soft" id="bg-night"><img src="img/bg-tree.jpg" alt="" style="object-position:50% 82%"></div>
+   <div class="bgart" id="bg-mine"><img src="img/bg-pour.jpg" alt="" style="object-position:18% 42%"></div>
+   <div class="bgart soft" id="bg-set"><img src="img/bg-galaxy.jpg" alt="" style="object-position:50% 55%"></div>
+   <div class="fire">
+    <i style="left:7%;top:78%;animation-duration:7s"></i>
+    <i style="left:22%;top:88%;animation-duration:9s;animation-delay:1.2s"></i>
+    <i style="left:38%;top:82%;animation-duration:8s;animation-delay:3.4s"></i>
+    <i style="left:55%;top:92%;animation-duration:10s;animation-delay:.6s"></i>
+    <i style="left:70%;top:80%;animation-duration:7.5s;animation-delay:2.1s"></i>
+    <i style="left:84%;top:90%;animation-duration:9.5s;animation-delay:4.3s"></i>
+    <i style="left:47%;top:74%;animation-duration:8.5s;animation-delay:5.2s"></i>
+    <i style="left:13%;top:68%;animation-duration:11s;animation-delay:6s"></i>
+   </div>
+   <i class="meteor" style="left:14%;top:12%;animation-delay:2.5s"></i>
+   <i class="meteor" style="left:52%;top:7%;animation-delay:7s;animation-duration:12s"></i>
+
+   <section class="screen" id="s-store">
+    <div class="h-kai">今晚，把梦<br>说给瓶听</div>
+    <div class="letter-in">
+     <div class="lhead">亲爱的 2028 年的我：</div>
+     <textarea id="dreamText" maxlength="120" placeholder="写下你想酿给未来的事……"></textarea>
+     <div class="count"><span id="cnt">0</span>/120</div>
+    </div>
+    <button class="hold" id="holdBtn">按住 · 说给瓶听</button>
+    <div id="voiceChip" class="vchip" hidden>🎙 语音梦 · <span id="vsec">0</span>″ 已收进瓶口</div>
+    <button class="wax" id="sealBtn">封 入 瓶 中</button>
+    <div class="tiny">封存后不可修改，但会随时间生长</div>
+    <button class="ghost" data-go="s-letter" style="margin-top:12px">先看看这封信 · 梦信成笺 ›</button>
+   </section>
+
+   <section class="screen" id="s-world">
+    <div class="wglow" id="wglow"></div>
+    <div class="h-kai sm">瓶中世界 · 第 <span class="nights">146</span> 夜</div>
+    <div class="tcap">昨夜，你的梦又亮了一点</div>
+    <div class="tide">
+     <div class="tline" id="tideline"></div>
+     <div class="tnodes">
+      <div class="tn done"><i></i><p>第1潮<br>已开启</p></div>
+      <div class="tn"><i></i><p>第2潮<br>2027 春</p></div>
+      <div class="tn"><i></i><p>第3潮<br>2028 春</p></div>
+      <div class="tn"><i></i><p>开瓶<br>2028 秋</p></div>
+     </div>
+    </div>
+    <div class="feed" id="feed">本周从你的日记里，萃取到 3 滴养分 · 瓶中又亮了一点</div>
+    <button class="ghost" id="nightBtn">过一夜 · 看它生长</button>
+    <div class="linkrow">
+     <button class="navlink" data-go="s-file">翻开<b>瓶身档案</b> ›</button>
+     <button class="navlink" data-go="s-rite">预览<b>开瓶仪式</b> ›</button>
+     <button class="navlink" data-go="s-night">今晚<b>晚安夜航</b> ›</button>
+    </div>
+   </section>
+
+   <section class="screen" id="s-tide">
+    <div class="h-kai sm">潮汐回望 · 第 4 年</div>
+    <div class="tcap">涨潮了，有两封信浮了上来</div>
+    <div id="letters"></div>
+    <div class="linkrow">
+     <button class="navlink" data-go="s-chat">隔瓶<b>长谈</b> ›</button>
+     <button class="navlink" data-go="s-cal">翻开<b>潮汐历</b> ›</button>
+    </div>
+   </section>
+
+   <section class="screen" id="s-share">
+    <div class="h-kai sm">酿卡 · 分酿予人</div>
+    <div class="tcap">把这一坛，分给同路的人</div>
+    <div class="sharecard">
+     <div class="sc-top">
+      <svg width="24" height="24" viewBox="0 0 200 200"><g fill="#A6402F"><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/><circle cx="100" cy="100" r="14"/></g></svg>
+      <div><p>酿梦</p><small>BREWM</small></div>
+     </div>
+     <div class="sc-quote" id="shareQuote">“想在三十岁前，拥有一间自己的工作室，哪怕很小，门上要挂一块手写的木牌。”</div>
+     <div class="sc-meta"><div class="waxdot">安</div><p>已封存 <span id="sealDays">1462</span> 天 · 一路平安</p></div>
+     <div class="sc-foot"><div class="est">Est. 2022 — Open 2028</div><div class="qr">码位</div></div>
+    </div>
+    <div class="btnrow"><button class="ghost" id="quoteBtn">换一句</button><button class="wax" id="saveBtn">保存酿卡</button></div>
+    <div class="tiny">授权后进入策展式漂流 · 有治理的共鸣</div>
+    <button class="ghost" data-go="s-sea" style="margin-top:12px">去看漂流的海 · 共鸣广场 ›</button>
+   </section>
+
+   <section class="screen" id="s-file">
+    <button class="backbtn" data-go="s-world">‹ 返回瓶中</button>
+    <div class="h-kai sm">瓶身档案 · 第 001 号梦</div>
+    <div class="tcap">每一滴养分，都有出处</div>
+    <div class="paper2">
+     <div class="lfrom">封于 2022.10.05<span>火漆完好</span></div>
+     <div class="ltext">“想在三十岁前，拥有一间自己的工作室，哪怕很小。”</div>
+     <div class="grow"><span style="font-size:10.5px;color:rgba(43,58,85,.55)">沉淀刻度</span><div class="bar"><i></i></div><span style="font-size:10.5px;color:#A6402F">12/24</span></div>
+     <div style="margin-top:12px;font-size:12px;line-height:1.8;color:#6B5426;background:rgba(217,179,106,.14);border:1px solid rgba(217,179,106,.4);border-radius:10px;padding:9px 12px">AI 已萃取 <b>217 滴</b>养分 · 星光 +38% · 原文从未外传</div>
+    </div>
+    <div class="paper2">
+     <div class="lfrom">封于 2023.03.21<span>第 002 号梦</span></div>
+     <div class="ltext">“学会真正地休息，把日子过成可以回看的信。”</div>
+     <div class="grow"><span style="font-size:10.5px;color:rgba(43,58,85,.55)">沉淀刻度</span><div class="bar"><i style="width:31%"></i></div><span style="font-size:10.5px;color:#A6402F">7/24</span></div>
+    </div>
+    <div class="tiny">档案只对你可见 · 潮汐开启时才浮出水面</div>
+   </section>
+
+   <section class="screen" id="s-chat">
+    <button class="backbtn" data-go="s-tide">‹ 返回回望</button>
+    <div class="h-kai sm">隔瓶长谈 · 与 2022 的我</div>
+    <div class="tcap">潮水让两个时刻靠得很近</div>
+    <div class="chatbox">
+     <div class="bub">“那件十年后才看得出对不对的事——你还在坚持吗？”</div>
+     <div class="bub me">“还在。上周刚给工作室门口，钉了第一块手写木牌。”</div>
+     <div class="bub">“那么今年，你最想守住的是哪一件小事？”</div>
+    </div>
+    <div class="replyarea"><input placeholder="回给 2022 年的我……"><button class="chatgo">封缄回信</button></div>
+    <div class="tiny">对话只存在于瓶中 · 不上链，不外传</div>
+   </section>
+
+   <section class="screen" id="s-sea">
+    <button class="backbtn" data-go="s-share">‹ 返回酿卡</button>
+    <div class="h-kai sm">漂流的海 · 共鸣广场</div>
+    <div class="tcap">每一张酿卡，都带着同意书上船</div>
+    <div class="rule"><span>双重授权</span><span>策展人筛选</span><span>署名可溯</span><span>随时可撤</span></div>
+    <div class="seacard"><div class="who">来自 醒山<span>第 1142 潮</span></div><p>“把外婆的拿手菜一道一道做了一遍，像她还在灶边。”</p></div>
+    <div class="seacard"><div class="who">来自 晚舟<span>第 987 潮</span></div><p>“三战上岸那天，我先去海边看了一场日出。”</p></div>
+    <div class="tiny">今晚有 1,204 张酿卡在海上 · 越界 0 条</div>
+   </section>
+
+   <section class="screen" id="s-rite">
+    <button class="backbtn" data-go="s-world">‹ 返回瓶中</button>
+    <div class="h-kai sm">开瓶仪式 · 2028 秋</div>
+    <div class="riteday"><div class="big">Open · 2028.10.05</div><p>六年前封缄的那晚，就是为这一刻酿的</p></div>
+    <div class="paper2" style="text-align:center">
+     <svg width="50" height="50" viewBox="0 0 200 200" style="margin-top:4px"><g fill="#A6402F"><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/><circle cx="100" cy="100" r="14"/></g></svg>
+     <p class="ltext" style="margin-top:8px">火漆“安”印将缓缓融开，<br>第一批星光涌出瓶口——<br>往日的信与酿卡，一一起岸。</p>
+    </div>
+    <button class="wax" id="riteBtn">预演 · 融开火漆</button>
+    <div class="tiny">到期自动提醒 · 可以提前，不能跳过</div>
+   </section>
+
+   <section class="screen" id="s-letter">
+    <button class="backbtn" data-go="s-store">‹ 返回存入</button>
+    <div class="h-kai sm">梦信成笺</div>
+    <div class="tcap">封缄之前，最后读一遍</div>
+    <div class="paper2" style="padding:20px 18px">
+     <div class="lhead">亲爱的 2028 年的我：</div>
+     <div class="ltext" style="font-size:17px;line-height:2;margin-top:12px">想在三十岁前，拥有一间自己的工作室，哪怕很小，门上要挂一块手写的木牌。</div>
+     <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:18px;border-top:1px dashed rgba(43,58,85,.2);padding-top:12px">
+      <span style="font-family:Georgia,serif;font-style:italic;font-size:12px;color:#8A6F55">2026.10.11 · 于夜航</span>
+      <div style="width:44px;height:44px;border-radius:50%;border:1.5px dashed rgba(166,64,47,.5);color:rgba(166,64,47,.55);display:flex;align-items:center;justify-content:center;font-family:KaiTi,楷体,serif;font-size:12px">安</div>
+     </div>
+    </div>
+    <div class="btnrow"><button class="ghost" data-go="s-store">再改改</button><button class="wax" data-go="s-world">就这样，封入瓶中</button></div>
+    <div class="tiny">成笺后字体与纸纹将随年份陈化</div>
+   </section>
+
+   <section class="screen" id="s-cal">
+    <button class="backbtn" data-go="s-tide">‹ 返回回望</button>
+    <div class="h-kai sm">潮汐历 · 六年一图</div>
+    <div class="tcap">每一次涨潮，都写在日历上</div>
+    <div class="ctide">
+     <div class="citem"><b>封缄之日<span>2022.10.05</span></b><p>第一个梦入瓶，火漆「安」印落定</p></div>
+     <div class="citem"><b>第 1 潮 · 已涨<span>2023 春</span></b><p>两封旧信浮上水面，隔瓶发问已回应</p></div>
+     <div class="citem dim"><b>第 2 潮 · 将至<span>2027 春</span></b><p>距离涨潮还有 421 天 · 语音梦将在潮中回放</p></div>
+     <div class="citem dim"><b>第 3 潮<span>2028 春</span></b><p>酿卡成册，可邀同路人共阅</p></div>
+     <div class="citem dim" style="padding-bottom:2px"><b>开瓶 · 起岸<span>2028 秋</span></b><p>火漆融开，全部信与星光一起上岸</p></div>
+    </div>
+    <div class="tiny">潮期可提前 · 不可跳过 · 每一潮都有预告</div>
+   </section>
+
+   <section class="screen" id="s-night">
+    <button class="backbtn" data-go="s-world">‹ 返回瓶中</button>
+    <div class="nite">
+     <svg width="64" height="64" viewBox="0 0 44 44" fill="#FFE9C4"><path d="M27,11 a12,12 0 1,0 6.5,21.5 A10,10 0 1,1 27,11 Z"/><path d="M30,13 l1.1,2.9 2.9,1.1 -2.9,1.1 -1.1,2.9 -1.1,-2.9 -2.9,-1.1 2.9,-1.1 Z"/></svg>
+     <div class="h" style="margin-top:10px">夜航晚安</div>
+     <p style="font-size:11.5px;color:rgba(244,241,232,.7);letter-spacing:2px;margin-top:8px">第 146 夜 · 平安</p>
+    </div>
+    <div class="feed" style="margin-top:16px;text-align:center">今夜瓶语：「梦见海，兑了一点潮声进瓶里。」</div>
+    <div class="nite"><span class="chip">明晨 7:00 · 潮声轻轻唤醒你</span></div>
+    <button class="ghost" data-go="s-world" style="margin-top:16px">灭灯 · 过一夜 +1</button>
+    <div class="tiny">星光在你睡着的时候生长</div>
+   </section>
+
+   <section class="screen" id="s-mine">
+    <div style="display:flex;align-items:center;gap:10px;margin-top:10px">
+     <svg width="30" height="30" viewBox="0 0 200 200"><g fill="#FFE9C4"><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/><circle cx="100" cy="100" r="14"/></g></svg>
+     <div><div style="font-family:KaiTi,楷体,serif;font-size:22px;letter-spacing:3px;color:#FFE9C4">第 001 号瓶</div>
+     <div style="font-family:Georgia,serif;font-style:italic;font-size:9.5px;letter-spacing:3px;color:rgba(244,241,232,.55)">MY BREWM · EST. 2022</div></div>
+    </div>
+    <div class="statgrid">
+     <div class="stat"><b>1462</b><p>酿龄 · 天</p></div>
+     <div class="stat"><b>2</b><p>封存的梦</p></div>
+     <div class="stat"><b>217</b><p>萃取养分 · 滴</p></div>
+     <div class="stat"><b>38</b><p>有治理的共鸣 · 次</p></div>
+    </div>
+    <div class="feed" style="margin-top:12px">平安里程：1462 天 · 0 次惊扰 · 原文从未外传</div>
+    <div class="rule"><span>双重授权</span><span>署名可溯</span><span>随时可撤</span></div>
+    <div class="tiny">每一个数字，都是时间酿出来的</div>
+    <button class="ghost" data-go="s-set" style="margin-top:12px">设置 · 让酿梦更懂你 ›</button>
+   </section>
+
+   <section class="screen" id="s-set">
+    <button class="backbtn" data-go="s-mine">‹ 返回我的</button>
+    <div class="h-kai sm">设置</div>
+    <div class="tcap">让酿梦更懂你，也更守规矩</div>
+    <div class="sgroup">
+     <div class="gt">通 用</div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M9,18 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0"/><path d="M9,27 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0" opacity=".55"/></svg><p>潮声唤醒<span>每日 7:00 · 涨潮与回信提醒</span></p><div class="sw on"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none"><path d="M27,11 a12,12 0 1,0 6.5,21.5 A10,10 0 1,1 27,11 Z"/></svg><p>夜间模式<span>日落后自动进入夜航</span></p><div class="sw on"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M8,22 h28"/><circle cx="13" cy="22" r="3" fill="#F4F1E8" stroke="none"/><circle cx="22" cy="22" r="3"/><circle cx="31" cy="22" r="3"/></svg><p>纸纹陈化<span>信纸与字迹随年份慢慢变旧</span></p><div class="sw on"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M12,10 l7,10 -7,10 M32,10 l-7,10 7,10" opacity=".7"/></svg><p>减弱动效<span>跟随系统「减少动态效果」设定</span></p><div class="sw on"></div></div>
+    </div>
+    <div class="sgroup">
+     <div class="gt">隐私与治理</div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><rect x="12" y="12" width="20" height="20" rx="5"/><path d="M17.5,22 h9 M22,17.5 v9"/></svg><p>原文本地加密<span>信的原文只存在你的设备上</span></p><div class="sw on"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><circle cx="22" cy="22" r="4"/><path d="M22,13 v-5 M22,31 v5 M13,22 h-5 M31,22 h5 M15.5,15.5 l-3.5,-3.5 M28.5,15.5 l3.5,-3.5 M15.5,28.5 l-3.5,3.5 M28.5,28.5 l3.5,3.5"/></svg><p>AI 萃取授权<span>只提炼养分 · 原文从不外传</span></p><div class="sw on"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M13,27 h18 a4,4 0 0,0 0,-8 a6.5,6.5 0 0,0 -12.5,-2 a4.5,4.5 0 0,0 -5.5,10 Z"/></svg><p>酿卡漂流<span>需二次确认 · 授权后可随时撤回</span></p><div class="sw"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none"><circle cx="22" cy="22" r="10.5"/><circle cx="22" cy="22" r="5" opacity=".6"/></svg><p>漂流署名<span>酿卡出海时显示瓶名</span></p><div class="sw on"></div></div>
+    </div>
+    <div class="sgroup">
+     <div class="gt">关 于</div>
+     <div class="srow"><p>版本<span>酿梦 BREWM 1.0 · 夜航</span></p><span class="val">New</span></div>
+     <div class="srow"><p>素材声明<span>部分视觉素材由 AI 辅助生成</span></p></div>
+     <div class="srow"><p>用户协议<span>平安条款 · 共鸣治理规则</span></p><span class="val">›</span></div>
+    </div>
+   </section>
+
+   <div class="sealfx" id="sealFx" hidden>
+    <svg width="170" height="170" viewBox="0 0 200 200">
+     <path d="M100,10 C158,6 192,44 190,102 C188,158 148,192 98,190 C48,188 10,150 10,100 C10,48 52,14 100,10 Z" fill="#A6402F"/>
+     <path d="M50,52 C66,36 92,28 116,30" stroke="rgba(246,231,211,.35)" stroke-width="7" fill="none" stroke-linecap="round"/>
+     <circle cx="100" cy="100" r="72" fill="none" stroke="#7E2F22" stroke-width="3.5" opacity=".85"/>
+     <text x="100" y="122" text-anchor="middle" font-family="KaiTi,楷体,serif" font-size="58" fill="#F6E7D3">安</text>
+    </svg>
+   </div>
+   <div class="toast" id="toast"></div>
+  </div>
+
+  <nav class="navbar">
+   <button data-v="s-store" class="on">
+    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="14" width="22" height="16" rx="7"/><path d="M11.5,17 C15.5,22.5 18.7,25 22,25 C25.3,25 28.5,22.5 32.5,17"/></svg>
+    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44" fill="#FFE9C4"><rect x="11" y="14" width="22" height="16" rx="7"/><path d="M11.5,17 C15.5,22.5 18.7,25 22,25 C25.3,25 28.5,22.5 32.5,17" fill="none" stroke="#141632" stroke-width="1.8"/><circle cx="22" cy="20.2" r="2.2"/></svg>
+    <span>存入</span></button>
+   <button data-v="s-world">
+    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"><path d="M22,9 C24.5,13 28.5,16 29,21 C29.6,26.5 26.5,30.5 22,30.5 C17.5,30.5 14.4,26.5 15,21 C15.5,16 19.5,13 22,9 Z"/><path d="M22,20 l0.9,2 2,0.9 -2,0.9 -0.9,2 -0.9,-2 -2,-0.9 2,-0.9 Z" stroke-linejoin="round"/></svg>
+    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44" fill="#FFE9C4"><path d="M22,9 C24.5,13 28.5,16 29,21 C29.6,26.5 26.5,30.5 22,30.5 C17.5,30.5 14.4,26.5 15,21 C15.5,16 19.5,13 22,9 Z"/><path d="M22,19.5 l0.9,2 2,0.9 -2,0.9 -0.9,2 -0.9,-2 -2,-0.9 2,-0.9 Z" fill="#141632"/></svg>
+    <span>瓶中</span></button>
+   <button data-v="s-tide">
+    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"><path d="M16,6 a5,5 0 1,0 2.8,9.2 A4.2,4.2 0 1,1 16,6 Z"/><path d="M9,18 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0"/><path d="M9,27 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0" opacity=".55"/></svg>
+    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44" stroke="#FFE9C4" stroke-width="3.4" fill="none" stroke-linecap="round"><path d="M16,6 a5,5 0 1,0 2.8,9.2 A4.2,4.2 0 1,1 16,6 Z" fill="#FFE9C4" stroke="none"/><path d="M9,18 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0"/><path d="M9,27 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0" opacity=".55"/><circle cx="32" cy="12.5" r="2.2" fill="#FFE9C4" stroke="none"/></svg>
+    <span>回望</span></button>
+   <button data-v="s-share">
+    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22,25.5 C19,24 16.8,20.5 17.5,16.5 C18.1,12.8 19.8,10 22,10 C24.2,10 25.9,12.8 26.5,16.5 C27.2,20.5 25,24 22,25.5 Z"/><path d="M22,25.5 C19,24 16.8,20.5 17.5,16.5 C18.1,12.8 19.8,10 22,10 C24.2,10 25.9,12.8 26.5,16.5 C27.2,20.5 25,24 22,25.5 Z" transform="rotate(120 22 22)"/><path d="M22,25.5 C19,24 16.8,20.5 17.5,16.5 C18.1,12.8 19.8,10 22,10 C24.2,10 25.9,12.8 26.5,16.5 C27.2,20.5 25,24 22,25.5 Z" transform="rotate(240 22 22)"/></svg>
+    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44" fill="#FFE9C4"><path d="M22,25.5 C19,24 16.8,20.5 17.5,16.5 C18.1,12.8 19.8,10 22,10 C24.2,10 25.9,12.8 26.5,16.5 C27.2,20.5 25,24 22,25.5 Z"/><path d="M22,25.5 C19,24 16.8,20.5 17.5,16.5 C18.1,12.8 19.8,10 22,10 C24.2,10 25.9,12.8 26.5,16.5 C27.2,20.5 25,24 22,25.5 Z" transform="rotate(120 22 22)"/><path d="M22,25.5 C19,24 16.8,20.5 17.5,16.5 C18.1,12.8 19.8,10 22,10 C24.2,10 25.9,12.8 26.5,16.5 C27.2,20.5 25,24 22,25.5 Z" transform="rotate(240 22 22)"/><path d="M22,19.2 C22.4,21 23.2,21.8 25,22.1 C23.2,22.4 22.4,23.2 22,25 C21.6,23.2 20.8,22.4 19,22.1 C20.8,21.8 21.6,21 22,19.2 Z" fill="#141632"/></svg>
+    <span>酿卡</span></button>
+   <button data-v="s-mine">
+    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"><path d="M27,11 a12,12 0 1,0 6.5,21.5 A10,10 0 1,1 27,11 Z"/></svg>
+    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44" fill="#FFE9C4"><path d="M27,11 a12,12 0 1,0 6.5,21.5 A10,10 0 1,1 27,11 Z"/><path d="M30,13 l1.1,2.9 2.9,1.1 -2.9,1.1 -1.1,2.9 -1.1,-2.9 -2.9,-1.1 2.9,-1.1 Z"/></svg>
+    <span>我的</span></button>
+  </nav>
+ </div>
+ <div class="caption">酿梦 BREWM · H5 交互原型 v4 · 四环十二屏 · 2026 华灿奖定向主题 14 · 插画素材由 AI 辅助生成</div>
+</div>
+
+<script>
+var $=function(s){return document.querySelector(s)},$$=function(s){return document.querySelectorAll(s)};
+var state={
+ nights:146,sealDays:1462,
+ dreams:[
+  {t:'想在三十岁前，拥有一间自己的工作室，哪怕很小，门上要挂一块手写的木牌。',d:'2022.10.05'},
+  {t:'学会真正地休息，把日子过成可以回看的信。',d:'2023.03.21'}],
+ letters:[
+  {from:'2022.10.05',tide:'第1潮',t:'今天我刚刚决定，要做一件十年后才看得出对不对的事……',q:'那件十年后才看得出对不对的事——你还在坚持吗？'},
+  {from:'2023.03.21',tide:'第2潮',t:'学会真正地休息，把日子过成可以回看的信。',q:'这一年，你睡得好吗？'}],
+ feeds:['本周从你的日记里，萃取到 3 滴养分 · 瓶中又亮了一点',
+  '梦见海，兑了一点潮声进瓶里',
+  '夜风很轻，火漆纹路又深了一分',
+  '潮位上涨：距离第 2 潮还有 421 天',
+  '昨夜的语音梦，酿出了细小的光'],
+ fi:0,voice:null,replies:{},shareIdx:0
+};
+function show(id){
+ $$('.screen').forEach(function(s){s.classList.remove('on')});
+ var el=document.getElementById(id);if(el)el.classList.add('on');
+ $$('.navbar button').forEach(function(b){b.classList.toggle('on',b.dataset.v===id)});
+ $$('.bgart').forEach(function(b){b.classList.toggle('on',b.id==='bg-'+id.slice(2))});
+ var bg=document.getElementById('bg-'+id.slice(2));
+ if(bg){var im=bg.querySelector('img');
+  if(im&&!im.getAttribute('src')&&im.dataset.src){im.src=im.dataset.src}}
+}
+function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('show');
+ clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('show')},1900)}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function renderWorld(){
+ $$('.nights').forEach(function(e){e.textContent=state.nights});
+ var s=(0.75+Math.min(state.nights,600)/600*0.65).toFixed(3);
+ var g=$('#wglow');if(g)g.style.setProperty('--gs',s);
+ var pct=Math.min(100,(state.nights/1460*100)).toFixed(1)+'%';
+ $('#tideline').style.setProperty('--p',pct);
+ $('#feed').textContent=state.feeds[state.fi%state.feeds.length];
+}
+function renderLetters(){
+ var box=$('#letters');box.innerHTML='';
+ state.letters.forEach(function(L,i){
+  var d=document.createElement('div');d.className='ltr';
+  d.innerHTML='<div class="lfrom">来自 '+L.from+'<span>'+L.tide+'</span></div>'
+   +'<div class="ltext">“'+esc(L.t)+'”</div>'
+   +'<div class="ask"><small>过去的你，隔瓶问了一句</small>'
+   +'<div class="bub">“'+esc(L.q)+'”</div>'
+   +'<div class="replyarea"><input placeholder="回信给过去的自己……" id="rin'+i+'">'
+   +'<button class="replyGo" data-i="'+i+'">回信</button></div>'
+   +'<div id="rout'+i+'"></div></div>';
+  d.addEventListener('click',function(e){
+   if(e.target.closest('.replyarea'))return;
+   $$('.ltr').forEach(function(x){if(x!==d)x.classList.remove('open')});
+   d.classList.toggle('open');
+  });
+  box.appendChild(d);
+ });
+ $$('.replyGo').forEach(function(b){
+  b.addEventListener('click',function(){
+   var i=b.dataset.i,inp=document.getElementById('rin'+i),out=document.getElementById('rout'+i);
+   var v=(inp.value||'').trim();if(!v){toast('写一句回信，再封进潮水里');return}
+   state.replies[i]=v;
+   out.innerHTML='<div class="bub me">“'+esc(v)+'”</div>'
+    +'<button class="goShare" data-i="'+i+'">把这句酿上酿卡 ›</button>';
+   bindGoShare();
+  });
+ });
+}
+function bindGoShare(){
+ $$('.goShare').forEach(function(b){b.onclick=function(){
+  state.shareIdx='r'+b.dataset.i;renderShare();show('s-share');
+ }});
+}
+function shareQuotes(){
+ var qs=state.dreams.map(function(d){return d.t});
+ Object.keys(state.replies).forEach(function(k){qs.push(state.replies[k])});
+ return qs;
+}
+function renderShare(){
+ var qs=shareQuotes();if(!qs.length)qs=['存下一个梦，酿给未来的自己。'];
+ var q=qs[state.shareIdx%qs.length];
+ $('#shareQuote').textContent='“'+q+'”';
+ $('#sealDays').textContent=state.sealDays;
+}
+$$('.navbar button').forEach(function(b){
+ b.addEventListener('click',function(){show(b.dataset.v);
+  if(b.dataset.v==='s-share')renderShare();
+  if(b.dataset.v==='s-world')renderWorld();
+ });
+});
+$('#dreamText').addEventListener('input',function(){$('#cnt').textContent=this.value.length});
+var holdT=null,sec=0;
+var holdBtn=$('#holdBtn');
+function startRec(e){e.preventDefault();holdBtn.classList.add('rec');holdBtn.textContent='正在听……松开封缄';
+ sec=0;holdT=setInterval(function(){sec++},1000);}
+function endRec(){if(!holdBtn.classList.contains('rec'))return;
+ holdBtn.classList.remove('rec');holdBtn.textContent='按住 · 说给瓶听';
+ clearInterval(holdT);var s=Math.max(2,sec||2);state.voice=s;
+ $('#vsec').textContent=s;$('#voiceChip').hidden=false;
+ toast('语音梦已收进瓶口 · '+s+'″');}
+holdBtn.addEventListener('pointerdown',startRec);
+holdBtn.addEventListener('pointerup',endRec);
+holdBtn.addEventListener('pointerleave',endRec);
+$('#sealBtn').addEventListener('click',function(){
+ var t=$('#dreamText').value.trim();
+ if(!t&&!state.voice){toast('先写一句，或按住说一句');return}
+ var dream=t||'（一段 '+state.voice+'″ 的语音梦）';
+ state.dreams.unshift({t:dream,d:'2026.10.05'});
+ var fx=$('#sealFx');fx.hidden=false;
+ setTimeout(function(){fx.hidden=true;state.voice=null;$('#voiceChip').hidden=true;
+  $('#dreamText').value='';$('#cnt').textContent='0';
+  renderWorld();show('s-world');toast('已封入瓶中 · 平安');
+ },950);
+});
+$('#nightBtn').addEventListener('click',function(){
+ state.nights++;state.fi++;renderWorld();toast('第 '+state.nights+' 夜 · 平安');
+});
+$('#quoteBtn').addEventListener('click',function(){
+ state.shareIdx++;renderShare();
+});
+$('#saveBtn').addEventListener('click',function(){toast('酿卡已生成 ·（演示）保存到相册')});
+$('#riteBtn').addEventListener('click',function(){toast('仪式预演 · 火漆将融开（演示）')});
+$$('.chatgo').forEach(function(b){b.addEventListener('click',function(){
+ var inp=b.parentNode.querySelector('input');var v=(inp.value||'').trim();
+ if(!v){toast('写一句，再封缄给过去');return}
+ var d=document.createElement('div');d.className='bub me';d.textContent='“'+v+'”';
+ b.parentNode.parentNode.querySelector('.chatbox').appendChild(d);
+ inp.value='';toast('回信已封缄 · 平安');
+})});
+$$('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.go)})});
+$$('.sw').forEach(function(s){s.addEventListener('click',function(){
+ s.classList.toggle('on');toast(s.classList.contains('on')?'已开启 · 平安':'已关闭 · 平安');
+})});
+// init from URL params（供静帧渲染与录屏跳转）
+var q=new URLSearchParams(location.search);
+if(q.get('night')){state.nights=parseInt(q.get('night'),10)||state.nights}
+if(q.get('snap')){document.documentElement.classList.add('noanim')}
+if(q.get('full')){document.body.classList.add('full')}
+if(q.get('text')){var dt=$('#dreamText');dt.value=q.get('text');$('#cnt').textContent=dt.value.length}
+if(q.get('seal')){$('#sealFx').hidden=false}
+renderWorld();renderLetters();renderShare();bindGoShare();
+var firstBg=document.querySelector('.bgart.on img');
+$$('.bgart img').forEach(function(im){if(im!==firstBg){
+ im.dataset.src=im.getAttribute('src');im.removeAttribute('src')}});
+// 桌面端自适应缩放：窗口不够高时整体等比缩小，保证完整显示
+function fit(){
+ if(document.body.classList.contains('full')||innerWidth<=480)return;
+ var st=document.querySelector('.stage');
+ var w=st.offsetWidth||440,h=st.offsetHeight||1000;
+ var s=Math.min(1,(innerWidth-24)/w,(innerHeight-36)/h);
+ st.style.transformOrigin='center center';
+ st.style.transform='scale('+s.toFixed(4)+')';
+}
+addEventListener('resize',fit);fit();
+var v=q.get('view');show('s-'+(v||'store'));
+</script>
+</body></html>
