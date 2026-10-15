@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>酿梦 Brewm · 数字时代的梦想储存与回望</title>
+<title>酿梦 Brewm · 数字梦瓶 · H5 交互原型 · 二十屏</title>
 <style>
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -230,6 +230,20 @@ body.full .phone{width:440px;height:956px;flex:0 0 auto;border-radius:0;border:n
 body.full .brand,body.full .caption{display:none}
 .hd h1,.htitle h2,.lname,.tit,.k,.gt b{font-weight:700}
 .sec b{font-weight:500}
+
+.linkrow{flex-wrap:wrap}
+#s-feed .ctide,#s-privacy .ctide{background:rgba(20,22,48,.62);backdrop-filter:blur(5px);
+ border:1px solid rgba(217,179,106,.35);border-radius:14px;padding:14px 14px 12px 28px;margin-top:14px}
+.wave{display:flex;align-items:flex-end;gap:3px;height:36px;margin-top:10px}
+.wave i{width:3px;border-radius:2px;background:linear-gradient(180deg,#FFE9C4,#D9B36A)}
+.pickrow{display:flex;gap:10px;margin-top:14px}
+.pick{flex:1;border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;
+ border:1.5px solid rgba(244,241,232,.3);background:rgba(255,255,255,.07);backdrop-filter:blur(3px);transition:.2s}
+.pick b{display:block;font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;
+ font-size:13px;letter-spacing:2px;color:#F4F1E8;font-weight:400}
+.pick small{display:block;font-size:9px;letter-spacing:1px;color:rgba(244,241,232,.5);margin-top:5px}
+.pick.on{border-color:#D9B36A;background:rgba(217,179,106,.16);box-shadow:0 6px 18px rgba(217,179,106,.2)}
+.pick.on b{color:#FFE9C4}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
  <radialGradient id="ngG" cx="50%" cy="45%"><stop offset="0%" stop-color="#FFE9C4"/><stop offset="55%" stop-color="#F5B85C"/><stop offset="100%" stop-color="rgba(245,184,92,0)"/></radialGradient>
@@ -272,19 +286,26 @@ body.full .brand,body.full .caption{display:none}
    <i class="isle"></i>
    <svg width="15" height="15" viewBox="0 0 200 200"><g fill="#A6402F"><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/><circle cx="100" cy="100" r="14"/></g></svg></div>
   <div class="app">
-   <div class="bgart on" id="bg-store"><img src="../07-提交包/素材/crop2-图4-存入页-书桌.png" alt=""><i class="candle"></i></div>
-   <div class="bgart" id="bg-world"><img src="../07-提交包/素材/crop2-图5-瓶中世界-星树.png" alt=""></div>
-   <div class="bgart" id="bg-tide"><img src="../07-提交包/素材/crop2-图3-纸船漂流.png" alt=""></div>
-   <div class="bgart soft" id="bg-share"><img src="../07-提交包/素材/crop2-图1B-主视觉-立瓶银河.png" alt=""></div>
-   <div class="bgart" id="bg-file"><img src="../07-提交包/素材/crop2-图4-存入页-书桌.png" alt="" style="object-position:50% 78%"></div>
-   <div class="bgart" id="bg-chat"><img src="../07-提交包/素材/crop2-图3-纸船漂流.png" alt=""></div>
-   <div class="bgart soft" id="bg-sea"><img src="../07-提交包/素材/crop2-图1B-主视觉-立瓶银河.png" alt=""></div>
-   <div class="bgart" id="bg-rite"><img src="../07-提交包/素材/crop2-图1A-主视觉-倾瓶倒星.png" alt=""></div>
-   <div class="bgart" id="bg-letter"><img src="../07-提交包/素材/crop2-图4-存入页-书桌.png" alt="" style="object-position:50% 12%"></div>
-   <div class="bgart" id="bg-cal"><img src="../07-提交包/素材/crop2-图3-纸船漂流.png" alt="" style="object-position:50% 25%"></div>
-   <div class="bgart soft" id="bg-night"><img src="../07-提交包/素材/crop2-图5-瓶中世界-星树.png" alt="" style="object-position:50% 82%"></div>
-   <div class="bgart" id="bg-mine"><img src="../07-提交包/素材/crop2-图1A-主视觉-倾瓶倒星.png" alt="" style="object-position:18% 42%"></div>
-   <div class="bgart soft" id="bg-set"><img src="../07-提交包/素材/crop2-图1B-主视觉-立瓶银河.png" alt="" style="object-position:50% 55%"></div>
+   <div class="bgart on" id="bg-store"><img src="img/bg-desk.jpg" alt=""><i class="candle"></i></div>
+   <div class="bgart" id="bg-world"><img src="img/bg-tree.jpg" alt=""></div>
+   <div class="bgart" id="bg-tide"><img src="img/bg-boat.jpg" alt=""></div>
+   <div class="bgart soft" id="bg-share"><img src="img/bg-galaxy.jpg" alt=""></div>
+   <div class="bgart" id="bg-file"><img src="img/bg-desk.jpg" alt="" style="object-position:50% 78%"></div>
+   <div class="bgart" id="bg-chat"><img src="img/bg-boat.jpg" alt=""></div>
+   <div class="bgart soft" id="bg-sea"><img src="img/bg-galaxy.jpg" alt=""></div>
+   <div class="bgart" id="bg-rite"><img src="img/bg-pour.jpg" alt=""></div>
+   <div class="bgart" id="bg-letter"><img src="img/bg-desk.jpg" alt="" style="object-position:50% 12%"></div>
+   <div class="bgart" id="bg-cal"><img src="img/bg-boat.jpg" alt="" style="object-position:50% 25%"></div>
+   <div class="bgart soft" id="bg-night"><img src="img/bg-tree.jpg" alt="" style="object-position:50% 82%"></div>
+   <div class="bgart" id="bg-mine"><img src="img/bg-pour.jpg" alt="" style="object-position:18% 42%"></div>
+   <div class="bgart soft" id="bg-set"><img src="img/bg-galaxy.jpg" alt="" style="object-position:50% 55%"></div>
+   <div class="bgart soft" id="bg-open"><img src="img/bg-pour.jpg" alt=""></div>
+   <div class="bgart" id="bg-voice"><img src="img/bg-boat.jpg" alt="" style="object-position:50% 30%"></div>
+   <div class="bgart" id="bg-feed"><img src="img/bg-tree.jpg" alt="" style="object-position:50% 40%"></div>
+   <div class="bgart" id="bg-append"><img src="img/bg-desk.jpg" alt="" style="object-position:50% 62%"></div>
+   <div class="bgart soft" id="bg-card"><img src="img/bg-galaxy.jpg" alt="" style="object-position:50% 20%"></div>
+   <div class="bgart" id="bg-pickup"><img src="img/bg-boat.jpg" alt="" style="object-position:50% 75%"></div>
+   <div class="bgart soft" id="bg-privacy"><img src="img/bg-galaxy.jpg" alt="" style="object-position:50% 70%"></div>
    <div class="fire">
     <i style="left:7%;top:78%;animation-duration:7s"></i>
     <i style="left:22%;top:88%;animation-duration:9s;animation-delay:1.2s"></i>
@@ -299,6 +320,7 @@ body.full .brand,body.full .caption{display:none}
    <i class="meteor" style="left:52%;top:7%;animation-delay:7s;animation-duration:12s"></i>
 
    <section class="screen" id="s-store">
+    <button class="backbtn" data-go="s-open" style="margin-top:0">‹ 开屏</button>
     <div class="h-kai">今晚，把梦<br>说给瓶听</div>
     <div class="letter-in">
      <div class="lhead">亲爱的 2028 年的我：</div>
@@ -331,6 +353,8 @@ body.full .brand,body.full .caption{display:none}
      <button class="navlink" data-go="s-file">翻开<b>瓶身档案</b> ›</button>
      <button class="navlink" data-go="s-rite">预览<b>开瓶仪式</b> ›</button>
      <button class="navlink" data-go="s-night">今晚<b>晚安夜航</b> ›</button>
+     <button class="navlink" data-go="s-feed">养分<b>日记</b> ›</button>
+     <button class="navlink" data-go="s-append"><b>补一页</b>信 ›</button>
     </div>
    </section>
 
@@ -341,6 +365,7 @@ body.full .brand,body.full .caption{display:none}
     <div class="linkrow">
      <button class="navlink" data-go="s-chat">隔瓶<b>长谈</b> ›</button>
      <button class="navlink" data-go="s-cal">翻开<b>潮汐历</b> ›</button>
+     <button class="navlink" data-go="s-voice">语音<b>回放</b> ›</button>
     </div>
    </section>
 
@@ -357,6 +382,7 @@ body.full .brand,body.full .caption{display:none}
      <div class="sc-foot"><div class="est">Est. 2022 — Open 2028</div><div class="qr">码位</div></div>
     </div>
     <div class="btnrow"><button class="ghost" id="quoteBtn">换一句</button><button class="wax" id="saveBtn">保存酿卡</button></div>
+    <button class="ghost" data-go="s-card" style="margin-top:12px">进酿卡工坊 · 选一款卡面 ›</button>
     <div class="tiny">授权后进入策展式漂流 · 有治理的共鸣</div>
     <button class="ghost" data-go="s-sea" style="margin-top:12px">去看漂流的海 · 共鸣广场 ›</button>
    </section>
@@ -376,6 +402,7 @@ body.full .brand,body.full .caption{display:none}
      <div class="ltext">“学会真正地休息，把日子过成可以回看的信。”</div>
      <div class="grow"><span style="font-size:10.5px;color:rgba(43,58,85,.55)">沉淀刻度</span><div class="bar"><i style="width:31%"></i></div><span style="font-size:10.5px;color:#A6402F">7/24</span></div>
     </div>
+    <button class="ghost" data-go="s-append" style="margin-top:12px">给瓶里补一页 · 发酵追加 ›</button>
     <div class="tiny">档案只对你可见 · 潮汐开启时才浮出水面</div>
    </section>
 
@@ -399,6 +426,7 @@ body.full .brand,body.full .caption{display:none}
     <div class="rule"><span>双重授权</span><span>策展人筛选</span><span>署名可溯</span><span>随时可撤</span></div>
     <div class="seacard"><div class="who">来自 醒山<span>第 1142 潮</span></div><p>“把外婆的拿手菜一道一道做了一遍，像她还在灶边。”</p></div>
     <div class="seacard"><div class="who">来自 晚舟<span>第 987 潮</span></div><p>“三战上岸那天，我先去海边看了一场日出。”</p></div>
+    <button class="ghost" data-go="s-pickup" style="margin-top:12px">捞起一张酿卡 · 回应同路人 ›</button>
     <div class="tiny">今晚有 1,204 张酿卡在海上 · 越界 0 条</div>
    </section>
 
@@ -493,12 +521,133 @@ body.full .brand,body.full .caption{display:none}
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M13,27 h18 a4,4 0 0,0 0,-8 a6.5,6.5 0 0,0 -12.5,-2 a4.5,4.5 0 0,0 -5.5,10 Z"/></svg><p>酿卡漂流<span>需二次确认 · 授权后可随时撤回</span></p><div class="sw"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none"><circle cx="22" cy="22" r="10.5"/><circle cx="22" cy="22" r="5" opacity=".6"/></svg><p>漂流署名<span>酿卡出海时显示瓶名</span></p><div class="sw on"></div></div>
     </div>
+    <button class="ghost" data-go="s-privacy" style="margin-top:12px">查看完整隐私承诺 ›</button>
     <div class="sgroup">
      <div class="gt">关 于</div>
      <div class="srow"><p>版本<span>酿梦 BREWM 1.0 · 夜航</span></p><span class="val">New</span></div>
      <div class="srow"><p>素材声明<span>部分视觉素材由 AI 辅助生成</span></p></div>
      <div class="srow"><p>用户协议<span>平安条款 · 共鸣治理规则</span></p><span class="val">›</span></div>
     </div>
+   </section>
+
+   <section class="screen" id="s-open">
+    <div style="text-align:center;margin-top:170px">
+     <svg width="76" height="76" viewBox="0 0 200 200"><g fill="#FFE9C4"><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/><circle cx="100" cy="100" r="14"/></g></svg>
+     <div class="h-kai" style="font-size:42px;letter-spacing:14px;margin-top:20px">酿 梦</div>
+     <div style="font-family:Georgia,serif;font-style:italic;font-size:10.5px;letter-spacing:5px;color:rgba(244,241,232,.62);margin-top:12px">BREWM · BREW DREAMS WITH TIME</div>
+     <p class="tcap" style="margin-top:24px;line-height:2.1;letter-spacing:3px">存入是下料 · 日常是发酵<br>回望是开坛 · 共鸣是分酿予人</p>
+    </div>
+    <div style="position:absolute;left:22px;right:22px;bottom:96px">
+     <button class="wax" data-go="s-store">开 始 酿 梦</button>
+     <div class="tiny">六年一坛 · 平安封缄 · 演示数据均在瓶内生成</div>
+    </div>
+   </section>
+
+   <section class="screen" id="s-voice">
+    <button class="backbtn" data-go="s-tide">‹ 返回回望</button>
+    <div class="h-kai sm">语音梦 · 回放</div>
+    <div class="tcap">潮水涨起时，声音也浮上来了</div>
+    <div class="paper2">
+     <div class="lfrom">封于 2022.10.05 · 夜航<span>12″</span></div>
+     <div class="wave"><i style="height:6px"></i><i style="height:17px"></i><i style="height:25px"></i><i style="height:26px"></i><i style="height:21px"></i><i style="height:12px"></i><i style="height:8px"></i><i style="height:14px"></i><i style="height:18px"></i><i style="height:20px"></i><i style="height:18px"></i><i style="height:10px"></i><i style="height:12px"></i><i style="height:22px"></i><i style="height:28px"></i><i style="height:26px"></i><i style="height:19px"></i><i style="height:8px"></i><i style="height:15px"></i><i style="height:22px"></i><i style="height:22px"></i><i style="height:18px"></i><i style="height:11px"></i><i style="height:7px"></i><i style="height:15px"></i><i style="height:21px"></i><i style="height:24px"></i><i style="height:21px"></i><i style="height:12px"></i><i style="height:11px"></i><i style="height:22px"></i><i style="height:27px"></i><i style="height:26px"></i><i style="height:19px"></i></div>
+     <div style="display:flex;align-items:center;gap:10px;margin-top:10px">
+      <div class="waxdot" style="width:34px;height:34px;font-size:13px;cursor:pointer" data-say="play">▶</div>
+      <p style="font-size:11px;color:rgba(43,58,85,.55)">潮声已褪去 · 只还原本声</p>
+     </div>
+     <div class="ltext" style="font-size:14px;margin-top:10px">「……要把工作室的灯，调成暖色的。」</div>
+    </div>
+    <div class="paper2">
+     <div class="lfrom">封于 2023.03.21<span>8″</span></div>
+     <div class="wave"><i style="height:19px"></i><i style="height:10px"></i><i style="height:14px"></i><i style="height:23px"></i><i style="height:28px"></i><i style="height:25px"></i><i style="height:17px"></i><i style="height:7px"></i><i style="height:15px"></i><i style="height:20px"></i><i style="height:19px"></i><i style="height:15px"></i><i style="height:11px"></i><i style="height:8px"></i><i style="height:17px"></i><i style="height:24px"></i><i style="height:26px"></i><i style="height:22px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:22px"></i><i style="height:26px"></i><i style="height:24px"></i><i style="height:17px"></i><i style="height:8px"></i><i style="height:12px"></i><i style="height:15px"></i><i style="height:19px"></i><i style="height:19px"></i><i style="height:14px"></i><i style="height:7px"></i><i style="height:18px"></i><i style="height:26px"></i><i style="height:28px"></i></div>
+     <div class="ltext" style="font-size:14px;margin-top:10px">「三战……这次真的上岸了。」</div>
+    </div>
+    <div class="tiny">语音原文同样只存在你的瓶中</div>
+   </section>
+
+   <section class="screen" id="s-feed">
+    <button class="backbtn" data-go="s-world">‹ 返回瓶中</button>
+    <div class="h-kai sm">养分日记 · AI 萃取</div>
+    <div class="tcap">每一天的日常，都是下料</div>
+    <div class="statgrid">
+     <div class="stat"><b>217</b><p>累计养分 · 滴</p></div>
+     <div class="stat"><b>+38%</b><p>瓶中星光亮度</p></div>
+    </div>
+    <div class="ctide">
+     <div class="citem"><b>10.14<span>昨晚</span></b><p>日记「把展板改到第三版」→ 萃取关键词：坚持 · 养分 +1</p></div>
+     <div class="citem"><b>10.12</b><p>日记「给木牌刻好了字」→ 萃取关键词：手艺 · 养分 +1</p></div>
+     <div class="citem"><b>10.11</b><p>封缄一个新的梦 · 星光 +1</p></div>
+     <div class="citem dim"><b>10.09</b><p>阴雨天 · 瓶里安静，潮位未动</p></div>
+     <div class="citem dim" style="padding-bottom:2px"><b>10.07</b><p>日记「夜跑五公里」→ 萃取关键词：元气 · 养分 +1</p></div>
+    </div>
+    <div class="feed" style="margin-top:14px">萃取只读取主题词与情绪特征 · 原文始终留在本地</div>
+    <div class="tiny">每一天，都被认真酿进瓶里</div>
+   </section>
+
+   <section class="screen" id="s-append">
+    <button class="backbtn" data-go="s-file">‹ 返回档案</button>
+    <div class="h-kai sm">补一页 · 发酵期追加</div>
+    <div class="tcap">原文封缄不可改 · 瓶里可以追加新页</div>
+    <div class="letter-in">
+     <div class="lhead">补给 2028 年的我：</div>
+     <textarea maxlength="120" placeholder="写一段此刻的进展，放进同一只瓶里……"></textarea>
+     <div class="count"><span>0</span>/120</div>
+    </div>
+    <button class="wax" data-say="append">把这一页放进瓶里</button>
+    <div class="rule"><span>原文不可改</span><span>追加可溯源</span><span>随潮启封</span></div>
+    <div class="tiny">发酵的意义：允许生长，不许篡改</div>
+   </section>
+
+   <section class="screen" id="s-card">
+    <button class="backbtn" data-go="s-share">‹ 返回酿卡</button>
+    <div class="h-kai sm">酿卡工坊</div>
+    <div class="tcap">选一款卡面，再出海</div>
+    <div class="pickrow">
+     <div class="pick on" data-name="信笺白"><b>信笺白</b><small>纸纹 · 陈化</small></div>
+     <div class="pick" data-name="星河蓝"><b>星河蓝</b><small>夜航 · 瓶光</small></div>
+     <div class="pick" data-name="火漆红"><b>火漆红</b><small>封缄 · 安印</small></div>
+    </div>
+    <div class="sharecard" style="margin-top:14px">
+     <div class="sc-top"><svg width="24" height="24" viewBox="0 0 200 200"><g fill="#A6402F"><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/><circle cx="100" cy="100" r="14"/></g></svg><div><p>酿梦</p><small>BREWM</small></div></div>
+     <div class="sc-quote" style="font-size:14px;min-height:56px">「想在三十岁前，拥有一间自己的工作室。」</div>
+     <div class="sc-foot"><div class="est">Est. 2022 — Open 2028</div><div class="qr">码位</div></div>
+    </div>
+    <div class="btnrow"><button class="ghost" data-say="cardquote">换一句引言</button><button class="wax" data-say="cardmake">按此卡面生成</button></div>
+    <div class="tiny">卡面只改变外观 · 不改变授权规则</div>
+   </section>
+
+   <section class="screen" id="s-pickup">
+    <button class="backbtn" data-go="s-sea">‹ 返回海面</button>
+    <div class="h-kai sm">捞起一张酿卡</div>
+    <div class="tcap">隔着海，给同路人点一次灯</div>
+    <div class="seacard" style="margin-top:14px">
+     <div class="who">来自 晚舟 · 第 987 潮<span>漂了 412 海里</span></div>
+     <p style="font-size:15px">「三战上岸那天，我先去海边看了一场日出。」</p>
+     <div style="display:flex;align-items:center;gap:8px;margin-top:10px;border-top:1px dashed rgba(43,58,85,.2);padding-top:10px">
+      <div class="waxdot" style="width:30px;height:30px;font-size:13px">安</div>
+      <p style="font-size:10.5px;color:rgba(43,58,85,.55)">已封存 987 天 · 署名可溯 · 授权可撤</p>
+     </div>
+    </div>
+    <div class="btnrow"><button class="ghost" data-say="backsea">放回海里</button><button class="wax" data-say="light">点亮回应 ✦</button></div>
+    <div class="rule"><span>举报</span><span>屏蔽</span><span>随时可撤</span></div>
+    <div class="tiny">回应也会酿成一张小卡 · 有治理的共鸣</div>
+   </section>
+
+   <section class="screen" id="s-privacy">
+    <button class="backbtn" data-go="s-set">‹ 返回设置</button>
+    <div class="h-kai sm">隐私承诺</div>
+    <div class="tcap">原文本地加密 · 不外传</div>
+    <div class="ctide">
+     <div class="citem"><b>① 原文加密存本机<span>火漆即钥匙</span></b><p>信的原文加密后只存在你的设备，密钥不出门</p></div>
+     <div class="citem"><b>② AI 只读脱敏特征</b><p>萃取仅读取主题词与情绪特征，不读取原文</p></div>
+     <div class="citem dim" style="padding-bottom:2px"><b>③ 养分回写瓶中</b><p>星光与潮位在你的瓶内更新，全程可查</p></div>
+    </div>
+    <div class="statgrid">
+     <div class="stat"><b>0</b><p>原文外传 · 次</p></div>
+     <div class="stat"><b>100%</b><p>原文本地存储</p></div>
+    </div>
+    <div class="rule"><span>最小收集</span><span>可随时导出</span><span>可一键销瓶</span></div>
+    <button class="wax" data-say="export" style="margin-top:12px">导出我的瓶中数据</button>
+    <div class="tiny">平安，是酿梦的第一承诺</div>
    </section>
 
    <div class="sealfx" id="sealFx" hidden>
@@ -535,7 +684,7 @@ body.full .brand,body.full .caption{display:none}
     <span>我的</span></button>
   </nav>
  </div>
- <div class="caption">酿梦 BREWM · H5 交互原型 v4 · 四环十二屏 · 2026 华灿奖定向主题 14 · 插画素材由 AI 辅助生成</div>
+ <div class="caption">酿梦 BREWM · H5 交互原型 v5 · 四环二十屏 · 插画素材由 AI 辅助生成</div>
 </div>
 
 <script>
@@ -665,6 +814,17 @@ $$('.chatgo').forEach(function(b){b.addEventListener('click',function(){
  b.parentNode.parentNode.querySelector('.chatbox').appendChild(d);
  inp.value='';toast('回信已封缄 · 平安');
 })});
+$$('.pick').forEach(function(p){p.addEventListener('click',function(){
+ $$('.pick').forEach(function(x){x.classList.remove('on')});p.classList.add('on');
+ toast('已选卡面 · '+p.dataset.name);});});
+var apTa=document.querySelector('#s-append textarea');
+if(apTa){apTa.addEventListener('input',function(){apTa.parentNode.querySelector('.count span').textContent=apTa.value.length});}
+$$('[data-say]').forEach(function(b){b.addEventListener('click',function(){
+ var m={play:'正在播放 · 12″ 语音梦（演示）',append:'新页已入瓶 · 原文完好（演示）',
+  cardquote:'换了一句引言（演示）',cardmake:'酿卡已按所选卡面生成（演示）',
+  backsea:'已放回海里 · 愿它漂到同路人手里',light:'已点亮回应 · 对方将看到一盏小灯',
+  export:'已打包导出 ·（演示）保存到本地'};
+ toast(m[b.dataset.say]||'演示');});});
 $$('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.go)})});
 $$('.sw').forEach(function(s){s.addEventListener('click',function(){
  s.classList.toggle('on');toast(s.classList.contains('on')?'已开启 · 平安':'已关闭 · 平安');
@@ -690,6 +850,6 @@ function fit(){
  st.style.transform='scale('+s.toFixed(4)+')';
 }
 addEventListener('resize',fit);fit();
-var v=q.get('view');show('s-'+(v||'store'));
+var v=q.get('view');show('s-'+(v||'open'));
 </script>
 </body></html>
