@@ -237,6 +237,50 @@ body.full .brand,body.full .caption{display:none}
 .moncard img{display:block;width:100%;height:100%;object-fit:cover}
 #s-feed .ctide,#s-privacy .ctide{background:rgba(20,22,48,.62);backdrop-filter:blur(5px);
  border:1px solid rgba(217,179,106,.35);border-radius:14px;padding:14px 14px 12px 28px;margin-top:14px}
+#splash{position:absolute;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;
+ background:radial-gradient(120% 90% at 50% 0%,#1A1642,#0E1028 72%);transition:opacity .55s,visibility .55s}
+#splash.off{opacity:0;visibility:hidden}
+.sp-in{text-align:center;animation:spPop .9s cubic-bezier(.2,1.2,.4,1) both}
+.sp-name{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;
+ font-size:44px;letter-spacing:18px;color:#F4F1E8;margin-top:18px;animation:spUp .8s .25s both}
+.sp-en{font-family:Georgia,serif;font-style:italic;font-size:11px;letter-spacing:5px;
+ color:rgba(244,241,232,.55);margin-top:10px;animation:spUp .8s .4s both}
+.sp-line{width:150px;height:2px;border-radius:2px;margin:20px auto 0;background:rgba(244,241,232,.12);
+ overflow:hidden;animation:spUp .8s .5s both}
+.sp-line i{display:block;height:100%;width:100%;border-radius:2px;background:linear-gradient(90deg,transparent,#D9B36A,transparent);
+ animation:spLine 1.5s linear infinite}
+.sp-tag{font-size:13px;letter-spacing:6px;color:#FFE9C4;margin-top:18px;animation:spUp .8s .6s both}
+@keyframes spPop{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
+@keyframes spUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes spLine{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+#guide{position:absolute;inset:0;z-index:45;background:rgba(10,11,26,.82);backdrop-filter:blur(8px);
+ display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .4s}
+#guide.on{opacity:1}
+#guide[hidden]{display:none}
+.gd-card{width:330px;border-radius:22px;background:rgba(29,32,68,.92);border:1px solid rgba(217,179,106,.4);
+ box-shadow:0 30px 80px rgba(5,6,20,.7);padding:26px 24px 18px;text-align:center;position:relative}
+.gd-ring{width:74px;height:74px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;
+ font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:34px;
+ border:2px solid rgba(217,179,106,.75);background:rgba(217,179,106,.12);color:#FFE9C4;
+ box-shadow:0 0 24px rgba(217,179,106,.3)}
+.gd-t{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;
+ font-size:24px;letter-spacing:6px;color:#FFE9C4;margin-top:16px}
+.gd-d{font-size:13px;line-height:2;color:rgba(244,241,232,.82);margin-top:12px;text-align:left}
+.gd-d b{color:#D9B36A;font-weight:400}
+.gd-img{width:150px;height:150px;border-radius:16px;overflow:hidden;margin:14px auto 0;
+ border:1px solid rgba(217,179,106,.45)}
+.gd-img img{width:100%;height:100%;object-fit:cover;display:block}
+.gd-dots{display:flex;gap:8px;justify-content:center;margin-top:16px}
+.gd-dots i{width:8px;height:8px;border-radius:50%;background:rgba(244,241,232,.22);transition:.3s}
+.gd-dots i.on{background:#D9B36A;box-shadow:0 0 8px rgba(217,179,106,.8)}
+.gd-btn{margin-top:16px;width:100%;border-radius:22px;padding:11px 0;font-size:14px;letter-spacing:4px;
+ background:#A6402F;color:#F6E7D3;border:none;cursor:pointer;font-family:inherit;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 8px 20px rgba(166,64,47,.32)}
+.gd-skip{position:absolute;top:12px;right:16px;background:none;border:none;color:rgba(244,241,232,.5);
+ font-size:12px;cursor:pointer;font-family:inherit;letter-spacing:1px}
+.gd-pg{display:none}.gd-pg.on{display:block;animation:spUp .45s both}
+#s-set .srow{cursor:default}
+#s-set .srow.link{cursor:pointer}
 .wave{display:flex;align-items:flex-end;gap:3px;height:36px;margin-top:10px}
 .wave i{width:3px;border-radius:2px;background:linear-gradient(180deg,#FFE9C4,#D9B36A)}
 .pickrow{display:flex;gap:10px;margin-top:14px}
@@ -519,6 +563,7 @@ body.full .brand,body.full .caption{display:none}
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none"><path d="M27,11 a12,12 0 1,0 6.5,21.5 A10,10 0 1,1 27,11 Z"/></svg><p>夜间模式<span>日落后自动进入夜航</span></p><div class="sw on"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M8,22 h28"/><circle cx="13" cy="22" r="3" fill="#F4F1E8" stroke="none"/><circle cx="22" cy="22" r="3"/><circle cx="31" cy="22" r="3"/></svg><p>纸纹陈化<span>信纸与字迹随年份慢慢变旧</span></p><div class="sw on"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M12,10 l7,10 -7,10 M32,10 l-7,10 7,10" opacity=".7"/></svg><p>减弱动效<span>跟随系统「减少动态效果」设定</span></p><div class="sw on"></div></div>
+     <div class="srow link" id="guideReplay"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><circle cx="22" cy="14" r="8"/><path d="M22,26 v8 M22,38 l0,0"/><circle cx="22" cy="38" r="0.5" fill="#F4F1E8"/></svg><p>新手引导<span>重看功能介绍</span></p><span class="val">›</span></div>
     </div>
     <div class="sgroup">
      <div class="gt">隐私与治理</div>
@@ -658,6 +703,39 @@ body.full .brand,body.full .caption{display:none}
     <div class="tiny">平安，是酿梦的第一承诺</div>
    </section>
 
+   <div id="splash">
+    <div class="sp-in">
+     <svg width="86" height="86" viewBox="0 0 200 200"><defs><mask id="spm"><rect width="200" height="200" fill="#fff"/><path d="M100,74 C103,90 110,97 126,100 C110,103 103,110 100,126 C97,110 90,103 74,100 C90,97 97,90 100,74 Z" fill="#000"/><circle cx="100" cy="63" r="3" fill="#000"/><circle cx="100" cy="63" r="3" fill="#000" transform="rotate(60 100 100)"/><circle cx="100" cy="63" r="3" fill="#000" transform="rotate(120 100 100)"/><circle cx="100" cy="63" r="3" fill="#000" transform="rotate(180 100 100)"/><circle cx="100" cy="63" r="3" fill="#000" transform="rotate(240 100 100)"/><circle cx="100" cy="63" r="3" fill="#000" transform="rotate(300 100 100)"/></mask></defs><g fill="#FFE9C4" mask="url(#spm)"><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/><circle cx="100" cy="100" r="14"/></g></svg>
+     <div class="sp-name">酿 梦</div>
+     <div class="sp-en">BREWM · BREW DREAMS WITH TIME</div>
+     <div class="sp-line"><i></i></div>
+     <div class="sp-tag">好梦，酿给时间</div>
+    </div>
+   </div>
+   <div id="guide" hidden>
+    <div class="gd-card">
+     <button class="gd-skip" id="gdSkip">跳过</button>
+     <div class="gd-pg on">
+      <div class="gd-ring">储</div>
+      <div class="gd-t">封存梦想</div>
+      <div class="gd-d">写下想酿给未来的话，或<b>按住说给瓶听</b>；火漆「安」印落定——<b>封存不可修改，但会随时间生长</b>。</div>
+      <div class="gd-img"><img src="img/mon-open.jpg" alt=""></div>
+     </div>
+     <div class="gd-pg">
+      <div class="gd-ring">淀</div>
+      <div class="gd-t">夜夜生长</div>
+      <div class="gd-d">每一次日常记录被 AI 萃取为养分，<b>过一夜 +1</b>；星光变大、潮汐刻度推进——<b>时间第一次变得可见</b>。守梦貘替你值夜，噩梦由它悄悄吃掉。</div>
+     </div>
+     <div class="gd-pg">
+      <div class="gd-ring">鸣</div>
+      <div class="gd-t">回望与共鸣</div>
+      <div class="gd-d">潮汐涨起，往日的信与语音<b>分批浮上水面</b>，过去的你隔瓶发问；开瓶所得酿卡经<b>双重授权</b>驶入有治理的漂流的海。</div>
+      <div class="gd-img"><img src="img/mon-rite.jpg" alt=""></div>
+     </div>
+     <div class="gd-dots"><i class="on"></i><i></i><i></i></div>
+     <button class="gd-btn" id="gdNext">下一页</button>
+    </div>
+   </div>
    <div class="sealfx" id="sealFx" hidden>
     <svg width="170" height="170" viewBox="0 0 200 200">
      <path d="M100,10 C158,6 192,44 190,102 C188,158 148,192 98,190 C48,188 10,150 10,100 C10,48 52,14 100,10 Z" fill="#A6402F"/>
@@ -837,6 +915,33 @@ $$('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b
 $$('.sw').forEach(function(s){s.addEventListener('click',function(){
  s.classList.toggle('on');toast(s.classList.contains('on')?'已开启 · 平安':'已关闭 · 平安');
 })});
+var qspl=new URLSearchParams(location.search);
+var splashEl=document.getElementById('splash'),guideEl=document.getElementById('guide');
+var gpi=0;
+function gshow(i){gpi=Math.max(0,Math.min(2,i));
+ $$('.gd-pg').forEach(function(p,ix){p.classList.toggle('on',ix===gpi)});
+ $$('.gd-dots i').forEach(function(d,ix){d.classList.toggle('on',ix===gpi)});
+ document.getElementById('gdNext').textContent=gpi===2?'开 始 酿 梦':'下一页';}
+function openGuide(){guideEl.hidden=false;requestAnimationFrame(function(){guideEl.classList.add('on')});gshow(0);}
+function closeGuide(){guideEl.classList.remove('on');setTimeout(function(){guideEl.hidden=true},420);
+ try{localStorage.setItem('brewm_guide','1')}catch(e){}}
+document.getElementById('gdNext').addEventListener('click',function(){gpi===2?closeGuide():gshow(gpi+1)});
+document.getElementById('gdSkip').addEventListener('click',closeGuide);
+$$('.gd-dots i').forEach(function(d,ix){d.addEventListener('click',function(){gshow(ix)})});
+var gdRp=document.getElementById('guideReplay');
+if(gdRp){gdRp.addEventListener('click',openGuide);}
+function afterSplash(){var first=false;
+ try{if(!localStorage.getItem('brewm_guide')){first=true}}catch(e){}
+ if(first)openGuide();}
+(function(){
+ var snap=qspl.get('snap'),view=qspl.get('view'),hold=qspl.get('splash'),gshow1=qspl.get('guide');
+ var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(gshow1){splashEl.classList.add('off');openGuide();return}
+ if(snap||view){splashEl.classList.add('off');return}
+ if(reduce){splashEl.classList.add('off');afterSplash();return}
+ if(hold){return}
+ setTimeout(function(){splashEl.classList.add('off');afterSplash()},1800);
+})();
 // init from URL params（供静帧渲染与录屏跳转）
 var q=new URLSearchParams(location.search);
 if(q.get('night')){state.nights=parseInt(q.get('night'),10)||state.nights}
