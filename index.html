@@ -253,31 +253,31 @@ body.full .brand,body.full .caption{display:none}
 @keyframes spPop{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
 @keyframes spUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes spLine{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
-#guide{position:absolute;inset:0;z-index:45;background:rgba(10,11,26,.82);backdrop-filter:blur(8px);
- display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .4s}
+#guide{position:absolute;inset:0;z-index:45;background:linear-gradient(180deg,#FFFFFF,#F2F3FF 68%,#E9ECFF);
+ display:flex;flex-direction:column;opacity:0;transition:opacity .4s;overflow:hidden}
 #guide.on{opacity:1}
 #guide[hidden]{display:none}
-.gd-card{width:330px;border-radius:22px;background:rgba(29,32,68,.92);border:1px solid rgba(217,179,106,.4);
- box-shadow:0 30px 80px rgba(5,6,20,.7);padding:26px 24px 18px;text-align:center;position:relative}
-.gd-ring{width:74px;height:74px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;
- font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:34px;
- border:2px solid rgba(217,179,106,.75);background:rgba(217,179,106,.12);color:#FFE9C4;
- box-shadow:0 0 24px rgba(217,179,106,.3)}
-.gd-t{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;
- font-size:23px;letter-spacing:4px;color:#F4F1E8;margin-top:18px;font-weight:700}
-.gd-s{font-size:13px;letter-spacing:1px;color:#D9B36A;margin-top:10px}
-.gd-img{width:100%;height:296px;border-radius:18px;overflow:hidden;
- border:1px solid rgba(217,179,106,.4);box-shadow:0 18px 44px rgba(5,6,20,.55)}
-.gd-img img{width:100%;height:100%;object-fit:cover;display:block}
-.gd-dots{display:flex;gap:8px;justify-content:center;margin-top:16px}
-.gd-dots i{width:8px;height:8px;border-radius:50%;background:rgba(244,241,232,.22);transition:.3s}
-.gd-dots i.on{background:#D9B36A;box-shadow:0 0 8px rgba(217,179,106,.8)}
-.gd-btn{margin-top:16px;width:100%;border-radius:22px;padding:11px 0;font-size:14px;letter-spacing:4px;
- background:#A6402F;color:#F6E7D3;border:none;cursor:pointer;font-family:inherit;
- box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 8px 20px rgba(166,64,47,.32)}
-.gd-skip{position:absolute;top:12px;right:16px;background:none;border:none;color:rgba(244,241,232,.5);
- font-size:12px;cursor:pointer;font-family:inherit;letter-spacing:1px}
-.gd-pg{display:none}.gd-pg.on{display:block;animation:spUp .45s both}
+.gd-head{display:flex;align-items:flex-start;justify-content:space-between;padding:58px 26px 0}
+.gd-h{font-size:30px;line-height:1.28;font-weight:800;font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;
+ background:linear-gradient(120deg,#4A54E8,#8A5BFF 55%,#C45BE8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gd-badge{margin-top:8px;padding:5px 13px;border-radius:18px 5px 18px 5px;user-select:none;
+ background:linear-gradient(135deg,#FFD75E,#FFB84A);color:#FFF;font-size:13px;font-weight:700;letter-spacing:2px;
+ box-shadow:0 6px 14px rgba(255,184,74,.45)}
+.gd-sub{padding:12px 28px 0;font-size:14px;color:#7A82B8;letter-spacing:.5px}
+.gd-art{flex:1;display:flex;align-items:center;justify-content:center;padding:6px 22px}
+.gd-art svg{width:100%;max-width:352px;height:auto;filter:drop-shadow(0 20px 44px rgba(90,80,220,.28))}
+.gd-bottom{padding:0 0 30px;text-align:center;position:relative;z-index:2}
+.gd-dots{display:flex;gap:8px;justify-content:center;margin-bottom:14px}
+.gd-dots i{width:8px;height:8px;border-radius:50%;background:#D5DAF0;transition:.3s}
+.gd-dots i.on{background:#5B6BFF;box-shadow:0 0 8px rgba(91,107,255,.6)}
+.gd-btn{width:210px;border-radius:24px;padding:12px 0;font-size:15px;letter-spacing:4px;border:none;cursor:pointer;
+ font-family:inherit;color:#FFF;background:linear-gradient(135deg,#5B6BFF,#8A5BFF);
+ box-shadow:0 10px 24px rgba(91,107,255,.4)}
+.gd-btn:active{transform:scale(.97)}
+.gd-skip{position:absolute;top:50px;right:22px;background:none;border:none;color:#8A90B8;
+ font-size:13px;cursor:pointer;font-family:inherit;letter-spacing:1px;z-index:3}
+.gd-wave{position:absolute;left:0;right:0;bottom:0;width:100%;height:64px;opacity:.55;pointer-events:none}
+.gd-pg{display:none}.gd-pg.on{display:flex;flex-direction:column;flex:1;animation:spUp .45s both}
 #s-set .srow{cursor:default}
 #s-set .srow.link{cursor:pointer}
 .wave{display:flex;align-items:flex-end;gap:3px;height:36px;margin-top:10px}
@@ -712,26 +712,102 @@ body.full .brand,body.full .caption{display:none}
     </div>
    </div>
    <div id="guide" hidden>
-    <div class="gd-card">
-     <button class="gd-skip" id="gdSkip">跳过</button>
-     <div class="gd-pg on">
-      <div class="gd-img"><img src="img/mon-open.jpg" alt="守梦貘"></div>
-      <div class="gd-t">封存你的梦想</div>
-      <div class="gd-s">写信或说给瓶听 · 火漆「安」印封缄</div>
-     </div>
-     <div class="gd-pg">
-      <div class="gd-img"><img src="img/mon-night.jpg" alt="守梦貘值夜"></div>
-      <div class="gd-t">时间，第一次可见</div>
-      <div class="gd-s">日常萃取成养分 · 过一夜 +1 · 星光生长</div>
-     </div>
-     <div class="gd-pg">
-      <div class="gd-img"><img src="img/mon-rite.jpg" alt="守梦貘"></div>
-      <div class="gd-t">有治理的共鸣</div>
-      <div class="gd-s">潮汐开信回望 · 酿卡驶入漂流的海</div>
-     </div>
+    <button class="gd-skip" id="gdSkip">跳过</button>
+    <div class="gd-pg on">
+     <div class="gd-head"><div class="gd-h">封存梦想<br>仪式感，满格</div><div class="gd-badge">储</div></div>
+     <div class="gd-sub">写信或说给瓶听 · 火漆「安」印封缄 · 封存不可修改</div>
+     <div class="gd-art"><svg viewBox="0 0 320 260">
+ <defs>
+  <linearGradient id="s1a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6C7BFF"/><stop offset="1" stop-color="#B66BF0"/></linearGradient>
+  <linearGradient id="s1b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF7AC3"/><stop offset="1" stop-color="#B66BF0"/></linearGradient>
+  <linearGradient id="s1c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E9EDFF"/></linearGradient>
+  <linearGradient id="s1d" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFD75E"/><stop offset="1" stop-color="#FF7AC3"/></linearGradient>
+ </defs>
+ <rect x="10" y="8" width="300" height="244" rx="22" fill="#EEF0FF"/>
+ <ellipse cx="58" cy="214" rx="72" ry="24" fill="#DDE2FF" opacity=".8"/>
+ <ellipse cx="262" cy="46" rx="44" ry="16" fill="#EBDDFF" opacity=".8"/>
+ <rect x="26" y="54" width="112" height="86" rx="14" fill="url(#s1b)" opacity=".5" transform="rotate(-10 82 97)"/>
+ <rect x="184" y="152" width="106" height="78" rx="14" fill="url(#s1a)" opacity=".38" transform="rotate(8 237 191)"/>
+ <g transform="rotate(-5 160 128)">
+  <rect x="80" y="74" width="160" height="108" rx="12" fill="url(#s1c)" stroke="#DDE3FF"/>
+  <rect x="100" y="94" width="88" height="8" rx="4" fill="#C9CFFF"/>
+  <rect x="100" y="112" width="120" height="8" rx="4" fill="#E2E6FF"/>
+  <rect x="100" y="130" width="106" height="8" rx="4" fill="#E2E6FF"/>
+ </g>
+ <circle cx="198" cy="170" r="28" fill="url(#s1d)"/>
+ <circle cx="198" cy="170" r="20" fill="none" stroke="#FFF" stroke-width="2.4" opacity=".9"/>
+ <text x="198" y="179" text-anchor="middle" font-size="23" font-weight="700" fill="#FFF" font-family="'PingFang SC','Microsoft YaHei',sans-serif">安</text>
+ <path d="M44,58 C45,53 47,51 52,50 C47,49 45,47 44,42 C43,47 41,49 36,50 C41,51 43,53 44,58 Z" fill="#FFD75E"/>
+ <path d="M272,88 C273,84 275,82 279,81 C275,80 273,78 272,74 C271,78 269,80 265,81 C269,82 271,84 272,88 Z" fill="#8A5BFF"/>
+ <circle cx="70" cy="52" r="4" fill="#FF7AC3" opacity=".7"/>
+ <circle cx="252" cy="130" r="5" fill="#6C7BFF" opacity=".5"/>
+ <circle cx="46" cy="140" r="6" fill="#FFD75E" opacity=".6"/>
+</svg></div>
+    </div>
+    <div class="gd-pg">
+     <div class="gd-head"><div class="gd-h">时间<br>第一次可见</div><div class="gd-badge">淀</div></div>
+     <div class="gd-sub">日常萃取成养分 · 过一夜 +1 · 星光与潮汐刻度生长</div>
+     <div class="gd-art"><svg viewBox="0 0 320 260">
+ <defs>
+  <linearGradient id="s2a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6C7BFF"/><stop offset="1" stop-color="#B66BF0"/></linearGradient>
+  <linearGradient id="s2c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFD75E"/><stop offset="1" stop-color="#FFB84A"/></linearGradient>
+  <linearGradient id="s2d" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDE2FF"/></linearGradient>
+ </defs>
+ <rect x="10" y="8" width="300" height="244" rx="22" fill="#EEF0FF"/>
+ <circle cx="262" cy="52" r="20" fill="url(#s2c)"/><circle cx="271" cy="46" r="17" fill="#EEF0FF"/>
+ <ellipse cx="160" cy="118" rx="66" ry="46" fill="#8A5BFF" opacity=".16"/>
+ <rect x="139" y="34" width="42" height="30" rx="8" fill="#FFFFFF" opacity=".6" stroke="#B9C2FF" stroke-width="2"/>
+ <rect x="94" y="58" width="132" height="152" rx="26" fill="#FFFFFF" opacity=".55" stroke="url(#s2a)" stroke-width="2.6"/>
+ <path d="M160,198 C158,172 150,152 138,138 M160,198 C164,176 172,158 184,146" stroke="url(#s2a)" stroke-width="5" fill="none" stroke-linecap="round"/>
+ <circle cx="150" cy="112" r="26" fill="#8A5BFF" opacity=".88"/>
+ <circle cx="178" cy="100" r="21" fill="#6C7BFF" opacity=".85"/>
+ <circle cx="130" cy="98" r="17" fill="#B66BF0" opacity=".8"/>
+ <circle cx="164" cy="86" r="14" fill="#FF7AC3" opacity=".8"/>
+ <circle cx="146" cy="88" r="4" fill="#FFE9C4"/><circle cx="170" cy="108" r="3.4" fill="#FFE9C4" opacity=".9"/><circle cx="128" cy="112" r="3" fill="#FFE9C4" opacity=".8"/>
+ <rect x="92" y="204" width="136" height="20" rx="10" fill="url(#s2d)" stroke="#DDE3FF"/>
+ <path d="M46,60 C47,55 49,53 54,52 C49,51 47,49 46,44 C45,49 43,51 38,52 C43,53 45,55 46,60 Z" fill="#FF7AC3"/>
+ <path d="M276,150 C277,146 279,144 283,143 C279,142 277,140 276,136 C275,140 273,142 269,143 C273,144 275,146 276,150 Z" fill="#FFD75E"/>
+ <circle cx="70" cy="150" r="5" fill="#B66BF0" opacity=".5"/>
+ <circle cx="250" cy="196" r="6" fill="#6C7BFF" opacity=".45"/>
+</svg></div>
+    </div>
+    <div class="gd-pg">
+     <div class="gd-head"><div class="gd-h">共鸣<br>有治理的平安</div><div class="gd-badge">鸣</div></div>
+     <div class="gd-sub">潮汐开信回望 · 酿卡双重授权 · 驶入漂流的海</div>
+     <div class="gd-art"><svg viewBox="0 0 320 260">
+ <defs>
+  <linearGradient id="s3a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5B6BFF"/><stop offset="1" stop-color="#8A5BFF"/></linearGradient>
+  <linearGradient id="s3b" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FF7AC3"/><stop offset="1" stop-color="#B66BF0"/></linearGradient>
+  <linearGradient id="s3c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD75E"/><stop offset="1" stop-color="#FF7AC3"/></linearGradient>
+  <linearGradient id="s3d" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E9EDFF"/></linearGradient>
+ </defs>
+ <rect x="10" y="8" width="300" height="244" rx="22" fill="#EEF0FF"/>
+ <path d="M10,150 C60,132 110,166 160,152 C210,138 260,164 310,148 L310,252 L10,252 Z" fill="#C9CFFF" opacity=".55"/>
+ <path d="M10,178 C60,160 110,192 160,178 C210,164 260,192 310,176 L310,252 L10,252 Z" fill="url(#s3a)" opacity=".92"/>
+ <path d="M10,210 C60,196 110,222 160,210 C210,198 260,220 310,206 L310,252 L10,252 Z" fill="url(#s3b)" opacity=".9"/>
+ <g transform="translate(160,124) rotate(-4)">
+  <path d="M-54,6 L54,6 L34,34 L-34,34 Z" fill="url(#s3d)" stroke="#D5DAF0"/>
+  <path d="M-2,2 L-2,-52 L40,-6 Z" fill="url(#s3b)"/>
+  <path d="M-4,2 L-4,-44 L-34,-8 Z" fill="url(#s3a)" opacity=".85"/>
+  <circle cx="0" cy="-58" r="4" fill="#FFD75E"/>
+ </g>
+ <path d="M172,66 c3,-7 13,-7 13,1 c0,6 -7,10 -13,14 c-6,-4 -13,-8 -13,-14 c0,-8 10,-8 13,-1 Z" fill="url(#s3c)"/>
+ <g transform="translate(74,196) rotate(22)">
+  <rect x="-9" y="-18" width="18" height="30" rx="8" fill="#FFFFFF" opacity=".9" stroke="#C9CFFF"/>
+  <rect x="-4" y="-27" width="8" height="10" rx="3" fill="#C9CFFF"/>
+  <circle cx="0" cy="-31" r="2.6" fill="#FFD75E"/>
+ </g>
+ <ellipse cx="160" cy="236" rx="130" ry="10" fill="#FFFFFF" opacity=".25"/>
+ <path d="M40,64 C41,59 43,57 48,56 C43,55 41,53 40,48 C39,53 37,55 32,56 C37,57 39,59 40,64 Z" fill="#8A5BFF"/>
+ <circle cx="266" cy="66" r="6" fill="#FF7AC3" opacity=".6"/>
+ <circle cx="242" cy="100" r="4" fill="#FFD75E"/>
+</svg></div>
+    </div>
+    <div class="gd-bottom">
      <div class="gd-dots"><i class="on"></i><i></i><i></i></div>
      <button class="gd-btn" id="gdNext">下一页</button>
     </div>
+    <svg class="gd-wave" viewBox="0 0 375 64" preserveAspectRatio="none"><defs><linearGradient id="gw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C9CFFF"/><stop offset="1" stop-color="#E4CFFF"/></linearGradient></defs><path d="M0,30 C60,8 120,52 190,32 C250,16 320,42 375,22 L375,64 L0,64 Z" fill="url(#gw)"/></svg>
    </div>
    <div class="sealfx" id="sealFx" hidden>
     <svg width="170" height="170" viewBox="0 0 200 200">
@@ -933,7 +1009,8 @@ function afterSplash(){var first=false;
 (function(){
  var snap=qspl.get('snap'),view=qspl.get('view'),hold=qspl.get('splash'),gshow1=qspl.get('guide');
  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- if(gshow1){splashEl.classList.add('off');openGuide();return}
+ if(gshow1){splashEl.classList.add('off');openGuide();
+  var gp=parseInt(qspl.get('gdpg'),10);if(gp>1)gshow(gp-1);return}
  if(snap||view){splashEl.classList.add('off');return}
  if(reduce){splashEl.classList.add('off');afterSplash();return}
  if(hold){return}
