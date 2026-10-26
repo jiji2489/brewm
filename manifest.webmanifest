@@ -1,0 +1,25 @@
+{
+ "name": "酿梦 Brewm · 数字梦瓶",
+ "short_name": "酿梦",
+ "description": "把梦想装进一只会生长的瓶子里",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#141632",
+ "theme_color": "#141632",
+ "icons": [
+  {
+   "src": "img/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any maskable"
+  },
+  {
+   "src": "img/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any maskable"
+  }
+ ]
+}
