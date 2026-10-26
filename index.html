@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>酿梦 Brewm · 数字梦瓶 · H5 交互原型 · 二十屏</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#141632">
+<meta name="description" content="酿梦 Brewm · 把梦想装进一只会生长的瓶子里">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>酿梦 Brewm · 数字梦瓶 · 四环廿二屏</title>
 <style>
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -337,6 +343,20 @@ body.full .brand,body.full .caption{display:none}
   .tstat i{font-style:normal;color:#D9B36A}
   .tstat2{margin-top:4px;text-align:center;font-size:11px;color:rgba(244,241,232,.62);letter-spacing:.5px}
  
+  /* ── 设置输入行 ── */
+  .srow.col{display:block}
+  .srow.col input{width:100%;margin-top:8px;background:rgba(255,255,255,.06);border:1px solid rgba(244,241,232,.22);
+   border-radius:10px;padding:9px 12px;color:#F4F1E8;font-size:14px;outline:none}
+  .srow.col input:focus{border-color:#D9B36A}
+  /* ── 潮汐锁定卡 ── */
+  .ltrlock{opacity:.85}
+  .ltrlock .lfrom span{color:#D9B36A}
+  .ltrlock .cd{font-size:12px;letter-spacing:1px;color:#FFE9C4;background:rgba(217,179,106,.12);
+   border:1px dashed rgba(217,179,106,.5);border-radius:10px;padding:8px 12px;display:inline-block}
+  /* ── 昼夜梯度 ── */
+  html[data-part="deep"] .bgart img{filter:brightness(.86) saturate(1.05)}
+  html[data-part="dawn"] .bgart img{filter:brightness(1.04) sepia(.12)}
+  html[data-part="day"] .bgart img{filter:brightness(1.07) saturate(1.04)}
   /* ── 过一夜 · 生长特效 ── */
   #nightfx{position:absolute;inset:0;z-index:25;pointer-events:none;opacity:0;transition:opacity .55s ease}
   #nightfx.on{opacity:1}
@@ -413,28 +433,28 @@ body.full .brand,body.full .caption{display:none}
    <i class="isle"></i>
    <svg width="15" height="15" viewBox="0 0 200 200"><g fill="#A6402F"><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/><circle cx="100" cy="100" r="14"/></g></svg></div>
   <div class="app">
-   <div class="bgart on" id="bg-store"><img src="img/bg-desk.jpg" alt=""><i class="candle"></i></div>
-   <div class="bgart" id="bg-world"><img src="img/bg-tree.jpg" alt=""></div>
-   <div class="bgart" id="bg-tide"><img src="img/bg-boat.jpg" alt=""></div>
-   <div class="bgart soft" id="bg-share"><img src="img/bg-galaxy.jpg" alt=""></div>
-   <div class="bgart" id="bg-file"><img src="img/bg-desk.jpg" alt="" style="object-position:50% 78%"></div>
-   <div class="bgart" id="bg-chat"><img src="img/bg-boat.jpg" alt=""></div>
-   <div class="bgart soft" id="bg-sea"><img src="img/bg-galaxy.jpg" alt=""></div>
-   <div class="bgart" id="bg-qseal"><img src="img/bg-desk.jpg" alt="" style="object-position:50% 34%"></div>
-   <div class="bgart soft" id="bg-tidenight"><img src="img/bg-galaxy.jpg" alt="" style="object-position:50% 18%"></div>
-   <div class="bgart" id="bg-rite"><img src="img/bg-pour.jpg" alt=""></div>
-   <div class="bgart" id="bg-letter"><img src="img/bg-desk.jpg" alt="" style="object-position:50% 12%"></div>
-   <div class="bgart" id="bg-cal"><img src="img/bg-boat.jpg" alt="" style="object-position:50% 25%"></div>
-   <div class="bgart soft" id="bg-night"><img src="img/bg-tree.jpg" alt="" style="object-position:50% 82%"></div>
-   <div class="bgart" id="bg-mine"><img src="img/bg-pour.jpg" alt="" style="object-position:18% 42%"></div>
-   <div class="bgart soft" id="bg-set"><img src="img/bg-galaxy.jpg" alt="" style="object-position:50% 55%"></div>
-   <div class="bgart soft" id="bg-open"><img src="img/bg-pour.jpg" alt=""></div>
-   <div class="bgart" id="bg-voice"><img src="img/bg-boat.jpg" alt="" style="object-position:50% 30%"></div>
-   <div class="bgart" id="bg-feed"><img src="img/bg-tree.jpg" alt="" style="object-position:50% 40%"></div>
-   <div class="bgart" id="bg-append"><img src="img/bg-desk.jpg" alt="" style="object-position:50% 62%"></div>
-   <div class="bgart soft" id="bg-card"><img src="img/bg-galaxy.jpg" alt="" style="object-position:50% 20%"></div>
-   <div class="bgart" id="bg-pickup"><img src="img/bg-boat.jpg" alt="" style="object-position:50% 75%"></div>
-   <div class="bgart soft" id="bg-privacy"><img src="img/bg-galaxy.jpg" alt="" style="object-position:50% 70%"></div>
+   <div class="bgart on" id="bg-store"><img src="img/bg-desk.webp" alt=""><i class="candle"></i></div>
+   <div class="bgart" id="bg-world"><img src="img/bg-tree.webp" alt=""></div>
+   <div class="bgart" id="bg-tide"><img src="img/bg-boat.webp" alt=""></div>
+   <div class="bgart soft" id="bg-share"><img src="img/bg-galaxy.webp" alt=""></div>
+   <div class="bgart" id="bg-file"><img src="img/bg-desk.webp" alt="" style="object-position:50% 78%"></div>
+   <div class="bgart" id="bg-chat"><img src="img/bg-boat.webp" alt=""></div>
+   <div class="bgart soft" id="bg-sea"><img src="img/bg-galaxy.webp" alt=""></div>
+   <div class="bgart" id="bg-qseal"><img src="img/bg-desk.webp" alt="" style="object-position:50% 34%"></div>
+   <div class="bgart soft" id="bg-tidenight"><img src="img/bg-galaxy.webp" alt="" style="object-position:50% 18%"></div>
+   <div class="bgart" id="bg-rite"><img src="img/bg-pour.webp" alt=""></div>
+   <div class="bgart" id="bg-letter"><img src="img/bg-desk.webp" alt="" style="object-position:50% 12%"></div>
+   <div class="bgart" id="bg-cal"><img src="img/bg-boat.webp" alt="" style="object-position:50% 25%"></div>
+   <div class="bgart soft" id="bg-night"><img src="img/bg-tree.webp" alt="" style="object-position:50% 82%"></div>
+   <div class="bgart" id="bg-mine"><img src="img/bg-pour.webp" alt="" style="object-position:18% 42%"></div>
+   <div class="bgart soft" id="bg-set"><img src="img/bg-galaxy.webp" alt="" style="object-position:50% 55%"></div>
+   <div class="bgart soft" id="bg-open"><img src="img/bg-pour.webp" alt=""></div>
+   <div class="bgart" id="bg-voice"><img src="img/bg-boat.webp" alt="" style="object-position:50% 30%"></div>
+   <div class="bgart" id="bg-feed"><img src="img/bg-tree.webp" alt="" style="object-position:50% 40%"></div>
+   <div class="bgart" id="bg-append"><img src="img/bg-desk.webp" alt="" style="object-position:50% 62%"></div>
+   <div class="bgart soft" id="bg-card"><img src="img/bg-galaxy.webp" alt="" style="object-position:50% 20%"></div>
+   <div class="bgart" id="bg-pickup"><img src="img/bg-boat.webp" alt="" style="object-position:50% 75%"></div>
+   <div class="bgart soft" id="bg-privacy"><img src="img/bg-galaxy.webp" alt="" style="object-position:50% 70%"></div>
    <div class="fire">
     <i style="left:7%;top:78%;animation-duration:7s"></i>
     <i style="left:22%;top:88%;animation-duration:9s;animation-delay:1.2s"></i>
@@ -512,9 +532,10 @@ body.full .brand,body.full .caption{display:none}
    </section>
 
    <section class="screen" id="s-tide">
-    <div class="h-kai sm">潮汐回望 · 第 4 年</div>
-    <div class="tcap">涨潮了，有两封信浮了上来</div>
+    <div class="h-kai sm">潮汐回望</div>
+    <div class="tcap" id="tideCap">封下第一个梦，潮汐就开始计时</div>
     <div id="letters"></div>
+    <button class="ghost" id="tideFF" style="margin-top:10px">⏩ 演示加速 · 让潮水现在涨（1 分钟 = 1 天）</button>
     <div class="linkrow">
      <button class="navlink" data-go="s-chat">隔瓶<b>长谈</b> ›</button>
      <button class="navlink" data-go="s-cal">翻开<b>潮汐历</b> ›</button>
@@ -542,18 +563,15 @@ body.full .brand,body.full .caption{display:none}
 
    <section class="screen" id="s-file">
     <button class="backbtn" data-go="s-world">‹ 返回瓶中</button>
-    <div class="h-kai sm">瓶身档案 · 第 001 号梦</div>
+    <div class="h-kai sm">瓶身档案</div>
     <div class="tcap">每一滴养分，都有出处</div>
+    <div id="fileCards">
     <div class="paper2">
      <div class="lfrom">封于 2022.10.05<span>火漆完好</span></div>
      <div class="ltext">“想在三十岁前，拥有一间自己的工作室，哪怕很小。”</div>
      <div class="grow"><span style="font-size:10.5px;color:rgba(43,58,85,.55)">沉淀刻度</span><div class="bar"><i></i></div><span style="font-size:10.5px;color:#A6402F">12/24</span></div>
      <div style="margin-top:12px;font-size:12px;line-height:1.8;color:#6B5426;background:rgba(217,179,106,.14);border:1px solid rgba(217,179,106,.4);border-radius:10px;padding:9px 12px">AI 已萃取 <b>217 滴</b>养分 · 星光 +38% · 原文从未外传</div>
     </div>
-    <div class="paper2">
-     <div class="lfrom">封于 2023.03.21<span>第 002 号梦</span></div>
-     <div class="ltext">“学会真正地休息，把日子过成可以回看的信。”</div>
-     <div class="grow"><span style="font-size:10.5px;color:rgba(43,58,85,.55)">沉淀刻度</span><div class="bar"><i style="width:31%"></i></div><span style="font-size:10.5px;color:#A6402F">7/24</span></div>
     </div>
     <button class="ghost" data-go="s-append" style="margin-top:12px">给瓶里补一页 · 发酵追加 ›</button>
     <div class="tiny">档案只对你可见 · 潮汐开启时才浮出水面</div>
@@ -655,7 +673,7 @@ body.full .brand,body.full .caption{display:none}
     </div>
     <div class="feed" style="margin-top:16px;text-align:center">今夜瓶语：「梦见海，兑了一点潮声进瓶里。」</div>
     <div class="nite"><span class="chip">明晨 7:00 · 潮声轻轻唤醒你</span></div>
-    <div class="moncard" style="width:208px;height:208px;margin:4px auto 0;animation:breathe 3.8s ease-in-out infinite"><img src="img/mon-night.jpg" alt="守梦貘值夜"></div>
+    <div class="moncard" style="width:208px;height:208px;margin:4px auto 0;animation:breathe 3.8s ease-in-out infinite"><img src="img/mon-night.webp" alt="守梦貘值夜"></div>
     <div class="tiny">守梦貘值夜中 · 噩梦由它悄悄吃掉</div>
     <button class="ghost" data-go="s-world" style="margin-top:16px">灭灯 · 过一夜 +1</button>
     <div class="tiny">星光在你睡着的时候生长</div>
@@ -700,7 +718,12 @@ body.full .brand,body.full .caption{display:none}
     </div>
     <button class="ghost" data-go="s-privacy" style="margin-top:12px">查看完整隐私承诺 ›</button>
     <div class="sgroup">
-     <div class="gt">关 于</div>
+     <div class="gt">隔瓶 AI · 让过去的你真的会说话</div>
+     <div class="srow col"><p>接口地址<span>OpenAI 兼容格式</span></p><input id="aiEp" placeholder="https://api.openai.com/v1/chat/completions"></div>
+     <div class="srow col"><p>API Key<span>只存本机 · 泄露风险自担</span></p><input id="aiKey" type="password" placeholder="sk-…（留空则用本地守梦引擎）"></div>
+     <div class="srow col"><p>模型<span>如 gpt-4o-mini / glm-4-flash</span></p><input id="aiModel" placeholder="gpt-4o-mini"></div>
+     <div class="tiny" style="margin-top:6px">不填 Key 也能聊：守梦引擎会用你封下的原话回应你</div>
+ <div class="gt">关 于</div>
      <div class="srow"><p>版本<span>酿梦 BREWM 1.0 · 夜航</span></p><span class="val">New</span></div>
      <div class="srow"><p>素材声明<span>部分视觉素材由 AI 辅助生成</span></p></div>
      <div class="srow"><p>用户协议<span>平安条款 · 共鸣治理规则</span></p><span class="val">›</span></div>
@@ -772,10 +795,10 @@ body.full .brand,body.full .caption{display:none}
     <div class="tcap">原文封缄不可改 · 瓶里可以追加新页</div>
     <div class="letter-in">
      <div class="lhead">补给 2028 年的我：</div>
-     <textarea maxlength="120" placeholder="写一段此刻的进展，放进同一只瓶里……"></textarea>
-     <div class="count"><span>0</span>/120</div>
+     <textarea id="appendText" maxlength="120" placeholder="写一段此刻的进展，放进同一只瓶里……"></textarea>
+     <div class="count"><span id="appendCnt">0</span>/120</div>
     </div>
-    <button class="wax" data-say="append">把这一页放进瓶里</button>
+    <button class="wax" id="appendBtn">把这一页放进瓶里</button>
     <div class="rule"><span>原文不可改</span><span>追加可溯源</span><span>随潮启封</span></div>
     <div class="tiny">发酵的意义：允许生长，不许篡改</div>
    </section>
@@ -992,7 +1015,7 @@ body.full .brand,body.full .caption{display:none}
     <span>我的</span></button>
   </nav>
  </div>
- <div class="caption">酿梦 BREWM · H5 交互原型 v6 · 四环廿二屏 · 插画素材由 AI 辅助生成</div>
+ <div class="caption">酿梦 BREWM · H5 交互原型 v6.1 · 四环廿二屏 · 插画素材由 AI 辅助生成</div>
 </div>
 
 <script>
@@ -1010,11 +1033,50 @@ var state={
   '夜风很轻，火漆纹路又深了一分',
   '潮位上涨：距离第 2 潮还有 421 天',
   '昨夜的语音梦，酿出了细小的光'],
- fi:0,voice:null,replies:{},shareIdx:0
-};
+ fi:0,voice:null,replies:{},shareIdx:0,
+ ai:{ep:"https://api.openai.com/v1/chat/completions",key:"",model:"gpt-4o-mini"},
+ notifyOn:false,chat:[]
+}
+/* ── 持久化内核（P0-①）── */
+var LSKEY="brewm_v6",TIDE_UNIT=60000,TIDE_STEPS=[3,7,14];
+function saveAll(){try{localStorage.setItem(LSKEY,JSON.stringify({
+ dreams:state.dreams,letters:state.letters,nights:state.nights,
+ ai:state.ai,notifyOn:state.notifyOn,chat:state.chat.slice(-30),
+ qs:(function(){var a=[],el=document.querySelectorAll('#s-qseal .qitem input');for(var i=0;i<el.length;i++)a.push(el[i].value);return a})(),
+ tideN:state.letters.filter(function(L){return L.mine}).length
+}))}catch(e){}}
+function loadAll(){var raw=null;try{raw=localStorage.getItem(LSKEY)}catch(e){}
+ if(!raw)return false;
+ try{var d=JSON.parse(raw);
+  if(d.dreams)state.dreams=d.dreams;
+  if(d.letters)state.letters=d.letters;
+  if(typeof d.nights==="number")state.nights=d.nights;
+  if(d.ai)state.ai=d.ai;
+  state.notifyOn=!!d.notifyOn;
+  if(d.chat)state.chat=d.chat;
+  if(d.qs)state.qs=d.qs;
+  return true;
+ }catch(e){return false}
+}
+function idb(mode,fn){return new Promise(function(res){
+ try{var rq=indexedDB.open("brewm",1);
+  rq.onupgradeneeded=function(){rq.result.createObjectStore("audio")};
+  rq.onsuccess=function(){var db=rq.result,tx=db.transaction("audio",mode);
+   var out=fn(tx.objectStore("audio"));
+   tx.oncomplete=function(){res(out&&out.result!==undefined?out.result:true)};
+   tx.onerror=function(){res(null)};
+  };
+  rq.onerror=function(){res(null)};
+ }catch(e){res(null)}
+})}
+function saveVoiceBlob(b){return idb("readwrite",function(st){if(b)st.put(b,"voice");else st["delete"]("voice")})}
+function loadVoiceBlob(){return idb("readonly",function(st){return st.get("voice")})}
+function buzz(ms){try{if(navigator.vibrate)navigator.vibrate(ms)}catch(e){}}
+function todayStr(){var d=new Date();return d.getFullYear()+"."+String(d.getMonth()+1).padStart(2,"0")+"."+String(d.getDate()).padStart(2,"0")};
 function show(id){
  $$('.screen').forEach(function(s){s.classList.remove('on')});
  var el=document.getElementById(id);if(el)el.classList.add('on');
+ if(id==='s-tide'&&typeof renderLetters==='function')renderLetters();
  $$('.navbar button').forEach(function(b){b.classList.toggle('on',b.dataset.v===({'s-qseal':'s-store','s-tidenight':'s-share'})[id]||b.dataset.v===id)});
  $$('.bgart').forEach(function(b){b.classList.toggle('on',b.id==='bg-'+id.slice(2))});
  var bg=document.getElementById('bg-'+id.slice(2));
@@ -1032,17 +1094,66 @@ function renderWorld(){
  $('#tideline').style.setProperty('--p',pct);
  $('#feed').textContent=state.feeds[state.fi%state.feeds.length];
 }
+function renderFile(){
+ var box=$('#fileCards');if(!box)return;box.innerHTML='';
+ if(!state.dreams.length){
+  box.innerHTML='<div class="paper2"><div class="lfrom">梦貘的欢迎信<span>第 000 号</span></div>'
+   +'<div class="ltext">“瓶还是空的——这正是它最好的时候。写下第一个梦，或按住说一句，剩下的交给时间。”</div>'
+   +'<div style="margin-top:10px;font-size:11px;color:rgba(43,58,85,.55)">去 <b>存入</b> 封下第一个梦 · 潮汐即刻开始计时</div></div>';
+  return;
+ }
+ state.dreams.forEach(function(D,i){
+  var no=state.dreams.length-i;
+  var d=document.createElement('div');d.className='paper2';
+  d.innerHTML='<div class="lfrom">封于 '+esc(D.d)+'<span>'+(D.page?'发酵补页':'第 '+String(no).padStart(3,'0')+' 号梦')+'</span></div>'
+   +'<div class="ltext">“'+esc(D.t)+'”</div>'
+   +'<div class="grow"><span style="font-size:10.5px;color:rgba(43,58,85,.55)">沉淀刻度</span>'
+   +'<div class="bar"><i style="width:'+Math.min(88,20+ (state.dreams.length-i)*9)+'%"></i></div>'
+   +'<span style="font-size:10.5px;color:#A6402F">'+Math.min(24,3+(state.dreams.length-i)*2)+'/24</span></div>'
+   +(i===state.dreams.length-1?'<div style="margin-top:12px;font-size:12px;line-height:1.8;color:#6B5426;background:rgba(217,179,106,.14);border:1px solid rgba(217,179,106,.4);border-radius:10px;padding:9px 12px">AI 已萃取养分 · 原文从未外传</div>':'');
+  box.appendChild(d);
+ });
+}
+function fmtLeft(ms){
+ var sec=Math.max(0,Math.ceil(ms/1000));
+ if(sec>=86400) return Math.ceil(sec/86400)+' 天';
+ var m=Math.floor(sec/60),ss=sec%60;
+ return (m>0? m+' 分 ':'')+ss+' 秒';
+}
+function unlockedCount(){
+ var c=0;state.letters.forEach(function(L){if(!L.unlockAt||L.unlockAt<=Date.now())c++});return c;
+}
 function renderLetters(){
- var box=$('#letters');box.innerHTML='';
+ var box=$('#letters');if(!box)return;box.innerHTML='';
+ var cap=$('#tideCap');
+ var un=unlockedCount();
+ if(cap)cap.textContent= state.letters.length===0? '封下第一个梦，潮汐就开始计时'
+  : (un===0? '潮位渐涨 · 第一封信还在路上'
+  : '涨潮了，有 '+un+' 封信浮了上来');
  state.letters.forEach(function(L,i){
-  var d=document.createElement('div');d.className='ltr';
+  var locked=L.unlockAt&&L.unlockAt>Date.now();
+  var d=document.createElement('div');
+  if(locked){
+   d.className='ltr ltrlock';
+   d.innerHTML='<div class="lfrom">来自 '+L.from+'<span>'+L.tide+' · 未涨</span></div>'
+    +'<div class="ltext" style="filter:blur(5px);user-select:none">“'+esc(L.t)+'”</div>'
+    +'<div class="ask"><small>潮水正在路上</small>'
+    +'<div class="cd" data-at="'+L.unlockAt+'">距涨潮还有 '+fmtLeft(L.unlockAt-Date.now())+'</div></div>';
+   box.appendChild(d);return;
+  }
+  d.className='ltr';
   d.innerHTML='<div class="lfrom">来自 '+L.from+'<span>'+L.tide+'</span></div>'
    +'<div class="ltext">“'+esc(L.t)+'”</div>'
-   +'<div class="ask"><small>过去的你，隔瓶问了一句</small>'
+   +'<div class="ask"><small>'+(L.greet?'梦貘替你守着瓶':'过去的你，隔瓶问了一句')+'</small>'
    +'<div class="bub">“'+esc(L.q)+'”</div>'
    +'<div class="replyarea"><input placeholder="回信给过去的自己……" id="rin'+i+'">'
    +'<button class="replyGo" data-i="'+i+'">回信</button></div>'
    +'<div id="rout'+i+'"></div></div>';
+  if(state.replies[i]){
+   var out=d.querySelector('#rout'+i);
+   if(out)out.innerHTML='<div class="bub me">“'+esc(state.replies[i])+'”</div>'
+    +'<button class="goShare" data-i="'+i+'">把这句酿上酿卡 ›</button>';
+  }
   d.addEventListener('click',function(e){
    if(e.target.closest('.replyarea'))return;
    $$('.ltr').forEach(function(x){if(x!==d)x.classList.remove('open')});
@@ -1050,17 +1161,31 @@ function renderLetters(){
   });
   box.appendChild(d);
  });
- $$('.replyGo').forEach(function(b){
-  b.addEventListener('click',function(){
-   var i=b.dataset.i,inp=document.getElementById('rin'+i),out=document.getElementById('rout'+i);
+ $$('.replyGo').forEach(function(bt){
+  bt.addEventListener('click',function(){
+   var i=bt.dataset.i,inp=document.getElementById('rin'+i),out=document.getElementById('rout'+i);
    var v=(inp.value||'').trim();if(!v){toast('写一句回信，再封进潮水里');return}
-   state.replies[i]=v;
+   state.replies[i]=v;saveAll();buzz(12);
    out.innerHTML='<div class="bub me">“'+esc(v)+'”</div>'
     +'<button class="goShare" data-i="'+i+'">把这句酿上酿卡 ›</button>';
    bindGoShare();
   });
  });
 }
+setInterval(function(){
+ var dots=document.querySelectorAll('.cd[data-at]');
+ if(!dots.length)return;
+ var changed=false,now=Date.now();
+ var tideVisible=document.getElementById('s-tide').classList.contains('on');
+ dots.forEach(function(el){
+  var at=+el.dataset.at;
+  if(at<=now){changed=true;return}
+  el.textContent='距涨潮还有 '+fmtLeft(at-now);
+ });
+ if(changed){renderLetters();saveAll();
+  if(tideVisible){buzz(30);toast('涨潮了 · 旧信浮上水面')}
+ }
+},1000);
 function bindGoShare(){
  $$('.goShare').forEach(function(b){b.onclick=function(){
   state.shareIdx='r'+b.dataset.i;renderShare();show('s-share');
@@ -1111,14 +1236,16 @@ function startRec(e){
  navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){
   if(!holdBtn.classList.contains('rec')){
    stream.getTracks().forEach(function(t){t.stop()});return}
-  try{mediaRec=new MediaRecorder(stream)}catch(err){
+  try{var MM='';['audio/mp4','audio/webm;codecs=opus','audio/webm'].some(function(mm){if(window.MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(mm)){MM=mm;return true}return false});
+   mediaRec=MM?new MediaRecorder(stream,{mimeType:MM}):new MediaRecorder(stream);
+   mediaRecMime=MM||(mediaRec.mimeType||'');}catch(err){
    stream.getTracks().forEach(function(t){t.stop()});mediaRec=null;return}
   mediaRec.ondataavailable=function(ev){if(ev.data&&ev.data.size)recChunks.push(ev.data)};
   mediaRecMime=mediaRec.mimeType||'audio/webm';
   mediaRec.onstop=function(){
    stream.getTracks().forEach(function(t){t.stop()});
    if(recChunks.length){
-    var blob=new Blob(recChunks,{type:mediaRecMime});
+    var blob=new Blob(recChunks,{type:(mr&&mr.mimeType)||mediaRecMime||'audio/webm'});
     state.voiceBlob=blob;
     window.vpSetClip(blob);
    }
@@ -1154,12 +1281,19 @@ holdBtn.addEventListener('pointerleave',endRec);
 $('#sealBtn').addEventListener('click',function(){
  var t=$('#dreamText').value.trim();
  if(!t&&!state.voice){toast('先写一句，或按住说一句');return}
- var dream=t||'（一段 '+state.voice+'″ 的语音梦）';
- state.dreams.unshift({t:dream,d:'2026.10.05'});
+ var dream=t||('一段 '+state.voice+'″ 的语音梦');
+ var dstr=todayStr();
+ state.dreams.unshift({t:dream,d:dstr});
+ /* 排潮：封缄即计时，到点这封信浮上回望 */
+ var step=TIDE_STEPS[Math.min(state.letters.filter(function(L){return L.mine}).length,TIDE_STEPS.length-1)];
+ state.letters.unshift({from:dstr,tide:'第 '+(state.letters.filter(function(L){return L.mine}).length+1)+' 潮',
+  t:dream,q:'那天写下的心愿——现在离它更近了吗？',unlockAt:Date.now()+step*TIDE_UNIT,mine:1});
+ saveAll();buzz(20);
  var fx=$('#sealFx');fx.hidden=false;
- setTimeout(function(){fx.hidden=true;state.voice=null;state.voiceBlob=null;$('#voiceChip').hidden=true;
+ setTimeout(function(){fx.hidden=true;state.voice=null;state.voiceBlob=null;saveVoiceBlob(null);
+  $('#voiceChip').hidden=true;
   $('#dreamText').value='';$('#cnt').textContent='0';
-  renderWorld();show('s-world');toast('已封入瓶中 · 平安');
+  renderFile();renderWorld();show('s-world');toast('已封入瓶中 · 平安');
  },950);
 });
 var NIGHT_MSGS=['夜风很轻，火漆纹路又深了一分','昨夜的星光，有一滴落进了瓶底','梦又亮了一点 · 距离开瓶又近一夜','树梢抽了一片新芽，带着微光'];
@@ -1169,7 +1303,7 @@ $('#nightBtn').addEventListener('click',function(){
  var fx=$('#nightfx'),g=$('#wglow');
  var reduce=document.documentElement.classList.contains('noanim');
  function done(){
-  state.nights++;state.fi++;renderWorld();
+  state.nights++;state.fi++;renderWorld();saveAll();buzz(12);
   $$('.nights').forEach(function(e){e.classList.add('pop');setTimeout(function(){e.classList.remove('pop')},700)});
   var fd=$('#feed');
   if(fd)fd.textContent=NIGHT_MSGS[state.nights%NIGHT_MSGS.length];
@@ -1198,24 +1332,83 @@ $('#quoteBtn').addEventListener('click',function(){
 });
 $('#saveBtn').addEventListener('click',function(){toast('酿卡已生成 ·（演示）保存到相册')});
 $('#riteBtn').addEventListener('click',function(){toast('仪式预演 · 火漆将融开（演示）')});
+/* ── 隔瓶长谈引擎 ── */
+function chatPush(txt,me){var bx=document.querySelector('#s-chat .chatbox');
+ if(!bx)return;var d=document.createElement('div');d.className='bub'+(me?' me':'');
+ d.textContent='“'+txt+'”';bx.appendChild(d);bx.scrollTop=bx.scrollHeight;
+ state.chat.push({me:me?1:0,t:txt});if(state.chat.length>40)state.chat.shift();saveAll();}
+function chatRestore(){var bx=document.querySelector('#s-chat .chatbox');if(!bx)return;
+ if(state.chat.length){bx.innerHTML='';
+  state.chat.forEach(function(m){var d=document.createElement('div');
+   d.className='bub'+(m.me?' me':'');d.textContent='“'+m.t+'”';bx.appendChild(d)});
+  bx.scrollTop=bx.scrollHeight}}
+function localKeeper(msg){
+ var own=state.dreams.length?('你说过的——「'+state.dreams[0].t+'」。'):('「'+msg+'」。');
+ var tail=['我还替你收着那晚的语气。','这句话我封进了潮水里，慢一点，但一定会到。','别急，时间站在你这边。','等潮涨那天，记得回来告诉它。','你只管往前走，瓶里这盏灯我看着。'];
+ var q=own+' '+tail[Math.floor(Math.random()*tail.length)];
+ return q;
+}
+function aiReply(msg,done){
+ var ai=state.ai||{};
+ if(!ai.key){setTimeout(function(){done(localKeeper(msg))},700);return}
+ var sys='你是"过去的用户自己"——酿梦 App 里隔瓶长谈的对方。用用户当年封下的梦与信作为记忆（见上下文），'+
+  '以温柔、克制、略带书面的中文回信，不超过 45 个字，只回一句，不列清单，不复述用户原句。';
+ var ctx=state.dreams.slice(0,3).map(function(D){return '封于'+D.d+'：'+D.t}).join('；');
+ var hist=state.chat.slice(-8).map(function(m){return {role:m.me?'user':'assistant',content:m.t}});
+ fetch(ai.ep||'https://api.openai.com/v1/chat/completions',{
+  method:'POST',
+  headers:{'Content-Type':'application/json','Authorization':'Bearer '+ai.key},
+  body:JSON.stringify({model:ai.model||'gpt-4o-mini',max_tokens:120,
+   messages:[{role:'system',content:sys+'\n用户封存的梦：'+ctx}].concat(hist,{role:'user',content:msg})})
+ }).then(function(r){return r.json()}).then(function(j){
+  var t=j&&j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;
+  if(t){done(t.trim())}else done(localKeeper(msg));
+ }).catch(function(){done(localKeeper(msg))});
+}
 $$('.chatgo').forEach(function(b){b.addEventListener('click',function(){
  var inp=b.parentNode.querySelector('input');var v=(inp.value||'').trim();
  if(!v){toast('写一句，再封缄给过去');return}
- var d=document.createElement('div');d.className='bub me';d.textContent='“'+v+'”';
+ chatPush(v,true);inp.value='';
+ var d=document.createElement('div');d.className='bub';d.textContent='……';
  b.parentNode.parentNode.querySelector('.chatbox').appendChild(d);
- inp.value='';toast('回信已封缄 · 平安');
+ aiReply(v,function(rep){
+  d.textContent='“'+rep+'”';
+  saveAll();buzz(10);
+ });
 })});
+chatRestore();
 $$('.pick').forEach(function(p){p.addEventListener('click',function(){
  $$('.pick').forEach(function(x){x.classList.remove('on')});p.classList.add('on');
  toast('已选卡面 · '+p.dataset.name);});});
 var apTa=document.querySelector('#s-append textarea');
 if(apTa){apTa.addEventListener('input',function(){apTa.parentNode.querySelector('.count span').textContent=apTa.value.length});}
 $$('[data-say]').forEach(function(b){b.addEventListener('click',function(){
- var m={play:'正在播放 · 12″ 语音梦（演示）',append:'新页已入瓶 · 原文完好（演示）',
-  cardquote:'换了一句引言（演示）',cardmake:'酿卡已按所选卡面生成（演示）',
-  backsea:'已放回海里 · 愿它漂到同路人手里',light:'已点亮回应 · 对方将看到一盏小灯',
-  export:'已打包导出 ·（演示）保存到本地'};
- toast(m[b.dataset.say]||'演示');});});
+ var m={backsea:'已放回海里 · 愿它漂到同路人手里',light:'已点亮回应 · 对方将看到一盏小灯'};
+ var key=b.dataset.say;
+ if(key==='export'){
+  var L=['酿梦 Brewm · 存档','导出于 '+todayStr(),''];
+  state.dreams.forEach(function(D,i){L.push('['+D.d+']'+(D.page?'（补页）':'')+' '+D.t)});
+  L.push('');L.push('—— 每一个梦，都会被平安送达未来');
+  var blob=new Blob([L.join('\n')],{type:'text/plain;charset=utf-8'});
+  var a=document.createElement('a');a.download='酿梦-存档-'+todayStr().replace(/\./g,'')+'.txt';
+  a.href=URL.createObjectURL(blob);document.body.appendChild(a);a.click();
+  setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},4000);
+  toast('存档已导出 · 全文只属于你');buzz(12);return;
+ }
+ if(key==='light'){toast(m.light);buzz(15);return}
+ if(key==='backsea'){pickNext();toast(m.backsea);return}
+ toast(m[key]||'好的');});});
+var PICKS=[
+ {w:'晚舟 · 第 987 潮',p:'「三战上岸那天，我先去海边看了一场日出。」',s:'已封存 987 天 · 署名可溯 · 授权可撤'},
+ {w:'醒山 · 第 1142 潮',p:'「把外婆的拿手菜一道一道做了一遍，像她还在灶边。」',s:'已封存 1142 天 · 署名可溯 · 授权可撤'},
+ {w:'拾星 · 第 621 潮',p:'「和吵了半年的朋友，把话说开了。」',s:'已封存 621 天 · 署名可溯 · 授权可撤'}];
+var pickIdx=0;
+function pickNext(){pickIdx=(pickIdx+1)%PICKS.length;
+ var box=document.querySelector('#s-pickup .seacard');if(!box)return;
+ box.querySelector('.who').innerHTML='来自 '+PICKS[pickIdx].w+'<span>漂了 '+(300+pickIdx*137)+' 海里</span>';
+ box.querySelector('p').textContent=PICKS[pickIdx].p;
+ var note=box.querySelectorAll('p')[1];if(note)note.textContent=PICKS[pickIdx].s;
+}
 $$('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.go)})});
 $$('.sw').forEach(function(s){s.addEventListener('click',function(){
  s.classList.toggle('on');toast(s.classList.contains('on')?'已开启 · 平安':'已关闭 · 平安');
@@ -1478,8 +1671,65 @@ if(qBtn){qBtn.addEventListener('click',function(){
  var qs=$$('#s-qseal .qitem input'),qq=$$('#s-qseal .anscard .qq');
  for(var i=0;i<qq.length&&i<qs.length;i++){qq[i].textContent='“'+(qs[i].value.trim()||'（这一问，留给了沉默）')+'”'}
  qBtn.textContent='已 封 缄 · 安 印 落 定';qBtn.classList.add('done');
+ state.qs=[];var _qe=document.querySelectorAll('#s-qseal .qitem input');
+ for(var _i=0;_i<_qe.length;_i++)state.qs.push(_qe[_i].value);
+ saveAll();buzz(15);
  toast('三个问题已沉入瓶底 · 开瓶之日，由你作答');
 })}
+var _hadSave=loadAll();
+if(_hadSave&&state.voiceBlobSave)0;
+loadVoiceBlob().then(function(b){if(b){state.voiceBlob=b;window.vpSetClip&&vpSetClip(b)}});
+if(!_hadSave){/* 新用户：梦貘欢迎信 */
+ state.letters=[{from:todayStr(),tide:"梦貘的信",t:"这只瓶从今天起归你。写下第一个梦，潮汐就开始计时——到涨潮那天，它会替你把此刻带回来。",q:"第一个梦，想好了吗？",unlockAt:0,mine:0,greet:1}];
+}
+renderFile();
+var apT=$('#appendBtn');
+if(apT){apT.addEventListener('click',function(){
+ var ta=$('#appendText'),v=ta?ta.value.trim():'';
+ if(!v){toast('写一句此刻的进展');return}
+ state.dreams.unshift({t:v,d:todayStr(),page:1});
+ ta.value='';var c=$('#appendCnt');if(c)c.textContent='0';
+ renderFile();saveAll();buzz(15);
+ toast('新页已入瓶 · 原文完好');
+})}
+if(state.qs&&state.qs.length){var qi=document.querySelectorAll('#s-qseal .qitem input');
+ for(var i=0;i<Math.min(qi.length,state.qs.length);i++)qi[i].value=state.qs[i]}
+var tideFF=document.getElementById('tideFF');
+if(tideFF){tideFF.addEventListener('click',function(){
+ var hit=0;state.letters.forEach(function(L){if(L.unlockAt&&L.unlockAt>Date.now()){L.unlockAt=0;hit++}});
+ if(hit){saveAll();renderLetters();buzz(30);toast('潮水提前涨了 · '+hit+' 封信浮出')}else toast('潮水都已经涨过了');
+})}
+var swN=document.querySelector('#s-set .sw');
+if(swN){swN.classList.toggle('on',state.notifyOn);
+ swN.addEventListener('click',function(){
+  state.notifyOn=swN.classList.contains('on');saveAll();
+  if(state.notifyOn&&('Notification' in window)){
+   Notification.requestPermission().then(function(p){
+    if(p==='granted'){try{new Notification('酿梦 · 星光 +1',{body:'今晚的潮声，已经替你收好。晚安。'})}catch(e){}}
+   });
+  }
+ });
+}
+if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){
+ navigator.serviceWorker.register('sw.js').catch(function(){});
+}
+(function(){var h=new Date().getHours();
+ var part=h<5?'deep':h<8?'dawn':h<19?'day':'night';
+ document.documentElement.setAttribute('data-part',part);
+ try{var t=localStorage.getItem('brewm_tapir'),key=new Date().toDateString();
+  if(t!==key){localStorage.setItem('brewm_tapir',key);
+   setTimeout(function(){toast('梦貘替你守了一夜的瓶 · 平安')},2600)}
+ }catch(e){}
+})();
+var aiEp=$('#aiEp'),aiKey=$('#aiKey'),aiModel=$('#aiModel');
+if(aiEp){aiEp.value=state.ai.ep||'';aiKey.value=state.ai.key||'';aiModel.value=state.ai.model||'';
+ [aiEp,aiKey,aiModel].forEach(function(el){el.addEventListener('change',function(){
+  state.ai.ep=aiEp.value.trim()||state.ai.ep;
+  state.ai.key=aiKey.value.trim();
+  state.ai.model=aiModel.value.trim()||'gpt-4o-mini';
+  saveAll();toast('隔瓶 AI 已更新 · 只存本机');
+ })});
+}
 renderWorld();renderLetters();renderShare();bindGoShare();
 var firstBg=document.querySelector('.bgart.on img');
 $$('.bgart img').forEach(function(im){if(im!==firstBg){
