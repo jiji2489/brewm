@@ -1,11 +1,12 @@
 // 酿梦 Brewm · 离线壳（cache-first）
-var CACHE = "brewm-v6-2";
+var CACHE = "brewm-v6-3";
 var ASSETS = [
   "./", "./index.html", "./manifest.webmanifest",
   "./img/bg-pour.jpg", "./img/bg-galaxy.jpg", "./img/bg-boat.jpg",
   "./img/bg-desk.jpg", "./img/bg-tree.jpg", "./img/mon-night.jpg",
   "./img/mon-open.png", "./img/mon-rite.png", "./img/mon-avatar.png",
-  "./img/qr.png", "./img/icon-192.png", "./img/icon-512.png"
+  "./img/qr.png", "./img/icon-192.png", "./img/icon-512.png",
+  "./img/voice-f.mp3", "./img/voice-m.mp3"
 ];
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(ASSETS); }).then(function () { return self.skipWaiting(); }));
