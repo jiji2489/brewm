@@ -736,6 +736,7 @@ body.full .brand,body.full .caption{display:none}
  <div class="gt">关 于</div>
      <div class="srow"><p>版本<span>酿梦 BREWM 1.0 · 夜航</span></p><span class="val">New</span></div>
      <div class="srow"><p>素材声明<span>部分视觉素材由 AI 辅助生成</span></p></div>
+     <div class="srow"><p>匿名统计<span>仅记封缄/录音/回访次数 · 无任何内容原文</span></p></div>
      <div class="srow"><p>用户协议<span>平安条款 · 共鸣治理规则</span></p><span class="val">›</span></div>
     </div>
    </section>
@@ -1035,7 +1036,7 @@ body.full .brand,body.full .caption{display:none}
     <span>我的</span></button>
   </nav>
  </div>
- <div class="caption">酿梦 BREWM · H5 交互原型 v6.1 · 四环廿三屏 · 插画素材由 AI 辅助生成</div>
+ <div class="caption">酿梦 BREWM · H5 交互原型 v6 · 四环廿二屏 · 插画素材由 AI 辅助生成</div>
 </div>
 
 <script>
@@ -1092,6 +1093,8 @@ function idb(mode,fn){return new Promise(function(res){
 function saveVoiceBlob(b){return idb("readwrite",function(st){if(b)st.put(b,"voice");else st["delete"]("voice")})}
 function loadVoiceBlob(){return idb("readonly",function(st){return st.get("voice")})}
 function buzz(ms){try{if(navigator.vibrate)navigator.vibrate(ms)}catch(e){}}
+/* 匿名事件统计：只发事件计数（无任何内容原文） */
+function ping(evt){try{fetch("https://abacus.jasoncameron.dev/hit/brewm23/"+evt,{mode:"cors"}).catch(function(){})}catch(e){}}
 function todayStr(){var d=new Date();return d.getFullYear()+"."+String(d.getMonth()+1).padStart(2,"0")+"."+String(d.getDate()).padStart(2,"0")};
 function show(id){
  $$('.screen').forEach(function(s){s.classList.remove('on')});
@@ -1268,7 +1271,7 @@ function startRec(e){
    if(recChunks.length){
     var blob=new Blob(recChunks,{type:(mr&&mr.mimeType)||mediaRecMime||'audio/webm'});
     state.voiceBlob=blob;
-    window.vpSetClip(blob);
+    window.vpSetClip(blob);ping('voice');
    }
   };
   mediaRec.start();
@@ -1309,7 +1312,7 @@ $('#sealBtn').addEventListener('click',function(){
  var step=TIDE_STEPS[Math.min(state.letters.filter(function(L){return L.mine}).length,TIDE_STEPS.length-1)];
  state.letters.unshift({from:dstr,tide:'第 '+(state.letters.filter(function(L){return L.mine}).length+1)+' 潮',
   t:dream,q:'那天写下的心愿——现在离它更近了吗？',unlockAt:Date.now()+step*TIDE_UNIT,mine:1});
- saveAll();buzz(20);
+ saveAll();buzz(20);ping('seal');
  var fx=$('#sealFx');fx.hidden=false;
  setTimeout(function(){fx.hidden=true;state.voice=null;state.voiceBlob=null;saveVoiceBlob(null);
   $('#voiceChip').hidden=true;
@@ -1792,6 +1795,9 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
  navigator.serviceWorker.register('sw.js').catch(function(){});
 }
 (function(){var h=new Date().getHours();
+ var seen=false;try{seen=!!localStorage.getItem("brewm_seen")}catch(e){}
+ ping(seen?"return":"open");
+ try{localStorage.setItem("brewm_seen","1")}catch(e){}
  var part=h<5?'deep':h<8?'dawn':h<19?'day':'night';
  document.documentElement.setAttribute('data-part',part);
  try{var t=localStorage.getItem('brewm_tapir'),key=new Date().toDateString();
