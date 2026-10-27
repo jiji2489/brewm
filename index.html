@@ -343,6 +343,14 @@ body.full .brand,body.full .caption{display:none}
   .tstat i{font-style:normal;color:#D9B36A}
   .tstat2{margin-top:4px;text-align:center;font-size:11px;color:rgba(244,241,232,.62);letter-spacing:.5px}
  
+  /* ── 连续夜数 + 星光签 ── */
+  .streak{margin-top:8px;font-size:11.5px;letter-spacing:1.5px;color:#FFE9C4;
+   background:rgba(217,179,106,.12);border:1px solid rgba(217,179,106,.4);
+   border-radius:16px;display:inline-block;padding:6px 14px}
+  .signcard{margin-top:12px;background:linear-gradient(135deg,rgba(217,179,106,.16),rgba(217,179,106,.05));
+   border:1px solid rgba(217,179,106,.45);border-radius:14px;padding:12px 14px;
+   color:#FFE9C4;font-size:13.5px;line-height:1.8;letter-spacing:1px}
+  .signcard small{display:block;margin-top:4px;font-size:10px;color:rgba(244,241,232,.55);letter-spacing:2px}
   /* ── 酿卡色卡页 ── */
   .colorrow{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
    padding:8px 4px 16px;-webkit-overflow-scrolling:touch}
@@ -521,6 +529,7 @@ body.full .brand,body.full .caption{display:none}
     <div class="wglow" id="wglow"></div>
     <div class="h-kai sm">瓶中世界 · 第 <span class="nights">146</span> 夜</div>
     <div class="tcap">昨夜，你的梦又亮了一点</div>
+    <div class="streak" id="streakChip">连续 · 第 1 夜</div>
     <div class="tide">
      <div class="tline" id="tideline"></div>
      <div class="tnodes">
@@ -785,6 +794,8 @@ body.full .brand,body.full .caption{display:none}
     <button class="backbtn" data-go="s-world">‹ 返回瓶中</button>
     <div class="h-kai sm">养分日记 · AI 萃取</div>
     <div class="tcap">每一天的日常，都是下料</div>
+    <div class="signcard" id="signCard"></div>
+    <div id="feedAuto"></div>
     <div class="statgrid">
      <div class="stat"><b>217</b><p>累计养分 · 滴</p></div>
      <div class="stat"><b>+38%</b><p>瓶中星光亮度</p></div>
@@ -1794,7 +1805,42 @@ if(swN){swN.classList.toggle('on',state.notifyOn);
 if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){
  navigator.serviceWorker.register('sw.js').catch(function(){});
 }
-(function(){var h=new Date().getHours();
+(function(){ var seen=false;try{seen=!!localStorage.getItem("brewm_seen")}catch(e){}
+ ping(seen?"return":"open");
+ try{localStorage.setItem("brewm_seen","1")}catch(e){}
+ /* 连续夜数：每天来访 +1，断了温柔提示 */
+ var _ds=function(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+ var _today=_ds(new Date()),_yd=(function(){var d=new Date();d.setDate(d.getDate()-1);return _ds(d)})();
+ var streak={last:"",count:0};
+ try{streak=JSON.parse(localStorage.getItem("brewm_streak"))||streak}catch(e){}
+ var gapDays=0;
+ if(streak.last!==_today){
+  if(streak.last===_yd){streak.count=(streak.count||0)+1}
+  else{if(streak.last){gapDays=Math.round((new Date(_today)-new Date(streak.last))/86400000)}streak.count=1}
+  streak.last=_today;
+  try{localStorage.setItem("brewm_streak",JSON.stringify(streak))}catch(e){}
+ }
+ var _sc=document.getElementById("streakChip");
+ if(_sc){_sc.textContent=
+  gapDays>1? "潮水缓了 "+gapDays+" 天 · 瓶一直都在，随时继续"
+  : streak.count>1? "连续 · 第 "+streak.count+" 夜 · 星光都记得"
+  : "第 1 夜 · 从今晚开始";}
+ /* 每日星光签：按日期轮换，全站一句 */
+ var SIGNS=["星光不问归期，瓶里自有潮汐。","今晚的梦，记得留一半给明天。","你写下的每个字，都在瓶底发光。","潮水慢，是因为它认真。","噩梦我吃掉了，好梦替你酿着。","别急，时间站在你这边。","今天的日常，是明天的养分。","瓶壁上又凝了一颗新的星。","火漆纹路深了一分，你也是。","深夜适合封存，清晨适合启封。","你只管生活，酿造交给我。","星星排队的时候，谁都不掉队。","梦不怕小，怕的是不装进瓶里。","潮起潮落，都是瓶在呼吸。","昨夜风大，瓶身很稳。","养分又沉了一层，像雪。","回望不是回头，是确认来路。","把灯调成暖色，把梦调成慢速。","安静的日子也在酿。","每一个夜，都算数。"];
+ var sign=SIGNS[Math.floor(Date.now()/86400000)%SIGNS.length];
+ var _sgc=document.getElementById("signCard");
+ if(_sgc)_sgc.innerHTML="今日星光签 · 「"+sign+"」<small>—— 守梦的梦貘</small>";
+ /* 养分日记：每天自动长一条 */
+ var FEEDT=["潮位 +1 · 星光在你的日程里又沉了一点","昨夜无梦 · 瓶中安静，养分缓慢沉淀","今日关键词被悄悄记下 · 原文留在瓶里","星光 +1 · 瓶壁凝出一颗新的星","你来访的那一刻 · 瓶口微微亮了一下","潮汐表更新 · 距离下次涨潮更近一夜","夜风很轻 · 火漆纹路又深了一分","梦貘巡瓶一圈 · 一切平安","微量星光汇入 · 来自今天的日常","瓶中世界平稳运转 · 等待下一次封缄"];
+ var flog=[];try{flog=JSON.parse(localStorage.getItem("brewm_feedlog"))||[]}catch(e){}
+ if(!flog.some(function(Fl){return Fl.d===_today})){
+  flog.unshift({d:_today.slice(5).replace("-","."),t:FEEDT[Math.floor(Date.now()/86400000)%FEEDT.length]});
+  flog=flog.slice(0,14);
+  try{localStorage.setItem("brewm_feedlog",JSON.stringify(flog))}catch(e){}
+ }
+ var _fa=document.getElementById("feedAuto");
+ if(_fa)_fa.innerHTML=flog.map(function(Fl){return '<div class="citem"><b>'+Fl.d+'<span>养分 · 自动</span></b><p>'+Fl.t+'</p></div>'}).join("");
+ var h=new Date().getHours();
  var seen=false;try{seen=!!localStorage.getItem("brewm_seen")}catch(e){}
  ping(seen?"return":"open");
  try{localStorage.setItem("brewm_seen","1")}catch(e){}
@@ -1802,7 +1848,7 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
  document.documentElement.setAttribute('data-part',part);
  try{var t=localStorage.getItem('brewm_tapir'),key=new Date().toDateString();
   if(t!==key){localStorage.setItem('brewm_tapir',key);
-   setTimeout(function(){toast('梦貘替你守了一夜的瓶 · 平安')},2600)}
+   setTimeout(function(){toast('今日星光签 · 「'+sign+'」')},2600);}
  }catch(e){}
 })();
 var aiEp=$('#aiEp'),aiKey=$('#aiKey'),aiModel=$('#aiModel');
