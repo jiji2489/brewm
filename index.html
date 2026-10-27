@@ -764,7 +764,7 @@ body.full .brand,body.full .caption{display:none}
      <div class="wave"><i style="height:6px"></i><i style="height:17px"></i><i style="height:25px"></i><i style="height:26px"></i><i style="height:21px"></i><i style="height:12px"></i><i style="height:8px"></i><i style="height:14px"></i><i style="height:18px"></i><i style="height:20px"></i><i style="height:18px"></i><i style="height:10px"></i><i style="height:12px"></i><i style="height:22px"></i><i style="height:28px"></i><i style="height:26px"></i><i style="height:19px"></i><i style="height:8px"></i><i style="height:15px"></i><i style="height:22px"></i><i style="height:22px"></i><i style="height:18px"></i><i style="height:11px"></i><i style="height:7px"></i><i style="height:15px"></i><i style="height:21px"></i><i style="height:24px"></i><i style="height:21px"></i><i style="height:12px"></i><i style="height:11px"></i><i style="height:22px"></i><i style="height:27px"></i><i style="height:26px"></i><i style="height:19px"></i></div>
      <div style="display:flex;align-items:center;gap:10px;margin-top:10px">
       <div class="waxdot vplay" style="width:34px;height:34px;font-size:13px;cursor:pointer" data-vc="0" data-sec="12">▶</div>
-      <p style="font-size:11px;color:rgba(43,58,85,.55)">潮声已褪去 · 只还原本声</p>
+      <p style="font-size:11px;color:rgba(43,58,85,.55)">潮声已褪去 · 女声还原本声</p>
      </div>
      <div class="ltext" style="font-size:14px;margin-top:10px">「……要把工作室的灯，调成暖色的。」</div>
     </div>
@@ -773,7 +773,7 @@ body.full .brand,body.full .caption{display:none}
      <div class="wave"><i style="height:19px"></i><i style="height:10px"></i><i style="height:14px"></i><i style="height:23px"></i><i style="height:28px"></i><i style="height:25px"></i><i style="height:17px"></i><i style="height:7px"></i><i style="height:15px"></i><i style="height:20px"></i><i style="height:19px"></i><i style="height:15px"></i><i style="height:11px"></i><i style="height:8px"></i><i style="height:17px"></i><i style="height:24px"></i><i style="height:26px"></i><i style="height:22px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:22px"></i><i style="height:26px"></i><i style="height:24px"></i><i style="height:17px"></i><i style="height:8px"></i><i style="height:12px"></i><i style="height:15px"></i><i style="height:19px"></i><i style="height:19px"></i><i style="height:14px"></i><i style="height:7px"></i><i style="height:18px"></i><i style="height:26px"></i><i style="height:28px"></i></div>
      <div style="display:flex;align-items:center;gap:10px;margin-top:10px">
       <div class="waxdot vplay" style="width:34px;height:34px;font-size:13px;cursor:pointer" data-vc="1" data-sec="8" data-plain="1">▶</div>
-      <p style="font-size:11px;color:rgba(43,58,85,.55)">原声回放 · 未经转写</p>
+      <p style="font-size:11px;color:rgba(43,58,85,.55)">原声回放 · 男声未经转写</p>
      </div>
      <div class="ltext" style="font-size:14px;margin-top:10px">「三战……这次真的上岸了。」</div>
     </div>
@@ -1598,7 +1598,8 @@ function dlFallback(blob){
  toast(/iphone|ipad/i.test(navigator.userAgent)?"长按上方卡片 · 存储图像":"已开始下载 · 酿卡.png")}
 
 /* ═══ 语音梦播放引擎：Web Audio 合成 + 潮声退去 ═══ */
-var VP={ctx:null,live:false,cur:-1,timers:[]};
+var VP={ctx:null,live:false,cur:-1,timers:[],embedF:"img/voice-f.mp3",embedM:"img/voice-m.mp3"};
+try{new Audio(VP.embedF).load();new Audio(VP.embedM).load()}catch(e){}
 function vpStop(){
  VP.live=false;VP.cur=-1;
  VP.timers.forEach(clearTimeout);VP.timers=[];
@@ -1621,6 +1622,34 @@ function vpPlay(btn){
   var wave=card?card.querySelector('.wave'):null;
   if(wave)wave.classList.add('live');
   toast('回放你的真声 · 只存在这台设备');
+  return;
+ }
+ /* 内嵌人声：卡1 温柔女声（叠潮声退去）· 卡2 刚毅男声 */
+ var emb=btn.dataset.plain?VP.embedM:VP.embedF;
+ if(emb){
+  var eu=new Audio(emb);VP.audio=eu;
+  VP.cur=+btn.dataset.vc;VP.live=true;
+  eu.onended=function(){if(VP.audio===eu)vpStop()};
+  var pp=eu.play();if(pp&&pp.catch)pp.catch(function(){});
+  btn.classList.add('playing');btn.textContent='❚❚';
+  var cd=btn.closest('.paper2');
+  var wv=cd?cd.querySelector('.wave'):null;
+  if(wv)wv.classList.add('live');
+  if(!btn.dataset.plain){/* 潮声层：先涨 2 秒，缓缓退去，人声浮出 */
+   try{
+    VP.ctx=VP.ctx||new (window.AudioContext||window.webkitAudioContext)();VP.ctx.resume();
+    var ctx=VP.ctx,wlen=ctx.sampleRate*2.4;
+    var wb=ctx.createBuffer(1,wlen,ctx.sampleRate),wd=wb.getChannelData(0);
+    for(var k=0;k<wlen;k++){var t2=k/ctx.sampleRate,fade=Math.max(0,1-t2/2.1);
+     wd[k]=(Math.random()*2-1)*.5*(.55+.45*Math.sin(t2*3.1))*fade*fade}
+    var wsrc=ctx.createBufferSource();wsrc.buffer=wb;
+    var wlp=ctx.createBiquadFilter();wlp.type='lowpass';wlp.frequency.value=620;
+    var wg=ctx.createGain();wg.gain.value=.8;
+    wsrc.connect(wlp);wlp.connect(wg);wg.connect(ctx.destination);wsrc.start();VP.src=wsrc;
+   }catch(e){}
+  }
+  VP.timers.push(setTimeout(function(){if(VP.audio===eu)vpStop()},(eu.duration||10)*1000+600));
+  toast(btn.dataset.plain?'原声回放 · 男声未经转写':'潮声退去 · 女声还原本声');
   return;
  }
  try{VP.ctx=VP.ctx||new (window.AudioContext||window.webkitAudioContext)();VP.ctx.resume()}catch(e){}
