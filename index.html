@@ -13,6 +13,8 @@
 <meta property="og:url" content="https://jiji2489.github.io/brewm/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="img/bg-desk.webp" fetchpriority="high">
+<link rel="preload" as="image" href="img/bg-galaxy.webp" fetchpriority="high">
 <title>酿梦 Brewm · 数字梦瓶 · 四环廿三屏</title>
 <style>
 
@@ -704,6 +706,26 @@ body.full .brand,body.full .caption{display:none}
     <div class="tiny">星光在你睡着的时候生长</div>
    </section>
 
+   <section class="screen" id="s-aiguide">
+    <button class="backbtn" data-go="s-set">‹ 返回设置</button>
+    <div class="h-kai sm">三步 · 开通隔瓶 AI</div>
+    <div class="tcap">用免费的大模型，让"过去的你"真的会说话</div>
+    <div class="paper2">
+     <div class="lfrom">第 1 步<span>注册</span></div>
+     <div class="ltext" style="font-size:13.5px">手机或电脑浏览器打开智谱开放平台 <b>open.bigmodel.cn</b>，手机号注册并登录。</div>
+    </div>
+    <div class="paper2">
+     <div class="lfrom">第 2 步<span>领 Key</span></div>
+     <div class="ltext" style="font-size:13.5px">控制台 → <b>API Keys</b> → 新建，复制形如 <b>id.xxxxxx</b> 的密钥。</div>
+    </div>
+    <div class="paper2">
+     <div class="lfrom">第 3 步<span>回来粘贴</span></div>
+     <div class="ltext" style="font-size:13.5px">回"设置 · 隔瓶 AI"，把 Key 粘进 Key 框，接口与模型点下面按钮一键填入。</div>
+    </div>
+    <button class="wax" onclick="aiFillGlm()">一键填入智谱配置</button>
+    <a class="ghost" href="https://open.bigmodel.cn" target="_blank" rel="noopener" style="display:block;text-align:center;margin-top:10px;text-decoration:none">打开智谱开放平台 ↗</a>
+    <div class="tiny">glm-4-flash 有免费额度 · Key 只保存在本机浏览器</div>
+   </section>
    <section class="screen" id="s-mine">
     <div style="display:flex;align-items:center;gap:10px;margin-top:10px">
      <img src="img/mon-avatar.png" alt="梦貘" style="width:48px;height:48px;border-radius:50%;object-fit:cover;background:rgba(217,179,106,.12);border:1.5px solid rgba(217,179,106,.65);box-shadow:0 6px 16px rgba(5,6,20,.5)">
@@ -749,6 +771,7 @@ body.full .brand,body.full .caption{display:none}
      <div class="srow col"><p>API Key<span>只存本机 · 泄露风险自担</span></p><input id="aiKey" type="password" placeholder="sk-…（留空则用本地守梦引擎）"></div>
      <div class="srow col"><p>模型<span>如 gpt-4o-mini / glm-4-flash</span></p><input id="aiModel" placeholder="gpt-4o-mini"></div>
      <div class="tiny" style="margin-top:6px">不填 Key 也能聊：守梦引擎会用你封下的原话回应你</div>
+     <button class="ghost" data-go="s-aiguide" style="margin-top:10px">没有 Key？三步免费开通 · 图文引导 ›</button>
  <div class="gt">关 于</div>
      <div class="srow"><p>版本<span>酿梦 BREWM 1.0 · 夜航</span></p><span class="val">New</span></div>
      <div class="srow"><p>素材声明<span>部分视觉素材由 AI 辅助生成</span></p></div>
@@ -1799,6 +1822,15 @@ function renderCardColors(){
  ccDone=true;
 }
 if('serviceWorker' in navigator)0;
+function aiFillGlm(){
+ var ep=document.getElementById('aiEp'),md=document.getElementById('aiModel');
+ var epv='https://open.bigmodel.cn/api/paas/v4/chat/completions';
+ if(ep)ep.value=epv;
+ if(md)md.value='glm-4-flash';
+ state.ai.ep=epv;state.ai.model='glm-4-flash';
+ saveAll();buzz(10);
+ toast('已填入智谱配置 · 粘贴你的 Key 即可');
+}
 // init from URL params（供静帧渲染与录屏跳转）
 var q=new URLSearchParams(location.search);
 if(q.get('night')){state.nights=parseInt(q.get('night'),10)||state.nights}
