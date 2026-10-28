@@ -351,6 +351,14 @@ body.full .brand,body.full .caption{display:none}
   .tstat i{font-style:normal;color:#D9B36A}
   .tstat2{margin-top:4px;text-align:center;font-size:11px;color:rgba(244,241,232,.62);letter-spacing:.5px}
  
+  /* ── 主标志灵动动画 ── */
+  .markimg{animation:mfloat 4.6s ease-in-out infinite;will-change:transform,filter}
+  @keyframes mfloat{
+   0%,100%{transform:translateY(0) rotate(0deg);filter:drop-shadow(0 10px 24px rgba(5,6,20,.55)) drop-shadow(0 0 6px rgba(255,233,196,.12))}
+   50%{transform:translateY(-8px) rotate(-1.4deg);filter:drop-shadow(0 16px 30px rgba(5,6,20,.6)) drop-shadow(0 0 18px rgba(255,233,196,.38))}
+  }
+  .noanim .markimg{animation:none}
+  @media (prefers-reduced-motion: reduce){.markimg{animation:none}}
   /* ── 连续夜数 + 星光签 ── */
   .streak{margin-top:8px;font-size:11.5px;letter-spacing:1.5px;color:#FFE9C4;
    background:rgba(217,179,106,.12);border:1px solid rgba(217,179,106,.4);
@@ -782,7 +790,7 @@ body.full .brand,body.full .caption{display:none}
 
    <section class="screen" id="s-open">
     <div style="text-align:center;margin-top:142px">
-     <img src="img/mark-starheart.png" alt="星心宝相" style="width:118px;height:auto;display:inline-block;filter:drop-shadow(0 10px 24px rgba(5,6,20,.55))">
+     <img src="img/mark-starheart.png" alt="星心宝相" class="markimg" style="width:118px;height:auto;display:inline-block">
      <div class="h-kai" style="font-size:42px;letter-spacing:14px;margin-top:20px">酿 梦</div>
      <div style="font-family:Georgia,serif;font-style:italic;font-size:10.5px;letter-spacing:5px;color:rgba(244,241,232,.62);margin-top:12px">BREWM · BREW DREAMS WITH TIME</div>
      <p class="tcap" style="margin-top:24px;line-height:2.1;letter-spacing:3px">存入是下料 · 日常是发酵<br>回望是开坛 · 共鸣是分酿予人</p>
@@ -922,7 +930,7 @@ body.full .brand,body.full .caption{display:none}
 
    <div id="splash">
     <div class="sp-in">
-     <img src="img/mark-starheart.png" alt="星心宝相" style="width:92px;height:auto;display:inline-block">
+     <img src="img/mark-starheart.png" alt="星心宝相" class="markimg" style="width:92px;height:auto;display:inline-block">
      <div class="sp-name">酿 梦</div>
      <div class="sp-en">BREWM · BREW DREAMS WITH TIME</div>
      <div class="sp-line"><i></i></div>
