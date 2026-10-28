@@ -21,7 +21,7 @@
 
 *{margin:0;padding:0;box-sizing:border-box}
 [hidden]{display:none!important}
-html,body{height:100%}
+html,body{height:100%;overflow-x:hidden}
 body{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;color:#2B3A55;
  background:radial-gradient(1100px 700px at 50% 0%,#FBF7EE 0%,rgba(251,247,238,0) 70%),
    repeating-linear-gradient(180deg,transparent 0 46px,rgba(43,58,85,.04) 46px 47px),#F1EADA;
@@ -237,7 +237,7 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .navbar button.on{color:#FFE9C4;font-weight:400}
 .navbar button.on::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
  width:26px;height:3px;border-radius:2px;background:#D9B36A}
-@media (max-width:480px){body{padding:0}.phone{width:100vw;height:100vh;border-radius:0;border:none}
+@media (max-width:560px){body{padding:0}.phone{width:100vw;height:100vh;border-radius:0;border:none}
  .brand,.caption{display:none}}
 body.full{padding:0}
 body.full .stage{align-items:flex-start;position:absolute;top:0;left:0}
@@ -352,7 +352,22 @@ body.full .brand,body.full .caption{display:none}
   .tstat i{font-style:normal;color:#D9B36A}
   .tstat2{margin-top:4px;text-align:center;font-size:11px;color:rgba(244,241,232,.62);letter-spacing:.5px}
  
+  /* ── 小屏全屏化：脱掉手机壳，铺满视口 ── */
+  @media (max-width:560px){
+   .stage{transform:none!important;padding:0;margin:0}
+   .phone{width:100vw;height:100vh;height:100dvh;border-radius:0;border:none;box-shadow:none}
+   .screen{padding-top:calc(56px + env(safe-area-inset-top,0px));padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+   .navbar{height:calc(64px + env(safe-area-inset-bottom,0px))}
+   .toast{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+  }
   /* ── 标题与信纸：霞鹜文楷（开源 OFL · npmmirror 按需分包）── */
+  /* ── 小屏全屏化 · JS 双保险 ── */
+  body.mobile{padding:0!important}
+  .mobile .stage{transform:none!important;padding:0;margin:0}
+  .mobile .phone{width:100vw!important;height:100vh;height:100dvh;border-radius:0!important;border:none!important;box-shadow:none!important}
+  .mobile .screen{padding-top:calc(56px + env(safe-area-inset-top,0px));padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  .mobile .navbar{height:calc(64px + env(safe-area-inset-bottom,0px))}
+  .mobile .toast{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
   .h-kai,.ltext,#dreamText,#appendText{font-family:'LXGW WenKai Lite','LXGW WenKai','Kaiti SC','STKaiti','KaiTi','楷体',-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif}
   /* ── 主标志灵动动画 ── */
   .markimg{animation:mfloat 4.6s ease-in-out infinite;will-change:transform,filter}
@@ -1976,6 +1991,8 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
  var _fa=document.getElementById("feedAuto");
  if(_fa)_fa.innerHTML=flog.map(function(Fl){return '<div class="citem"><b>'+Fl.d+'<span>养分 · 自动</span></b><p>'+Fl.t+'</p></div>'}).join("");
  var h=new Date().getHours();
+ function applyMode(){try{document.body.classList.toggle("mobile",innerWidth<520)}catch(e){}}
+ addEventListener("resize",applyMode);applyMode();
  var seen=false;try{seen=!!localStorage.getItem("brewm_seen")}catch(e){}
  ping(seen?"return":"open");
  try{localStorage.setItem("brewm_seen","1")}catch(e){}
