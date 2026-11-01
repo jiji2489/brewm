@@ -370,6 +370,11 @@ body.full .brand,body.full .caption{display:none}
   .mobile .navbar{height:calc(64px + env(safe-area-inset-bottom,0px))}
   .mobile .toast{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
   .h-kai,.ltext,#dreamText,#appendText{font-family:'LXGW WenKai Lite','LXGW WenKai','Kaiti SC','STKaiti','KaiTi','楷体',-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif}
+  /* ── 滚动条隐藏 + 纯纵向滑动（手机原生手感）── */
+  *::-webkit-scrollbar{width:0;height:0;display:none}
+  *{scrollbar-width:none!important;-ms-overflow-style:none!important}
+  .screen{touch-action:pan-y;overscroll-behavior-y:contain}
+  .colorrow{touch-action:pan-x}
   /* ── 阿眠出场动效 ── */
   .msway{animation:msway 5.2s ease-in-out infinite;will-change:transform}
   @keyframes msway{0%,100%{transform:rotate(0deg) translateY(0)}30%{transform:rotate(-1.6deg) translateY(-3px)}65%{transform:rotate(1.2deg) translateY(-5px)}}
