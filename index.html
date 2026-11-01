@@ -401,6 +401,24 @@ body.full .brand,body.full .caption{display:none}
    color:#FFE9C4;font-size:13.5px;line-height:1.8;letter-spacing:1px}
   .signcard small{display:block;margin-top:4px;font-size:10px;color:rgba(244,241,232,.55);letter-spacing:2px}
   /* ── 酿卡色卡页 ── */
+  /* ── 工坊预览卡实时换肤 ── */
+  .sharecard{transition:background .35s,color .35s,border-color .35s}
+  .sharecard.sk-galaxy{background:linear-gradient(180deg,#0D1130 0%,#171E48 55%,#232B62 100%);border-color:rgba(217,179,106,.45);color:#F4F1E8}
+  .sharecard.sk-galaxy .sc-quote{color:#F4F1E8}
+  .sharecard.sk-galaxy .est{color:#D9B36A}
+  .sharecard.sk-galaxy .sc-foot{border-top-color:rgba(217,179,106,.4)}
+  .sharecard.sk-galaxy .qr{border-color:rgba(217,179,106,.5);color:rgba(244,241,232,.7)}
+  .sharecard.sk-galaxy .sc-top p{color:#FFE9C4}
+  .sharecard.sk-galaxy .sc-top small{color:rgba(217,179,106,.8)}
+  .sharecard.sk-galaxy .sc-top svg path,.sharecard.sk-galaxy .sc-top svg circle{fill:#D9B36A}
+  .sharecard.sk-wax{background:linear-gradient(180deg,#8A3325 0%,#712A1E 55%,#4E1B12 100%);border-color:rgba(232,206,150,.4);color:#FFF6E8}
+  .sharecard.sk-wax .sc-quote{color:#FFF6E8}
+  .sharecard.sk-wax .est{color:#E8CE96}
+  .sharecard.sk-wax .sc-foot{border-top-color:rgba(232,206,150,.4)}
+  .sharecard.sk-wax .qr{border-color:rgba(232,206,150,.5);color:rgba(255,246,232,.7)}
+  .sharecard.sk-wax .sc-top p{color:#FFF6E8}
+  .sharecard.sk-wax .sc-top small{color:#E8CE96}
+  .sharecard.sk-wax .sc-top svg path,.sharecard.sk-wax .sc-top svg circle{fill:#E8CE96}
   .colorrow{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
    padding:8px 4px 16px;-webkit-overflow-scrolling:touch}
   .colorrow::-webkit-scrollbar{display:none}
@@ -1687,6 +1705,9 @@ var QUOTES=["想在三十岁前，拥有一间自己的工作室。","三年后�
 $$(".pick").forEach(function(p){p.addEventListener("click",function(){
  $$(".pick").forEach(function(q){q.classList.remove("on")});p.classList.add("on");
  cardSkin=({"信笺白":"paper","星河蓝":"galaxy","火漆红":"wax"})[p.dataset.name]||"paper";
+ var _scE=document.getElementById('scCard');
+ if(_scE&&!cardGen){_scE.classList.remove('sk-galaxy','sk-wax');
+  if(cardSkin!=='paper')_scE.classList.add('sk-'+cardSkin);}
  if(cardGen)genCard(true)})});
 var quoteBtn=$("#quoteBtn");
 if(quoteBtn)quoteBtn.addEventListener("click",function(){
@@ -2045,6 +2066,10 @@ function fit(){
 }
 addEventListener('resize',fit);fit();
 var v=q.get('view');show('s-'+(v||'open'));
+if(q.get('skinput')){setTimeout(function(){
+  var want=q.get('skinput'),picks=document.querySelectorAll('.pick');
+  for(var i=0;i<picks.length;i++){if(picks[i].dataset.name===want){picks[i].click();break}}
+},500)}
 if(q.get('cardgen')){cardSkin=q.get('cardskin')||cardSkin;
  $$('.pick').forEach(function(p){p.classList.toggle('on',({"信笺白":"paper","星河蓝":"galaxy","火漆红":"wax"})[p.dataset.name]===cardSkin)});
  genCard(true)}
