@@ -70,7 +70,7 @@ body{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHe
  background:linear-gradient(180deg,rgba(20,22,50,.42) 0%,rgba(20,22,50,.18) 26%,rgba(20,22,50,.28) 58%,rgba(23,20,46,.78) 100%)}
 .bgart.soft::after{background:linear-gradient(180deg,rgba(23,20,46,.74),rgba(23,20,46,.82))}
 .noanim *{transition:none!important;animation:none!important}
-.screen{position:absolute;inset:0;padding:56px 22px 84px;overflow-y:auto;opacity:0;z-index:1;
+.screen{position:absolute;inset:0;padding:56px 22px 84px;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;opacity:0;z-index:1;
  transform:translateX(14px);transition:opacity .26s,transform .26s;pointer-events:none;color:#F4F1E8}
 .screen.on{opacity:1;transform:none;pointer-events:auto}
 .h-kai{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:30px;line-height:1.35;letter-spacing:2px;margin-top:8px;
@@ -114,7 +114,7 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .feed{margin-top:16px;border-radius:14px;background:rgba(20,22,48,.55);backdrop-filter:blur(4px);
  border:1px solid rgba(217,179,106,.35);padding:12px 14px;font-size:12.5px;color:#F4F1E8;
  line-height:1.8;min-height:44px;letter-spacing:.5px}
-.ltr{margin-top:14px;background:#FFFDF6;border:1px solid rgba(43,58,85,.14);border-radius:14px;
+.ltr{box-shadow:0 6px 24px rgba(5,6,20,.35),inset 0 1px 0 rgba(255,255,255,.06);margin-top:14px;background:#FFFDF6;border:1px solid rgba(43,58,85,.14);border-radius:14px;
  box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 24px rgba(43,58,85,.12);padding:14px;cursor:pointer;transition:.2s;color:#2B3A55;
  animation:bob 5.6s ease-in-out infinite}
 .ltr:nth-child(2n){animation-duration:6.4s;animation-delay:-2.9s}
@@ -162,7 +162,7 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .navlink{flex:1;padding:10px 0;border-radius:12px;border:1px dashed rgba(244,241,232,.4);
  background:rgba(255,255,255,.07);color:#F4F1E8;font-size:12.5px;letter-spacing:2px;cursor:pointer;font-family:inherit}
 .navlink b{color:#FFE9C4;font-weight:400}
-.paper2{margin-top:14px;background:#FFFDF6;border:1px solid rgba(43,58,85,.14);border-radius:14px;
+.paper2{box-shadow:0 6px 24px rgba(5,6,20,.3),inset 0 1px 0 rgba(255,255,255,.08);margin-top:14px;background:#FFFDF6;border:1px solid rgba(43,58,85,.14);border-radius:14px;
  box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 24px rgba(43,58,85,.12);padding:14px;color:#2B3A55}
 .grow{display:flex;align-items:center;gap:8px;margin-top:10px}
 .grow .bar{flex:1;height:8px;border-radius:4px;background:rgba(43,58,85,.12);overflow:hidden}
@@ -1472,7 +1472,7 @@ function startRec(e){
  holdT=setInterval(function(){sec++;if(sec%3===0)recUI(true,'正在听…… '+sec+'″')},1000);
  recUI(true);
  if(!(navigator.mediaDevices&&window.MediaRecorder))return;
- navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){
+ navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}}).then(function(stream){
   if(!holdBtn.classList.contains('rec')){
    stream.getTracks().forEach(function(t){t.stop()});return}
   try{var MM='';['audio/mp4','audio/webm;codecs=opus','audio/webm'].some(function(mm){if(window.MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(mm)){MM=mm;return true}return false});
