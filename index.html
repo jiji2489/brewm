@@ -361,6 +361,14 @@ body.full .brand,body.full .caption{display:none}
    .toast{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
   }
   /* ── 标题与信纸：霞鹜文楷（开源 OFL · npmmirror 按需分包）── */
+  /* ── 信件 改/删 ── */
+  .ltr .lops{display:flex;gap:12px;justify-content:flex-end;margin-top:8px}
+  .ltr .lops span{font-size:10.5px;color:rgba(244,241,232,.6);border:1px solid rgba(244,241,232,.28);border-radius:10px;padding:3px 12px;cursor:pointer;letter-spacing:1px}
+  .ltr .lops span:hover{color:#FFE9C4;border-color:#D9B36A}
+  .ledit-box{margin-top:8px}
+  .ledit-box textarea{width:100%;min-height:52px;background:rgba(20,22,50,.5);color:#F4F1E8;border:1px solid rgba(217,179,106,.45);border-radius:10px;padding:8px;font:inherit;font-size:13px;line-height:1.7;resize:vertical;box-sizing:border-box}
+  .ledit-box div{display:flex;gap:10px;margin-top:6px;justify-content:flex-end}
+  .ledit-box button{font:inherit;font-size:11px;background:none;border:1px solid rgba(217,179,106,.5);color:#FFE9C4;border-radius:10px;padding:4px 14px;cursor:pointer}
   /* ── 小屏全屏化 · JS 双保险 ── */
   body.mobile{padding:0!important}
   .mobile .brand,.mobile .caption{display:none!important}
@@ -1303,8 +1311,10 @@ function renderLetters(){
    box.appendChild(d);return;
   }
   d.className='ltr';
+  var ops=(L.mine&&!L.greet)? '<div class="lops"><span class="ledit" data-i="'+i+'">✎ 改</span><span class="ldel" data-i="'+i+'">✕ 删</span></div>':'';
   d.innerHTML='<div class="lfrom">来自 '+L.from+'<span>'+L.tide+'</span></div>'
    +'<div class="ltext">“'+esc(L.t)+'”</div>'
+   +ops
    +'<div class="ask"><small>'+(L.greet?'梦貘替你守着瓶':'过去的你，隔瓶问了一句')+'</small>'
    +'<div class="bub">“'+esc(L.q)+'”</div>'
    +'<div class="replyarea"><input placeholder="回信给过去的自己……" id="rin'+i+'">'
@@ -1316,7 +1326,7 @@ function renderLetters(){
     +'<button class="goShare" data-i="'+i+'">把这句酿上酿卡 ›</button>';
   }
   d.addEventListener('click',function(e){
-   if(e.target.closest('.replyarea'))return;
+   if(e.target.closest('.replyarea')||e.target.closest('.lops')||e.target.closest('.ledit-box'))return;
    $$('.ltr').forEach(function(x){if(x!==d)x.classList.remove('open')});
    d.classList.toggle('open');
   });
@@ -1332,6 +1342,33 @@ function renderLetters(){
    bindGoShare();
   });
  });
+ /* 改 / 删（事件委托，重渲染不丢） */
+ box.onclick=function(e){
+  var led=e.target.closest('.ledit'),ldel=e.target.closest('.ldel');
+  if(!led&&!ldel)return;
+  var card=e.target.closest('.ltr');if(!card)return;
+  var tag=(led||ldel).dataset.i;
+  var i=-1;
+  state.letters.forEach(function(L,ix){if(String(ix)===tag)i=ix});
+  var L=state.letters[i];
+  if(!L)return;
+  if(ldel){
+   state.letters.splice(i,1);saveAll();buzz(12);
+   renderLetters();toast('已删除 · 潮水退去');return;
+  }
+  var lt=card.querySelector('.ltext');
+  if(!lt||card.querySelector('.ledit-box'))return;
+  var old=L.t;
+  lt.outerHTML='<div class="ledit-box"><textarea maxlength="80">'+esc(old)+'</textarea>'
+   +'<div><button class="ledsave">保存</button><button class="ledcancel">取消</button></div></div>';
+  var ta=card.querySelector('.ledit-box textarea');
+  ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);
+  card.querySelector('.ledsave').onclick=function(){
+   var v=ta.value.trim();if(!v){toast('内容不能为空');return}
+   L.t=v;saveAll();buzz(12);renderLetters();toast('已改 · 潮水记下了');
+  };
+  card.querySelector('.ledcancel').onclick=function(){renderLetters()};
+ };
 }
 setInterval(function(){
  var dots=document.querySelectorAll('.cd[data-at]');
