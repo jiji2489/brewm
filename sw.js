@@ -1,5 +1,5 @@
 // 酿梦 Brewm · 离线壳（cache-first）
-var CACHE = "brewm-v6-25";
+var CACHE = "brewm-v6-27";
 var ASSETS = [
   "./", "./index.html", "./manifest.webmanifest",
   "./img/mon-open.png", "./img/mon-rite.png", "./img/mon-avatar.png",
