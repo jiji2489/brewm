@@ -223,7 +223,7 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .navbar{position:absolute;left:0;right:0;bottom:0;height:64px;background:rgba(16,17,41,.88);
  border-top:1px solid rgba(244,241,232,.14);display:flex;z-index:10;backdrop-filter:blur(6px)}
-.navbar button{flex:1;border:none;background:transparent;font-family:inherit;font-size:10.5px;
+.navbar button{transition:color .25s,background .25s,transform .15s;flex:1;border:none;background:transparent;font-family:inherit;font-size:10.5px;
  letter-spacing:2px;color:rgba(244,241,232,.48);cursor:pointer;position:relative;
  display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:8px}
 .navbar button svg{display:block;position:relative;z-index:1}
@@ -378,6 +378,9 @@ body.full .brand,body.full .caption{display:none}
   .mobile .navbar{height:calc(64px + env(safe-area-inset-bottom,0px))}
   .mobile .toast{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
   .h-kai,.ltext,#dreamText,#appendText{font-family:'LXGW WenKai Lite','LXGW WenKai','Kaiti SC','STKaiti','KaiTi','楷体',-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif}
+  /* ── 输入框 focus 统一 ── */
+  input:focus,textarea:focus{outline:none;border-color:#D9B36A!important;box-shadow:0 0 0 3px rgba(217,179,106,.18)}
+  button:focus-visible{outline:2px solid #D9B36A;outline-offset:2px}
   /* ── 滚动条隐藏 + 纯纵向滑动（手机原生手感）── */
   *::-webkit-scrollbar{width:0;height:0;display:none}
   *{scrollbar-width:none!important;-ms-overflow-style:none!important}
@@ -484,7 +487,12 @@ body.full .brand,body.full .caption{display:none}
   @keyframes wlive{from{transform:scaleY(.45)}to{transform:scaleY(1.15)}}
   .wave i{transform-origin:center;transition:transform .12s}
   .noanim .vplay.playing::after,.noanim .wave.live i{animation:none}
- </style></head><body>
+   /* ── 图片淡入加载 ── */
+  img{opacity:1;transition:opacity .4s}
+  img[data-fade]{opacity:0}
+  img[data-fade].loaded{opacity:1}
+  /* ── 输入框 focus 统一 ── */</style>
+</head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
  <radialGradient id="ngG" cx="50%" cy="45%"><stop offset="0%" stop-color="#FFE9C4"/><stop offset="55%" stop-color="#F5B85C"/><stop offset="100%" stop-color="rgba(245,184,92,0)"/></radialGradient>
  <filter id="ngl" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="7"/></filter>
@@ -828,7 +836,7 @@ body.full .brand,body.full .caption{display:none}
     <div class="sgroup">
      <div class="gt">隐私与治理</div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><rect x="12" y="12" width="20" height="20" rx="5"/><path d="M17.5,22 h9 M22,17.5 v9"/></svg><p>原文本地加密<span>信的原文只存在你的设备上</span></p><div class="sw on"></div></div>
-     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><circle cx="22" cy="22" r="4"/><path d="M22,13 v-5 M22,31 v5 M13,22 h-5 M31,22 h5 M15.5,15.5 l-3.5,-3.5 M28.5,15.5 l3.5,-3.5 M15.5,28.5 l-3.5,3.5 M28.5,28.5 l3.5,3.5"/></svg><p>AI 萃取授权<span>只提炼养分 · 原文从不外传</span></p><div class="sw on"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><circle cx="22" cy="22" r="4"/><path d="M22,13 v-5 M22,31 v6.1 M13,22 h-5 M31,22 h5 M15.5,15.5 l-3.5,-3.5 M28.5,15.5 l3.5,-3.5 M15.5,28.5 l-3.5,3.5 M28.5,28.5 l3.5,3.5"/></svg><p>AI 萃取授权<span>只提炼养分 · 原文从不外传</span></p><div class="sw on"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M13,27 h18 a4,4 0 0,0 0,-8 a6.5,6.5 0 0,0 -12.5,-2 a4.5,4.5 0 0,0 -5.5,10 Z"/></svg><p>酿卡漂流<span>需二次确认 · 授权后可随时撤回</span></p><div class="sw"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none"><circle cx="22" cy="22" r="10.5"/><circle cx="22" cy="22" r="5" opacity=".6"/></svg><p>漂流署名<span>酿卡出海时显示瓶名</span></p><div class="sw on"></div></div>
     </div>
@@ -1972,6 +1980,21 @@ function aiFillGlm(){
  saveAll();buzz(10);
  toast('已填入智谱配置 · 粘贴你的 Key 即可');
 }
+/* 图片淡入 */
+document.querySelectorAll('img[data-fade]').forEach(function(im){
+ if(im.complete){im.classList.add('loaded');return}
+ im.addEventListener('load',function(){im.classList.add('loaded')});
+});
+new MutationObserver(function(mutations){
+ mutations.forEach(function(m){
+  m.addedNodes.forEach(function(n){
+   if(n.tagName==='IMG'&&n.hasAttribute('data-fade')){
+    if(n.complete)n.classList.add('loaded');
+    else n.addEventListener('load',function(){n.classList.add('loaded')});
+   }
+  });
+ });
+}).observe(document.body,{childList:true,subtree:true});
 // init from URL params（供静帧渲染与录屏跳转）
 var q=new URLSearchParams(location.search);
 if(q.get('night')){state.nights=parseInt(q.get('night'),10)||state.nights}
@@ -2157,5 +2180,7 @@ if(q.get('skinput')){setTimeout(function(){
 if(q.get('cardgen')){cardSkin=q.get('cardskin')||cardSkin;
  $$('.pick').forEach(function(p){p.classList.toggle('on',({"信笺白":"paper","星河蓝":"galaxy","火漆红":"wax"})[p.dataset.name]===cardSkin)});
  genCard(true)}
+
+
 </script>
 </body></html>
