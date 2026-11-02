@@ -353,6 +353,18 @@ html[data-part="day"] .bgart img{filter:brightness(1.07) saturate(1.04)}
 img{opacity:1;transition:opacity .4s}
 img[data-fade]{opacity:0}
 img[data-fade].loaded{opacity:1}
+:root{--bg:#141632;--card:rgba(255,253,246,.08);--gold:#D9B36A;--text:#F4F1E8}
+body[data-skin=forest]{--bg:#0E1A14;--card:rgba(200,230,200,.08);--gold:#8FBC8F}
+body[data-skin=sakura]{--bg:#1A1028;--card:rgba(255,218,225,.08);--gold:#E8A0B4}
+body[data-skin=forest] .phone{background:#0E1A14}
+body[data-skin=sakura] .phone{background:#1A1028}
+@media (prefers-color-scheme:light){body:not([data-skin]) .phone{background:#F5F0E8}body:not([data-skin]) .screen{color:#2B3A55}body:not([data-skin]) .bgart img{filter:brightness(1.15) sepia(.08)}}
+.ripple{position:fixed;border-radius:50%;background:radial-gradient(circle,rgba(255,233,196,.25),transparent);pointer-events:none;animation:rip .5s ease-out forwards;z-index:99}
+@keyframes rip{from{width:0;height:0;opacity:.6}to{width:100px;height:100px;opacity:0;transform:translate(-50%,-50%)}}
+.tw-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.tw-bg i{position:absolute;border-radius:50%;background:#FFE9C4;animation:twbg var(--d,3s) ease-in-out infinite}
+@keyframes twbg{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.7;transform:scale(1.2)}}
+.noanim .tw-bg i{animation:none}
 </style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
@@ -497,6 +509,10 @@ img[data-fade].loaded{opacity:1}
 
    <section class="screen" id="s-tide">
     <div class="h-kai sm">潮汐回望</div>
+    <div class="tideSearch" style="margin-top:8px;display:flex;gap:8px">
+     <input id="tideSearchIn" placeholder="搜索梦想关键词…" style="flex:1;background:rgba(255,253,246,.08);border:1px solid rgba(217,179,106,.35);border-radius:12px;padding:8px 14px;color:#F4F1E8;font:inherit;font-size:13px;outline:none">
+     <button id="tideSearchClr" style="background:none;border:1px solid rgba(244,241,232,.25);border-radius:12px;color:#9AA3C7;font-size:11px;padding:0 12px;cursor:pointer">清空</button>
+    </div>
     <div class="tcap" id="tideCap">封下第一个梦，潮汐就开始计时</div>
     <div id="letters"></div>
     <button class="ghost" id="tideFF" style="margin-top:10px">⏩ 演示加速 · 让潮水现在涨（1 分钟 = 1 天）</button>
@@ -538,6 +554,7 @@ img[data-fade].loaded{opacity:1}
     </div>
     </div>
     <button class="ghost" data-go="s-append" style="margin-top:12px">给瓶里补一页 · 续写这个梦 ›</button>
+    <button class="ghost" id="pdfExportBtn" style="margin-top:8px">导出信纸 PDF · 可打印 ›</button>
     <div class="tiny">档案只对你可见 · 潮汐开启时才浮出水面</div>
    </section>
 
@@ -687,7 +704,13 @@ img[data-fade].loaded{opacity:1}
     <div class="tcap">让酿梦更懂你，也更守规矩</div>
     <div class="sgroup">
      <div class="gt">通 用</div>
-     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M9,18 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0"/><path d="M9,27 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0" opacity=".55"/></svg><p>潮声唤醒<span>每日 7:00 · 涨潮与回信提醒</span></p><div class="sw on"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M9,18 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0"/><path d="M9,27 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0" opacity=".55"/></svg><p>瓶身外观<span>选择你喜欢的色调</span></p><div style="display:flex;gap:8px;margin-top:8px">
+      <button class="skbtn" data-skin="default" style="flex:1;padding:6px;border-radius:10px;font-size:11px;cursor:pointer;border:1.5px solid #D9B36A;background:rgba(217,179,106,.16);color:#FFE9C4;font-family:inherit">默认</button>
+      <button class="skbtn" data-skin="forest" style="flex:1;padding:6px;border-radius:10px;font-size:11px;cursor:pointer;border:1px solid rgba(244,241,232,.25);background:none;color:#9AA3C7;font-family:inherit">森林</button>
+      <button class="skbtn" data-skin="sakura" style="flex:1;padding:6px;border-radius:10px;font-size:11px;cursor:pointer;border:1px solid rgba(244,241,232,.25);background:none;color:#9AA3C7;font-family:inherit">樱花</button>
+     </div></div>
+     <div class="srow" style="display:none"><p>潮声唤醒<span>每日 7:00 · 涨潮与回信提醒</span></p><div class="sw on"></div></div>
+     <div class="srow"><p>潮声唤醒<span>每日 7:00 · 涨潮与回信提醒</span></p><div class="sw on"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><circle cx="22" cy="22" r="9"/><path d="M22,8 L22,13 M31,22 L36,22 M22,31 L36,22" opacity=".6"/></svg><p>仪式音效<span>封缄 · 涨潮 · 开瓶的轻响</span></p><div class="sw" id="swSfx"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M9,18 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0"/><path d="M9,27 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0" opacity=".55"/></svg><p>仪式音效<span>封缄 · 涨潮 · 开瓶的轻响</span></p><div class="sw" id="swSfx"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none"><path d="M27,11 a12,12 0 1,0 6.5,21.5 A10,10 0 1,1 27,11 Z"/></svg><p>夜间模式<span>日落后自动进入夜航</span></p><div class="sw on"></div></div>
@@ -1206,7 +1229,10 @@ function renderLetters(){
  if(cap)cap.textContent= state.letters.length===0? '封下第一个梦，潮汐就开始计时'
   : (un===0? '潮位渐涨 · 第一封信还在路上'
   : '涨潮了，有 '+un+' 封信浮了上来');
- state.letters.forEach(function(L,i){
+ var _q=(document.getElementById('tideSearchIn')||{value:''}).value.trim().toLowerCase();
+ var _showList=state.letters.map(function(L,ix){return {L:L,ix:ix}});
+ if(_q)_showList=_showList.filter(function(o){return (o.L.t+' '+(o.L.q||'')+' '+(o.L.from||'')).toLowerCase().indexOf(_q)>=0});
+ _showList.forEach(function(o,oi){var L=o.L;var i=o.ix;
   var locked=L.unlockAt&&L.unlockAt>Date.now();
   var d=document.createElement('div');
   if(locked){
@@ -1900,6 +1926,62 @@ if(vredo){vredo.addEventListener('click',function(){
  toast('已清除 · 重新按住录音即可');buzz(10);
 })}
 var apT=$('#appendBtn');
+var pdfBtn=document.getElementById('pdfExportBtn');
+if(pdfBtn){pdfBtn.addEventListener('click',function(){
+ if(!state.dreams.length){toast('还没有梦可以导出');return}
+ var W=1240,H=1754; // A4 150dpi
+ var cv=document.createElement('canvas');cv.width=W;cv.height=H;
+ var x=cv.getContext('2d');
+ // 米白底
+ x.fillStyle='#FFFDF6';x.fillRect(0,0,W,H);
+ // 边框
+ x.strokeStyle='rgba(43,58,85,.2)';x.lineWidth=2;x.strokeRect(60,60,W-120,H-120);
+ x.strokeStyle='rgba(43,58,85,.1)';x.lineWidth=1;x.strokeRect(72,72,W-144,H-144);
+ // 标题
+ x.fillStyle='#2B3A55';x.textAlign='center';
+ x.font='600 52px Georgia,serif';
+ x.fillText('酿 梦  B r e w m',W/2,190);
+ x.font='italic 26px Georgia,serif';x.fillStyle='#8A6F55';
+ x.fillText('BREW DREAMS WITH TIME',W/2,240);
+ // 火漆印
+ x.beginPath();x.arc(W/2,310,36,0,7);
+ var g=x.createRadialGradient(W/2-12,300,5,W/2,310,42);
+ g.addColorStop(0,'#B8543F');g.addColorStop(1,'#7E2B1E');
+ x.fillStyle=g;x.fill();
+ x.fillStyle='#FFF3E2';x.font='600 30px Georgia,serif';x.fillText('安',W/2,320);
+ // 信件
+ x.textAlign='left';
+ var y=420;
+ var dreams=state.dreams.slice(0,12); // 最多 12 条
+ dreams.forEach(function(D){
+  if(y>H-260)return;
+  x.fillStyle='#A6402F';x.font='20px Georgia,serif';
+  x.fillText(D.d,W/2-420,y);
+  x.fillStyle='#2B3A55';x.font='26px -apple-system,PingFang SC,Microsoft YaHei,sans-serif';
+  var txt=D.t;var maxW=W-300;
+  // 手动折行
+  var line='',yy=y+44;
+  for(var c=0;c<txt.length;c++){
+   if(x.measureText(line+txt[c]).width>maxW){x.fillText(line,W/2-420,yy);yy+=44;line=txt[c]}
+   else line+=txt[c];
+  }
+  if(line)x.fillText(line,W/2-420,yy);
+  y=yy+58;
+  // 虚线分隔
+  x.setLineDash([3,6]);x.strokeStyle='rgba(43,58,85,.15)';x.lineWidth=1;
+  x.beginPath();x.moveTo(W/2-420,y);x.lineTo(W/2+420,y);x.stroke();x.setLineDash([]);
+  y+=28;
+ });
+ // 页脚
+ x.textAlign='center';x.font='italic 22px Georgia,serif';x.fillStyle='#8A6F55';
+ x.fillText('Est. 2022 — Open 2028',W/2,H-180);
+ x.font='20px -apple-system,PingFang SC,Microsoft YaHei';x.fillStyle='rgba(43,58,85,.5)';
+ x.fillText('每一个梦，都会被平安送达未来',W/2,H-136);
+ // 导出
+ var a=document.createElement('a');a.download='酿梦-信纸-'+new Date().toISOString().slice(0,10)+'.png';
+ a.href=cv.toDataURL('image/png');a.click();
+ toast('信纸已导出 · 可打印或分享');
+})}
 if(apT){apT.addEventListener('click',function(){
  var ta=$('#appendText'),v=ta?ta.value.trim():'';
  if(!v){toast('写一句此刻的进展');return}
@@ -1910,6 +1992,11 @@ if(apT){apT.addEventListener('click',function(){
 })}
 if(state.qs&&state.qs.length){var qi=document.querySelectorAll('#s-qseal .qitem input');
  for(var i=0;i<Math.min(qi.length,state.qs.length);i++)qi[i].value=state.qs[i]}
+var tsi=document.getElementById('tideSearchIn');
+if(tsi){tsi.addEventListener('input',function(){renderLetters()});
+ var tcl=document.getElementById('tideSearchClr');
+ if(tcl)tcl.addEventListener('click',function(){tsi.value='';renderLetters()});
+}
 var tideFF=document.getElementById('tideFF');
 if(tideFF){tideFF.addEventListener('click',function(){
  var hit=0;state.letters.forEach(function(L){if(L.unlockAt&&L.unlockAt>Date.now()){L.unlockAt=0;hit++}});
@@ -1993,6 +2080,24 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
  var h=new Date().getHours();
  function applyMode(){try{document.body.classList.toggle("mobile",innerWidth<520)}catch(e){}}
  addEventListener("resize",applyMode);applyMode();
+document.addEventListener('pointerdown',function(e){
+(function(){
+ if(document.querySelector('.tw-bg'))return;
+ var tw=document.createElement('div');tw.className='tw-bg';
+ for(var i=0;i<14;i++){
+  var s2=document.createElement('i');
+  var sz=1+Math.random()*2.5;
+  s2.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;--d:'+(2+Math.random()*4)+'s;animation-delay:'+Math.random()*4+'s';
+  tw.appendChild(s2);
+ }
+ document.body.prepend(tw);
+})();
+ if(e.target.closest('.navbar,.screen,input,textarea'))return;
+ var r=document.createElement('div');r.className='ripple';
+ r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';
+ document.body.appendChild(r);
+ setTimeout(function(){r.remove()},550);
+});
  var seen=false;try{seen=!!localStorage.getItem("brewm_seen")}catch(e){}
  ping(seen?"return":"open");
  try{localStorage.setItem("brewm_seen","1")}catch(e){}
@@ -2005,6 +2110,21 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
 })();
 var aiEp=$('#aiEp'),aiKey=$('#aiKey'),aiModel=$('#aiModel');
 var swSfx=document.getElementById('swSfx');
+document.querySelectorAll('.skbtn').forEach(function(b){
+ b.addEventListener('click',function(){
+  var sk=b.dataset.skin;
+  document.querySelectorAll('.skbtn').forEach(function(x){
+   x.style.borderColor=sk===x.dataset.skin?'#D9B36A':'rgba(244,241,232,.25)';
+   x.style.background=sk===x.dataset.skin?'rgba(217,179,106,.16)':'none';
+   x.style.color=sk===x.dataset.skin?'#FFE9C4':'#9AA3C7';
+  });
+  document.body.dataset.skin=sk;
+  try{localStorage.setItem('brewm_skin',sk)}catch(e){}
+  toast('瓶身 · '+({default:'默认',forest:'森林',sakura:'樱花'})[sk]);
+ });
+});
+try{var savedSk=localStorage.getItem('brewm_skin');if(savedSk){document.body.dataset.skin=savedSk;
+ var skBtn=document.querySelector('.skbtn[data-skin="'+savedSk+'"]');if(skBtn)skBtn.click()}}catch(e){}
 if(swSfx){swSfx.classList.toggle('on',state.sound);
  swSfx.addEventListener('click',function(){
   state.sound=swSfx.classList.contains('on');saveAll();
