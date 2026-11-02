@@ -365,6 +365,11 @@ body[data-skin=sakura] .phone{background:#1A1028}
 .tw-bg i{position:absolute;border-radius:50%;background:#FFE9C4;animation:twbg var(--d,3s) ease-in-out infinite}
 @keyframes twbg{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.7;transform:scale(1.2)}}
 .noanim .tw-bg i{animation:none}
+[data-go="s-store"].wax{transition:transform .3s,opacity .3s}
+[data-go="s-store"].wax.startAnim{animation:startA .7s ease-in both;pointer-events:none}
+@keyframes startA{0%{opacity:1;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}100%{opacity:0;transform:scale(2)}}
+.noanim [data-go="s-store"].wax.startAnim{animation:none}
+.citem{animation:ltrIn .5s ease-out both}.noanim .citem{animation:none}
 </style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
@@ -555,6 +560,11 @@ body[data-skin=sakura] .phone{background:#1A1028}
     </div>
     <button class="ghost" data-go="s-append" style="margin-top:12px">给瓶里补一页 · 续写这个梦 ›</button>
     <button class="ghost" id="pdfExportBtn" style="margin-top:8px">导出信纸 PDF · 可打印 ›</button>
+    <div style="display:flex;gap:8px;margin-top:8px">
+     <button class="ghost" id="bkExportBtn" style="flex:1;font-size:13px">备份数据</button>
+     <button class="ghost" id="bkImportBtn" style="flex:1;font-size:13px">恢复数据</button>
+    </div>
+    <button class="ghost" id="aiGuideBtn" style="margin-top:8px">三步开通隔瓶 AI · 图文引导 ›</button>
     <div class="tiny">档案只对你可见 · 潮汐开启时才浮出水面</div>
    </section>
 
@@ -634,6 +644,8 @@ body[data-skin=sakura] .phone{background:#1A1028}
    <section class="screen" id="s-cal">
     <button class="backbtn" data-go="s-tide">‹ 返回回望</button>
     <div class="h-kai sm">潮汐历 · 六年一图</div>
+    <div class="tcap">每一次涨潮，都写在日历上</div>
+    <div id="calMonths" style="margin-top:12px"></div>
     <div class="tcap">每一次涨潮，都写在日历上</div>
     <div class="ctide">
      <div class="citem"><b>封缄之日<span>2022.10.05</span></b><p>第一个梦入瓶，火漆「安」印落定</p></div>
@@ -752,7 +764,8 @@ body[data-skin=sakura] .phone{background:#1A1028}
    <img src="img/mon-rite.png" alt="阿眠" class="msway" style="display:block;width:150px;filter:drop-shadow(0 16px 30px rgba(5,6,20,.65))">
    <i class="twstar">✦</i>
   </span>
-    <div class="tiny">阿眠 · 替你守住这一夜</div>
+    <div class="tiny">「阿眠小剧场」
+    <div class="tiny">阿眠 · 替你守住这一夜</div></div>
     <div style="position:absolute;left:22px;right:22px;bottom:96px">
      <button class="wax" data-go="s-store">开 始 酿 梦</button>
      <div class="tiny">六年一坛 · 平安封缄 · 演示数据均在瓶内生成</div>
@@ -1194,6 +1207,42 @@ function renderWorld(){
  $('#feed').textContent=state.feeds[state.fi%state.feeds.length];
 }
 function renderFile(){
+function renderCalMonths(){
+ var box=document.getElementById('calMonths');if(!box)return;box.innerHTML='';
+ var now=new Date();
+ var months=[];
+ var tideDates=state.letters.filter(function(L){return L.mine&&L.unlockAt===0}).
+  map(function(L){return L.from});
+ for(var m=5;m>=0;m--){
+  var d=new Date(now.getFullYear(),now.getMonth()-m,1);
+  var yStr=d.getFullYear(),mStr=d.getMonth()+1;
+  var daysInMonth=new Date(yStr,mStr,0).getDate();
+  var firstDay=new Date(yStr,mStr-1,1).getDay();
+  var cells=[];
+  for(var pd=0;pd<firstDay;pd++)cells.push({d:0});
+  for(var dd=1;dd<=daysInMonth;dd++)cells.push({d:dd});
+  var hasTide=state.letters.some(function(L){
+   if(!L.mine)return false;
+   var lp=L.from.split('.');
+   return +lp[0]===yStr&&+lp[1]===mStr;
+  });
+  months.push({y:yStr,m:mStr,cells:cells,tide:hasTide,cur:m===0});
+ }
+ var html='';
+ months.forEach(function(mo){
+  html+='<div style="margin-bottom:14px"><b style="font-size:14px;color:'+(mo.tide?'#FFE9C4':'#9AA3C7')+'">'+mo.y+'.'+String(mo.m).padStart(2,'0')+(mo.tide?' ✦ 涨潮':'')+'</b>';
+  html+='<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:6px">';
+  mo.cells.forEach(function(c){
+   if(c.d===0){html+='<span></span>';return}
+   var isToday=mo.cur&&c.d===now.getDate();
+   html+='<span style="text-align:center;font-size:11px;color:'+(c.d===now.getDate()&&mo.cur?'#D9B36A':'rgba(244,241,232,.4)')+';'+(isToday?'background:rgba(217,179,106,.15);border-radius:6px;font-weight:bold':'')+'">'+c.d+'</span>';
+  });
+  html+='</div></div>';
+ });
+ box.innerHTML=html;
+}
+renderCalMonths();
+
  var box=$('#fileCards');if(!box)return;box.innerHTML='';
  if(!state.dreams.length){
   box.innerHTML='<div class="paper2"><div class="lfrom">梦貘的欢迎信<span>第 000 号</span></div>'
@@ -1550,7 +1599,12 @@ function pickNext(){pickIdx=(pickIdx+1)%PICKS.length;
  box.querySelector('p').textContent=PICKS[pickIdx].p;
  var note=box.querySelectorAll('p')[1];if(note)note.textContent=PICKS[pickIdx].s;
 }
-$$('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.go)})});
+$$('[data-go]').forEach(function(b){b.addEventListener('click',function(){
+ if(b.dataset.go==='s-store'&&b.textContent.includes('酿 梦')){
+  b.classList.add('startAnim');
+  setTimeout(function(){show(b.dataset.go);b.classList.remove('startAnim')},700);
+ }else show(b.dataset.go);
+})});
 $$('.sw').forEach(function(s){s.addEventListener('click',function(){
  s.classList.toggle('on');toast(s.classList.contains('on')?'已开启 · 平安':'已关闭 · 平安');
 })});
@@ -1926,7 +1980,44 @@ if(vredo){vredo.addEventListener('click',function(){
  toast('已清除 · 重新按住录音即可');buzz(10);
 })}
 var apT=$('#appendBtn');
-var pdfBtn=document.getElementById('pdfExportBtn');
+var bkExp=document.getElementById('bkExportBtn');
+if(bkExp){bkExp.addEventListener('click',function(){
+ var data={version:'6.1',exported:new Date().toISOString(),dreams:state.dreams,letters:state.letters,
+  nights:state.nights,replies:state.replies,streak:JSON.parse(localStorage.getItem('brewm_streak')||'null'),
+  chat:state.chat.slice(-30),skin:document.body.dataset.skin||'',qs:state.qs||[]};
+ var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+ var a=document.createElement('a');a.download='酿梦-备份-'+new Date().toISOString().slice(0,10)+'.json';
+ a.href=URL.createObjectURL(blob);a.click();
+ setTimeout(function(){URL.revokeObjectURL(a.href)},4000);
+ toast('备份已导出 · 包含全部数据');buzz(12);
+})}
+var bkImp=document.getElementById('bkImportBtn');
+if(bkImp){bkImp.addEventListener('click',function(){
+ var inp=document.createElement('input');inp.type='file';inp.accept='.json';
+ inp.onchange=function(){
+  var file=inp.files[0];if(!file)return;
+  var rd=new FileReader();
+  rd.onload=function(){
+   try{
+    var d=JSON.parse(rd.result);
+    if(!d.version||!d.dreams){toast('不是有效的酿梦备份文件');return}
+    if(d.dreams)state.dreams=d.dreams;
+    if(d.letters)state.letters=d.letters;
+    if(typeof d.nights==='number')state.nights=d.nights;
+    if(d.replies)state.replies=d.replies;
+    if(d.chat)state.chat=d.chat;
+    if(d.qs)state.qs=d.qs;
+    if(d.streak)localStorage.setItem('brewm_streak',JSON.stringify(d.streak));
+    if(d.skin){document.body.dataset.skin=d.skin;localStorage.setItem('brewm_skin',d.skin)}
+    saveAll();renderFile();renderLetters();renderWorld();
+    toast('备份恢复完成 · '+d.dreams.length+' 个梦已找回');buzz(20);
+   }catch(e){toast('文件解析失败，请重试')}
+  };
+  rd.readAsText(file);
+ };
+ inp.click();
+})}
+var apT=$('#appendBtn');
 if(pdfBtn){pdfBtn.addEventListener('click',function(){
  if(!state.dreams.length){toast('还没有梦可以导出');return}
  var W=1240,H=1754; // A4 150dpi
@@ -2062,6 +2153,14 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
  var sign=SIGNS[Math.floor(Date.now()/86400000)%SIGNS.length];
  var _sgc=document.getElementById("signCard");
  if(_sgc)_sgc.innerHTML="今日星光签 · 「"+sign+"」<small>—— 守梦的阿眠</small>";
+ /* 阿眠小剧场 */
+ var THEATER=["今天有个梦差点跑了，我抓住它了。","我刚打了个盹，你别怪我。","火漆的味道，闻着就安心。",
+  "瓶壁今天特别亮，是不是你做了好事？","噩梦来过，被我赶走了。","我在数星星，数到你的就停了。",
+  "你的瓶比昨天重了一点——是养分吧。","别担心，一切都好。","今天风大，我抱紧了你的瓶。",
+  "有个梦发酵了，味道应该不错。","你写的那句话，我读了两遍。","月亮很圆，瓶口很稳。",
+  "今天没什么事发生——这也很好。","我把你的犹豫酿成了勇气。","星光洒了一地，我全扫进瓶里了。"];
+ var th=document.getElementById('amianTheater');
+ if(th)th.textContent='「'+THEATER[Math.floor(Date.now()/86400000)%THEATER.length]+'」';
  /* 养分日记：每天自动长一条 */
  var FEEDT=["潮位 +1 · 星光在你的日程里又沉了一点","昨夜无梦 · 瓶中安静，养分缓慢沉淀","今日关键词被悄悄记下 · 原文留在瓶里","星光 +1 · 瓶壁凝出一颗新的星","你来访的那一刻 · 瓶口微微亮了一下","潮汐表更新 · 距离下次涨潮更近一夜","夜风很轻 · 火漆纹路又深了一分","阿眠巡瓶一圈 · 一切平安","微量星光汇入 · 来自今天的日常","瓶中世界平稳运转 · 等待下一次封缄",
 "梦貘数了一遍夜数 · 没有遗漏","今日潮位微涨 · 宜封缄","星光账本又亮了一行",
@@ -2081,6 +2180,15 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
  function applyMode(){try{document.body.classList.toggle("mobile",innerWidth<520)}catch(e){}}
  addEventListener("resize",applyMode);applyMode();
 document.addEventListener('pointerdown',function(e){
+document.addEventListener('pointerdown',function(e){
+ var card=e.target.closest('.ltr,.paper2,.seacard');
+ if(!card)return;
+ var rect=card.getBoundingClientRect();
+ var r=document.createElement('div');r.className='cardripple';
+ r.style.left=(e.clientX-rect.left)+'px';r.style.top=(e.clientY-rect.top)+'px';
+ card.appendChild(r);
+ setTimeout(function(){r.remove()},500);
+});
 (function(){
  if(document.querySelector('.tw-bg'))return;
  var tw=document.createElement('div');tw.className='tw-bg';
