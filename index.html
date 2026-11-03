@@ -473,11 +473,11 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
      <textarea id="dreamText" maxlength="120" placeholder="今晚，有什么想封进瓶里的……"></textarea>
      <div class="count"><span id="cnt">0</span>/120</div>
     </div>
-    <button class="hold" id="holdBtn">按住 · 说给瓶听</button>
+    <button class="hold" id="holdBtn" aria-label="按住录音，说给瓶听">按住 · 说给瓶听</button>
     <div id="voiceChip" class="vchip" hidden>🎙 语音梦 · <span id="vsec">0</span>″ 已收进瓶口
       <span id="vtry" style="cursor:pointer;text-decoration:underline;color:#FFE9C4">试听</span> ·
       <span id="vredo" style="cursor:pointer;text-decoration:underline">重录</span></div>
-    <button class="wax" id="sealBtn">封 入 瓶 中</button>
+    <button class="wax" id="sealBtn" aria-label="封入瓶中，火漆安印落定">封 入 瓶 中</button>
     <div class="tiny">封存后不可修改，但会随时间生长</div>
     <button class="ghost" data-go="s-qseal" style="margin-top:10px">再封三个问题给未来 · 问题封缄 ›</button>
     <button class="ghost" data-go="s-letter" style="margin-top:12px">先看看这封信 · 梦信成笺 ›</button>
@@ -534,7 +534,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
    <section class="screen" id="s-tide">
     <div class="h-kai sm">潮汐回望</div>
     <div class="tideSearch" style="margin-top:8px;display:flex;gap:8px">
-     <input id="tideSearchIn" placeholder="搜索梦想关键词…" style="flex:1;background:rgba(255,253,246,.08);border:1px solid rgba(217,179,106,.35);border-radius:12px;padding:8px 14px;color:#F4F1E8;font:inherit;font-size:13px;outline:none">
+     <input id="tideSearchIn" placeholder="搜索梦想关键词…" aria-label="搜索梦想" style="flex:1;background:rgba(255,253,246,.08);border:1px solid rgba(217,179,106,.35);border-radius:12px;padding:8px 14px;color:#F4F1E8;font:inherit;font-size:13px;outline:none">
      <button id="tideSearchClr" style="background:none;border:1px solid rgba(244,241,232,.25);border-radius:12px;color:#9AA3C7;font-size:11px;padding:0 12px;cursor:pointer">清空</button>
     </div>
     <div class="tcap" id="tideCap">封下第一个梦，潮汐就开始计时</div>
@@ -1049,6 +1049,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   </svg>
    </div>
    <div id="nightfx"><div class="dim"></div></div>
+   <div class="offline-tip" id="offlineTip">⚠ 当前离线 · 部分功能不可用 · 数据仍在本机</div>
    <div class="toast" id="toast"></div>
   </div>
 
@@ -1223,7 +1224,8 @@ function sfx(name){
   else if(name==="tap"){tone(1830,1830,0.05,"sine",0.05)}
  }catch(e){}
 }
-function todayStr(){var d=new Date();return d.getFullYear()+"."+String(d.getMonth()+1).padStart(2,"0")+"."+String(d.getDate()).padStart(2,"0")};
+function todayStr(){var d=new Date();return d.getFullYear()+"."+String(d.getMonth()+1).padStart(2,"0")+"."+String(d.getDate()).padStart(2,"0")}
+function fmtDateCN(iso){if(!iso)return"";var p=iso.replace(/-/g,".").split(".");return p[0]+"."+p[1]+"."+p[2]};
 function show(id){
  $$('.screen').forEach(function(s){s.classList.remove('on')});
  var el=document.getElementById(id);if(el)el.classList.add('on');
@@ -2222,6 +2224,20 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
  var h=new Date().getHours();
  function applyMode(){try{document.body.classList.toggle("mobile",innerWidth<520)}catch(e){}}
  addEventListener("resize",applyMode);applyMode();
+/* 自动保存：切后台 / 关页 / 每 30 秒 */
+addEventListener("beforeunload",function(){try{saveAll()}catch(e){}});
+addEventListener("online",function(){var t=document.getElementById("offlineTip");if(t)t.classList.remove("show")});
+addEventListener("offline",function(){var t=document.getElementById("offlineTip");if(t)t.classList.add("show")});
+if(!navigator.onLine){var ot=document.getElementById("offlineTip");if(ot)ot.classList.add("show")}
+document.addEventListener("visibilitychange",function(){
+ if(document.hidden){try{saveAll()}catch(e){}}
+ /* 切后台暂停音频 */
+ try{if(VP.audio&&!VP.audio.paused)VP.audio.pause()}catch(e){}
+ try{if(ambiSrc&&ambiOn)ambiSrc.stop()}catch(e){}
+ /* 回来时恢复环境音 */ document.addEventListener("visibilitychange",function(){
+  if(!document.hidden&&state.ambi&&state.sound){toggleAmbient();if(swAmbi)swAmbi.classList.toggle("on",ambiOn)}
+ });
+});
 document.addEventListener('pointerdown',function(e){
 document.addEventListener('pointerdown',function(e){
  var card=e.target.closest('.ltr,.paper2,.seacard');
@@ -2313,6 +2329,9 @@ if(q.get('skinput')){setTimeout(function(){
   var want=q.get('skinput'),picks=document.querySelectorAll('.pick');
   for(var i=0;i<picks.length;i++){if(picks[i].dataset.name===want){picks[i].click();break}}
 },500)}
+if(q.get('nointro')){try{localStorage.setItem('brewm_guide','1')}catch(e){}
+ document.getElementById('splash').classList.add('off');
+ var gd=document.getElementById('guide');if(gd){gd.hidden=true;gd.classList.remove('on')}}
 if(q.get('cardgen')){cardSkin=q.get('cardskin')||cardSkin;
  $$('.pick').forEach(function(p){p.classList.toggle('on',({"信笺白":"paper","星河蓝":"galaxy","火漆红":"wax"})[p.dataset.name]===cardSkin)});
  genCard(true)}
