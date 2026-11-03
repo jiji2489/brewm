@@ -167,7 +167,7 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .navbar button.on .ico-l{display:none}
 .navbar button.on .ico-f{display:block}
 .navbar button.on::after{content:"";position:absolute;left:50%;top:5px;transform:translateX(-50%);width:44px;height:44px;border-radius:15px;background:rgba(217,179,106,.13);border:1px solid rgba(217,179,106,.22)}
-.navbar button.on{color:#FFE9C4;font-weight:400}
+.navbar button.on{color:#FFE9C4;color:#FFE9C4;font-weight:400}
 .navbar button.on::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:26px;height:3px;border-radius:2px;background:#D9B36A}
 @media (max-width:560px){body{padding:0}.phone{width:100vw;height:100vh;border-radius:0;border:none}
 .brand,.caption{display:none}}
@@ -369,6 +369,11 @@ body[data-skin=sakura] .phone{background:#1A1028}
 @keyframes startA{0%{opacity:1;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}100%{opacity:0;transform:scale(2)}}
 .noanim [data-go="s-store"].wax.startAnim{animation:none}
 .citem{animation:ltrIn .5s ease-out both}.noanim .citem{animation:none}
+.bub.thinking{animation:think 1.2s ease-in-out infinite;letter-spacing:4px}
+@keyframes think{0%,100%{opacity:.4}50%{opacity:.9}}
+.noanim .bub.thinking{animation:none;opacity:.6}
+.replyGo{transition:all .2s}
+.replyGo:hover{background:#D9B36A;color:#141632}
 </style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
@@ -745,8 +750,8 @@ body[data-skin=sakura] .phone{background:#1A1028}
      <div class="tiny" style="margin-top:6px">不填 Key 也能聊：守梦引擎会用你封下的原话回应你</div>
      <button class="ghost" data-go="s-aiguide" style="margin-top:10px">没有 Key？三步免费开通 · 图文引导 ›</button>
  <div class="gt">关 于</div>
-     <div class="srow"><p>版本<span>酿梦 BREWM 1.0 · 夜航</span></p><span class="val">New</span></div>
-     <div class="srow"><p>素材声明<span>部分视觉素材由 AI 辅助生成</span></p></div>
+     <div class="srow"><p>版本<span>酿梦 BREWM v6.1 · 夜航</span></p><span class="val">New</span></div>
+     <div class="srow"><p>素材与语音声明<span>视觉与语音由 AI 辅助生成 · 阿眠由代码驱动</span></p></div>
      <div class="srow"><p>匿名统计<span>仅记封缄/录音/回访次数 · 无任何内容原文</span></p></div>
      <div class="srow"><p>用户协议<span>平安条款 · 共鸣治理规则</span></p><span class="val">›</span></div>
     </div>
@@ -1296,7 +1301,7 @@ function renderLetters(){
   d.innerHTML='<div class="lfrom">来自 '+L.from+'<span>'+L.tide+'</span></div>'
    +'<div class="ltext">“'+esc(L.t)+'”</div>'
    +ops
-   +'<div class="ask"><small>'+(L.greet?'梦貘替你守着瓶':'过去的你，隔瓶问了一句')+'</small>'
+   +'<div class="ask"><small>'+(L.greet?'阿眠替你守着瓶':'过去的你，隔瓶问了一句')+'</small>'
    +'<div class="bub">“'+esc(L.q)+'”</div>'
    +'<div class="replyarea"><input placeholder="回信给过去的自己……" id="rin'+i+'">'
    +'<button class="replyGo" data-i="'+i+'">回信</button></div>'
@@ -1521,6 +1526,7 @@ $('#saveBtn').addEventListener('click',function(){toast('酿卡已生成 ·（�
 $('#riteBtn').addEventListener('click',function(){toast('仪式预演 · 火漆将融开（演示）')});
 $('#riteBtn').addEventListener('click',function(){sfxPlay('rite');toast('仪式预演 · 听，星光在落')});
 $('#riteBtn').addEventListener('click',function(){sfx('rite');toast('仪式预演 · 听，星光在落')});
+/* AI loading */
 /* ── 隔瓶长谈引擎 ── */
 function chatPush(txt,me){var bx=document.querySelector('#s-chat .chatbox');
  if(!bx)return;var d=document.createElement('div');d.className='bub'+(me?' me':'');
@@ -1558,7 +1564,7 @@ $$('.chatgo').forEach(function(b){b.addEventListener('click',function(){
  var inp=b.parentNode.querySelector('input');var v=(inp.value||'').trim();
  if(!v){toast('写一句，再封缄给过去');return}
  chatPush(v,true);inp.value='';
- var d=document.createElement('div');d.className='bub';d.textContent='……';
+ var d=document.createElement('div');d.className='bub thinking';d.textContent='···';
  b.parentNode.parentNode.querySelector('.chatbox').appendChild(d);
  aiReply(v,function(rep){
   d.textContent='“'+rep+'”';
@@ -2083,7 +2089,9 @@ if(apT){apT.addEventListener('click',function(){
 if(state.qs&&state.qs.length){var qi=document.querySelectorAll('#s-qseal .qitem input');
  for(var i=0;i<Math.min(qi.length,state.qs.length);i++)qi[i].value=state.qs[i]}
 var tsi=document.getElementById('tideSearchIn');
+if(tsi){tsi.addEventListener('keydown',function(e){if(e.key==='Enter')this.blur()});}
 if(tsi){tsi.addEventListener('input',function(){renderLetters()});
+ tsi.addEventListener('keydown',function(e){if(e.key==='Enter')tsi.blur()});
  var tcl=document.getElementById('tideSearchClr');
  if(tcl)tcl.addEventListener('click',function(){tsi.value='';renderLetters()});
 }
