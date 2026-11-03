@@ -374,6 +374,21 @@ body[data-skin=sakura] .phone{background:#1A1028}
 .noanim .bub.thinking{animation:none;opacity:.6}
 .replyGo{transition:all .2s}
 .replyGo:hover{background:#D9B36A;color:#141632}
+/* ── 夜间氛围滤镜 ── */
+html[data-part="night"] .bgart img{filter:brightness(.88) saturate(1.08) hue-rotate(4deg)}
+html[data-part="deep"] .bgart img{filter:brightness(.78) saturate(1.12) hue-rotate(8deg)}
+html[data-part="deep"] .navbar{background:rgba(10,11,30,.94)}
+html[data-part="dawn"] .bgart img{filter:brightness(1.06) sepia(.06)}
+html[data-part="day"] .bgart img{filter:brightness(1.04)}
+/* ── 按住呼吸引导 ── */
+.hold:not(.rec){animation:holdBreathe 4s ease-in-out infinite}
+@keyframes holdBreathe{0%,100%{transform:scale(1);box-shadow:0 4px 12px rgba(5,6,20,.3)}50%{transform:scale(1.015);box-shadow:0 6px 18px rgba(217,179,106,.15)}}
+.noanim .hold:not(.rec){animation:none}
+.hold.rec{animation:none}
+/* ── 屏间过渡 ── */
+.screen{transition:opacity .3s ease,transform .3s ease;transform:translateY(8px)}
+.screen.on{transform:translateY(0)}
+.noanim .screen{transition:none;transform:none}
 </style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
@@ -728,7 +743,9 @@ body[data-skin=sakura] .phone{background:#1A1028}
      <div class="srow" style="display:none"><p>潮声唤醒<span>每日 7:00 · 涨潮与回信提醒</span></p><div class="sw on"></div></div>
      <div class="srow"><p>潮声唤醒<span>每日 7:00 · 涨潮与回信提醒</span></p><div class="sw on"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><circle cx="22" cy="22" r="9"/><path d="M22,8 L22,13 M31,22 L36,22 M22,31 L36,22" opacity=".6"/></svg><p>仪式音效<span>封缄 · 涨潮 · 开瓶的轻响</span></p><div class="sw" id="swSfx"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M8,22 Q14,14 22,22 T36,22" opacity=".7"/><path d="M8,28 Q14,20 22,28 T36,28" opacity=".4"/></svg><p>环境底噪<span>夜间白噪音 · 安静陪伴</span></p><div class="sw" id="swAmbi"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M9,18 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0"/><path d="M9,27 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0" opacity=".55"/></svg><p>仪式音效<span>封缄 · 涨潮 · 开瓶的轻响</span></p><div class="sw" id="swSfx"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M8,22 Q14,14 22,22 T36,22" opacity=".7"/><path d="M8,28 Q14,20 22,28 T36,28" opacity=".4"/></svg><p>环境底噪<span>夜间白噪音 · 安静陪伴</span></p><div class="sw" id="swAmbi"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none"><path d="M27,11 a12,12 0 1,0 6.5,21.5 A10,10 0 1,1 27,11 Z"/></svg><p>夜间模式<span>日落后自动进入夜航</span></p><div class="sw on"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M8,22 h28"/><circle cx="13" cy="22" r="3" fill="#F4F1E8" stroke="none"/><circle cx="22" cy="22" r="3"/><circle cx="31" cy="22" r="3"/></svg><p>纸纹陈化<span>信纸与字迹随年份慢慢变旧</span></p><div class="sw on"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44" stroke="#F4F1E8" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M12,10 l7,10 -7,10 M32,10 l-7,10 7,10" opacity=".7"/></svg><p>减弱动效<span>跟随系统「减少动态效果」设定</span></p><div class="sw on"></div></div>
@@ -1076,7 +1093,7 @@ var state={
   '夜风很轻，火漆纹路又深了一分',
   '潮位上涨：距离第 2 潮还有 421 天',
   '昨夜的语音梦，酿出了细小的光'],
- fi:0,voice:null,replies:{},shareIdx:0,
+ fi:0,voice:null,replies:{},shareIdx:0,ambi:false,
  sound:true,
  sound:true,ai:{ep:"https://api.openai.com/v1/chat/completions",key:"",model:"gpt-4o-mini"},
  notifyOn:false,chat:[]
@@ -1084,7 +1101,7 @@ var state={
 /* ── 持久化内核（P0-①）── */
 var LSKEY="brewm_v6",TIDE_UNIT=60000,TIDE_STEPS=[3,7,14];
 function saveAll(){try{localStorage.setItem(LSKEY,JSON.stringify({
- dreams:state.dreams,letters:state.letters,nights:state.nights,sound:state.sound,
+ dreams:state.dreams,letters:state.letters,nights:state.nights,sound:state.sound,ambi:state.ambi,
  sound:state.sound,
  ai:state.ai,notifyOn:state.notifyOn,chat:state.chat.slice(-30),
  qs:(function(){var a=[],el=document.querySelectorAll('#s-qseal .qitem input');for(var i=0;i<el.length;i++)a.push(el[i].value);return a})(),
@@ -1101,7 +1118,9 @@ function loadAll(){var raw=null;try{raw=localStorage.getItem(LSKEY)}catch(e){}
   if(d.chat)state.chat=d.chat;
   if(d.qs)state.qs=d.qs;
   if(typeof d.sound==="boolean")state.sound=d.sound;
+  if(typeof d.ambi==="boolean")state.ambi=d.ambi;
   if(typeof d.sound==="boolean")state.sound=d.sound;
+  if(typeof d.ambi==="boolean")state.ambi=d.ambi;
   return true;
  }catch(e){return false}
 }
@@ -1121,6 +1140,23 @@ function loadVoiceBlob(){return idb("readonly",function(st){return st.get("voice
 function buzz(ms){try{if(navigator.vibrate)navigator.vibrate(ms)}catch(e){}}
 /* 匿名事件统计：只发事件计数（无任何内容原文） */
 function ping(evt){try{fetch("https://abacus.jasoncameron.dev/hit/brewm23/"+evt,{mode:"cors"}).catch(function(){})}catch(e){}}
+/* ── 环境底噪 ── */
+var ambiOn=false,ambiSrc=null;
+function toggleAmbient(){
+ if(!state.sound){toast("请先开启仪式音效");return}
+ if(ambiOn){if(ambiSrc){try{ambiSrc.stop()}catch(e){}ambiSrc=null}ambiOn=false;toast("环境音 · 已关闭");return}
+ try{
+  var ctx=window.__actx||(window.__actx=new (window.AudioContext||window.webkitAudioContext)());
+  if(ctx.state==="suspended")ctx.resume();
+  var len=ctx.sampleRate*4;
+  var buf=ctx.createBuffer(1,len,ctx.sampleRate),d=buf.getChannelData(0);
+  for(var i=0;i<len;i++){d[i]=(Math.random()*2-1)*.06}
+  ambiSrc=ctx.createBufferSource();ambiSrc.buffer=buf;ambiSrc.loop=true;
+  var flt=ctx.createBiquadFilter();flt.type="lowpass";flt.frequency.value=350;flt.Q.value=.3;
+  var g=ctx.createGain();g.gain.value=.12;
+  ambiSrc.connect(flt);flt.connect(g);g.connect(ctx.destination);
+  ambiSrc.start();ambiOn=true;toast("环境音 · 已开启");
+ }catch(e){toast("浏览器不支持音频")}}{try{fetch("https://abacus.jasoncameron.dev/hit/brewm23/"+evt,{mode:"cors"}).catch(function(){})}catch(e){}}
 /* ── UI 音效引擎：Web Audio 合成，零素材文件 ── */
 function sfxPlay(name){
  if(!state.sound) return;
@@ -2225,6 +2261,9 @@ document.addEventListener('pointerdown',function(e){
 })();
 var aiEp=$('#aiEp'),aiKey=$('#aiKey'),aiModel=$('#aiModel');
 var swSfx=document.getElementById('swSfx');
+var swAmbi=document.getElementById('swAmbi');
+if(swAmbi){swAmbi.addEventListener('click',function(){toggleAmbient();swAmbi.classList.toggle('on',ambiOn)})}
+if(state.ambi){setTimeout(function(){if(state.sound){toggleAmbient();if(swAmbi)swAmbi.classList.toggle('on',ambiOn)}},2000)}
 document.querySelectorAll('.skbtn').forEach(function(b){
  b.addEventListener('click',function(){
   var sk=b.dataset.skin;
