@@ -389,6 +389,25 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
 .screen{transition:opacity .3s ease,transform .3s ease;transform:translateY(8px)}
 .screen.on{transform:translateY(0)}
 .noanim .screen{transition:none;transform:none}
+  /* ── 成就徽章 ── */
+  .achvGrid{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+  .achv{width:92px;text-align:center;position:relative}
+  .achv .ic{width:66px;height:66px;border-radius:50%;margin:0 auto 8px;position:relative;overflow:hidden;
+   display:flex;align-items:center;justify-content:center;
+   transition:transform .3s,box-shadow .3s}
+  .achv.on .ic{box-shadow:0 6px 22px rgba(217,179,106,.3);border:2px solid #D9B36A}
+  .achv:not(.on) .ic{border:1.5px solid rgba(244,241,232,.15);opacity:.35;filter:grayscale(1)}
+  .achv b{display:block;font-size:10.5px;letter-spacing:1px;color:#FFE9C4;font-weight:normal}
+  .achv small{display:block;font-size:9px;color:rgba(244,241,232,.4);margin-top:2px;letter-spacing:.5px}
+  .achv .ic svg{width:38px;height:38px}
+  .achv.on .ic{transform:scale(1)}
+  .achv:not(.on) .ic{transform:scale(.85)}
+  .achv.on .ic:hover{transform:scale(1.08)}
+  .achv.on{opacity:1}
+  .achv:not(.on){opacity:.6}
+  .newAchv{position:absolute;top:-2px;right:-2px;background:#A6402F;color:#FFF6E8;
+   font-size:8px;padding:2px 6px;border-radius:8px;letter-spacing:1px}
+  .noanim .achv .ic{transition:none}
 </style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
@@ -722,6 +741,10 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
      <div class="stat"><b>2</b><p>封存的梦</p></div>
      <div class="stat"><b>217</b><p>萃取养分 · 滴</p></div>
      <div class="stat"><b>38</b><p>有治理的共鸣 · 次</p></div>
+    </div>
+    <div style="margin-top:14px">
+     <div style="font-size:12px;letter-spacing:3px;color:#9AA3C7;margin-bottom:4px">成 就 徽 章</div>
+     <div class="achvGrid" id="achvGrid"></div>
     </div>
     <div class="feed" style="margin-top:12px">平安里程：1462 天 · 0 次惊扰 · 原文从未外传</div>
     <div class="rule"><span>双重授权</span><span>署名可溯</span><span>随时可撤</span></div>
@@ -1249,6 +1272,41 @@ function renderWorld(){
  $('#feed').textContent=state.feeds[state.fi%state.feeds.length];
 }
 function renderFile(){
+/* ── 成就系统 ── */
+var ACHIEVEMENTS=[
+ {id:"first",name:"初次封缄",desc:"写下第一个梦",icon:"🕯",color:"#D9B36A",check:function(){return state.dreams.length>=1}},
+ {id:"voice",name:"声入瓶中",desc:"第一次录音",icon:"🎙",color:"#A6402F",check:function(){return !!state.voiceBlob}},
+ {id:"week",name:"七夜守望",desc:"连续来访 7 夜",icon:"⭐",color:"#FFE9C4",check:function(){var st=null;try{st=JSON.parse(localStorage.getItem("brewm_streak"))}catch(e){}return st&&st.count>=7}},
+ {id:"tide",name:"潮信初至",desc:"第一封潮信浮出",icon:"🌊",color:"#6B5BA8",check:function(){return state.letters.some(function(L){return L.mine&&(!L.unlockAt||L.unlockAt<=Date.now())})}},
+ {id:"edit",name:"潮水记事",desc:"第一次修改信件",icon:"✎",color:"#8FBC8F",check:function(){return localStorage.getItem("brewm_edited")==="1"}},
+ {id:"card",name:"酿卡匠人",desc:"生成第一张酿卡",icon:"🃏",color:"#E8CE96",check:function(){return document.getElementById("scCard")&&document.getElementById("scCard").querySelector("img")}},
+ {id:"ai",name:"隔瓶长谈",desc:"与过去的自己对话",icon:"💬",color:"#F4F1E8",check:function(){return state.chat.length>=1}},
+ {id:"backup",name:"平安存档",desc:"导出过一次备份",icon:"💾",color:"#8FBC8F",check:function(){return localStorage.getItem("brewm_ach_backup")==="1"}},
+];
+function checkAchievements(){
+ var newOnes=[];
+ ACHIEVEMENTS.forEach(function(A){
+  var key="brewm_ach_"+A.id;
+  var unlocked=false;
+  try{unlocked=!!localStorage.getItem(key)}catch(e){}
+  if(!unlocked){
+   try{if(A.check()){localStorage.setItem(key,"1");newOnes.push(A)}}catch(e){}
+  }
+ });
+ return newOnes;
+}
+function renderAchievements(){
+ var grid=document.getElementById("achvGrid");if(!grid)return;
+ grid.innerHTML="";
+ ACHIEVEMENTS.forEach(function(A){
+  var key="brewm_ach_"+A.id;
+  var un=false;try{un=!!localStorage.getItem(key)}catch(e){}
+  var d=document.createElement("div");d.className="achv"+(un?" on":"");
+  d.innerHTML='<div class="ic"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="'+A.color+'" opacity=".15"/><circle cx="50" cy="50" r="36" fill="'+A.color+'" opacity=".1"/><text x="50" y="63" text-anchor="middle" font-size="30" fill="'+A.color+'">'+A.icon+'</text></svg></div><b>'+A.name+'</b><small>'+(un?A.desc:"？？？")+'</small>';
+  grid.appendChild(d);
+ });
+}
+
 function renderCalMonths(){
  var box=document.getElementById('calMonths');if(!box)return;box.innerHTML='';
  var now=new Date();
@@ -1514,12 +1572,15 @@ $('#sealBtn').addEventListener('click',function(){
  var step=TIDE_STEPS[Math.min(state.letters.filter(function(L){return L.mine}).length,TIDE_STEPS.length-1)];
  state.letters.unshift({from:dstr,tide:'第 '+(state.letters.filter(function(L){return L.mine}).length+1)+' 潮',
   t:dream,q:'那天写下的心愿——现在离它更近了吗？',unlockAt:Date.now()+step*TIDE_UNIT,mine:1});
- saveAll();buzz(20);ping('seal');sfx('seal'); sfxPlay('seal');
+ saveAll();buzz(20);ping('seal');sfx('seal'); sfxPlay('seal'); checkAchievements();
  var fx=$('#sealFx');fx.hidden=false;
  setTimeout(function(){fx.hidden=true;state.voice=null;state.voiceBlob=null;saveVoiceBlob(null);
   $('#voiceChip').hidden=true;
   $('#dreamText').value='';$('#cnt').textContent='0';
   renderFile();renderWorld();show('s-world');toast('已封入瓶中 · 平安');
+var _newAch=checkAchievements();
+if(_newAch.length>0){_newAch.forEach(function(A){toast("🏆 解锁成就 · "+A.name)});buzz(20)}
+renderAchievements();
  },950);
 });
 var NIGHT_MSGS=['夜风很轻，火漆纹路又深了一分','昨夜的星光，有一滴落进了瓶底','梦又亮了一点 · 距离开瓶又近一夜','树梢抽了一片新芽，带着微光',
