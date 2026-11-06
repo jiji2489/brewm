@@ -2294,6 +2294,13 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
  var h=new Date().getHours();
  function applyMode(){try{document.body.classList.toggle("mobile",innerWidth<520)}catch(e){}}
  addEventListener("resize",applyMode);applyMode();
+ // mobile 模式下清除 fit 的缩放
+ function fitReset(){try{
+  if(document.body.classList.contains("mobile")){
+   var st=document.querySelector(".stage");if(st)st.style.transform="";
+  }else{fit()}
+ }catch(e){}}
+ addEventListener("resize",fitReset);fitReset();
 /* 自动保存：切后台 / 关页 / 每 30 秒 */
 addEventListener("beforeunload",function(){try{saveAll()}catch(e){}});
 addEventListener("online",function(){var t=document.getElementById("offlineTip");if(t)t.classList.remove("show")});
@@ -2386,7 +2393,7 @@ $$('.bgart img').forEach(function(im){if(im!==firstBg){
  im.dataset.src=im.getAttribute('src');im.removeAttribute('src')}});
 // 桌面端自适应缩放：窗口不够高时整体等比缩小，保证完整显示
 function fit(){
- if(document.body.classList.contains('full')||innerWidth<=480)return;
+ if(document.body.classList.contains('full')||document.body.classList.contains('mobile')||innerWidth<=560)return;
  var st=document.querySelector('.stage');
  var w=st.offsetWidth||440,h=st.offsetHeight||1000;
  var s=Math.min(1,(innerWidth-24)/w,(innerHeight-36)/h);
