@@ -2220,6 +2220,15 @@ if(swN){swN.classList.toggle('on',state.notifyOn);
 }
 if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){
  navigator.serviceWorker.register('sw.js').catch(function(){});
+ navigator.serviceWorker.ready.then(function(reg){
+  reg.update();
+  setInterval(function(){reg.update()},60000);
+ });
+ navigator.serviceWorker.addEventListener('controllerchange',function(){
+  if(window.__swRefreshed)return;window.__swRefreshed=true;
+  toast('酿梦已更新 · 正在刷新');
+  setTimeout(function(){location.reload()},1500);
+ });
 }
 (function(){ var seen=false;try{seen=!!localStorage.getItem("brewm_seen")}catch(e){}
  ping(seen?"return":"open");
