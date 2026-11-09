@@ -163,11 +163,11 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .navbar button{transition:color .25s;flex:1;border:none;background:transparent;font-family:inherit;font-size:10.5px;letter-spacing:2px;color:rgba(244,241,232,.48);cursor:pointer;position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:9px}
 .navbar button svg{display:block;position:relative;z-index:1}
 .navbar button span{position:relative;z-index:1}
-.navbar button .ico-f{display:none}
+.navbar button .ico-l{opacity:.38}.navbar button .ico-f{display:none}
 .navbar button.on .ico-l{display:none}
 .navbar button.on .ico-f{display:block}
 .navbar button.on::after{content:"";position:absolute;left:50%;top:10px;transform:translateX(-50%);width:32px;height:32px;border-radius:50%;background:rgba(217,179,106,.07)}
-.navbar button.on{color:#FFE9C4;font-weight:400}
+.navbar button.on{color:#D7CBF5;font-weight:400}
 .navbar button.on::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:22px;height:2.5px;border-radius:2px;background:#D9B36A}
 @media (max-width:560px){body{padding:0}.phone{width:100vw;height:100vh;border-radius:0;border:none}
 .brand,.caption{display:none}}
@@ -1077,25 +1077,25 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   </div>
 
   <nav class="navbar">
-   <button data-v="s-store" class="on">
-    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="14" width="22" height="16" rx="7"/><path d="M11.5,17 C15.5,22.5 18.7,25 22,25 C25.3,25 28.5,22.5 32.5,17"/></svg>
-    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44" fill="#FFE9C4"><rect x="11" y="14" width="22" height="16" rx="7"/><path d="M11.5,17 C15.5,22.5 18.7,25 22,25 C25.3,25 28.5,22.5 32.5,17" fill="none" stroke="#141632" stroke-width="1.8"/><circle cx="22" cy="20.2" r="2.2"/></svg>
+   <button data-v="s-store" class="on" aria-label="存入">
+    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44"><rect x="10" y="16" width="24" height="15" rx="3" fill="#D7CBF5"/><path d="M10,16 A12,12 0 0 0 34,16 Z" fill="#E9B36A"/><circle cx="22" cy="21.5" r="3" fill="#BC4A32"/></svg>
+    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44"><rect x="10" y="16" width="24" height="15" rx="3" fill="#D7CBF5"/><path d="M10,16 A12,12 0 0 0 34,16 Z" fill="#E9B36A"/><circle cx="22" cy="21.5" r="3" fill="#BC4A32"/></svg>
     <span>存入</span></button>
-   <button data-v="s-world">
-    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"><path d="M22,9 C24.5,13 28.5,16 29,21 C29.6,26.5 26.5,30.5 22,30.5 C17.5,30.5 14.4,26.5 15,21 C15.5,16 19.5,13 22,9 Z"/><path d="M22,20 l0.9,2 2,0.9 -2,0.9 -0.9,2 -0.9,-2 -2,-0.9 2,-0.9 Z" stroke-linejoin="round"/></svg>
-    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44" fill="#FFE9C4"><path d="M22,9 C24.5,13 28.5,16 29,21 C29.6,26.5 26.5,30.5 22,30.5 C17.5,30.5 14.4,26.5 15,21 C15.5,16 19.5,13 22,9 Z"/><path d="M22,19.5 l0.9,2 2,0.9 -2,0.9 -0.9,2 -0.9,-2 -2,-0.9 2,-0.9 Z" fill="#141632"/></svg>
+   <button data-v="s-world" aria-label="瓶中">
+    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44"><rect x="18.5" y="7" width="7" height="8" rx="1.5" fill="#D7CBF5"/><circle cx="22" cy="23" r="11" fill="#D7CBF5"/><path d="M11,23 A11,11 0 0 0 33,23 Z" fill="#E9B36A"/><path d="M22,13.600000000000001 C22.58,15.58 23.22,16.22 25.2,16.8 C23.22,17.38 22.58,18.02 22,20 C21.42,18.02 20.78,17.38 18.8,16.8 C20.78,16.22 21.42,15.58 22,13.600000000000001 Z" fill="#BC4A32"/></svg>
+    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44"><rect x="18.5" y="7" width="7" height="8" rx="1.5" fill="#D7CBF5"/><circle cx="22" cy="23" r="11" fill="#D7CBF5"/><path d="M11,23 A11,11 0 0 0 33,23 Z" fill="#E9B36A"/><path d="M22,13.600000000000001 C22.58,15.58 23.22,16.22 25.2,16.8 C23.22,17.38 22.58,18.02 22,20 C21.42,18.02 20.78,17.38 18.8,16.8 C20.78,16.22 21.42,15.58 22,13.600000000000001 Z" fill="#BC4A32"/></svg>
     <span>瓶中</span></button>
-   <button data-v="s-tide">
-    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"><path d="M16,6 a5,5 0 1,0 2.8,9.2 A4.2,4.2 0 1,1 16,6 Z"/><path d="M9,18 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0"/><path d="M9,27 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0" opacity=".55"/></svg>
-    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44" stroke="#FFE9C4" stroke-width="3.4" fill="none" stroke-linecap="round"><path d="M16,6 a5,5 0 1,0 2.8,9.2 A4.2,4.2 0 1,1 16,6 Z" fill="#FFE9C4" stroke="none"/><path d="M9,18 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0"/><path d="M9,27 q3.2,-4 6.4,0 t6.4,0 t6.4,0 t6.4,0" opacity=".55"/><circle cx="32" cy="12.5" r="2.2" fill="#FFE9C4" stroke="none"/></svg>
+   <button data-v="s-tide" aria-label="回望">
+    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44"><path d="M22.95,19.35 A8,8 0 1 1 18.55,6.15 A7,7 0 0 0 22.95,19.35 Z" fill="#D7CBF5"/><circle cx="29.5" cy="9.5" r="2.6" fill="#BC4A32"/><rect x="9" y="26" width="26" height="3" rx="1.5" fill="#E9B36A"/><rect x="13" y="31" width="18" height="3" rx="1.5" fill="#E9B36A"/></svg>
+    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44"><path d="M22.95,19.35 A8,8 0 1 1 18.55,6.15 A7,7 0 0 0 22.95,19.35 Z" fill="#D7CBF5"/><circle cx="29.5" cy="9.5" r="2.6" fill="#BC4A32"/><rect x="9" y="26" width="26" height="3" rx="1.5" fill="#E9B36A"/><rect x="13" y="31" width="18" height="3" rx="1.5" fill="#E9B36A"/></svg>
     <span>回望</span></button>
-   <button data-v="s-share">
-    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22,25.5 C19,24 16.8,20.5 17.5,16.5 C18.1,12.8 19.8,10 22,10 C24.2,10 25.9,12.8 26.5,16.5 C27.2,20.5 25,24 22,25.5 Z"/><path d="M22,25.5 C19,24 16.8,20.5 17.5,16.5 C18.1,12.8 19.8,10 22,10 C24.2,10 25.9,12.8 26.5,16.5 C27.2,20.5 25,24 22,25.5 Z" transform="rotate(120 22 22)"/><path d="M22,25.5 C19,24 16.8,20.5 17.5,16.5 C18.1,12.8 19.8,10 22,10 C24.2,10 25.9,12.8 26.5,16.5 C27.2,20.5 25,24 22,25.5 Z" transform="rotate(240 22 22)"/></svg>
-    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44" fill="#FFE9C4"><path d="M22,25.5 C19,24 16.8,20.5 17.5,16.5 C18.1,12.8 19.8,10 22,10 C24.2,10 25.9,12.8 26.5,16.5 C27.2,20.5 25,24 22,25.5 Z"/><path d="M22,25.5 C19,24 16.8,20.5 17.5,16.5 C18.1,12.8 19.8,10 22,10 C24.2,10 25.9,12.8 26.5,16.5 C27.2,20.5 25,24 22,25.5 Z" transform="rotate(120 22 22)"/><path d="M22,25.5 C19,24 16.8,20.5 17.5,16.5 C18.1,12.8 19.8,10 22,10 C24.2,10 25.9,12.8 26.5,16.5 C27.2,20.5 25,24 22,25.5 Z" transform="rotate(240 22 22)"/><path d="M22,19.2 C22.4,21 23.2,21.8 25,22.1 C23.2,22.4 22.4,23.2 22,25 C21.6,23.2 20.8,22.4 19,22.1 C20.8,21.8 21.6,21 22,19.2 Z" fill="#141632"/></svg>
+   <button data-v="s-share" aria-label="酿卡">
+    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44"><path d="M22,22 L22,12.5 A9.5,9.5 0 0 1 31.5,22 Z" fill="#E9B36A"/><path d="M22,22 L22,12.5 A9.5,9.5 0 0 1 31.5,22 Z" transform="rotate(90 22 22)" fill="#D7CBF5"/><path d="M22,22 L22,12.5 A9.5,9.5 0 0 1 31.5,22 Z" transform="rotate(180 22 22)" fill="#E9B36A"/><path d="M22,22 L22,12.5 A9.5,9.5 0 0 1 31.5,22 Z" transform="rotate(270 22 22)" fill="#D7CBF5"/><circle cx="22" cy="22" r="3.2" fill="#BC4A32"/></svg>
+    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44"><path d="M22,22 L22,12.5 A9.5,9.5 0 0 1 31.5,22 Z" fill="#E9B36A"/><path d="M22,22 L22,12.5 A9.5,9.5 0 0 1 31.5,22 Z" transform="rotate(90 22 22)" fill="#D7CBF5"/><path d="M22,22 L22,12.5 A9.5,9.5 0 0 1 31.5,22 Z" transform="rotate(180 22 22)" fill="#E9B36A"/><path d="M22,22 L22,12.5 A9.5,9.5 0 0 1 31.5,22 Z" transform="rotate(270 22 22)" fill="#D7CBF5"/><circle cx="22" cy="22" r="3.2" fill="#BC4A32"/></svg>
     <span>酿卡</span></button>
-   <button data-v="s-mine">
-    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"><path d="M27,11 a12,12 0 1,0 6.5,21.5 A10,10 0 1,1 27,11 Z"/></svg>
-    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44" fill="#FFE9C4"><path d="M27,11 a12,12 0 1,0 6.5,21.5 A10,10 0 1,1 27,11 Z"/><path d="M30,13 l1.1,2.9 2.9,1.1 -2.9,1.1 -1.1,2.9 -1.1,-2.9 -2.9,-1.1 2.9,-1.1 Z"/></svg>
+   <button data-v="s-mine" aria-label="我的">
+    <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44"><circle cx="20.5" cy="22" r="12" fill="#D7CBF5"/><circle cx="31.5" cy="12.5" r="5.5" fill="#E9B36A"/><circle cx="33.5" cy="30" r="2.2" fill="#BC4A32"/></svg>
+    <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44"><circle cx="20.5" cy="22" r="12" fill="#D7CBF5"/><circle cx="31.5" cy="12.5" r="5.5" fill="#E9B36A"/><circle cx="33.5" cy="30" r="2.2" fill="#BC4A32"/></svg>
     <span>我的</span></button>
   </nav>
  </div>
