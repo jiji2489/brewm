@@ -437,6 +437,9 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   .newAchv{position:absolute;top:-2px;right:-2px;background:#A6402F;color:#FFF6E8;
    font-size:8px;padding:2px 6px;border-radius:8px;letter-spacing:1px}
   .noanim .achv .ic{transition:none}
+  /* ── 数字衬线系统 ── */
+  .fnum{font-family:'Didot','Bodoni MT','Playfair Display',Georgia,'Times New Roman',serif;font-variant-numeric:tabular-nums;letter-spacing:.5px;color:#FFE9C4;font-size:1.14em;font-weight:400}
+  .calGrid .d{font-family:'Didot','Bodoni MT',Georgia,'Times New Roman',serif;font-variant-numeric:tabular-nums;font-size:10.5px}
 </style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
@@ -1310,7 +1313,8 @@ function renderWorld(){
 function renderFile(){
 
 /* ── 呼吸练习 3-4-5 ── */
-(function(){
+if(!window.__breathInit){window.__breathInit=1;
+ (function(){
  var orb=document.getElementById("breathOrb"),lbl=document.getElementById("breathLabel"),
      btn=document.getElementById("breathBtn"),cnt=document.getElementById("breathCount");
  if(!orb||!btn)return;
@@ -1327,7 +1331,7 @@ function renderFile(){
    lbl.textContent=p[0];
    if(p[2]==="grow")orb.classList.add("grow");else orb.classList.remove("grow");
   }
-  cnt.textContent=p[0]+" · "+Math.ceil((t-elapsed)/1000);
+  cnt.innerHTML=p[0]+' · <b class="fnum">'+Math.ceil((t-elapsed)/1000)+"</b>";
   if(elapsed>=t){
    var nx=(pi+1)%3;
    if(nx===0){cycles++;ping("seal")}
@@ -1342,6 +1346,7 @@ function renderFile(){
   step(0,0);
  });
 })();
+ }
 
 
 /* ── 打卡日历 ── */
@@ -1374,43 +1379,11 @@ function renderCalendar(){
  }
  grid.innerHTML=h;
  var streak=0;try{var st=JSON.parse(localStorage.getItem("brewm_streak"));if(st)streak=st.count||0}catch(e){}
- document.getElementById("calStats").textContent="本月 "+monthHits+" 夜 · 连续 "+streak+" 夜";
+ document.getElementById("calStats").innerHTML="本月 <b class='fnum'>"+monthHits+"</b> 夜 · 连续 <b class='fnum'>"+streak+"</b> 夜";
 }
 renderCalendar();
 /* ── 成就系统 ── */
-var ACHIEVEMENTS=[
- {id:"first",name:"初次封缄",desc:"写下第一个梦",icon:"🕯",color:"#E9B36A",check:function(){return state.dreams.length>=1}},
- {id:"voice",name:"声入瓶中",desc:"第一次录音",icon:"🎙",color:"#A6402F",check:function(){return !!state.voiceBlob}},
- {id:"week",name:"七夜守望",desc:"连续来访 7 夜",icon:"⭐",color:"#FFE9C4",check:function(){var st=null;try{st=JSON.parse(localStorage.getItem("brewm_streak"))}catch(e){}return st&&st.count>=7}},
- {id:"tide",name:"潮信初至",desc:"第一封潮信浮出",icon:"🌊",color:"#6B5BA8",check:function(){return state.letters.some(function(L){return L.mine&&(!L.unlockAt||L.unlockAt<=Date.now())})}},
- {id:"edit",name:"潮水记事",desc:"第一次修改信件",icon:"✎",color:"#8FBC8F",check:function(){return localStorage.getItem("brewm_edited")==="1"}},
- {id:"card",name:"酿卡匠人",desc:"生成第一张酿卡",icon:"🃏",color:"#E8CE96",check:function(){return document.getElementById("scCard")&&document.getElementById("scCard").querySelector("img")}},
- {id:"ai",name:"隔瓶长谈",desc:"与过去的自己对话",icon:"💬",color:"#F4F1E8",check:function(){return state.chat.length>=1}},
- {id:"backup",name:"平安存档",desc:"导出过一次备份",icon:"💾",color:"#8FBC8F",check:function(){return localStorage.getItem("brewm_ach_backup")==="1"}},
-];
-function checkAchievements(){
- var newOnes=[];
- ACHIEVEMENTS.forEach(function(A){
-  var key="brewm_ach_"+A.id;
-  var unlocked=false;
-  try{unlocked=!!localStorage.getItem(key)}catch(e){}
-  if(!unlocked){
-   try{if(A.check()){localStorage.setItem(key,"1");newOnes.push(A)}}catch(e){}
-  }
- });
- return newOnes;
-}
-function renderAchievements(){
- var grid=document.getElementById("achvGrid");if(!grid)return;
- grid.innerHTML="";
- ACHIEVEMENTS.forEach(function(A){
-  var key="brewm_ach_"+A.id;
-  var un=false;try{un=!!localStorage.getItem(key)}catch(e){}
-  var d=document.createElement("div");d.className="achv"+(un?" on":"");
-  d.innerHTML='<div class="ic"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="'+A.color+'" opacity=".15"/><circle cx="50" cy="50" r="36" fill="'+A.color+'" opacity=".1"/><text x="50" y="63" text-anchor="middle" font-size="30" fill="'+A.color+'">'+A.icon+'</text></svg></div><b>'+A.name+'</b><small>'+(un?A.desc:"？？？")+'</small>';
-  grid.appendChild(d);
- });
-}
+
 
 function renderCalMonths(){
  var box=document.getElementById('calMonths');if(!box)return;box.innerHTML='';
@@ -2186,6 +2159,40 @@ loadVoiceBlob().then(function(b){if(b){state.voiceBlob=b;window.vpSetClip&&vpSet
 if(!_hadSave){/* 新用户：梦貘欢迎信 */
  state.letters=[{from:todayStr(),tide:"梦貘的信",t:"这只瓶从今天起归你。写下第一个梦，潮汐就开始计时——到涨潮那天，它会替你把此刻带回来。",q:"第一个梦，想好了吗？",unlockAt:0,mine:0,greet:1}];
 }
+/* ── 成就系统（全局） ── */
+var ACHIEVEMENTS=[
+ {id:"first",name:"初次封缄",desc:"写下第一个梦",art:'<circle cx="50" cy="50" r="47" fill="url(#ngStage)"/><circle cx="50" cy="50" r="47" fill="none" stroke="url(#ngGold)" stroke-width="3"/><circle cx="50" cy="50" r="40" fill="none" stroke="#FFF6E8" stroke-width="1" opacity=".16"/><g transform="rotate(-4 50 52)"><rect x="25" y="37" width="50" height="33" rx="7" fill="url(#xMG)"/><path d="M25,42 C34,52 42,57 50,57 C58,57 66,52 75,42" stroke="#4E4390" stroke-width="2.6" fill="none" stroke-linecap="round"/></g><circle cx="64" cy="67" r="9.5" fill="url(#ngRed)"/><circle cx="64" cy="67" r="6.6" fill="none" stroke="#FFF6E8" stroke-width="1.6" opacity=".92"/><circle cx="64" cy="65" r="1.6" fill="#F3D9C8"/><path d="M30,24.5 C30.81,27.29 31.71,28.19 34.5,29 C31.71,29.81 30.81,30.71 30,33.5 C29.19,30.71 28.29,29.81 25.5,29 C28.29,28.19 29.19,27.29 30,24.5 Z" fill="#EDBC74"/>',check:function(){return state.dreams.length>=1}},
+ {id:"voice",name:"声入瓶中",desc:"第一次录音",art:'<circle cx="50" cy="50" r="47" fill="url(#ngStage)"/><circle cx="50" cy="50" r="47" fill="none" stroke="url(#ngGold)" stroke-width="3"/><circle cx="50" cy="50" r="40" fill="none" stroke="#FFF6E8" stroke-width="1" opacity=".16"/><rect x="44" y="21" width="12" height="11" rx="3" fill="url(#xMG)"/><circle cx="50" cy="55" r="21" fill="url(#xMG)"/><path d="M29,55 A21,21 0 0 0 71,55" fill="url(#ngGold)"/><path d="M50,40 C51.08,43.72 52.28,44.92 56,46 C52.28,47.08 51.08,48.28 50,52 C48.92,48.28 47.72,47.08 44,46 C47.72,44.92 48.92,43.72 50,40 Z" fill="#BC4A32"/><circle cx="37" cy="62" r="2" fill="#FFF6E8" opacity=".8"/><circle cx="52" cy="66" r="2.4" fill="#FFF6E8" opacity=".7"/><path d="M73,40 A12,12 0 0 1 73,58" stroke="#EDBC74" stroke-width="2.6" fill="none" stroke-linecap="round"/>',check:function(){return !!state.voiceBlob}},
+ {id:"week",name:"七夜守望",desc:"连续来访 7 夜",art:'<circle cx="50" cy="50" r="47" fill="url(#ngStage)"/><circle cx="50" cy="50" r="47" fill="none" stroke="url(#ngGold)" stroke-width="3"/><circle cx="50" cy="50" r="40" fill="none" stroke="#FFF6E8" stroke-width="1" opacity=".16"/><path d="M52,28 A24,24 0 1 0 52,74 A19,19 0 1 1 52,28 Z" fill="url(#xMG)"/><circle cx="66" cy="33" r="2.2" fill="#EDBC74"/><circle cx="73" cy="41" r="2.2" fill="#EDBC74"/><circle cx="76" cy="50" r="2.2" fill="#EDBC74"/><circle cx="75" cy="59" r="2.2" fill="#EDBC74"/><circle cx="70" cy="67" r="2.2" fill="#EDBC74"/><circle cx="62" cy="73" r="2.2" fill="#EDBC74"/><circle cx="53" cy="77" r="2.2" fill="#EDBC74"/><path d="M70,46 C70.72,48.48 71.52,49.28 74,50 C71.52,50.72 70.72,51.52 70,54 C69.28,51.52 68.48,50.72 66,50 C68.48,49.28 69.28,48.48 70,46 Z" fill="#FFF6E8"/>',check:function(){var st=null;try{st=JSON.parse(localStorage.getItem("brewm_streak"))}catch(e){}return st&&st.count>=7}},
+ {id:"tide",name:"潮信初至",desc:"第一封潮信浮出",art:'<circle cx="50" cy="50" r="47" fill="url(#ngStage)"/><circle cx="50" cy="50" r="47" fill="none" stroke="url(#ngGold)" stroke-width="3"/><circle cx="50" cy="50" r="40" fill="none" stroke="#FFF6E8" stroke-width="1" opacity=".16"/><g transform="translate(5,7) scale(2)"><path d="M22.95,19.35 A8,8 0 1 1 18.55,6.15 A7,7 0 0 0 22.95,19.35 Z" fill="url(#xMG)"/><circle cx="29.5" cy="9.5" r="2.6" fill="url(#ngRed)"/><rect x="9" y="26" width="26" height="3" rx="1.5" fill="url(#ngGold)"/><rect x="13" y="31" width="18" height="3" rx="1.5" fill="url(#ngGold)"/></g><path d="M72,61.5 C72.81,64.29 73.71,65.19 76.5,66 C73.71,66.81 72.81,67.71 72,70.5 C71.19,67.71 70.29,66.81 67.5,66 C70.29,65.19 71.19,64.29 72,61.5 Z" fill="#EDBC74"/>',check:function(){return state.letters.some(function(L){return L.mine&&(!L.unlockAt||L.unlockAt<=Date.now())})}},
+ {id:"edit",name:"潮水记事",desc:"第一次修改信件",art:'<circle cx="50" cy="50" r="47" fill="url(#ngStage)"/><circle cx="50" cy="50" r="47" fill="none" stroke="url(#ngGold)" stroke-width="3"/><circle cx="50" cy="50" r="40" fill="none" stroke="#FFF6E8" stroke-width="1" opacity=".16"/><g transform="rotate(5 45 50)"><rect x="28" y="28" width="36" height="44" rx="5" fill="#FFFDF4"/><rect x="34" y="38" width="22" height="3.2" rx="1.6" fill="#C9BFD9"/><rect x="34" y="46" width="24" height="3.2" rx="1.6" fill="#D8D0E4"/><rect x="34" y="54" width="18" height="3.2" rx="1.6" fill="#D8D0E4"/></g><g transform="rotate(40 64 60)"><rect x="60" y="32" width="8" height="42" rx="4" fill="url(#ngGold)"/><path d="M64,80 L59.5,72 L68.5,72 Z" fill="#A63D28"/></g><path d="M74,26 C74.72,28.48 75.52,29.28 78,30 C75.52,30.72 74.72,31.52 74,34 C73.28,31.52 72.48,30.72 70,30 C72.48,29.28 73.28,28.48 74,26 Z" fill="#BC4A32"/>',check:function(){return localStorage.getItem("brewm_edited")==="1"}},
+ {id:"card",name:"酿卡匠人",desc:"生成第一张酿卡",art:'<circle cx="50" cy="50" r="47" fill="url(#ngStage)"/><circle cx="50" cy="50" r="47" fill="none" stroke="url(#ngGold)" stroke-width="3"/><circle cx="50" cy="50" r="40" fill="none" stroke="#FFF6E8" stroke-width="1" opacity=".16"/><circle cx="86" cy="50" r="2.6" fill="#EDBC74"/><circle cx="75.5" cy="75.5" r="2.6" fill="#EDBC74"/><circle cx="50" cy="86" r="2.6" fill="#EDBC74"/><circle cx="24.5" cy="75.5" r="2.6" fill="#EDBC74"/><circle cx="14" cy="50" r="2.6" fill="#EDBC74"/><circle cx="24.5" cy="24.5" r="2.6" fill="#EDBC74"/><circle cx="50" cy="14" r="2.6" fill="#EDBC74"/><circle cx="75.5" cy="24.5" r="2.6" fill="#EDBC74"/><path d="M50,50 L50,26 A24,24 0 0 1 74,50 Z" fill="url(#ngGold)"/><path d="M50,50 L50,26 A24,24 0 0 1 74,50 Z" transform="rotate(90 50 50)" fill="url(#xMG)"/><path d="M50,50 L50,26 A24,24 0 0 1 74,50 Z" transform="rotate(180 50 50)" fill="url(#ngGold)"/><path d="M50,50 L50,26 A24,24 0 0 1 74,50 Z" transform="rotate(270 50 50)" fill="url(#xMG)"/><path d="M50,50 L50,37.5 A12.5,12.5 0 0 1 62.5,50 Z" transform="rotate(45 50 50)" fill="#6B5BA8"/><path d="M50,50 L50,37.5 A12.5,12.5 0 0 1 62.5,50 Z" transform="rotate(135 50 50)" fill="#6B5BA8"/><path d="M50,50 L50,37.5 A12.5,12.5 0 0 1 62.5,50 Z" transform="rotate(225 50 50)" fill="#6B5BA8"/><path d="M50,50 L50,37.5 A12.5,12.5 0 0 1 62.5,50 Z" transform="rotate(315 50 50)" fill="#6B5BA8"/><circle cx="50" cy="50" r="5.5" fill="url(#ngRed)"/><circle cx="50" cy="50" r="2" fill="#EDBC74"/>',check:function(){return document.getElementById("scCard")&&document.getElementById("scCard").querySelector("img")}},
+ {id:"ai",name:"隔瓶长谈",desc:"与过去的自己对话",art:'<circle cx="50" cy="50" r="47" fill="url(#ngStage)"/><circle cx="50" cy="50" r="47" fill="none" stroke="url(#ngGold)" stroke-width="3"/><circle cx="50" cy="50" r="40" fill="none" stroke="#FFF6E8" stroke-width="1" opacity=".16"/><rect x="22" y="30" width="36" height="27" rx="13" fill="url(#xMG)"/><path d="M30,57 L30,66 L39,57 Z" fill="url(#xMG)"/><rect x="44" y="44" width="32" height="25" rx="12" fill="url(#ngGold)"/><path d="M66,69 L66,77 L57,69 Z" fill="url(#ngGold)"/><circle cx="33" cy="43.5" r="2.4" fill="#4E4390"/><circle cx="41" cy="43.5" r="2.4" fill="#4E4390"/><circle cx="49" cy="43.5" r="2.4" fill="#4E4390"/><circle cx="54" cy="56.5" r="2.4" fill="#A63D28"/><circle cx="61" cy="56.5" r="2.4" fill="#A63D28"/><circle cx="68" cy="56.5" r="2.4" fill="#A63D28"/>',check:function(){return state.chat.length>=1}},
+ {id:"backup",name:"平安存档",desc:"导出过一次备份",art:'<circle cx="50" cy="50" r="47" fill="url(#ngStage)"/><circle cx="50" cy="50" r="47" fill="none" stroke="url(#ngGold)" stroke-width="3"/><circle cx="50" cy="50" r="40" fill="none" stroke="#FFF6E8" stroke-width="1" opacity=".16"/><path d="M50,24 L71,32.5 V52 C71,66.5 62.5,76 50,81 C37.5,76 29,66.5 29,52 V32.5 Z" fill="url(#xMG)" stroke="url(#ngGold)" stroke-width="2.6"/><path d="M41,52.5 L48,60 L61,44" stroke="#A63D28" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M67,23.4 C67.65,25.63 68.37,26.35 70.6,27 C68.37,27.65 67.65,28.37 67,30.6 C66.35,28.37 65.63,27.65 63.4,27 C65.63,26.35 66.35,25.63 67,23.4 Z" fill="#EDBC74"/>',check:function(){return localStorage.getItem("brewm_ach_backup")==="1"}}
+];
+function checkAchievements(){
+ var newOnes=[];
+ ACHIEVEMENTS.forEach(function(A){
+  var key="brewm_ach_"+A.id;
+  var unlocked=false;
+  try{unlocked=!!localStorage.getItem(key)}catch(e){}
+  if(!unlocked){
+   try{if(A.check()){localStorage.setItem(key,"1");newOnes.push(A)}}catch(e){}
+  }
+ });
+ return newOnes;
+}
+function renderAchievements(){
+ var grid=document.getElementById("achvGrid");if(!grid)return;
+ grid.innerHTML="";
+ ACHIEVEMENTS.forEach(function(A){
+  var key="brewm_ach_"+A.id;
+  var un=false;try{un=!!localStorage.getItem(key)}catch(e){}
+  var d=document.createElement("div");d.className="achv"+(un?" on":"");
+  d.innerHTML='<div class="ic"><svg viewBox="0 0 100 100">'+A.art+'</svg></div><b>'+A.name+'</b><small>'+(un?A.desc:"？？？")+'</small>';
+  grid.appendChild(d);
+ });
+}
 renderFile();
 var vtry=$('#vtry'),vredo=$('#vredo');
 if(vtry){vtry.addEventListener('click',function(){
@@ -2220,6 +2227,9 @@ if(bkImp){bkImp.addEventListener('click',function(){
  inp.onchange=function(){
   var file=inp.files[0];if(!file)return;
   var rd=new FileReader();
+var _newAch=checkAchievements();
+if(_newAch.length>0){_newAch.forEach(function(A){toast("🏆 解锁成就 · "+A.name)});buzz(20)}
+renderAchievements();
   rd.onload=function(){
    try{
     var d=JSON.parse(rd.result);
@@ -2241,6 +2251,7 @@ if(bkImp){bkImp.addEventListener('click',function(){
  inp.click();
 })}
 var apT=$('#appendBtn');
+var pdfBtn=$('#pdfBtn');
 if(pdfBtn){pdfBtn.addEventListener('click',function(){
  if(!state.dreams.length){toast('还没有梦可以导出');return}
  var W=1240,H=1754; // A4 150dpi
@@ -2365,9 +2376,9 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
   try{localStorage.setItem("brewm_streak",JSON.stringify(streak))}catch(e){}
  }
  var _sc=document.getElementById("streakChip");
- if(_sc){_sc.textContent=
-  gapDays>1? "潮水缓了 "+gapDays+" 天 · 瓶一直都在，随时继续"
-  : streak.count>1? "连续 · 第 "+streak.count+" 夜 · 星光都记得"
+ if(_sc){_sc.innerHTML=
+  gapDays>1? "潮水缓了 <b class='fnum'>"+gapDays+"</b> 天 · 瓶一直都在，随时继续"
+  : streak.count>1? "连续 · 第 <b class='fnum'>"+streak.count+"</b> 夜 · 星光都记得"
   : "第 1 夜 · 从今晚开始";}
  /* 每日星光签：按日期轮换，全站一句 */
  var SIGNS=["星光不问归期，瓶里自有潮汐。","今晚的梦，记得留一半给明天。","你写下的每个字，都在瓶底发光。","潮水慢，是因为它认真。","噩梦我吃掉了，好梦替你酿着。","别急，时间站在你这边。","今天的日常，是明天的养分。","瓶壁上又凝了一颗新的星。","火漆纹路深了一分，你也是。","深夜适合封存，清晨适合启封。","你只管生活，酿造交给我。","星星排队的时候，谁都不掉队。","梦不怕小，怕的是不装进瓶里。","潮起潮落，都是瓶在呼吸。","昨夜风大，瓶身很稳。","养分又沉了一层，像雪。","回望不是回头，是确认来路。","把灯调成暖色，把梦调成慢速。","安静的日子也在酿。","每一个夜，都算数。",
@@ -2529,8 +2540,11 @@ if(q.get('nointro')){try{localStorage.setItem('brewm_guide','1')}catch(e){}
  document.getElementById('splash').classList.add('off');
  var gd=document.getElementById('guide');if(gd){gd.hidden=true;gd.classList.remove('on')}}
 if(q.get('cardgen')){cardSkin=q.get('cardskin')||cardSkin;
- $$('.pick').forEach(function(p){p.classList.toggle('on',({"信笺白":"paper","星河蓝":"galaxy","火漆红":"wax"})[p.dataset.name]===cardSkin)});
+ $('.pick').forEach(function(p){p.classList.toggle('on',({"信笺白":"paper","星河蓝":"galaxy","火漆红":"wax"})[p.dataset.name]===cardSkin)});
  genCard(true)}
+/* 成就启动保底：顶层必然执行 */
+try{if(!document.getElementById('achvGrid').childNodes.length){renderAchievements()}}catch(e){}
+try{var _na=checkAchievements();if(_na.length){_na.forEach(function(A){toast('🏆 解锁成就 · '+A.name)});buzz(20)}}catch(e){}
 
 
 </script>
