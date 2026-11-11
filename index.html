@@ -166,7 +166,7 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .navbar button .ico-l{opacity:.38}.navbar button .ico-f{display:none}
 .navbar button.on .ico-l{display:none}
 .navbar button.on .ico-f{display:block}
-.navbar button.on::after{content:"";position:absolute;left:50%;top:3px;transform:translateX(-50%);width:46px;height:46px;border-radius:50%;background:rgba(233,179,106,.07)}
+.navbar button.on::after{content:"";position:absolute;left:50%;top:3px;transform:translateX(-50%);width:46px;height:46px;border-radius:50%;background:rgba(215,203,245,.10)}
 .navbar button.on{color:#D7CBF5;font-weight:400}
 .navbar button.on::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:22px;height:2.5px;border-radius:2px;background:#E9B36A}
 @media (max-width:560px){body{padding:0}.phone{width:100vw;height:100vh;border-radius:0;border:none}
@@ -390,6 +390,32 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
 .screen.on{transform:translateY(0)}
 .noanim .screen{transition:none;transform:none}
   /* ── 成就徽章 ── */
+  /* ── 打卡日历 ── */
+  /* ── 呼吸练习 ── */
+  .breathWrap{display:flex;flex-direction:column;align-items:center;padding:20px 0 10px}
+  .breathOrb{width:120px;height:120px;border-radius:50%;position:relative;margin:8px auto 18px;
+   background:radial-gradient(circle at 35% 32%,rgba(215,203,245,.5),rgba(107,91,168,.55) 62%,rgba(78,67,144,.7));
+   box-shadow:0 0 34px rgba(215,203,245,.28);display:flex;align-items:center;justify-content:center;
+   transition:transform 1s cubic-bezier(.4,0,.2,1),box-shadow 1s}
+  .breathOrb.grow{transform:scale(1.32);box-shadow:0 0 56px rgba(233,179,106,.4)}
+  .breathOrb span{font-size:14px;letter-spacing:4px;color:#FFE9C4;text-shadow:0 1px 6px rgba(20,22,50,.6)}
+  .breathBtn{margin-top:6px;padding:9px 26px;border-radius:20px;border:1px solid rgba(233,179,106,.55);
+   background:rgba(233,179,106,.12);color:#FFE9C4;font-family:inherit;font-size:12.5px;letter-spacing:3px}
+  .breathCount{font-size:10.5px;letter-spacing:2px;color:rgba(244,241,232,.5);margin-top:10px;min-height:16px}
+  .calWrap{margin-top:14px;padding:12px 14px;border:1px solid rgba(244,241,232,.1);border-radius:14px;background:rgba(255,255,255,.03)}
+  .calHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .calHead b{font-weight:400;font-size:12.5px;letter-spacing:2px;color:#FFE9C4}
+  .calHead span{font-size:10.5px;color:rgba(244,241,232,.45);letter-spacing:1px}
+  .calGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+  .calGrid .wd{text-align:center;font-size:9px;color:rgba(244,241,232,.32);letter-spacing:1px;padding:2px 0}
+  .calGrid .d{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:50%;
+   font-size:9.5px;color:rgba(244,241,232,.35);position:relative}
+  .calGrid .d.void{visibility:hidden}
+  .calGrid .d.hit::after{content:"✦";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+   font-size:15px;color:#E9B36A;opacity:.92;text-shadow:0 0 6px rgba(233,179,106,.5)}
+  .calGrid .d.hit{color:transparent}
+  .calGrid .d.today{box-shadow:inset 0 0 0 1.5px rgba(215,203,245,.75)}
+  .calGrid .d.future{opacity:.28}
   .achvGrid{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
   .achv{width:92px;text-align:center;position:relative}
   .achv .ic{width:66px;height:66px;border-radius:50%;margin:0 auto 8px;position:relative;overflow:hidden;
@@ -548,7 +574,11 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
      <button class="navlink" data-go="s-feed">养分<b>日记</b> ›</button>
      <button class="navlink" data-go="s-append"><b>补一页</b>信 ›</button>
     </div>
-   </section>
+   
+    <div class="calWrap" id="calWrap">
+     <div class="calHead"><b id="calTitle">月夜之约</b><span id="calStats"></span></div>
+     <div class="calGrid" id="calGrid" role="img" aria-label="本月来访日历"></div>
+    </div></section>
 
    <section class="screen" id="s-tide">
     <div class="h-kai sm">潮汐回望</div>
@@ -708,7 +738,12 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
     <div class="tiny">守梦貘值夜中 · 噩梦由它悄悄吃掉</div>
     <button class="ghost" data-go="s-world" style="margin-top:16px">灭灯 · 过一夜 +1</button>
     <div class="tiny">星光在你睡着的时候生长</div>
-   </section>
+   
+    <div class="breathWrap" id="breathWrap">
+     <div class="breathOrb" id="breathOrb"><span id="breathLabel">安顿身心</span></div>
+     <button class="breathBtn" id="breathBtn">开始呼吸 · 3-4-5</button>
+     <div class="breathCount" id="breathCount"></div>
+    </div></section>
 
    <section class="screen" id="s-aiguide">
     <button class="backbtn" data-go="s-set">‹ 返回设置</button>
@@ -1273,6 +1308,75 @@ function renderWorld(){
  $('#feed').textContent=state.feeds[state.fi%state.feeds.length];
 }
 function renderFile(){
+
+/* ── 呼吸练习 3-4-5 ── */
+(function(){
+ var orb=document.getElementById("breathOrb"),lbl=document.getElementById("breathLabel"),
+     btn=document.getElementById("breathBtn"),cnt=document.getElementById("breathCount");
+ if(!orb||!btn)return;
+ var timer=null,running=false;
+ var phases=[["吸气",3000,"grow"],["屏息",4000,""],["呼气",5000,""]];
+ function stop(){
+  running=false;clearTimeout(timer);orb.classList.remove("grow");
+  lbl.textContent="安顿身心";cnt.textContent="";btn.textContent="开始呼吸 · 3-4-5";
+ }
+ function step(pi,elapsed){
+  if(!running)return;
+  var p=phases[pi],t=p[1];
+  if(elapsed===0){
+   lbl.textContent=p[0];
+   if(p[2]==="grow")orb.classList.add("grow");else orb.classList.remove("grow");
+  }
+  cnt.textContent=p[0]+" · "+Math.ceil((t-elapsed)/1000);
+  if(elapsed>=t){
+   var nx=(pi+1)%3;
+   if(nx===0){cycles++;ping("seal")}
+   step(nx,0);return;
+  }
+  timer=setTimeout(function(){step(pi,elapsed+250)},250);
+ }
+ var cycles=0;
+ btn.addEventListener("click",function(){
+  if(running){stop();return}
+  running=true;cycles=0;btn.textContent="停止";
+  step(0,0);
+ });
+})();
+
+
+/* ── 打卡日历 ── */
+function getVisits(){
+ var v=[];try{v=JSON.parse(localStorage.getItem("brewm_visits")||"[]")}catch(e){}
+ var t=todayStr();
+ if(v[v.length-1]!==t){v.push(t);if(v.length>400)v=v.slice(-400);try{localStorage.setItem("brewm_visits",JSON.stringify(v))}catch(e){}}
+ return v;
+}
+function renderCalendar(){
+ var grid=document.getElementById("calGrid");if(!grid)return;
+ var visits=getVisits();
+ var set={};visits.forEach(function(d){set[d]=1});
+ var now=new Date(),y=now.getFullYear(),mo=now.getMonth();
+ var title=["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"][mo];
+ document.getElementById("calTitle").textContent=title+" · 夜夜相守";
+ var first=new Date(y,mo,1).getDay();
+ var days=new Date(y,mo+1,0).getDate();
+ var monthHits=0,today=todayStr();
+ var h="";
+ ["日","一","二","三","四","五","六"].forEach(function(w){h+='<div class="wd">'+w+"</div>"});
+ for(var i=0;i<first;i++)h+='<div class="d void"></div>';
+ for(var d=1;d<=days;d++){
+  var key=y+"-"+String(mo+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
+  var cls="d";
+  if(set[key]){cls+=" hit";monthHits++}
+  if(key===today)cls+=" today";
+  if(key>today)cls+=" future";
+  h+='<div class="'+cls+'">'+d+"</div>";
+ }
+ grid.innerHTML=h;
+ var streak=0;try{var st=JSON.parse(localStorage.getItem("brewm_streak"));if(st)streak=st.count||0}catch(e){}
+ document.getElementById("calStats").textContent="本月 "+monthHits+" 夜 · 连续 "+streak+" 夜";
+}
+renderCalendar();
 /* ── 成就系统 ── */
 var ACHIEVEMENTS=[
  {id:"first",name:"初次封缄",desc:"写下第一个梦",icon:"🕯",color:"#E9B36A",check:function(){return state.dreams.length>=1}},
