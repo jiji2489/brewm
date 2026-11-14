@@ -61,6 +61,10 @@ repeating-linear-gradient(180deg,transparent 0 46px,rgba(43,58,85,.04) 46px 47px
 .tcap{font-size:12.5px;color:rgba(244,241,232,.72);margin-top:6px;letter-spacing:1px}
 .letter-in{margin-top:16px;background:#FFFDF6;border:1px solid rgba(43,58,85,.15);border-radius:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 24px rgba(43,58,85,.12);padding:14px;color:#2B3A55}
 .lhead{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:16px;color:#A6402F}
+  /* ── 纸张噪点（纤维质感）── */
+  .letter-in,.ltr,.sharecard{position:relative}
+  .letter-in::after,.ltr::after,.sharecard::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.16;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'260'%20height%3D'260'%3E%3Cfilter%20id%3D'p'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'0.9'%20numOctaves%3D'2'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20type%3D'matrix'%20values%3D'0%200%200%200%200.32%200%200%200%200%200.26%200%200%200%200%200.18%200%200%200%200.55%200'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'260'%20height%3D'260'%20filter%3D'url(%23p)'%2F%3E%3C%2Fsvg%3E");background-size:260px 260px}
+  .noanim .letter-in::after,.noanim .ltr::after,.noanim .sharecard::after{display:none}
 textarea{width:100%;border:none;outline:none;resize:none;background:transparent;font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:16.5px;line-height:1.9;color:#2B3A55;margin-top:6px;min-height:88px}
 textarea::placeholder{color:rgba(43,58,85,.3)}
 .count{text-align:right;font-size:11px;color:rgba(43,58,85,.4)}
@@ -82,7 +86,7 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .tn.done i{background:#E9B36A;border-color:#E9B36A;box-shadow:0 0 9px rgba(233,179,106,.75)}
 .tn p{font-size:10.5px;color:rgba(244,241,232,.68);margin-top:8px;line-height:1.5}
 .feed{margin-top:16px;border-radius:14px;background:rgba(20,22,48,.55);backdrop-filter:blur(4px);border:1px solid rgba(233,179,106,.35);padding:12px 14px;font-size:12.5px;color:#F4F1E8;line-height:1.8;min-height:44px;letter-spacing:.5px}
-.ltr{animation:ltrIn .6s ease-out both}.ltr:nth-child(2){animation-delay:.12s}.ltr:nth-child(3){animation-delay:.24s}.ltr{box-shadow:0 6px 24px rgba(5,6,20,.35),inset 0 1px 0 rgba(255,255,255,.06);margin-top:14px;background:#FFFDF6;border:1px solid rgba(43,58,85,.14);border-radius:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 24px rgba(43,58,85,.12);padding:14px;cursor:pointer;transition:.2s;color:#2B3A55;animation:bob 5.6s ease-in-out infinite}
+.ltr{animation:ltrIn .6s ease-out both;position:relative}.ltr:nth-child(2){animation-delay:.12s}.ltr:nth-child(3){animation-delay:.24s}.ltr{box-shadow:0 6px 24px rgba(5,6,20,.35),inset 0 1px 0 rgba(255,255,255,.06);margin-top:14px;background:#FFFDF6;border:1px solid rgba(43,58,85,.14);border-radius:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 24px rgba(43,58,85,.12);padding:14px;cursor:pointer;transition:.2s;color:#2B3A55;animation:bob 5.6s ease-in-out infinite}
 .ltr:nth-child(2n){animation-duration:6.4s;animation-delay:-2.9s}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-4px) rotate(.3deg)}}
 .lfrom{font-size:12px;color:#A6402F;letter-spacing:1px;display:flex;justify-content:space-between}
@@ -103,7 +107,7 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .sc-top small{display:block;font-family:Georgia,serif;font-style:italic;font-size:8.5px;letter-spacing:3px;color:#8A6F55}
 .sc-quote{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:17px;line-height:2;margin-top:14px;min-height:96px}
 .sc-meta{display:flex;align-items:center;gap:8px;margin-top:12px}
-.waxdot{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#C96A4A,#A6402F 55%,#7A281C);color:#F6E7D3;display:flex;align-items:center;justify-content:center;font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:19px;box-shadow:inset 0 0 0 4px rgba(246,231,211,.25),0 4px 10px rgba(166,64,47,.4)}
+.waxdot{width:40px;height:40px;border-radius:47% 53% 52% 48%/51% 46% 55% 49%;background:radial-gradient(circle at 35% 30%,#C96A4A,#A6402F 55%,#7A281C);color:#F6E7D3;display:flex;align-items:center;justify-content:center;font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:19px;box-shadow:inset 0 0 0 4px rgba(246,231,211,.25),0 4px 10px rgba(166,64,47,.4)}
 .sc-meta p{font-size:11.5px;color:rgba(43,58,85,.6);letter-spacing:1px}
 .sc-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px;border-top:1px dashed rgba(43,58,85,.2);padding-top:12px}
 .sc-foot .est{font-family:Georgia,serif;font-style:italic;font-size:12.5px;color:#8A6F55;letter-spacing:1px}
@@ -1012,8 +1016,8 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   <rect x="100" y="112" width="120" height="8" rx="4" fill="#D8D0E4"/>
   <rect x="100" y="130" width="106" height="8" rx="4" fill="#D8D0E4"/>
  </g>
- <circle cx="198" cy="170" r="28" fill="url(#s1d)"/>
- <circle cx="198" cy="170" r="20" fill="none" stroke="#FFF6E8" stroke-width="2.4" opacity=".9"/>
+ <path d="M227.0,170.0 C227.0,174.5 223.9,179.4 221.6,183.6 C219.2,187.9 216.6,193.2 212.7,195.5 C208.8,197.8 202.8,197.5 198.0,197.4 C193.2,197.3 187.5,197.2 183.7,194.8 C179.8,192.5 177.2,187.6 174.7,183.4 C172.2,179.3 168.8,174.5 168.7,170.0 C168.6,165.5 171.6,160.4 174.1,156.2 C176.6,152.0 179.6,147.2 183.6,145.0 C187.6,142.8 193.2,142.9 198.0,143.0 C202.8,143.0 208.4,143.0 212.3,145.3 C216.2,147.5 219.1,152.3 221.5,156.4 C224.0,160.5 227.0,165.5 227.0,170.0 Z" fill="url(#s1d)"/>
+ <path d="M218.6,170.0 C218.6,173.3 216.6,176.8 214.9,179.8 C213.2,182.8 211.3,186.4 208.4,188.1 C205.6,189.8 201.4,189.8 198.0,189.7 C194.6,189.6 190.6,189.3 187.8,187.7 C185.0,186.0 183.1,182.6 181.3,179.7 C179.5,176.7 177.3,173.3 177.2,170.0 C177.1,166.7 179.1,163.1 180.9,160.1 C182.6,157.2 184.9,153.8 187.7,152.2 C190.6,150.6 194.6,150.6 198.0,150.6 C201.4,150.6 205.3,150.8 208.2,152.4 C211.0,154.0 213.1,157.3 214.9,160.3 C216.6,163.2 218.6,166.7 218.6,170.0 Z" fill="none" stroke="#FFF6E8" stroke-width="2.4" opacity=".9"/>
  <text x="198" y="179" text-anchor="middle" font-size="23" font-weight="700" fill="#FFF6E8" font-family="'PingFang SC','Microsoft YaHei',sans-serif">安</text>
  <path d="M44,58 C45,53 47,51 52,50 C47,49 45,47 44,42 C43,47 41,49 36,50 C41,51 43,53 44,58 Z" fill="#EDBC74"/>
  <path d="M272,88 C273,84 275,82 279,81 C275,80 273,78 272,74 C271,78 269,80 265,81 C269,82 271,84 272,88 Z" fill="#7C6BC4"/>
@@ -1097,7 +1101,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
    </defs>
    
    <g fill="url(#sG)">
-    <circle cx="100" cy="102" r="79"/>
+    <path d="M181.4,102.0 C181.4,114.9 173.6,128.7 166.9,140.6 C160.2,152.5 152.4,167.0 141.3,173.5 C130.1,180.0 113.6,180.1 100.0,179.8 C86.4,179.5 70.7,178.4 59.7,171.8 C48.7,165.2 41.0,151.7 34.0,140.1 C27.0,128.5 18.1,114.9 17.8,102.0 C17.6,89.1 25.5,74.7 32.4,63.0 C39.3,51.3 48.2,38.1 59.5,31.8 C70.7,25.5 86.6,25.3 100.0,25.4 C113.4,25.5 129.0,26.1 140.1,32.5 C151.2,38.8 159.8,51.9 166.6,63.5 C173.5,75.1 181.3,89.1 181.4,102.0 Z"/>
     <circle cx="36" cy="76" r="15"/><circle cx="72" cy="36" r="12"/><circle cx="150" cy="46" r="13"/>
     <circle cx="171" cy="104" r="12"/><circle cx="148" cy="158" r="14"/><circle cx="88" cy="175" r="12"/><circle cx="33" cy="136" r="11"/>
    </g>
@@ -2161,7 +2165,7 @@ if(!_hadSave){/* 新用户：梦貘欢迎信 */
 }
 /* ── 成就系统（全局） ── */
 var ACHIEVEMENTS=[
- {id:"first",name:"初次封缄",desc:"写下第一个梦",art:'<circle cx="50" cy="50" r="47" fill="url(#ngStage)"/><circle cx="50" cy="50" r="47" fill="none" stroke="url(#ngGold)" stroke-width="3"/><circle cx="50" cy="50" r="40" fill="none" stroke="#FFF6E8" stroke-width="1" opacity=".16"/><g transform="rotate(-4 50 52)"><rect x="25" y="37" width="50" height="33" rx="7" fill="url(#xMG)"/><path d="M25,42 C34,52 42,57 50,57 C58,57 66,52 75,42" stroke="#4E4390" stroke-width="2.6" fill="none" stroke-linecap="round"/></g><circle cx="64" cy="67" r="9.5" fill="url(#ngRed)"/><circle cx="64" cy="67" r="6.6" fill="none" stroke="#FFF6E8" stroke-width="1.6" opacity=".92"/><circle cx="64" cy="65" r="1.6" fill="#F3D9C8"/><path d="M30,24.5 C30.81,27.29 31.71,28.19 34.5,29 C31.71,29.81 30.81,30.71 30,33.5 C29.19,30.71 28.29,29.81 25.5,29 C28.29,28.19 29.19,27.29 30,24.5 Z" fill="#EDBC74"/>',check:function(){return state.dreams.length>=1}},
+ {id:"first",name:"初次封缄",desc:"写下第一个梦",art:'<circle cx="50" cy="50" r="47" fill="url(#ngStage)"/><circle cx="50" cy="50" r="47" fill="none" stroke="url(#ngGold)" stroke-width="3"/><circle cx="50" cy="50" r="40" fill="none" stroke="#FFF6E8" stroke-width="1" opacity=".16"/><g transform="rotate(-4 50 52)"><rect x="25" y="37" width="50" height="33" rx="7" fill="url(#xMG)"/><path d="M25,42 C34,52 42,57 50,57 C58,57 66,52 75,42" stroke="#4E4390" stroke-width="2.6" fill="none" stroke-linecap="round"/></g><path d="M73.8,67.0 C73.8,68.5 72.8,70.2 72.0,71.6 C71.2,73.1 70.3,74.9 69.0,75.6 C67.7,76.4 65.6,76.3 64.0,76.3 C62.4,76.3 60.5,76.2 59.1,75.4 C57.8,74.6 56.9,73.0 56.1,71.6 C55.3,70.2 54.1,68.5 54.1,67.0 C54.0,65.5 55.1,63.7 55.9,62.3 C56.7,60.9 57.8,59.3 59.1,58.5 C60.5,57.8 62.4,57.8 64.0,57.8 C65.6,57.8 67.5,57.8 68.8,58.6 C70.2,59.4 71.1,61.0 72.0,62.4 C72.8,63.8 73.8,65.5 73.8,67.0 Z" fill="url(#ngRed)"/><circle cx="64" cy="67" r="6.6" fill="none" stroke="#FFF6E8" stroke-width="1.6" opacity=".92"/><circle cx="64" cy="65" r="1.6" fill="#F3D9C8"/><path d="M30,24.5 C30.81,27.29 31.71,28.19 34.5,29 C31.71,29.81 30.81,30.71 30,33.5 C29.19,30.71 28.29,29.81 25.5,29 C28.29,28.19 29.19,27.29 30,24.5 Z" fill="#EDBC74"/>',check:function(){return state.dreams.length>=1}},
  {id:"voice",name:"声入瓶中",desc:"第一次录音",art:'<circle cx="50" cy="50" r="47" fill="url(#ngStage)"/><circle cx="50" cy="50" r="47" fill="none" stroke="url(#ngGold)" stroke-width="3"/><circle cx="50" cy="50" r="40" fill="none" stroke="#FFF6E8" stroke-width="1" opacity=".16"/><rect x="44" y="21" width="12" height="11" rx="3" fill="url(#xMG)"/><circle cx="50" cy="55" r="21" fill="url(#xMG)"/><path d="M29,55 A21,21 0 0 0 71,55" fill="url(#ngGold)"/><path d="M50,40 C51.08,43.72 52.28,44.92 56,46 C52.28,47.08 51.08,48.28 50,52 C48.92,48.28 47.72,47.08 44,46 C47.72,44.92 48.92,43.72 50,40 Z" fill="#BC4A32"/><circle cx="37" cy="62" r="2" fill="#FFF6E8" opacity=".8"/><circle cx="52" cy="66" r="2.4" fill="#FFF6E8" opacity=".7"/><path d="M73,40 A12,12 0 0 1 73,58" stroke="#EDBC74" stroke-width="2.6" fill="none" stroke-linecap="round"/>',check:function(){return !!state.voiceBlob}},
  {id:"week",name:"七夜守望",desc:"连续来访 7 夜",art:'<circle cx="50" cy="50" r="47" fill="url(#ngStage)"/><circle cx="50" cy="50" r="47" fill="none" stroke="url(#ngGold)" stroke-width="3"/><circle cx="50" cy="50" r="40" fill="none" stroke="#FFF6E8" stroke-width="1" opacity=".16"/><path d="M52,28 A24,24 0 1 0 52,74 A19,19 0 1 1 52,28 Z" fill="url(#xMG)"/><circle cx="66" cy="33" r="2.2" fill="#EDBC74"/><circle cx="73" cy="41" r="2.2" fill="#EDBC74"/><circle cx="76" cy="50" r="2.2" fill="#EDBC74"/><circle cx="75" cy="59" r="2.2" fill="#EDBC74"/><circle cx="70" cy="67" r="2.2" fill="#EDBC74"/><circle cx="62" cy="73" r="2.2" fill="#EDBC74"/><circle cx="53" cy="77" r="2.2" fill="#EDBC74"/><path d="M70,46 C70.72,48.48 71.52,49.28 74,50 C71.52,50.72 70.72,51.52 70,54 C69.28,51.52 68.48,50.72 66,50 C68.48,49.28 69.28,48.48 70,46 Z" fill="#FFF6E8"/>',check:function(){var st=null;try{st=JSON.parse(localStorage.getItem("brewm_streak"))}catch(e){}return st&&st.count>=7}},
  {id:"tide",name:"潮信初至",desc:"第一封潮信浮出",art:'<circle cx="50" cy="50" r="47" fill="url(#ngStage)"/><circle cx="50" cy="50" r="47" fill="none" stroke="url(#ngGold)" stroke-width="3"/><circle cx="50" cy="50" r="40" fill="none" stroke="#FFF6E8" stroke-width="1" opacity=".16"/><g transform="translate(5,7) scale(2)"><path d="M22.95,19.35 A8,8 0 1 1 18.55,6.15 A7,7 0 0 0 22.95,19.35 Z" fill="url(#xMG)"/><circle cx="29.5" cy="9.5" r="2.6" fill="url(#ngRed)"/><rect x="9" y="26" width="26" height="3" rx="1.5" fill="url(#ngGold)"/><rect x="13" y="31" width="18" height="3" rx="1.5" fill="url(#ngGold)"/></g><path d="M72,61.5 C72.81,64.29 73.71,65.19 76.5,66 C73.71,66.81 72.81,67.71 72,70.5 C71.19,67.71 70.29,66.81 67.5,66 C70.29,65.19 71.19,64.29 72,61.5 Z" fill="#EDBC74"/>',check:function(){return state.letters.some(function(L){return L.mine&&(!L.unlockAt||L.unlockAt<=Date.now())})}},
@@ -2220,6 +2224,7 @@ if(bkExp){bkExp.addEventListener('click',function(){
  a.href=URL.createObjectURL(blob);a.click();
  setTimeout(function(){URL.revokeObjectURL(a.href)},4000);
  toast('备份已导出 · 包含全部数据');buzz(12);
+ try{localStorage.setItem('brewm_ach_backup','1')}catch(e){}
 })}
 var bkImp=document.getElementById('bkImportBtn');
 if(bkImp){bkImp.addEventListener('click',function(){
