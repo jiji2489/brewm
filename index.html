@@ -186,6 +186,9 @@ body.full .brand,body.full .caption{display:none}
 .moncard img{display:block;width:100%;height:100%;object-fit:cover}
 #s-feed .ctide,#s-privacy .ctide{background:rgba(20,22,48,.62);backdrop-filter:blur(5px);border:1px solid rgba(233,179,106,.35);border-radius:14px;padding:14px 14px 12px 28px;margin-top:14px}
 #splash{position:absolute;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 90% at 50% 0%,#1A1642,#0E1028 72%);transition:opacity .55s,visibility .55s}
+  .sp-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.62) saturate(1.06)}
+  .sp-in{position:relative;z-index:1}
+  .noanim .sp-bg{filter:none}
 #splash.off{opacity:0;visibility:hidden}
 .sp-in{text-align:center;animation:spPop .9s cubic-bezier(.2,1.2,.4,1) both}
 .sp-name{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:44px;letter-spacing:18px;color:#F4F1E8;margin-top:20px;animation:spUp .8s .25s both}
@@ -984,6 +987,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
    </section>
 
    <div id="splash">
+    <img src="img/bg-splash.webp" alt="" class="sp-bg">
     <div class="sp-in">
      <img src="img/mark-starheart.png" alt="星心宝相" class="markimg" style="width:92px;height:auto;display:inline-block">
      <div class="sp-name">酿 梦</div>
