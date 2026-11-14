@@ -625,7 +625,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
     <button class="ghost" data-go="s-card" style="margin-top:12px">进酿卡工坊 · 选一款卡面 ›</button>
     <div class="tiny">授权后进入策展式漂流 · 有治理的共鸣</div>
     <button class="ghost" data-go="s-sea" style="margin-top:12px">去看漂流的海 · 共鸣广场 ›</button>
-   </section>
+    <div style="text-align:center;margin-top:14px"> <button class="ghost" id="shareLongBtn" style="width:100%">📱 生成朋友圈长图 · 分酿予人</button> <div id="shareLongOut" style="margin-top:12px"></div> </div> </section>
 
    <section class="screen" id="s-file">
     <button class="backbtn" data-go="s-world">‹ 返回瓶中</button>
@@ -1564,6 +1564,126 @@ function shareQuotes(){
  Object.keys(state.replies).forEach(function(k){qs.push(state.replies[k])});
  return qs;
 }
+/* ── 梦想分享长图 ── */
+function blobDShare(cx,cy,r,seed){
+ var N=12,pts=[],i,a,rr;
+ for(i=0;i<N;i++){a=i/N*Math.PI*2;rr=r*(1+seed[i%seed.length]);pts.push([cx+rr*Math.cos(a),cy+rr*Math.sin(a)])}
+ var d="M"+pts[0][0].toFixed(1)+","+pts[0][1].toFixed(1);
+ for(i=0;i<N;i++){var p0=pts[(i-1+N)%N],p1=pts[i],p2=pts[(i+1)%N],p3=pts[(i+2)%N];
+  var c1=[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],c2=[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6];
+  d+=" C"+c1[0].toFixed(1)+","+c1[1].toFixed(1)+" "+c2[0].toFixed(1)+","+c2[1].toFixed(1)+" "+p2[0].toFixed(1)+","+p2[1].toFixed(1)}
+ return d+" Z";
+}
+var SHARE_SEED=[0.03,-0.022,0.045,-0.015,0.02,-0.035,0.04,-0.012,0.026,-0.03,0.016,-0.026];
+function wrapCJK(x,txt,max){
+ var lines=[],cur="";
+ for(var i=0;i<txt.length;i++){cur+=txt[i];
+  if(x.measureText(cur).width>max){cur=cur.slice(0,-1);lines.push(cur);cur=txt[i]}}
+ if(cur)lines.push(cur);
+ return lines;
+}
+function genShareImg(){
+ var dr=state.dreams&&state.dreams.length?state.dreams[state.dreams.length-1]:null;
+ if(!dr){toast('还没有封存过梦 · 先去写第一封');return}
+ var btn=document.getElementById('shareLongBtn');
+ if(btn){btn.textContent='酿制中 …';btn.disabled=true}
+  function draw(qrImg,retry){
+  var cv=document.createElement('canvas');cv.width=1080;cv.height=1620;
+  var x=cv.getContext('2d');
+  /* 底图：星河倾倒 + 压暗 */
+  try{var bg=document.createElement('canvas');bg.width=1080;bg.height=1620;
+   var bx=bg.getContext('2d');var g=bx.createLinearGradient(0,0,0,1620);
+   g.addColorStop(0,'#241E52');g.addColorStop(1,'#0E1028');bx.fillStyle=g;bx.fillRect(0,0,1080,1620);
+   if(qrImg._bg&&qrImg._bg.width){var scale=Math.max(1080/qrImg._bg.width,1620/qrImg._bg.height);
+    var w=qrImg._bg.width*scale,h=qrImg._bg.height*scale;
+    bx.drawImage(qrImg._bg,(1080-w)/2,(1620-h)/2,w,h)}
+   x.globalAlpha=1;x.drawImage(bg,0,0);
+   x.fillStyle='rgba(14,16,40,.58)';x.fillRect(0,0,1080,1620);
+  }catch(e){x.fillStyle='#141632';x.fillRect(0,0,1080,1620)}
+  /* 星尘点缀 */
+  x.fillStyle='rgba(237,188,116,.85)';
+  [[120,180,3],[920,260,2.5],[180,1180,2.5],[940,1320,3],[80,560,2],[1010,720,2]].forEach(function(p){
+   x.beginPath();x.arc(p[0],p[1],p[2],0,7);x.fill()});
+  /* 顶部品牌 */
+  x.textAlign='center';
+  x.fillStyle='rgba(255,233,196,.92)';
+  x.font="400 44px 'LXGW WenKai','STKaiti','KaiTi',serif";
+  x.fillText('酿 梦',540,150);
+  x.font="400 22px Georgia,serif";
+  x.fillStyle='rgba(255,233,196,.55)';
+  x.fillText('B R E W M  ·  B R E W   D R E A M S   W I T H   T I M E',540,196);
+  x.fillStyle='#E9B36A';
+  x.fillRect(440,232,200,2);
+  /* 梦文 */
+  var txt=dr.t.replace(/^[「「]|[」」]$/g,'');
+  x.font="400 52px 'LXGW WenKai','STKaiti','KaiTi',serif";
+  var lines=wrapCJK(x,txt,780);
+  var lh=96,startY=430-Math.min(lines.length-1,6)*48;
+  x.fillStyle='#FFFDF6';
+  lines.slice(0,8).forEach(function(L,i){x.fillText(L,540,startY+i*lh)});
+  /* 日期潮次 */
+  var tide='';
+  var li=state.letters.length-1;
+  if(li>=0&&state.letters[li].tide)tide=state.letters[li].tide;
+  x.font="400 30px 'LXGW WenKai','STKaiti','KaiTi',serif";
+  x.fillStyle='rgba(233,179,106,.95)';
+  x.fillText(dr.d+' '+tide,540,startY+Math.min(lines.length,8)*lh+40);
+  /* 火漆印 */
+  var sx=870,sy=startY+Math.min(lines.length,8)*lh+150;
+  x.fillStyle='#A6402F';
+  x.beginPath();
+  var d=blobDShare(sx,sy,72,SHARE_SEED);
+  x.fill(new Path2D(d));
+  x.strokeStyle='rgba(246,231,211,.9)';x.lineWidth=5;
+  x.stroke(new Path2D(blobDShare(sx,sy,52,SHARE_SEED)));
+  x.fillStyle='#F6E7D3';x.font="700 52px 'PingFang SC','Microsoft YaHei',sans-serif";
+  x.fillText('安',sx,sy+18);
+  /* 二维码 */
+  if(qrImg.width){var qs=230;
+   x.fillStyle='#FFFDF6';
+   x.beginPath();x.arc(540,1350,150,0,7);x.fill();
+   x.save();x.beginPath();x.arc(540,1350,142,0,7);x.clip();
+   x.drawImage(qrImg,540-qs/2,1350-qs/2,qs,qs);x.restore();
+   x.font="400 30px 'LXGW WenKai','STKaiti','KaiTi',serif";
+   x.fillStyle='rgba(255,246,232,.85)';
+   x.fillText('扫码 · 酿一坛自己的梦',540,1540);
+   x.font="400 20px Georgia,serif";
+   x.fillStyle='rgba(255,246,232,.45)';
+   x.fillText('jiji2489.github.io/brewm',540,1580);
+  }
+  /* 预览输出 */
+  var url='';
+  try{url=cv.toDataURL('image/png')}
+  catch(t){if(!retry){qrImg.width=0;qrImg._bg=null;draw(qrImg,true);return}
+   else{toast('当前环境不支持导出 · 请在网页版使用')}}
+  var out=document.getElementById('shareLongOut');
+  if(out&&url){out.innerHTML='';
+   var im=new Image();im.src=url;
+   im.style.cssText='width:64%;max-width:340px;border-radius:18px;box-shadow:0 18px 44px rgba(0,0,0,.5)';
+   im.alt='梦想分享长图';
+   var br=document.createElement('div');br.style.height='12px';
+   var a=document.createElement('button');a.className='ghost';a.style.width='64%';a.style.maxWidth='340px';
+   a.textContent='⬇ 保存长图';a.type='button';
+   a.addEventListener('click',function(){var dd=document.createElement('a');
+    dd.download='酿梦-分享卡-'+todayStr().replace(/\./g,'')+'.png';
+    dd.href=url;dd.click();toast('长图已保存 · 去朋友圈分酿吧')});
+   out.appendChild(im);out.appendChild(br);out.appendChild(a);
+  }
+  if(btn){btn.textContent='📱 生成朋友圈长图 · 分酿予人';btn.disabled=false}
+ }
+ /* 载入底图与二维码 */
+ var loaded=0,qi=new Image(),bi=new Image();
+ qi.onload=function(){loaded++;if(loaded>=2)draw(qi)};
+ qi.onerror=function(){loaded++;if(loaded>=2)draw(qi)};
+ bi.onload=function(){qi._bg=bi;loaded++;if(loaded>=2)draw(qi)};
+ bi.onerror=function(){loaded++;if(loaded>=2)draw(qi)};
+ qi.src='img/qr.png';bi.src='img/bg-galaxy.webp';
+}
+(function(){
+ var b=document.getElementById('shareLongBtn');
+ if(b)b.addEventListener('click',function(){try{genShareImg()}catch(e){toast('生成失败：'+e.message)}});
+})();
+
 function renderShare(){
  var qs=shareQuotes();if(!qs.length)qs=['存下一个梦，酿给未来的自己。'];
  var q=qs[state.shareIdx%qs.length];
