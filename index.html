@@ -447,6 +447,31 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   /* ── 数字衬线系统 ── */
   .fnum{font-family:'Didot','Bodoni MT','Playfair Display',Georgia,'Times New Roman',serif;font-variant-numeric:tabular-nums;letter-spacing:.5px;color:#FFE9C4;font-size:1.14em;font-weight:400}
   .calGrid .d{font-family:'Didot','Bodoni MT',Georgia,'Times New Roman',serif;font-variant-numeric:tabular-nums;font-size:10.5px}
+  /* ── 开瓶预演仪式 ── */
+  #openFx{position:absolute;inset:0;z-index:46;background:rgba(10,11,30,.9);backdrop-filter:blur(3px);
+   display:flex;align-items:center;justify-content:center;animation:ofxIn .5s both}
+  #openFx.out{animation:ofxOut .6s both}
+  @keyframes ofxIn{from{opacity:0}to{opacity:1}}
+  @keyframes ofxOut{to{opacity:0}}
+  .ofx-wax{width:150px;height:150px;position:relative;animation:waxMelt 2.6s ease-in .7s both;filter:drop-shadow(0 0 24px rgba(166,64,47,.6))}
+  .ofx-wax svg{width:100%;height:100%}
+  @keyframes waxMelt{
+   0%{transform:scale(1)}
+   38%{transform:scale(1.06)}
+   62%{transform:scale(.94,1.1) rotate(-2deg);filter:brightness(1.5) drop-shadow(0 0 40px rgba(233,179,106,.9))}
+   100%{transform:scale(.55,.28) rotate(-5deg);filter:brightness(2.2) drop-shadow(0 0 70px rgba(255,233,196,.95))}}
+  .ofx-star{position:absolute;top:50%;left:50%;color:#EDBC74;text-shadow:0 0 8px rgba(233,179,106,.9);
+   font-size:16px;animation:starFly 2.2s ease-out both}
+  @keyframes starFly{
+   0%{transform:translate(-50%,-50%) scale(.4);opacity:0}
+   22%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}
+   100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.5) rotate(var(--rot));opacity:0}}
+  .ofx-txt{position:absolute;bottom:24%;left:0;right:0;text-align:center;
+   font-family:'LXGW WenKai','STKaiti','KaiTi',serif;font-size:15px;letter-spacing:5px;color:#FFE9C4;
+   animation:ofxTxt 1.6s ease-out 2.2s both}
+  @keyframes ofxTxt{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .noanim #openFx,.noanim .ofx-wax,.noanim .ofx-star,.noanim .ofx-txt{animation:none}
+  @media (prefers-reduced-motion:reduce){#openFx .ofx-wax,#openFx .ofx-star,#openFx .ofx-txt{animation:none}}
 </style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
@@ -1684,6 +1709,33 @@ function genShareImg(){
  if(b)b.addEventListener('click',function(){try{genShareImg()}catch(e){toast('生成失败：'+e.message)}});
 })();
 
+/* ── 开瓶预演仪式 ── */
+function openRiteFx(){
+ if(document.getElementById('openFx'))return;
+ var fx=document.createElement('div');fx.id='openFx';
+ var wax='<svg viewBox="0 0 200 200"><defs><radialGradient id="orG" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#C96A4A"/><stop offset=".5" stop-color="#A6402F"/><stop offset="1" stop-color="#7A281C"/></radialGradient></defs>'
+  +'<path d="'+blobDShare(100,102,79,SHARE_SEED)+'" fill="url(#orG)"/>'
+  +'<path d="'+blobDShare(100,102,56,SHARE_SEED)+'" fill="none" stroke="rgba(246,231,211,.85)" stroke-width="6"/>'
+  +'<text x="100" y="122" text-anchor="middle" font-size="52" font-weight="700" fill="#F6E7D3" font-family="'+"'PingFang SC','Microsoft YaHei',sans-serif"+'">安</text></svg>';
+ fx.innerHTML='<div style="position:relative"><div class="ofx-wax">'+wax+'</div></div><div class="ofx-txt">火漆融开 · 星光涌出瓶口</div>';
+ for(var i=0;i<26;i++){
+  var st=document.createElement('span');st.className='ofx-star';st.textContent='✦';
+  var ang=Math.random()*Math.PI*2,dist=70+Math.random()*150;
+  st.style.setProperty('--dx',Math.cos(ang)*dist+'px');
+  st.style.setProperty('--dy',(Math.sin(ang)*dist-40)+'px');
+  st.style.setProperty('--rot',(Math.random()*360|0)+'deg');
+  st.style.animationDelay=(1.6+Math.random()*0.9)+'s';
+  st.style.fontSize=(10+Math.random()*14)+'px';
+  st.style.left='calc(50% + '+((Math.random()-0.5)*60|0)+'px)';
+  st.style.top='calc(50% + '+((Math.random()-0.5)*40|0)+'px)';
+  fx.appendChild(st);
+ }
+ var host=document.querySelector('.phone')||document.body;
+ host.appendChild(fx);
+ setTimeout(function(){fx.classList.add('out')},3400);
+ setTimeout(function(){fx.remove()},4050);
+}
+
 function renderShare(){
  var qs=shareQuotes();if(!qs.length)qs=['存下一个梦，酿给未来的自己。'];
  var q=qs[state.shareIdx%qs.length];
@@ -1828,8 +1880,8 @@ $('#quoteBtn').addEventListener('click',function(){
  state.shareIdx++;renderShare();
 });
 $('#saveBtn').addEventListener('click',function(){toast('酿卡已生成 ·（演示）保存到相册')});
-$('#riteBtn').addEventListener('click',function(){toast('仪式预演 · 火漆将融开（演示）')});
-$('#riteBtn').addEventListener('click',function(){sfxPlay('rite');toast('仪式预演 · 听，星光在落')});
+/* 旧预演绑定已并入下方 */
+$('#riteBtn').addEventListener('click',function(){try{openRiteFx()}catch(e){}sfx('rite');});
 $('#riteBtn').addEventListener('click',function(){sfx('rite');toast('仪式预演 · 听，星光在落')});
 /* AI loading */
 /* ── 隔瓶长谈引擎 ── */
