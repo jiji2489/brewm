@@ -474,7 +474,32 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   @keyframes ofxTxt{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   .noanim #openFx,.noanim .ofx-wax,.noanim .ofx-star,.noanim .ofx-txt{animation:none}
   @media (prefers-reduced-motion:reduce){#openFx .ofx-wax,#openFx .ofx-star,#openFx .ofx-txt{animation:none}}
-</style>
+  /* ── 瓶身外观：森林 / 樱花（真实生效）── */
+  /* 森林：场景偏绿、绿纸、叶绿强调 */
+  body[data-skin="forest"] .bgart img{filter:hue-rotate(72deg) saturate(.82) brightness(.9)}
+  body[data-skin="forest"] .paper2,body[data-skin="forest"] .letter-in,body[data-skin="forest"] .sharecard{background:#F1F7EE;border-color:rgba(52,88,64,.22)}
+  body[data-skin="forest"] .lhead{color:#2F6B4F}
+  body[data-skin="forest"] .grow .bar i{background:#4E7B5A}
+  body[data-skin="forest"] .grow span:last-child{color:#2F6B4F}
+  body[data-skin="forest"] .streak{border-color:rgba(143,188,143,.45);color:#BFDCC0}
+  body[data-skin="forest"] .calGrid .d.hit::after{color:#8FBC8F;text-shadow:0 0 6px rgba(143,188,143,.5)}
+  body[data-skin="forest"] .navbar button.on{color:#BFDCC0}
+  body[data-skin="forest"] .navbar button.on::before{background:#8FBC8F}
+  body[data-skin="forest"] .navbar button.on::after{background:rgba(143,188,143,.14)}
+  body[data-skin="forest"] .calGrid .d.today{box-shadow:inset 0 0 0 1.5px rgba(143,188,143,.8)}
+  /* 樱花：场景偏粉、粉纸、樱粉强调 */
+  body[data-skin="sakura"] .bgart img{filter:hue-rotate(-38deg) saturate(1.12) brightness(1.03)}
+  body[data-skin="sakura"] .paper2,body[data-skin="sakura"] .letter-in,body[data-skin="sakura"] .sharecard{background:#FDF2F5;border-color:rgba(166,74,110,.2)}
+  body[data-skin="sakura"] .lhead{color:#A64A6E}
+  body[data-skin="sakura"] .grow .bar i{background:#D98BA6}
+  body[data-skin="sakura"] .grow span:last-child{color:#A64A6E}
+  body[data-skin="sakura"] .streak{border-color:rgba(232,160,180,.45);color:#F2C4D0}
+  body[data-skin="sakura"] .calGrid .d.hit::after{color:#E8A0B4;text-shadow:0 0 6px rgba(232,160,180,.5)}
+  body[data-skin="sakura"] .navbar button.on{color:#F2C4D0}
+  body[data-skin="sakura"] .navbar button.on::before{background:#E8A0B4}
+  body[data-skin="sakura"] .navbar button.on::after{background:rgba(232,160,180,.14)}
+  body[data-skin="sakura"] .calGrid .d.today{box-shadow:inset 0 0 0 1.5px rgba(232,160,180,.8)}
+  .noanim .bgart img{transition:none}</style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
  <radialGradient id="ngG" cx="50%" cy="45%"><stop offset="0%" stop-color="#FFE9C4"/><stop offset="55%" stop-color="#F5B85C"/><stop offset="100%" stop-color="rgba(245,184,92,0)"/></radialGradient>
