@@ -515,7 +515,18 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   .bs-div{width:64px;height:1.5px;background:linear-gradient(90deg,transparent,#E9B36A,transparent);margin:16px auto}
   .bs-word{font-family:'LXGW WenKai','STKaiti','KaiTi',serif;font-size:14.5px;line-height:2;color:#FFF6E8;letter-spacing:1px;padding:0 8px}
   .bs-tag{margin-top:14px;font-size:10px;letter-spacing:4px;color:rgba(233,179,106,.75)}
-  .noanim #badgeSheet{animation:none}</style>
+  .noanim #badgeSheet{animation:none}  /* ── 开屏进入：极光渐变环 + 月光音效 ── */
+  .entry-wrap{position:relative;display:block;width:200px;margin:0 auto}
+  .entry-aur{position:absolute;inset:-34px -46px;border-radius:50%;pointer-events:none;z-index:0;
+    background:conic-gradient(from 0deg,rgba(233,179,106,0),rgba(233,179,106,.6),rgba(215,203,245,.6),rgba(188,132,232,.45),rgba(233,179,106,0));
+    filter:blur(7px);animation:entSpin 5.2s linear infinite}
+  .entry-aur::after{content:"";position:absolute;inset:0;border-radius:50%;
+    box-shadow:0 0 26px 8px rgba(233,179,106,.24);animation:entB 3s ease-in-out infinite}
+  @keyframes entSpin{to{transform:rotate(360deg)}}
+  @keyframes entB{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+  .entry-wrap .wax{position:relative;z-index:1}
+  .noanim .entry-aur,.noanim .entry-aur::after{animation:none}
+  @media (prefers-reduced-motion:reduce){.entry-aur,.entry-aur::after{animation:none}}</style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
  <radialGradient id="ngG" cx="50%" cy="45%"><stop offset="0%" stop-color="#FFE9C4"/><stop offset="55%" stop-color="#F5B85C"/><stop offset="100%" stop-color="rgba(245,184,92,0)"/></radialGradient>
@@ -924,7 +935,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
     <div class="tiny">「阿眠小剧场」
     <div class="tiny" id="amianTheater">阿眠 · 替你守住这一夜</div></div>
     <div style="position:absolute;left:22px;right:22px;bottom:96px">
-     <button class="wax" data-go="s-store">开 始 酿 梦</button>
+     <span class="entry-wrap"><button class="wax" id="entryBtn" data-go="s-store"></span>开 始 酿 梦</button>
      <div class="tiny">六年一坛 · 平安封缄 · 演示数据均在瓶内生成</div>
     </div>
    </section>
@@ -1326,6 +1337,7 @@ function sfxPlay(name){
   if(name==="seal"){wash(0.09,0.5,900);tone(210,70,0.16,"sine",0.32,0.015);tone(1560,1240,0.09,"sine",0.1,0.05)}
   else if(name==="tide"){wash(0.55,0.34,520,0);wash(0.7,0.42,460,0.5);tone(160,90,1.1,"sine",0.1,0.1)}
   else if(name==="rite"){wash(0.4,0.3,700,0);tone(140,60,0.5,"sine",0.26,0.05);tone(1046,1046,0.14,"sine",0.14,0.42);tone(1318,1318,0.16,"sine",0.13,0.56);tone(1568,1568,0.2,"sine",0.12,0.72);tone(2093,2093,0.26,"sine",0.09,0.9)}
+  else if(name==="moon"){tone(261,259,2.2,"sine",0.12,0);tone(392,390,2.2,"sine",0.075,0);tone(523,521,1.7,"sine",0.05,0.45)}
   else if(name==="tap"){tone(1830,1830,0.05,"sine",0.05)}
  }catch(e){}
 }
@@ -2107,7 +2119,8 @@ function pickNext(){pickIdx=(pickIdx+1)%PICKS.length;
 }
 $$('[data-go]').forEach(function(b){b.addEventListener('click',function(){
  if(b.dataset.go==='s-store'&&b.textContent.includes('酿 梦')){
-  b.classList.add('startAnim');
+  b.classList.add('startAnim');
+   try{sfx('moon')}catch(e){}
   setTimeout(function(){show(b.dataset.go);b.classList.remove('startAnim')},700);
  }else show(b.dataset.go);
 })});
