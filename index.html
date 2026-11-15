@@ -499,7 +499,23 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   body[data-skin="sakura"] .navbar button.on::before{background:#E8A0B4}
   body[data-skin="sakura"] .navbar button.on::after{background:rgba(232,160,180,.14)}
   body[data-skin="sakura"] .calGrid .d.today{box-shadow:inset 0 0 0 1.5px rgba(232,160,180,.8)}
-  .noanim .bgart img{transition:none}</style>
+  .noanim .bgart img{transition:none}  /* ── 徽章详情小页 ── */
+  #badgeSheet{position:fixed;inset:0;z-index:82;background:rgba(10,11,30,.72);backdrop-filter:blur(2px);
+   display:flex;align-items:flex-end;animation:mkUp .28s ease-out both}
+  .bs-card{width:100%;background:linear-gradient(180deg,#1D1940,#141632);border-top:1px solid rgba(233,179,106,.35);
+   border-radius:22px 22px 0 0;padding:26px 22px 34px;text-align:center}
+  .bs-ring{width:132px;height:132px;margin:0 auto 12px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+   background:radial-gradient(circle at 35% 30%,rgba(215,203,245,.14),rgba(78,67,144,.35));
+   box-shadow:0 0 0 1.5px rgba(233,179,106,.35),0 10px 34px rgba(5,6,20,.6)}
+  .bs-ring svg{width:112px;height:112px;display:block}
+  .bs-ring:not(.on) svg{filter:grayscale(1) brightness(.55)}
+  .bs-name{font-size:17px;letter-spacing:4px;color:#FFE9C4;font-family:serif}
+  .bs-status{margin-top:8px;font-size:12.5px;letter-spacing:1px;color:rgba(244,241,232,.78)}
+  .bs-status b{color:#E9B36A;font-weight:400}
+  .bs-div{width:64px;height:1.5px;background:linear-gradient(90deg,transparent,#E9B36A,transparent);margin:16px auto}
+  .bs-word{font-family:'LXGW WenKai','STKaiti','KaiTi',serif;font-size:14.5px;line-height:2;color:#FFF6E8;letter-spacing:1px;padding:0 8px}
+  .bs-tag{margin-top:14px;font-size:10px;letter-spacing:4px;color:rgba(233,179,106,.75)}
+  .noanim #badgeSheet{animation:none}</style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
  <radialGradient id="ngG" cx="50%" cy="45%"><stop offset="0%" stop-color="#FFE9C4"/><stop offset="55%" stop-color="#F5B85C"/><stop offset="100%" stop-color="rgba(245,184,92,0)"/></radialGradient>
@@ -1568,6 +1584,39 @@ renderCalMonths();
   });
  }
 }
+/* ── 徽章详情 ── */
+var BADGE_WORDS={
+ first:"第一颗星已入瓶，往后的夜，都从这里亮起。",
+ voice:"你的声音酿成了星光，疲惫听见也会融化。",
+ week:"七夜相连成北斗，往后的路，星星替你掌灯。",
+ tide:"第一封潮信靠岸，时光的回礼已签收。",
+ edit:"潮水改写了字句，也改写了更温柔的你。",
+ card:"酿卡出坛，愿收到它的人，梦见你所想。",
+ ai:"隔着岁月的对话，过去的你为今天举灯。",
+ backup:"平安入档，星光已备份，往后每一夜都不怕黑。"
+};
+function badgeSheet(A,un,dt){
+ var old=document.getElementById("badgeSheet");if(old)old.remove();
+ var sh=document.createElement("div");sh.id="badgeSheet";
+ var statusLine=un
+   ?(dt&&dt!=="1"?"获得于 <b class='fnum'>"+dt+"</b>":"早已伴你左右")
+   :"尚未点亮 · "+A.desc;
+ var word=un?(BADGE_WORDS[A.id]||"星光已入瓶，夜夜皆平安。"):"继续酿，这一枚很快就是你的。";
+ sh.innerHTML=
+  '<div class="bs-card">'
+  +'<div class="bs-ring'+(un?" on":"")+'"><svg viewBox="0 0 100 100">'+A.art+'</svg></div>'
+  +'<div class="bs-name">'+A.name+'</div>'
+  +'<div class="bs-status">'+statusLine+'</div>'
+  +'<div class="bs-div"></div>'
+  +'<div class="bs-word">“'+word+'”</div>'
+  +(un?'<div class="bs-tag">成 就 吉 祥 话</div>':'<div class="bs-tag">任 务 卷 轴</div>')
+  +'</div>';
+ document.body.appendChild(sh);
+ var close=function(){sh.remove();document.removeEventListener("click",outside,true)};
+ var outside=function(e){if(!sh.querySelector(".bs-card").contains(e.target)){close()}};
+ setTimeout(function(){document.addEventListener("click",outside,true)},60);
+}
+
 function fmtLeft(ms){
  var sec=Math.max(0,Math.ceil(ms/1000));
  if(sec>=86400) return Math.ceil(sec/86400)+' 天';
@@ -2452,7 +2501,7 @@ function checkAchievements(){
   var unlocked=false;
   try{unlocked=!!localStorage.getItem(key)}catch(e){}
   if(!unlocked){
-   try{if(A.check()){localStorage.setItem(key,"1");newOnes.push(A)}}catch(e){}
+   try{if(A.check()){localStorage.setItem(key,todayStr());newOnes.push(A)}}catch(e){}
   }
  });
  return newOnes;
@@ -2462,9 +2511,11 @@ function renderAchievements(){
  grid.innerHTML="";
  ACHIEVEMENTS.forEach(function(A){
   var key="brewm_ach_"+A.id;
-  var un=false;try{un=!!localStorage.getItem(key)}catch(e){}
-  var d=document.createElement("div");d.className="achv"+(un?" on":"");
+  var dt="";try{dt=localStorage.getItem(key)||""}catch(e){}
+  var un=!!dt;
+  var d=document.createElement("div");d.className="achv"+(un?" on":"");d.style.cursor="pointer";
   d.innerHTML='<div class="ic"><svg viewBox="0 0 100 100">'+A.art+'</svg></div><b>'+A.name+'</b><small>'+(un?A.desc:"？？？")+'</small>';
+  d.addEventListener("click",function(){badgeSheet(A,un,dt)});
   grid.appendChild(d);
  });
 }
