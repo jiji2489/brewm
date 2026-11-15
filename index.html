@@ -879,7 +879,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
    <i class="twstar">✦</i>
   </span>
     <div class="tiny">「阿眠小剧场」
-    <div class="tiny">阿眠 · 替你守住这一夜</div></div>
+    <div class="tiny" id="amianTheater">阿眠 · 替你守住这一夜</div></div>
     <div style="position:absolute;left:22px;right:22px;bottom:96px">
      <button class="wax" data-go="s-store">开 始 酿 梦</button>
      <div class="tiny">六年一坛 · 平安封缄 · 演示数据均在瓶内生成</div>
@@ -1558,7 +1558,7 @@ function renderLetters(){
   ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);
   card.querySelector('.ledsave').onclick=function(){
    var v=ta.value.trim();if(!v){toast('内容不能为空');return}
-   L.t=v;saveAll();buzz(12);renderLetters();toast('已改 · 潮水记下了');
+   L.t=v;saveAll();buzz(12);renderLetters();toast('已改 · 潮水记下了');try{localStorage.setItem('brewm_edited','1')}catch(e){}
   };
   card.querySelector('.ledcancel').onclick=function(){renderLetters()};
  };
