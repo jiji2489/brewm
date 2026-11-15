@@ -1470,8 +1470,21 @@ renderCalMonths();
    +'<div class="bar"><i style="width:'+Math.min(88,20+ (state.dreams.length-i)*9)+'%"></i></div>'
    +'<span style="font-size:10.5px;color:#A6402F">'+Math.min(24,3+(state.dreams.length-i)*2)+'/24</span></div>'
    +(i===state.dreams.length-1?'<div style="margin-top:12px;font-size:12px;line-height:1.8;color:#6B5426;background:rgba(233,179,106,.14);border:1px solid rgba(233,179,106,.4);border-radius:10px;padding:8px 12px">AI 已萃取养分 · 原文从未外传</div>':'');
-  box.appendChild(d);
+   d.innerHTML+='<div class="fdel" data-i="'+i+'" style="margin-top:12px;text-align:right"><span style="font-size:10.5px;color:rgba(166,64,47,.7);letter-spacing:2px;border-bottom:1px dashed rgba(166,64,47,.45);padding:2px 4px">删除此档</span></div>';
+ box.appendChild(d);
  });
+ if(!window.__fdelBound){window.__fdelBound=1;
+  box.addEventListener('click',function(e){
+   var d=e.target.closest('.fdel');if(!d)return;
+   var i=+d.dataset.i;var D=state.dreams[i];if(!D)return;
+   if(!confirm('删除这封档案？\n「'+(D.t||'').slice(0,20)+'…」\n删除后不可找回'))return;
+   state.dreams.splice(i,1);
+   for(var k=state.letters.length-1;k>=0;k--){var L=state.letters[k];if(L.mine&&L.t===D.t){state.letters.splice(k,1);break}}
+   saveAll();buzz(12);
+   renderFile();if(typeof renderLetters==='function')renderLetters();if(typeof renderWorld==='function')renderWorld();if(typeof renderCalendar==='function')renderCalendar();
+   toast('已删除 · 潮水记得它来过');
+  });
+ }
 }
 function fmtLeft(ms){
  var sec=Math.max(0,Math.ceil(ms/1000));
