@@ -172,7 +172,7 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .navbar button.on .ico-f{display:block}
 .navbar button.on::after{content:"";position:absolute;left:50%;top:3px;transform:translateX(-50%);width:46px;height:46px;border-radius:50%;background:rgba(215,203,245,.10)}
 .navbar button.on{color:#D7CBF5;font-weight:400}
-.navbar button.on::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:22px;height:2.5px;border-radius:2px;background:#E9B36A}
+/* 指示条已改为独立滑动元素 #navind */
 @media (max-width:560px){body{padding:0}.phone{width:100vw;height:100vh;border-radius:0;border:none}
 .brand,.caption{display:none}}
 body.full{padding:0}
@@ -526,7 +526,11 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   @keyframes entB{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
   .entry-wrap .wax{position:relative;z-index:1}
   .noanim .entry-aur,.noanim .entry-aur::after{animation:none}
-  @media (prefers-reduced-motion:reduce){.entry-aur,.entry-aur::after{animation:none}}</style>
+  @media (prefers-reduced-motion:reduce){.entry-aur,.entry-aur::after{animation:none}}  /* ── 导航滑动指示条 ── */
+  #navind{position:absolute;top:0;left:0;width:22px;height:2.5px;border-radius:2px;background:#E9B36A;
+   transition:left .32s cubic-bezier(.4,0,.2,1);z-index:3;pointer-events:none}
+  .noanim #navind{transition:none}
+  @media (prefers-reduced-motion:reduce){#navind{transition:none}}</style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
  <radialGradient id="ngG" cx="50%" cy="45%"><stop offset="0%" stop-color="#FFE9C4"/><stop offset="55%" stop-color="#F5B85C"/><stop offset="100%" stop-color="rgba(245,184,92,0)"/></radialGradient>
@@ -582,7 +586,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
    <div class="bgart soft" id="bg-night"><img src="img/bg-tree.webp" alt="" style="object-position:50% 82%"></div>
    <div class="bgart" id="bg-mine"><img src="img/bg-pour.webp" alt="" style="object-position:18% 42%"></div>
    <div class="bgart soft" id="bg-set"><img src="img/bg-galaxy.webp" alt="" style="object-position:50% 55%"></div>
-   <div class="bgart soft" id="bg-open"><img src="img/bg-pour.webp" alt=""></div>
+   <div class="bgart soft" id="bg-open"><img src="img/bg-splash.webp" alt=""></div>
    <div class="bgart" id="bg-voice"><img src="img/bg-boat.webp" alt="" style="object-position:50% 30%"></div>
    <div class="bgart" id="bg-feed"><img src="img/bg-tree.webp" alt="" style="object-position:50% 40%"></div>
    <div class="bgart" id="bg-append"><img src="img/bg-desk.webp" alt="" style="object-position:50% 62%"></div>
@@ -935,7 +939,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
     <div class="tiny">「阿眠小剧场」
     <div class="tiny" id="amianTheater">阿眠 · 替你守住这一夜</div></div>
     <div style="position:absolute;left:22px;right:22px;bottom:96px">
-     <span class="entry-wrap"><button class="wax" id="entryBtn" data-go="s-store"></span>开 始 酿 梦</button>
+     <span class="entry-wrap"><span class="entry-aur"></span><button class="wax" id="entryBtn" data-go="s-store"></span>开 始 酿 梦</button>
      <div class="tiny">六年一坛 · 平安封缄 · 演示数据均在瓶内生成</div>
     </div>
    </section>
@@ -1203,6 +1207,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ngStage" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6B5BA8"/><stop offset="1" stop-color="#4E4390"/></linearGradient><linearGradient id="ngMoon" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D7CBF5"/><stop offset="1" stop-color="#B7A4EC"/></linearGradient><linearGradient id="ngGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EDBC74"/><stop offset="1" stop-color="#D69E4E"/></linearGradient><linearGradient id="ngRed" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C2533A"/><stop offset="1" stop-color="#A63D28"/></linearGradient><linearGradient id="xMG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D7CBF5"/><stop offset="1" stop-color="#EDBC74"/></linearGradient></defs></svg>
   <nav class="navbar">
+   <i id="navind" aria-hidden="true"></i>
    <button data-v="s-store" class="on" aria-label="存入">
     <svg class="ico-l" width="21" height="21" viewBox="0 0 44 44" aria-hidden="true"><rect x="7" y="7" width="30" height="30" rx="7" fill="url(#ngStage)"/><circle cx="12" cy="12" r="1.3" fill="#E9B36A"/><circle cx="32" cy="12" r="1.3" fill="#E9B36A"/><circle cx="12" cy="32" r="1.3" fill="#E9B36A"/><circle cx="32" cy="32" r="1.3" fill="#E9B36A"/><rect x="15" y="10.5" width="14" height="8" rx="2" fill="url(#ngGold)"/><rect x="11" y="15.5" width="22" height="14.5" rx="3" fill="url(#xMG)"/><path d="M11,15.5 A11,11 0 0 0 33,15.5 Z" fill="url(#ngGold)"/><circle cx="22" cy="21" r="2.8" fill="url(#ngRed)"/><circle cx="22" cy="20.2" r="0.9" fill="#E7DFF8"/><rect x="13.5" y="27.4" width="17" height="1.6" rx="0.8" fill="url(#ngGold)"/></svg>
     <svg class="ico-f" width="21" height="21" viewBox="0 0 44 44" aria-hidden="true"><rect x="7" y="7" width="30" height="30" rx="7" fill="url(#ngStage)"/><circle cx="12" cy="12" r="1.3" fill="#E9B36A"/><circle cx="32" cy="12" r="1.3" fill="#E9B36A"/><circle cx="12" cy="32" r="1.3" fill="#E9B36A"/><circle cx="32" cy="32" r="1.3" fill="#E9B36A"/><rect x="15" y="10.5" width="14" height="8" rx="2" fill="url(#ngGold)"/><rect x="11" y="15.5" width="22" height="14.5" rx="3" fill="url(#xMG)"/><path d="M11,15.5 A11,11 0 0 0 33,15.5 Z" fill="url(#ngGold)"/><circle cx="22" cy="21" r="2.8" fill="url(#ngRed)"/><circle cx="22" cy="20.2" r="0.9" fill="#E7DFF8"/><rect x="13.5" y="27.4" width="17" height="1.6" rx="0.8" fill="url(#ngGold)"/></svg>
@@ -1382,7 +1387,8 @@ function show(id){
  if(id==='s-tide'&&typeof renderLetters==='function')renderLetters();
  if(id==='s-cardcolors'&&typeof renderCardColors==='function')renderCardColors();
  $$('.navbar button').forEach(function(b){b.classList.toggle('on',b.dataset.v===({'s-qseal':'s-store','s-tidenight':'s-share'})[id]||b.dataset.v===id)});
- $$('.bgart').forEach(function(b){b.classList.toggle('on',b.id==='bg-'+id.slice(2))});
+ $$('.bgart').forEach(function(b){b.classList.toggle('on',b.id==='bg-'+id.slice(2))});
+ if(typeof positionNavInd==='function')positionNavInd();
  var bg=document.getElementById('bg-'+id.slice(2));
  if(bg){var im=bg.querySelector('img');
   if(im&&!im.getAttribute('src')&&im.dataset.src){im.src=im.dataset.src}}
@@ -1628,6 +1634,16 @@ function badgeSheet(A,un,dt){
  var outside=function(e){if(!sh.querySelector(".bs-card").contains(e.target)){close()}};
  setTimeout(function(){document.addEventListener("click",outside,true)},60);
 }
+
+/* ── 导航滑动指示条定位 ── */
+function positionNavInd(){
+ var ind=document.getElementById('navind');if(!ind)return;
+ var b=document.querySelector('.navbar button.on');
+ if(!b)return;
+ var left=b.offsetLeft+(b.offsetWidth-ind.offsetWidth)/2;
+ ind.style.left=left+'px';
+}
+addEventListener('resize',function(){positionNavInd()});
 
 function fmtLeft(ms){
  var sec=Math.max(0,Math.ceil(ms/1000));
@@ -2888,4 +2904,5 @@ try{var _na=checkAchievements();if(_na.length){_na.forEach(function(A){toast('�
 
 
 </script>
+<script>window.addEventListener('load',function(){setTimeout(function(){if(typeof positionNavInd==='function')positionNavInd()},300)});</script>
 </body></html>
