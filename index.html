@@ -500,7 +500,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   body[data-skin="sakura"] .navbar button.on::after{background:rgba(232,160,180,.14)}
   body[data-skin="sakura"] .calGrid .d.today{box-shadow:inset 0 0 0 1.5px rgba(232,160,180,.8)}
   .noanim .bgart img{transition:none}  /* ── 徽章详情小页 ── */
-  #badgeSheet{position:fixed;inset:0;z-index:82;background:rgba(10,11,30,.72);backdrop-filter:blur(2px);
+  #badgeSheet{position:absolute;inset:0;z-index:82;background:rgba(10,11,30,.72);backdrop-filter:blur(2px);
    display:flex;align-items:flex-end;animation:mkUp .28s ease-out both}
   .bs-card{width:100%;background:linear-gradient(180deg,#1D1940,#141632);border-top:1px solid rgba(233,179,106,.35);
    border-radius:22px 22px 0 0;padding:26px 22px 34px;text-align:center}
@@ -1505,7 +1505,7 @@ function markSheet(key,cellEl){
     return '<button data-mk="'+mk.id+'" style="flex:1;padding:12px 0;border-radius:14px;border:1.5px solid '+(on?mk.c:'rgba(244,241,232,.25)')+';background:'+(on?'rgba(233,179,106,.12)':'rgba(255,255,255,.04)')+';color:'+mk.c+';font-size:20px;font-family:inherit;cursor:pointer">'+mk.g+'<div style="font-size:10.5px;letter-spacing:2px;margin-top:3px;color:'+(on?mk.c:'rgba(244,241,232,.55)')+'">'+mk.n+'</div></button>';
   }).join('')
   +'<button data-mk="clear" style="flex:1;padding:12px 0;border-radius:14px;border:1.5px solid rgba(166,64,47,.5);background:none;color:#BC4A32;font-size:13px;font-family:inherit;cursor:pointer">✕<div style="font-size:10.5px;letter-spacing:2px;margin-top:3px">清除</div></button></div>';
- document.body.appendChild(sh);
+ var host=document.querySelector('.phone')||document.body;host.appendChild(sh);
  var close=function(){sh.remove();document.removeEventListener('click',outside,true)};
  var outside=function(e){if(!sh.contains(e.target)){close()}};
  setTimeout(function(){document.addEventListener('click',outside,true)},50);
@@ -1629,7 +1629,7 @@ function badgeSheet(A,un,dt){
   +'<div class="bs-word">“'+word+'”</div>'
   +(un?'<div class="bs-tag">成 就 吉 祥 话</div>':'<div class="bs-tag">任 务 卷 轴</div>')
   +'</div>';
- document.body.appendChild(sh);
+ var host=document.querySelector('.phone')||document.body;host.appendChild(sh);
  var close=function(){sh.remove();document.removeEventListener("click",outside,true)};
  var outside=function(e){if(!sh.querySelector(".bs-card").contains(e.target)){close()}};
  setTimeout(function(){document.addEventListener("click",outside,true)},60);
