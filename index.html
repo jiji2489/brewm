@@ -517,12 +517,14 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   .bs-tag{margin-top:14px;font-size:10px;letter-spacing:4px;color:rgba(233,179,106,.75)}
   .noanim #badgeSheet{animation:none}  /* ── 开屏进入：极光渐变环 + 月光音效 ── */
   .entry-wrap{position:relative;display:block;width:200px;margin:0 auto}
-  .entry-aur{position:absolute;inset:-34px -46px;border-radius:50%;pointer-events:none;z-index:0;
-    background:conic-gradient(from 0deg,rgba(233,179,106,0),rgba(233,179,106,.6),rgba(215,203,245,.6),rgba(188,132,232,.45),rgba(233,179,106,0));
-    filter:blur(7px);animation:entSpin 5.2s linear infinite}
-  .entry-aur::after{content:"";position:absolute;inset:0;border-radius:50%;
-    box-shadow:0 0 26px 8px rgba(233,179,106,.24);animation:entB 3s ease-in-out infinite}
-  @keyframes entSpin{to{transform:rotate(360deg)}}
+  .entry-aur{position:absolute;left:50%;top:50%;width:170px;height:170px;margin:-109px 0 0 -85px;border-radius:50%;pointer-events:none;z-index:0;
+    background:conic-gradient(from 0deg,rgba(233,179,106,0),rgba(233,179,106,.85),rgba(215,203,245,.8),rgba(188,132,232,.65),rgba(233,179,106,0));
+    -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 26px),#000 calc(100% - 20px));
+    mask:radial-gradient(farthest-side,transparent calc(100% - 26px),#000 calc(100% - 20px));
+    filter:blur(1.2px) drop-shadow(0 0 10px rgba(233,179,106,.65));
+    animation:entSpin 5.2s linear infinite}
+  @keyframes entB{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes entSpin{to{transform:rotate(360deg)}}
   @keyframes entB{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
   .entry-wrap .wax{position:relative;z-index:1}
   .noanim .entry-aur,.noanim .entry-aur::after{animation:none}
@@ -939,7 +941,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
     <div class="tiny">「阿眠小剧场」
     <div class="tiny" id="amianTheater">阿眠 · 替你守住这一夜</div></div>
     <div style="position:absolute;left:22px;right:22px;bottom:96px">
-     <span class="entry-wrap"><span class="entry-aur"></span><button class="wax" id="entryBtn" data-go="s-store"></span>开 始 酿 梦</button>
+     <span class="entry-wrap"><span class="entry-aur"></span><button class="wax" id="entryBtn" data-go="s-store">开 始 酿 梦</button></span>
      <div class="tiny">六年一坛 · 平安封缄 · 演示数据均在瓶内生成</div>
     </div>
    </section>
@@ -1497,12 +1499,12 @@ function markSheet(key,cellEl){
  var old=document.getElementById('markSheet');if(old)old.remove();
  var cur=getCalMarks()[key]||'';
  var sh=document.createElement('div');sh.id='markSheet';
- sh.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:80;background:linear-gradient(180deg,#1D1940,#141632);border-top:1px solid rgba(233,179,106,.35);border-radius:18px 18px 0 0;padding:16px 18px 26px;text-align:center;animation:mkUp .25s ease-out both';
+ sh.style.cssText='position:absolute;left:0;right:0;bottom:0;border-radius:18px 18px 0 0;z-index:80;background:linear-gradient(180deg,#1D1940,#141632);border-top:1px solid rgba(233,179,106,.35);border-radius:18px 18px 0 0;padding:16px 18px 26px;text-align:center;animation:mkUp .25s ease-out both';
  sh.innerHTML='<div style="font-family:serif;font-size:14px;letter-spacing:2px;color:#FFE9C4;margin-bottom:12px">'+key+' 　'+(cur?'已标记':'未标记')+'</div>'
   +'<div style="display:flex;gap:10px;justify-content:center">'
   +CAL_MARKS.map(function(mk){
     var on=cur===mk.id;
-    return '<button data-mk="'+mk.id+'" style="flex:1;padding:12px 0;border-radius:14px;border:1.5px solid '+(on?mk.c:'rgba(244,241,232,.25)')+';background:'+(on?'rgba(233,179,106,.12)':'rgba(255,255,255,.04)')+';color:'+mk.c+';font-size:20px;font-family:inherit;cursor:pointer">'+mk.g+'<div style="font-size:10.5px;letter-spacing:2px;margin-top:3px;color:'+(on?mk.c:'rgba(244,241,232,.55)')+'">'+mk.n+'</div></button>';
+    return '<button data-mk="'+mk.id+'" style="flex:1;padding:12px 0;border-radius:14px;border:1.5px solid '+(on?mk.c:'rgba(244,241,232,.25)')+';background:'+(on?'rgba(233,179,106,.12)':'rgba(255,255,255,.04)')+';cursor:pointer"><span style="display:inline-block;width:22px;height:22px">'+CAL_SVG[mk.id]+'</span><div style="font-size:10.5px;letter-spacing:2px;margin-top:3px;color:'+(on?mk.c:'rgba(244,241,232,.55)')+'">'+mk.n+'</div></button>';
   }).join('')
   +'<button data-mk="clear" style="flex:1;padding:12px 0;border-radius:14px;border:1.5px solid rgba(166,64,47,.5);background:none;color:#BC4A32;font-size:13px;font-family:inherit;cursor:pointer">✕<div style="font-size:10.5px;letter-spacing:2px;margin-top:3px">清除</div></button></div>';
  var host=document.querySelector('.phone')||document.body;host.appendChild(sh);
@@ -1522,6 +1524,11 @@ function markSheet(key,cellEl){
  st.textContent='@keyframes mkUp{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}';
  document.head.appendChild(st)})();
 
+var CAL_SVG={
+ star:'<svg viewBox="0 0 44 44" style="width:100%;height:100%"><path d="M22,6 C23.5,14 26,17 34,18.5 C26,20 23.5,23 22,31 C20.5,23 18,20 10,18.5 C18,17 20.5,14 22,6 Z" fill="#E9B36A"/><circle cx="34" cy="30" r="2" fill="#FFE9C4" opacity=".85"/></svg>',
+ heart:'<svg viewBox="0 0 44 44" style="width:100%;height:100%"><path d="M22,37 C10,28 6,21 6,15.5 C6,10.5 9.5,7 14,7 C17.5,7 20.5,9 22,12 C23.5,9 26.5,7 30,7 C34.5,7 38,10.5 38,15.5 C38,21 34,28 22,37 Z" fill="#D0603F"/><circle cx="15" cy="14" r="2.6" fill="#F6E7D3"/></svg>',
+ moon:'<svg viewBox="0 0 44 44" style="width:100%;height:100%"><circle cx="22" cy="22" r="14" fill="#D7CBF5"/><circle cx="17" cy="17" r="3.2" fill="#B7A4EC"/><circle cx="26" cy="25" r="2.4" fill="#B7A4EC"/><circle cx="20" cy="27" r="1.6" fill="#B7A4EC"/></svg>'
+};
 function renderCalMonths(){
  var box=document.getElementById('calMonths');if(!box)return;box.innerHTML='';
  var now=new Date();
@@ -1544,7 +1551,7 @@ function renderCalMonths(){
   months.push({y:yStr,m:mStr,cells:cells,tide:hasTide,cur:m===0});
  }
  var marks=getCalMarks();
- var MARKS={star:{c:'#E9B36A',g:'✦'},heart:{c:'#BC4A32',g:'❤'},moon:{c:'#D7CBF5',g:'☾'}};
+ var MARKS={star:{c:'#E9B36A',bg:'rgba(233,179,106,.16)',gl:'rgba(233,179,106,.55)',g:'✦'},heart:{c:'#D0603F',bg:'rgba(188,74,50,.18)',gl:'rgba(208,96,63,.5)',g:'❤'},moon:{c:'#D7CBF5',bg:'rgba(215,203,245,.16)',gl:'rgba(215,203,245,.5)',g:'☾'}};
  var html='';
  months.forEach(function(mo){
   html+='<div style="margin-bottom:14px"><b style="font-size:14px;color:'+(mo.tide?'#FFE9C4':'#9AA3C7')+'">'+mo.y+'.'+String(mo.m).padStart(2,'0')+(mo.tide?' ✦ 涨潮':'')+'</b>';
@@ -1554,9 +1561,10 @@ function renderCalMonths(){
    var isToday=mo.cur&&c.d===now.getDate();
    var key=mo.y+'-'+String(mo.m).padStart(2,'0')+'-'+String(c.d).padStart(2,'0');
    var mk=marks[key];
-   var mkHtml=mk&&MARKS[mk]?'<div style="font-size:12px;line-height:1;color:'+MARKS[mk].c+';text-shadow:0 0 5px rgba(233,179,106,.4)">'+MARKS[mk].g+'</div>':'';
-   var col=isToday?'#E9B36A':'rgba(244,241,232,'+(mk?'.9':'.4')+')';
-   html+='<span data-cal="'+key+'" style="text-align:center;padding:3px 0;border-radius:8px;cursor:pointer;color:'+col+';'+(isToday?'background:rgba(233,179,106,.15);font-weight:bold':'')+'">'+c.d+mkHtml+'</span>';
+   var mkHtml=mk&&MARKS[mk]?'<div style="width:15px;height:15px;margin:1px auto 0;filter:drop-shadow(0 0 3px '+MARKS[mk].gl+')">'+CAL_SVG[mk]+'</div>':'';
+   var col=mk&&MARKS[mk]?MARKS[mk].c:(isToday?'#E9B36A':'rgba(244,241,232,'+(mk?'.92':'.4')+')');
+   var cellBg=mk&&MARKS[mk]?MARKS[mk].bg:(isToday?'rgba(233,179,106,.15)':'');
+   html+='<span data-cal="'+key+'" style="text-align:center;padding:3px 0;border-radius:10px;cursor:pointer;color:'+col+';font-weight:'+(mk||isToday?'bold':'normal')+';'+(cellBg?'background:'+cellBg+';':'')+'">'+c.d+mkHtml+'</span>';
   });
   html+='</div></div>';
  });
