@@ -532,7 +532,10 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   #navind{position:absolute;top:0;left:0;width:22px;height:2.5px;border-radius:2px;background:#E9B36A;
    transition:left .32s cubic-bezier(.4,0,.2,1);z-index:3;pointer-events:none}
   .noanim #navind{transition:none}
-  @media (prefers-reduced-motion:reduce){#navind{transition:none}}</style>
+  @media (prefers-reduced-motion:reduce){#navind{transition:none}}  /* ── 开屏视差：背景/内容分层随触摸轻微错位 ── */
+  #s-open .px-bg,#s-open .px-mid{will-change:transform;transition:transform .25s ease-out}
+  .noanim #s-open .px-bg,.noanim #s-open .px-mid{transition:none}
+  @media (prefers-reduced-motion:reduce){#s-open .px-bg,#s-open .px-mid{transform:none!important;transition:none}}</style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
  <radialGradient id="ngG" cx="50%" cy="45%"><stop offset="0%" stop-color="#FFE9C4"/><stop offset="55%" stop-color="#F5B85C"/><stop offset="100%" stop-color="rgba(245,184,92,0)"/></radialGradient>
@@ -588,7 +591,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
    <div class="bgart soft" id="bg-night"><img src="img/bg-tree.webp" alt="" style="object-position:50% 82%"></div>
    <div class="bgart" id="bg-mine"><img src="img/bg-pour.webp" alt="" style="object-position:18% 42%"></div>
    <div class="bgart soft" id="bg-set"><img src="img/bg-galaxy.webp" alt="" style="object-position:50% 55%"></div>
-   <div class="bgart soft" id="bg-open"><img src="img/bg-splash.webp" alt=""></div>
+   <div class="bgart soft" id="bg-open"><img src="img/bg-splash.webp" alt="" id="pxOpenBg"></div>
    <div class="bgart" id="bg-voice"><img src="img/bg-boat.webp" alt="" style="object-position:50% 30%"></div>
    <div class="bgart" id="bg-feed"><img src="img/bg-tree.webp" alt="" style="object-position:50% 40%"></div>
    <div class="bgart" id="bg-append"><img src="img/bg-desk.webp" alt="" style="object-position:50% 62%"></div>
@@ -1652,6 +1655,29 @@ function positionNavInd(){
  ind.style.left=left+'px';
 }
 addEventListener('resize',function(){positionNavInd()});
+
+/* ── 开屏视差 ── */
+(function(){
+ var tgt=null;
+ function bind(el){
+  if(!el)return;
+  function onMove(x,y){
+   var r=el.getBoundingClientRect();
+   var dx=(x-r.left-r.width/2)/r.width, dy=(y-r.top-r.height/2)/r.height;
+   var bg=document.getElementById('pxOpenBg');
+   var mid=document.querySelector('#s-open .entry-wrap');
+   if(bg)bg.style.transform='translate('+dx*-12+'px,'+dy*-8+'px) scale(1.04)';
+   if(mid)mid.style.transform='translate('+dx*7+'px,'+dy*5+'px)';
+  }
+  el.addEventListener('pointermove',function(e){onMove(e.clientX,e.clientY)});
+  el.addEventListener('pointerleave',function(){
+   var bg=document.getElementById('pxOpenBg');
+   var mid=document.querySelector('#s-open .entry-wrap');
+   if(bg)bg.style.transform='';if(mid)mid.style.transform='';
+  });
+ }
+ var so=document.getElementById('s-open');bind(so);
+})();
 
 function fmtLeft(ms){
  var sec=Math.max(0,Math.ceil(ms/1000));
