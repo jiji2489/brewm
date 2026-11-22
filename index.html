@@ -1705,16 +1705,15 @@ function renderLetters(){
   });
   box.appendChild(d);
  });
- $$('.replyGo').forEach(function(bt){
-  bt.addEventListener('click',function(){
-   var i=bt.dataset.i,inp=document.getElementById('rin'+i),out=document.getElementById('rout'+i);
-   var v=(inp.value||'').trim();if(!v){toast('写一句回信，再封进潮水里');return}
-   state.replies[i]=v;saveAll();buzz(12);
-   out.innerHTML='<div class="bub me">“'+esc(v)+'”</div>'
-    +'<button class="goShare" data-i="'+i+'">把这句酿上酿卡 ›</button>';
-   bindGoShare();
-  });
- });
+  if(!state.letters.length){
+   var empty=document.createElement('div');empty.className='paper2';
+   empty.innerHTML='<div class="lfrom">梦貘的信<span>潮汐未启</span></div>'
+    +'<div class="ltext">“瓶里现在很安静——封下第一个梦，潮汐就开始计时。到涨潮那天，我替你把此刻带回来。”</div>'
+    +'<div style="margin-top:10px"><button class="ghost" data-go="s-store" style="width:auto;padding:8px 22px">去写下第一个梦 ›</button></div>';
+   box.appendChild(empty);
+   return;
+  }
+/* 顶层死代码绑定已移除 */
  /* 改 / 删（事件委托，重渲染不丢） */
  box.onclick=function(e){
   var led=e.target.closest('.ledit'),ldel=e.target.closest('.ldel');
@@ -1973,7 +1972,10 @@ function startRec(e){
    }
   };
   mediaRec.start();
- }).catch(function(){});
+ }).catch(function(err){
+   recUI(false);
+   toast(err&&err.name==='NotAllowedError' ? '麦克风未授权 · 文字也能封缄' : '录音启动失败 · 文字也能封缄');
+ });
 }
 var mediaRecMime='';
 function endRec(){
