@@ -1,5 +1,5 @@
 // 酿梦 Brewm · 离线壳（cache-first）
-var CACHE = "brewm-v6-67";
+var CACHE = "brewm-v6-68";
 var ASSETS = [
   "./", "./index.html", "./manifest.webmanifest",
   "./img/bg-splash.webp", "./img/qr.png", "./img/amian-front.png", "./img/amian-welcome.png", "./img/amian-side.png", "./img/amian-jump.png", "./img/amian-back.png", "./img/amian-moon.png", "./img/mark-starheart.png", "./img/og-cover.jpg", "./img/icon-192.png", "./img/icon-512.png",
