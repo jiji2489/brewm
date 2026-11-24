@@ -533,9 +533,10 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
    transition:left .32s cubic-bezier(.4,0,.2,1);z-index:3;pointer-events:none}
   .noanim #navind{transition:none}
   @media (prefers-reduced-motion:reduce){#navind{transition:none}}  /* ── 开屏视差：背景/内容分层随触摸轻微错位 ── */
-  #s-open .px-bg,#s-open .px-mid{will-change:transform;transition:transform .25s ease-out}
-  .noanim #s-open .px-bg,.noanim #s-open .px-mid{transition:none}
-  @media (prefers-reduced-motion:reduce){#s-open .px-bg,#s-open .px-mid{transform:none!important;transition:none}}</style>
+  #pxOpenBg{will-change:transform;transition:opacity .4s,transform .25s ease-out}
+  #s-open .entry-wrap{will-change:transform;transition:transform .25s ease-out}
+  .noanim #pxOpenBg,.noanim #s-open .entry-wrap{transform:none!important;transition:none}
+  @media (prefers-reduced-motion:reduce){#pxOpenBg,#s-open .entry-wrap{transform:none!important;transition:none}}</style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
  <radialGradient id="ngG" cx="50%" cy="45%"><stop offset="0%" stop-color="#FFE9C4"/><stop offset="55%" stop-color="#F5B85C"/><stop offset="100%" stop-color="rgba(245,184,92,0)"/></radialGradient>
@@ -1666,15 +1667,17 @@ addEventListener('resize',function(){positionNavInd()});
    var dx=(x-r.left-r.width/2)/r.width, dy=(y-r.top-r.height/2)/r.height;
    var bg=document.getElementById('pxOpenBg');
    var mid=document.querySelector('#s-open .entry-wrap');
-   if(bg)bg.style.transform='translate('+dx*-12+'px,'+dy*-8+'px) scale(1.04)';
+   if(bg)bg.style.transform='translate('+dx*-12+'px,'+dy*-8+'px) scale(1.08)';
    if(mid)mid.style.transform='translate('+dx*7+'px,'+dy*5+'px)';
   }
   el.addEventListener('pointermove',function(e){onMove(e.clientX,e.clientY)});
-  el.addEventListener('pointerleave',function(){
+  function reset(){
    var bg=document.getElementById('pxOpenBg');
    var mid=document.querySelector('#s-open .entry-wrap');
    if(bg)bg.style.transform='';if(mid)mid.style.transform='';
-  });
+  }
+  el.addEventListener('pointerleave',reset);
+  el.addEventListener('pointercancel',reset);
  }
  var so=document.getElementById('s-open');bind(so);
 })();
@@ -1737,9 +1740,19 @@ function renderLetters(){
     +'<div class="ltext">“瓶里现在很安静——封下第一个梦，潮汐就开始计时。到涨潮那天，我替你把此刻带回来。”</div>'
     +'<div style="margin-top:10px"><button class="ghost" data-go="s-store" style="width:auto;padding:8px 22px">去写下第一个梦 ›</button></div>';
    box.appendChild(empty);
+   var goBtn=empty.querySelector('[data-go]');if(goBtn)goBtn.addEventListener('click',function(){show('s-store')});
    return;
   }
-/* 顶层死代码绑定已移除 */
+$$('.replyGo').forEach(function(bt){
+  bt.addEventListener('click',function(){
+   var i=bt.dataset.i,inp=document.getElementById('rin'+i),out=document.getElementById('rout'+i);
+   var v=(inp.value||'').trim();if(!v){toast('写一句回信，再封进潮水里');return}
+   state.replies[i]=v;saveAll();buzz(12);
+   out.innerHTML='<div class="bub me">“'+esc(v)+'”</div>'
+    +'<button class="goShare" data-i="'+i+'">把这句酿上酿卡 ›</button>';
+   bindGoShare();
+  });
+ });
  /* 改 / 删（事件委托，重渲染不丢） */
  box.onclick=function(e){
   var led=e.target.closest('.ledit'),ldel=e.target.closest('.ldel');
@@ -1999,8 +2012,8 @@ function startRec(e){
   };
   mediaRec.start();
  }).catch(function(err){
-   recUI(false);
-   toast(err&&err.name==='NotAllowedError' ? '麦克风未授权 · 文字也能封缄' : '录音启动失败 · 文字也能封缄');
+   if(!holdBtn.classList.contains('rec'))return;
+   toast(err&&err.name==='NotAllowedError' ? '麦克风未授权 · 本次只记时长' : '录音启动失败 · 本次只记时长');
  });
 }
 var mediaRecMime='';
