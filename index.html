@@ -1697,9 +1697,12 @@ function renderLetters(){
  var box=$('#letters');if(!box)return;box.innerHTML='';
  var cap=$('#tideCap');
  var un=unlockedCount();
- if(cap)cap.textContent= state.letters.length===0? '封下第一个梦，潮汐就开始计时'
-  : (un===0? '潮位渐涨 · 第一封信还在路上'
-  : '涨潮了，有 '+un+' 封信浮了上来');
+  var mineN=state.letters.filter(function(L){return !L.greet}).length;
+  var floated=state.letters.filter(function(L){return !L.greet&&(!L.unlockAt||L.unlockAt<=Date.now())}).length;
+  if(cap)cap.textContent= state.letters.length===0? '封下第一个梦，潮汐就开始计时'
+   : (mineN===0? '潮汐未启 · 梦貘替你守着瓶'
+   : (floated===0? '潮位渐涨 · 第一封信还在路上'
+   : '涨潮了，有 '+floated+' 封信浮了上来'));
  var _q=(document.getElementById('tideSearchIn')||{value:''}).value.trim().toLowerCase();
  var _showList=state.letters.map(function(L,ix){return {L:L,ix:ix}});
  if(_q)_showList=_showList.filter(function(o){return (o.L.t+' '+(o.L.q||'')+' '+(o.L.from||'')).toLowerCase().indexOf(_q)>=0});
@@ -1779,7 +1782,7 @@ $$('.replyGo').forEach(function(bt){
   var lt=card.querySelector('.ltext');
   if(!lt||card.querySelector('.ledit-box'))return;
   var old=L.t;
-  lt.outerHTML='<div class="ledit-box"><textarea maxlength="80">'+esc(old)+'</textarea>'
+  lt.outerHTML='<div class="ledit-box"><textarea maxlength="120">'+esc(old)+'</textarea>'
    +'<div><button class="ledsave">保存</button><button class="ledcancel">取消</button></div></div>';
   var ta=card.querySelector('.ledit-box textarea');
   ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);
