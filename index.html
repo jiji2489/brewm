@@ -874,7 +874,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
    </section>
    <section class="screen" id="s-mine">
     <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
-     <img src="img/amian-front.png" alt="阿眠" style="width:48px;height:48px;animation:breathe 3.8s ease-in-out infinite;border-radius:50%;object-fit:cover;background:rgba(233,179,106,.12);border:1.5px solid rgba(233,179,106,.65);box-shadow:0 6px 16px rgba(5,6,20,.5)">
+     <img id="amianAvatar" data-src="img/amian-front.png" alt="阿眠" style="width:48px;height:48px;animation:breathe 3.8s ease-in-out infinite;border-radius:50%;object-fit:cover;background:rgba(233,179,106,.12);border:1.5px solid rgba(233,179,106,.65);box-shadow:0 6px 16px rgba(5,6,20,.5)">
      <div><div style="font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:22px;letter-spacing:3px;color:#FFE9C4">第 001 号瓶</div>
      <div style="font-family:Georgia,serif;font-style:italic;font-size:9.5px;letter-spacing:3px;color:rgba(244,241,232,.55)">MY BREWM · EST. 2022</div></div>
     </div>
@@ -1401,6 +1401,7 @@ function show(id){
  $$('.navbar button').forEach(function(b){b.classList.toggle('on',b.dataset.v===({'s-qseal':'s-store','s-tidenight':'s-share'})[id]||b.dataset.v===id)});
  $$('.bgart').forEach(function(b){b.classList.toggle('on',b.id==='bg-'+id.slice(2))});
  if(typeof positionNavInd==='function')positionNavInd();
+  if(id==='s-mine'){var av=document.getElementById('amianAvatar');if(av&&!av.getAttribute('src')&&av.dataset.src)av.src=av.dataset.src}
  var bg=document.getElementById('bg-'+id.slice(2));
  if(bg){var im=bg.querySelector('img');
   if(im&&!im.getAttribute('src')&&im.dataset.src){im.src=im.dataset.src}}
@@ -1731,9 +1732,9 @@ function renderLetters(){
    +'<div class="replyarea"><input placeholder="回信给过去的自己……" id="rin'+i+'">'
    +'<button class="replyGo" data-i="'+i+'">回信</button></div>'
    +'<div id="rout'+i+'"></div></div>';
-  if(state.replies[i]){
+   if(L.reply){
    var out=d.querySelector('#rout'+i);
-   if(out)out.innerHTML='<div class="bub me">“'+esc(state.replies[i])+'”</div>'
+    if(out)out.innerHTML='<div class="bub me">“'+esc(L.reply)+'”</div>'
     +'<button class="goShare" data-i="'+i+'">把这句酿上酿卡 ›</button>';
   }
   d.addEventListener('click',function(e){
@@ -1756,12 +1757,13 @@ $$('.replyGo').forEach(function(bt){
   bt.addEventListener('click',function(){
    var i=bt.dataset.i,inp=document.getElementById('rin'+i),out=document.getElementById('rout'+i);
    var v=(inp.value||'').trim();if(!v){toast('写一句回信，再封进潮水里');return}
-   state.replies[i]=v;saveAll();buzz(12);
+    if(state.letters[i])state.letters[i].reply=v;saveAll();buzz(12);
    out.innerHTML='<div class="bub me">“'+esc(v)+'”</div>'
     +'<button class="goShare" data-i="'+i+'">把这句酿上酿卡 ›</button>';
    bindGoShare();
   });
  });
+  if(typeof bindGoShare==='function')bindGoShare(); /* 渲染出来的「把这句酿上酿卡」也要能点 */
  /* 改 / 删（事件委托，重渲染不丢） */
  box.onclick=function(e){
   var led=e.target.closest('.ledit'),ldel=e.target.closest('.ldel');
@@ -1815,12 +1817,12 @@ setInterval(function(){
 },1000);
 function bindGoShare(){
  $$('.goShare').forEach(function(b){b.onclick=function(){
-  state.shareIdx='r'+b.dataset.i;renderShare();show('s-share');
+   var L=state.letters[+b.dataset.i],k=(L&&L.reply)?shareQuotes().indexOf(L.reply):-1;state.shareIdx=k>=0?k:0;renderShare();show('s-share');
  }});
 }
 function shareQuotes(){
  var qs=state.dreams.map(function(d){return d.t});
- Object.keys(state.replies).forEach(function(k){qs.push(state.replies[k])});
+ state.letters.forEach(function(L){if(L.reply)qs.push(L.reply)});
  return qs;
 }
 /* ── 梦想分享长图 ── */
@@ -1972,7 +1974,7 @@ function openRiteFx(){
 
 function renderShare(){
  var qs=shareQuotes();if(!qs.length)qs=['存下一个梦，酿给未来的自己。'];
- var q=qs[state.shareIdx%qs.length];
+  var q=qs[state.shareIdx%qs.length]||qs[0];
  $('#shareQuote').textContent='“'+q+'”';
  $('#sealDays').textContent=state.sealDays;
 }
@@ -2783,6 +2785,7 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
  navigator.serviceWorker.register('sw.js').catch(function(){});
  navigator.serviceWorker.ready.then(function(reg){
   reg.update();
+   try{if(reg.active)reg.active.postMessage('precache')}catch(e){}
   setInterval(function(){reg.update()},60000);
  });
   /* 首次安装后的接管不算更新，不刷新；真有新版本时才刷新，用户正在输入则不打断 */
@@ -2796,6 +2799,8 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
    setTimeout(function(){location.reload()},1500);
   });
 }
+  /* 头像大图不抢首屏：进「我的」页时才加载，打开 8 秒后仍未加载也补上 */
+  setTimeout(function(){var av=document.getElementById('amianAvatar');if(av&&!av.getAttribute('src')&&av.dataset.src)av.src=av.dataset.src},8000);
 (function(){ var seen=false;try{seen=!!localStorage.getItem("brewm_seen")}catch(e){}
  ping(seen?"return":"open");
  try{localStorage.setItem("brewm_seen","1")}catch(e){}
