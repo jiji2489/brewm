@@ -374,7 +374,7 @@ body[data-skin=forest]{--bg:#0E1A14;--card:rgba(200,230,200,.08);--gold:#8FBC8F}
 body[data-skin=sakura]{--bg:#1A1028;--card:rgba(255,218,225,.08);--gold:#E8A0B4}
 body[data-skin=forest] .phone{background:#0E1A14}
 body[data-skin=sakura] .phone{background:#1A1028}
-@media (prefers-color-scheme:light){body:not([data-skin]) .phone{background:#F5F0E8}body:not([data-skin]) .screen{color:#2B3A55}body:not([data-skin]) .bgart img{filter:brightness(1.15) sepia(.08)}}
+@media (prefers-color-scheme:light){body:not([data-skin]) .bgart img{filter:brightness(1.15) sepia(.08)}}
 .ripple{position:fixed;border-radius:50%;background:radial-gradient(circle,rgba(255,233,196,.25),transparent);pointer-events:none;animation:rip .5s ease-out forwards;z-index:99}
 @keyframes rip{from{width:0;height:0;opacity:.6}to{width:100px;height:100px;opacity:0;transform:translate(-50%,-50%)}}
 .tw-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
@@ -540,6 +540,13 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   @media (prefers-reduced-motion:reduce){#navind{transition:none}}  /* ── 开屏视差：背景/内容分层随触摸轻微错位 ── */
   #pxOpenBg{will-change:transform;transition:opacity .4s,transform .25s ease-out}
   #s-open .entry-wrap{will-change:transform;transition:transform .25s ease-out}
+/* 手机屏幕上（宽 ≤560px）开屏内容要一屏放得下：顶部留白和阿眠图按屏高收缩；桌面展示用的机身尺寸不变 */
+@media (max-width:560px){#s-open .openTop{margin-top:clamp(46px,calc(100dvh - 784px),142px)!important}#s-open .openAm{width:calc(clamp(112px,calc(100dvh - 666px),170px) + 4px)!important}#s-open .openAm img{width:clamp(112px,calc(100dvh - 666px),170px)!important}#s-open .openBottom .tiny{text-shadow:0 1px 2px rgba(10,11,30,.95),0 0 10px rgba(10,11,30,.8)}}
+/* 380 宽以下英文标语放不进一行：收窄字间距并保持单行 */
+@media (max-width:380px){#s-open .openTop>div:nth-of-type(2){letter-spacing:3px!important;white-space:nowrap}}
+/* 屏高不足 790：藏起「阿眠小剧场」；不足 640（很小的旧手机）：底部按钮区改为跟随内容排，整屏可滚动 */
+@media (max-width:560px) and (max-height:790px){#s-open .openAm+div{display:none}}
+@media (max-width:560px) and (max-height:640px){#s-open .openBottom{position:static!important;margin:14px 22px 0}}
   .noanim #pxOpenBg,.noanim #s-open .entry-wrap{transform:none!important;transition:none}
   @media (prefers-reduced-motion:reduce){#pxOpenBg,#s-open .entry-wrap{transform:none!important;transition:none}}</style>
 </head><body>
@@ -937,19 +944,19 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
    </section>
 
    <section class="screen" id="s-open">
-    <div style="text-align:center;margin-top:142px">
+    <div class="openTop" style="text-align:center;margin-top:142px">
      <img src="img/mark-starheart.png" alt="星心宝相" class="markimg" style="width:118px;height:auto;display:inline-block">
      <div class="h-kai" style="font-size:42px;letter-spacing:14px;margin-top:20px">酿 梦</div>
      <div style="font-family:Georgia,serif;font-style:italic;font-size:10.5px;letter-spacing:5px;color:rgba(244,241,232,.62);margin-top:12px">BREWM · BREW DREAMS WITH TIME</div>
      <p class="tcap" style="margin-top:24px;line-height:2.1;letter-spacing:3px">存入是下料 · 日常是发酵<br>回望是开坛 · 共鸣是分酿予人</p>
     </div>
-    <span style="position:relative;display:block;width:172px;margin:14px auto 0;font-size:0">
+    <span class="openAm" style="position:relative;display:block;width:172px;margin:14px auto 0;font-size:0">
    <img src="img/amian-welcome.png" alt="阿眠" class="msway" style="display:block;width:170px;filter:drop-shadow(0 16px 30px rgba(5,6,20,.65))">
    <i class="twstar">✦</i>
   </span>
     <div class="tiny">「阿眠小剧场」
     <div class="tiny" id="amianTheater">阿眠 · 替你守住这一夜</div></div>
-    <div style="position:absolute;left:22px;right:22px;bottom:96px">
+    <div class="openBottom" style="position:absolute;left:22px;right:22px;bottom:96px">
      <span class="entry-wrap"><span class="entry-aur"></span><button class="wax" id="entryBtn" data-go="s-store">开 始 酿 梦</button></span>
      <div class="tiny">六年一坛 · 平安封缄 · 演示数据均在瓶内生成</div>
     </div>
