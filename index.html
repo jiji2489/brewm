@@ -13,7 +13,9 @@
 <meta property="og:url" content="https://jiji2489.github.io/brewm/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-lite-webfont/latest/files/style.css">
+<!-- 文楷网络字体：不阻塞首屏，先按系统字体显示，字体到了再换上 -->
+<link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-lite-webfont/latest/files/style.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-lite-webfont/latest/files/style.css"></noscript>
 <link rel="preload" as="image" href="img/bg-desk.webp" fetchpriority="high">
 <link rel="preload" as="image" href="img/bg-galaxy.webp" fetchpriority="high">
 <link rel="preload" as="image" href="img/mark-starheart.png" fetchpriority="high">
@@ -163,6 +165,8 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 @keyframes stamp{0%{transform:scale(2.1) rotate(-10deg);opacity:0}70%{transform:scale(.94) rotate(2deg);opacity:1}100%{transform:scale(1) rotate(0)}}
 .toast{position:absolute;left:50%;bottom:96px;transform:translateX(-50%) translateY(8px);z-index:30;background:#2B3A55;color:#F6F1E7;font-size:12.5px;letter-spacing:1px;padding:10px 20px;border:1px solid rgba(244,241,232,.25);border-radius:24px;opacity:0;transition:.25s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.offline-tip{position:absolute;left:12px;right:12px;top:calc(10px + env(safe-area-inset-top,0px));margin:0 auto;width:max-content;max-width:100%;transform:translateY(-10px);z-index:31;text-align:center;background:#A6402F;color:#FFF3E2;font-size:11.5px;letter-spacing:.6px;padding:7px 16px;border:1px solid rgba(255,233,196,.35);border-radius:18px;box-shadow:0 8px 22px rgba(0,0,0,.35);opacity:0;transition:.25s;pointer-events:none}
+.offline-tip.show{opacity:1;transform:translateY(0)}
 .navbar{position:absolute;left:0;right:0;bottom:0;height:64px;background:rgba(16,17,41,.88);border-top:1px solid rgba(244,241,232,.14);display:flex;z-index:10;backdrop-filter:blur(6px)}
 .navbar button{transition:color .25s;flex:1;border:none;background:transparent;font-family:inherit;font-size:11px;letter-spacing:2px;color:rgba(244,241,232,.48);cursor:pointer;position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:8px}
 .navbar button svg{display:block;position:relative;z-index:1;width:30px;height:30px}
@@ -626,7 +630,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
       <span id="vtry" style="cursor:pointer;text-decoration:underline;color:#FFE9C4">试听</span> ·
       <span id="vredo" style="cursor:pointer;text-decoration:underline">重录</span></div>
     <button class="wax" id="sealBtn" aria-label="封入瓶中，火漆安印落定">封 入 瓶 中</button>
-    <div class="tiny">封存后不可修改，但会随时间生长</div>
+<div class="tiny">封存后可在「回望」里修改，它会随时间生长</div>
     <button class="ghost" data-go="s-qseal" style="margin-top:10px">再封三个问题给未来 · 问题封缄 ›</button>
     <button class="ghost" data-go="s-letter" style="margin-top:12px">先看看这封信 · 梦信成笺 ›</button>
    </section>
@@ -1743,7 +1747,7 @@ function renderLetters(){
    var empty=document.createElement('div');empty.className='paper2';
    empty.innerHTML='<div class="lfrom">梦貘的信<span>潮汐未启</span></div>'
     +'<div class="ltext">“瓶里现在很安静——封下第一个梦，潮汐就开始计时。到涨潮那天，我替你把此刻带回来。”</div>'
-    +'<div style="margin-top:10px"><button class="ghost" data-go="s-store" style="width:auto;padding:8px 22px">去写下第一个梦 ›</button></div>';
+    +'<div style="margin-top:10px"><button class="wax" data-go="s-store" style="width:auto;padding:9px 22px;margin-top:0">去写下第一个梦 ›</button></div>';
    box.appendChild(empty);
    var goBtn=empty.querySelector('[data-go]');if(goBtn)goBtn.addEventListener('click',function(){show('s-store')});
    return;
@@ -2781,11 +2785,16 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
   reg.update();
   setInterval(function(){reg.update()},60000);
  });
- navigator.serviceWorker.addEventListener('controllerchange',function(){
-  if(window.__swRefreshed)return;window.__swRefreshed=true;
-  toast('酿梦已更新 · 正在刷新');
-  setTimeout(function(){location.reload()},1500);
- });
+  /* 首次安装后的接管不算更新，不刷新；真有新版本时才刷新，用户正在输入则不打断 */
+  var hadController=!!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange',function(){
+   if(!hadController)return;
+   if(window.__swRefreshed)return;window.__swRefreshed=true;
+   var ae=document.activeElement;
+   if(ae&&/^(INPUT|TEXTAREA)$/.test(ae.tagName)&&ae.value){toast('酿梦有新版本 · 下次打开时生效');return}
+   toast('酿梦已更新 · 正在刷新');
+   setTimeout(function(){location.reload()},1500);
+  });
 }
 (function(){ var seen=false;try{seen=!!localStorage.getItem("brewm_seen")}catch(e){}
  ping(seen?"return":"open");
