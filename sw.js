@@ -2,7 +2,7 @@
 // 安装时只备好 CORE（页面本身和几个小文件）。这些文件页面刚加载过、浏览器缓存里就有，所以通常一两秒内装好并接管页面。
 // 其余素材由页面在离线壳就绪后发来 'precache' 消息，再在后台按顺序补：核心屏的底图先补，头像大图最后补。
 // 每个请求都有超时：卡住就先放过，不让一个连接拖住整个安装；缺的下次打开页面时会再补。
-var CACHE = "brewm-v6-82";
+var CACHE = "brewm-v6-83";
 var CORE = ["./", "./index.html", "./manifest.webmanifest", "./img/bg-splash.webp", "./img/qr.png", "./img/mark-starheart.png", "./img/icon-192.png", "./img/voice-f.mp3", "./img/voice-m.mp3"];
 // 顺序有讲究：浏览器对同一个站最多同时开 6 条连接，排在前面的先下
 var LATER = ["./img/bg-desk.webp", "./img/bg-tree.webp", "./img/bg-boat.webp", "./img/bg-pour.webp", "./img/bg-galaxy.webp", "./img/amian-welcome.png", "./img/mon-rite.png", "./img/mon-open.png", "./img/mon-night.webp", "./img/og-cover.jpg", "./img/icon-512.png"];
