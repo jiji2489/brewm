@@ -1702,7 +1702,7 @@ function renderStats(){
  var set=function(id,v){var e=document.getElementById(id);if(e)e.textContent=v};
  set('mineAge',brewDays());set('mineDreams',state.dreams.filter(function(d){return d.mine}).length);
  set('mineNutri',nutriN());set('mineEcho',state.echoN||0);set('mineMile',brewDays());
- var me=document.getElementById('mineEst');if(me)me.textContent='MY BREWM · EST. '+est;
+ var me=document.getElementById('mineEst');if(me)me.textContent='EST. '+est;
  set('feedNutri',nutriN());set('feedGlow','+'+Math.round(Math.min(state.nights,600)/600*65)+'%');
  $$('.est').forEach(function(e){e.textContent=estText()});
  set('tn1Lab',state.letters.some(function(L){return L.mine})?'已开启':'待封缄');
