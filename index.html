@@ -522,7 +522,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   .bs-tag{margin-top:14px;font-size:10px;letter-spacing:4px;color:rgba(233,179,106,.8)}
   .noanim #badgeSheet{animation:none}  /* ── 开屏进入：极光渐变环 + 月光音效 ── */
   .entry-wrap{position:relative;display:block;width:200px;margin:0 auto}
-  .entry-aur{position:absolute;left:50%;top:50%;width:170px;height:170px;margin:-109px 0 0 -85px;border-radius:50%;pointer-events:none;z-index:0;
+  .entry-aur{position:absolute;left:50%;top:50%;width:222px;height:222px;margin:-120px 0 0 -111px;border-radius:50%;pointer-events:none;z-index:0;
     background:conic-gradient(from 0deg,rgba(233,179,106,0),rgba(233,179,106,.85),rgba(215,203,245,.8),rgba(188,132,232,.65),rgba(233,179,106,0));
     -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 26px),#000 calc(100% - 20px));
     mask:radial-gradient(farthest-side,transparent calc(100% - 26px),#000 calc(100% - 20px));
@@ -531,7 +531,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   @keyframes entB{0%,100%{opacity:.6}50%{opacity:1}}
 @keyframes entSpin{to{transform:rotate(360deg)}}
   @keyframes entB{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
-  .entry-wrap .wax{position:relative;z-index:1}
+  .entry-wrap .wax{position:relative;z-index:1;margin-top:0}
   .noanim .entry-aur,.noanim .entry-aur::after{animation:none}
   @media (prefers-reduced-motion:reduce){.entry-aur,.entry-aur::after{animation:none}}  /* ── 导航滑动指示条 ── */
   #navind{position:absolute;top:0;left:0;width:22px;height:2.5px;border-radius:2px;background:#E9B36A;
@@ -541,12 +541,24 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   #pxOpenBg{will-change:transform;transition:opacity .4s,transform .25s ease-out}
   #s-open .entry-wrap{will-change:transform;transition:transform .25s ease-out}
 /* 手机屏幕上（宽 ≤560px）开屏内容要一屏放得下：顶部留白和阿眠图按屏高收缩；桌面展示用的机身尺寸不变 */
-@media (max-width:560px){#s-open .openTop{margin-top:clamp(46px,calc(100dvh - 784px),142px)!important}#s-open .openAm{width:calc(clamp(112px,calc(100dvh - 666px),170px) + 4px)!important}#s-open .openAm img{width:clamp(112px,calc(100dvh - 666px),170px)!important}#s-open .openBottom .tiny{text-shadow:0 1px 2px rgba(10,11,30,.95),0 0 10px rgba(10,11,30,.8)}}
+/* 手机屏幕上（宽 ≤560px）：开屏要一屏放得下，顶部留白、标题、月晕按屏高收缩；桌面展示用的机身尺寸不变 */
+@media (max-width:560px){
+ #s-open .openTop{margin-top:clamp(22px,calc(100dvh - 800px),56px)!important}
+ #s-open .h-kai{font-size:clamp(44px,calc(100dvh - 800px),54px)!important}
+  #s-open .openAm{width:calc(clamp(150px,calc(100dvh - 622px),188px) + 4px)!important;margin-top:calc(26px + (clamp(178px,calc(100dvh - 600px),222px) - clamp(146px,calc(100dvh - 626px),184px)) / 2)!important}
+ #s-open .openAm img{width:clamp(146px,calc(100dvh - 626px),184px)!important}
+ #s-open .openAm .entry-aur{width:clamp(178px,calc(100dvh - 600px),222px)!important;height:clamp(178px,calc(100dvh - 600px),222px)!important;margin:calc(clamp(178px,100dvh - 600px,222px) / -2) 0 0 calc(clamp(178px,100dvh - 600px,222px) / -2)!important}
+  #s-open .openBottom{margin-top:clamp(36px,calc(100dvh - 796px),48px)!important}
+ #s-open .openFoot{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+}
+/* 底部那行说明固定在底栏上方，不再和任何内容重叠 */
+#s-open .openFoot{position:absolute;left:22px;right:22px;bottom:96px;text-shadow:0 1px 2px rgba(10,11,30,.95),0 0 10px rgba(10,11,30,.8)}
 /* 380 宽以下英文标语放不进一行：收窄字间距并保持单行 */
 @media (max-width:380px){#s-open .openTop>div:nth-of-type(2){letter-spacing:3px!important;white-space:nowrap}}
-/* 屏高不足 790：藏起「阿眠小剧场」；不足 640（很小的旧手机）：底部按钮区改为跟随内容排，整屏可滚动 */
-@media (max-width:560px) and (max-height:790px){#s-open .openAm+div{display:none}}
-@media (max-width:560px) and (max-height:640px){#s-open .openBottom{position:static!important;margin:14px 22px 0}}
+
+
+/* 很小的旧手机（屏高不足 700）：底部说明改为跟随内容排，整屏可滚动 */
+@media (max-width:560px) and (max-height:700px){#s-open .openFoot{position:static;margin:24px 22px 0}}
   .noanim #pxOpenBg,.noanim #s-open .entry-wrap{transform:none!important;transition:none}
 /* v6-82 交互规范修正 */
 #holdBtn{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
@@ -954,22 +966,23 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
    </section>
 
    <section class="screen" id="s-open">
-    <div class="openTop" style="text-align:center;margin-top:142px">
-     <img src="img/mark-starheart.png" alt="星心宝相" class="markimg" style="width:118px;height:auto;display:inline-block">
-     <div class="h-kai" style="font-size:42px;letter-spacing:14px;margin-top:20px">酿 梦</div>
-     <div style="font-family:Georgia,serif;font-style:italic;font-size:10.5px;letter-spacing:5px;color:rgba(244,241,232,.86);margin-top:12px">BREWM · BREW DREAMS WITH TIME</div>
-     <p class="tcap" style="margin-top:24px;line-height:2.1;letter-spacing:3px">存入是下料 · 日常是发酵<br>回望是开坛 · 共鸣是分酿予人</p>
+    <div class="openTop" style="text-align:center;margin-top:56px">
+     <img src="img/mark-starheart.png" alt="星心宝相" class="markimg" style="width:68px;height:auto;display:inline-block">
+     <div class="h-kai" style="font-size:54px;letter-spacing:16px;text-indent:16px;margin-top:16px">酿 梦</div>
+     <div style="font-family:Georgia,serif;font-style:italic;font-size:10.5px;letter-spacing:5px;color:rgba(244,241,232,.86);margin-top:10px">BREWM · BREW DREAMS WITH TIME</div>
+     <p class="tcap" style="margin-top:16px;line-height:2;letter-spacing:3px">存入是下料 · 日常是发酵<br>回望是开坛 · 共鸣是分酿予人</p>
     </div>
-    <span class="openAm" style="position:relative;display:block;width:172px;margin:14px auto 0;font-size:0">
-   <img src="img/amian-welcome.png" alt="阿眠" class="msway" style="display:block;width:170px;filter:drop-shadow(0 16px 30px rgba(5,6,20,.65))">
+    <span class="openAm" style="position:relative;display:block;width:188px;margin:47px auto 0;font-size:0">
+    <span class="entry-aur"></span>
+   <img src="img/amian-welcome.png" alt="阿眠" class="msway" style="display:block;width:184px;position:relative;z-index:1;filter:drop-shadow(0 16px 30px rgba(5,6,20,.65))">
    <i class="twstar">✦</i>
   </span>
-    <div class="tiny">「阿眠小剧场」
-    <div class="tiny" id="amianTheater">阿眠 · 替你守住这一夜</div></div>
-    <div class="openBottom" style="position:absolute;left:22px;right:22px;bottom:96px">
-     <span class="entry-wrap"><span class="entry-aur"></span><button class="wax" id="entryBtn" data-go="s-store">开 始 酿 梦</button></span>
-     <div class="tiny">六年一坛 · 平安封缄 · 演示数据均在瓶内生成</div>
-    </div>
+
+
+    <div class="openBottom" style="margin:48px 22px 0">
+     <span class="entry-wrap"><button class="wax" id="entryBtn" data-go="s-store">开 始 酿 梦</button></span>
+     </div>
+     <div class="tiny openFoot">六年一坛 · 平安封缄 · 演示数据均在瓶内生成</div>
    </section>
 
    <section class="screen" id="s-voice">
@@ -2927,13 +2940,13 @@ if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostnam
  var sign=SIGNS[Math.floor(Date.now()/86400000)%SIGNS.length];
  var _sgc=document.getElementById("signCard");
  if(_sgc)_sgc.innerHTML="今日星光签 · 「"+sign+"」<small>—— 守梦的阿眠</small>";
- /* 阿眠小剧场 */
+ /* 阿眠的每日一句（开屏自 v6-83 起不再显示；这段逻辑保留，以后要用可以直接取） */
  var THEATER=["今天有个梦差点跑了，我抓住它了。","我刚打了个盹，你别怪我。","火漆的味道，闻着就安心。",
   "瓶壁今天特别亮，是不是你做了好事？","噩梦来过，被我赶走了。","我在数星星，数到你的就停了。",
   "你的瓶比昨天重了一点——是养分吧。","别担心，一切都好。","今天风大，我抱紧了你的瓶。",
   "有个梦发酵了，味道应该不错。","你写的那句话，我读了两遍。","月亮很圆，瓶口很稳。",
   "今天没什么事发生——这也很好。","我把你的犹豫酿成了勇气。","星光洒了一地，我全扫进瓶里了。"];
- var th=document.getElementById('amianTheater');
+ var th=document.getElementById('amianTheater');if(th)
  if(th)th.textContent='「'+THEATER[Math.floor(Date.now()/86400000)%THEATER.length]+'」';
  /* 养分日记：每天自动长一条 */
  var FEEDT=["潮位 +1 · 星光在你的日程里又沉了一点","昨夜无梦 · 瓶中安静，养分缓慢沉淀","今日关键词被悄悄记下 · 原文留在瓶里","星光 +1 · 瓶壁凝出一颗新的星","你来访的那一刻 · 瓶口微微亮了一下","潮汐表更新 · 距离下次涨潮更近一夜","夜风很轻 · 火漆纹路又深了一分","阿眠巡瓶一圈 · 一切平安","微量星光汇入 · 来自今天的日常","瓶中世界平稳运转 · 等待下一次封缄",
