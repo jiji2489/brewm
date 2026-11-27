@@ -14,12 +14,12 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <!-- 文楷网络字体：不阻塞首屏，先按系统字体显示，字体到了再换上 -->
-<link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-lite-webfont/latest/files/style.css" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-lite-webfont/latest/files/style.css"></noscript>
+<link rel="stylesheet" href="img/wenkai-embed.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="img/wenkai-embed.css"></noscript>
 <link rel="preload" as="image" href="img/bg-desk.webp" fetchpriority="high">
 <link rel="preload" as="image" href="img/bg-galaxy.webp" fetchpriority="high">
 <link rel="preload" as="image" href="img/mark-starheart.png" fetchpriority="high">
-<link rel="preload" as="image" href="img/amian-welcome.png" fetchpriority="high">
+<link rel="preload" as="image" href="img/amian-welcome.webp" fetchpriority="high">
 <title>酿梦 Brewm · 数字梦瓶 · 四环廿三屏</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -207,9 +207,9 @@ body.full .brand,body.full .caption{display:none}
 #guide.on{opacity:1}
 #guide[hidden]{display:none}
 .gd-head{display:flex;align-items:flex-start;justify-content:space-between;padding:48px 24px 0}
-.gd-h{font-size:27px;line-height:1.45;font-weight:400;font-family:'LXGW WenKai','STKaiti','KaiTi','Noto Serif SC',serif;letter-spacing:2px;color:#FFE9C4;text-shadow:0 2px 14px rgba(10,10,30,.6)}
+.gd-h{font-size:27px;line-height:1.45;font-weight:400;font-family:'LXGW WenKai Lite','LXGW WenKai','STKaiti','KaiTi','Noto Serif SC',serif;letter-spacing:2px;color:#FFE9C4;text-shadow:0 2px 14px rgba(10,10,30,.6)}
 .gd-badge{margin-top:8px;padding:4px 12px;border-radius:20px 4px 20px 4px;user-select:none;background:linear-gradient(135deg,#EDBC74,#D69E4E);color:#FFF6E8;font-size:13px;letter-spacing:2px;border:1px solid rgba(255,246,232,.35);box-shadow:0 2px 10px rgba(214,158,78,.3);box-shadow:0 6px 14px rgba(255,184,74,.45)}
-.gd-sub{padding:14px 28px 0;font-size:13.5px;color:rgba(244,241,232,.86);letter-spacing:1.5px;font-family:'LXGW WenKai','STKaiti','KaiTi',serif}
+.gd-sub{padding:14px 28px 0;font-size:13.5px;color:rgba(244,241,232,.86);letter-spacing:1.5px;font-family:'LXGW WenKai Lite','LXGW WenKai','STKaiti','KaiTi',serif}
 .gd-art{flex:1;display:flex;align-items:center;justify-content:center;padding:6px 20px}
 .gd-art svg{width:100%;max-width:386px;height:auto;filter:drop-shadow(0 20px 44px rgba(90,80,200,.3));animation:gdFloat 4.4s ease-in-out infinite}
   @keyframes gdFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
@@ -474,14 +474,14 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
    22%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}
    100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.5) rotate(var(--rot));opacity:0}}
   .ofx-txt{position:absolute;bottom:24%;left:0;right:0;text-align:center;
-   font-family:'LXGW WenKai','STKaiti','KaiTi',serif;font-size:15px;letter-spacing:5px;color:#FFE9C4;
+   font-family:'LXGW WenKai Lite','LXGW WenKai','STKaiti','KaiTi',serif;font-size:15px;letter-spacing:5px;color:#FFE9C4;
    animation:ofxTxt 1.6s ease-out 2.2s both}
   @keyframes ofxTxt{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   .noanim #openFx,.noanim .ofx-wax,.noanim .ofx-star,.noanim .ofx-txt{animation:none}
   @media (prefers-reduced-motion:reduce){#openFx .ofx-wax,#openFx .ofx-star,#openFx .ofx-txt{animation:none}}
   /* ── 瓶身外观：森林 / 樱花（真实生效）── */
   /* 森林：场景偏绿、绿纸、叶绿强调 */
-  body[data-skin="forest"] .bgart img{filter:sepia(.55) hue-rotate(85deg) saturate(.75) brightness(.82) contrast(1.02)}
+  body[data-skin="forest"] .bgart img{filter:sepia(.5) hue-rotate(80deg) saturate(1.15) brightness(.86) contrast(1.05)}
   body[data-skin="forest"] .paper2,body[data-skin="forest"] .letter-in,body[data-skin="forest"] .sharecard{background:#F1F7EE;border-color:rgba(52,88,64,.22)}
   body[data-skin="forest"] .lhead{color:#2F6B4F}
   body[data-skin="forest"] .grow .bar i{background:#4E7B5A}
@@ -518,7 +518,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   .bs-status{margin-top:8px;font-size:12.5px;letter-spacing:1px;color:rgba(244,241,232,.86)}
   .bs-status b{color:#E9B36A;font-weight:400}
   .bs-div{width:64px;height:1.5px;background:linear-gradient(90deg,transparent,#E9B36A,transparent);margin:16px auto}
-  .bs-word{font-family:'LXGW WenKai','STKaiti','KaiTi',serif;font-size:14.5px;line-height:2;color:#FFF6E8;letter-spacing:1px;padding:0 8px}
+  .bs-word{font-family:'LXGW WenKai Lite','LXGW WenKai','STKaiti','KaiTi',serif;font-size:14.5px;line-height:2;color:#FFF6E8;letter-spacing:1px;padding:0 8px}
   .bs-tag{margin-top:14px;font-size:10px;letter-spacing:4px;color:rgba(233,179,106,.8)}
   .noanim #badgeSheet{animation:none}  /* ── 开屏进入：极光渐变环 + 月光音效 ── */
   .entry-wrap{position:relative;display:block;width:200px;margin:0 auto}
@@ -650,7 +650,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <button class="backbtn" data-go="s-open" style="margin-top:0">‹ 开屏</button>
     <div class="h-kai">今晚，把梦<br>说给瓶听</div>
     <div class="letter-in">
-     <div class="lhead">亲爱的 2028 年的我：</div>
+     <div class="lhead">亲爱的未来的我：</div>
      <textarea id="dreamText" maxlength="120" placeholder="今晚，有什么想封进瓶里的……"></textarea>
      <div class="count"><span id="cnt">0</span>/120</div>
     </div>
@@ -679,7 +679,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="qyear">—— 三年后 · 开瓶之日 ——</div>
     <div class="anscard">
      <div class="who">当年封下的问题，浮上来了<span>由你作答</span></div>
-     <div class="qq">“有走到当年想去的地方吗？”</div><div class="ans">第 1 问 · 由 <b>2029 年的我</b> 先开口 ──────</div>
+     <div class="qq">“有走到当年想去的地方吗？”</div><div class="ans">第 1 问 · 由 <b>未来的你</b> 先开口 ──────</div>
      <div class="qq">“身边的人，还是现在这些人吗？”</div><div class="ans">第 2 问 · ──────────────</div>
      <div class="qq">“有成为想成为的大人吗？”</div><div class="ans">第 3 问 · ──────────────</div>
     </div>
@@ -695,10 +695,10 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="tide">
      <div class="tline" id="tideline"></div>
      <div class="tnodes">
-      <div class="tn done"><i></i><p>第1潮<br>已开启</p></div>
-      <div class="tn"><i></i><p>第2潮<br>2027 春</p></div>
-      <div class="tn"><i></i><p>第3潮<br>2028 春</p></div>
-      <div class="tn"><i></i><p>开瓶<br>2028 秋</p></div>
+      <div class="tn done" id="tn1"><i></i><p>第1潮<br><span id="tn1Lab">待封缄</span></p></div>
+      <div class="tn"><i></i><p>第2潮<br><span id="tn2">封缄后 7 夜</span></p></div>
+      <div class="tn"><i></i><p>第3潮<br><span id="tn3">封缄后 14 夜</span></p></div>
+      <div class="tn"><i></i><p>开瓶<br><span id="tnOpen">封缄后 1460 夜</span></p></div>
      </div>
     </div>
     <div class="feed" id="feed">本周从你的日记里，萃取到 3 滴养分 · 瓶中又亮了一点</div>
@@ -742,7 +742,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
      </div>
      <div class="sc-quote" id="shareQuote">“想在三十岁前，拥有一间自己的工作室，哪怕很小，门上要挂一块手写的木牌。”</div>
      <div class="sc-meta"><div class="waxdot">安</div><p>已封存 <span id="sealDays">1462</span> 天 · 一路平安</p></div>
-     <div class="sc-foot"><div class="est">Est. 2022 — Open 2028</div><div class="qr">码位</div></div>
+     <div class="sc-foot"><div class="est">Est. — </div><div class="qr">码位</div></div>
     </div>
     <div class="btnrow"><button class="ghost" id="quoteBtn">换一句</button><button class="wax" id="saveBtn">保存酿卡</button></div>
     <button class="ghost" data-go="s-card" style="margin-top:12px">进酿卡工坊 · 选一款卡面 ›</button>
@@ -755,12 +755,6 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="h-kai sm">瓶身档案</div>
     <div class="tcap">每一滴养分，都有出处</div>
     <div id="fileCards">
-    <div class="paper2">
-     <div class="lfrom">封于 2022.10.05<span>火漆完好</span></div>
-     <div class="ltext">“想在三十岁前，拥有一间自己的工作室，哪怕很小。”</div>
-     <div class="grow"><span style="font-size:10.5px;color:rgba(43,58,85,.72)">沉淀刻度</span><div class="bar"><i></i></div><span style="font-size:10.5px;color:#A6402F">12/24</span></div>
-     <div style="margin-top:12px;font-size:12px;line-height:1.8;color:#6B5426;background:rgba(233,179,106,.14);border:1px solid rgba(233,179,106,.4);border-radius:10px;padding:8px 12px">养分日记每天自动长一条 · 原文只存本机</div>
-    </div>
     </div>
     <button class="ghost" data-go="s-append" style="margin-top:12px">给瓶里补一页 · 续写这个梦 ›</button>
     <button class="ghost" id="pdfExportBtn" style="margin-top:8px">导出信纸 PDF · 可打印 ›</button>
@@ -774,14 +768,14 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
 
    <section class="screen" id="s-chat">
     <button class="backbtn" data-go="s-tide">‹ 返回回望</button>
-    <div class="h-kai sm">隔瓶长谈 · 与 2022 的我</div>
+    <div class="h-kai sm">隔瓶长谈 · 与过去的我</div>
     <div class="tcap">潮水让两个时刻靠得很近</div>
     <div class="chatbox">
      <div class="bub">“那件十年后才看得出对不对的事——你还在坚持吗？”</div>
      <div class="bub me">“还在。上周刚给工作室门口，钉了第一块手写木牌。”</div>
      <div class="bub">“那么今年，你最想守住的是哪一件小事？”</div>
     </div>
-    <div class="replyarea"><input placeholder="回给 2022 年的我……"><button class="chatgo">封缄回信</button></div>
+    <div class="replyarea"><input placeholder="回给过去的自己……"><button class="chatgo">封缄回信</button></div>
     <div class="tiny">对话只存在于瓶中 · 不上链，不外传</div>
    </section>
 
@@ -818,13 +812,13 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
 
    <section class="screen" id="s-rite">
     <button class="backbtn" data-go="s-world">‹ 返回瓶中</button>
-    <div class="h-kai sm">开瓶仪式 · 2028 秋</div>
-    <div class="riteday"><div class="big">Open · 2028.10.05</div><p>六年前封缄的那晚，就是为这一刻酿的</p></div>
+    <div class="h-kai sm">开瓶仪式 · 预演</div>
+    <div class="riteday"><div class="big" id="riteOpen">Open · 封缄后 1460 夜</div><p id="riteSub">写下第一个梦，从今晚开始酿</p></div>
     <div class="paper2" style="text-align:center">
      <svg width="50" height="50" viewBox="0 0 200 200" style="margin-top:4px"><g fill="#A6402F"><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/><circle cx="100" cy="100" r="14"/></g></svg>
      <p class="ltext" style="margin-top:8px">火漆“安”印将缓缓融开，<br>第一批星光涌出瓶口——<br>往日的信与酿卡，一一起岸。</p>
     </div>
-    <img src="img/mon-rite.png" alt="阿眠" class="msway" style="display:block;width:175px;margin:8px auto 0;filter:drop-shadow(0 16px 30px rgba(5,6,20,.65));animation:breathe 3.8s ease-in-out infinite">
+    <img src="img/mon-rite.webp" alt="阿眠" class="msway" style="display:block;width:175px;margin:8px auto 0;filter:drop-shadow(0 16px 30px rgba(5,6,20,.65));animation:breathe 3.8s ease-in-out infinite">
     <button class="wax" id="riteBtn">预演 · 融开火漆</button>
     <div class="tiny">到期自动提醒 · 可以提前，不能跳过</div>
    </section>
@@ -834,7 +828,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="h-kai sm">梦信成笺</div>
     <div class="tcap">封缄之前，最后读一遍</div>
     <div class="paper2" style="padding:20px 20px">
-     <div class="lhead">亲爱的 2028 年的我：</div>
+     <div class="lhead">亲爱的未来的我：</div>
      <div class="ltext" style="font-size:17px;line-height:2;margin-top:12px">想在三十岁前，拥有一间自己的工作室，哪怕很小，门上要挂一块手写的木牌。</div>
      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:20px;border-top:1px dashed rgba(43,58,85,.2);padding-top:12px">
       <span style="font-family:Georgia,serif;font-style:italic;font-size:12px;color:#8A6F55">2026.10.11 · 于夜航</span>
@@ -851,12 +845,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="tcap">每一次涨潮，都写在日历上</div>
     <div id="calMonths" style="margin-top:12px"></div>
     <div class="tcap">每一次涨潮，都写在日历上</div>
-    <div class="ctide">
-     <div class="citem"><b>封缄之日<span>2022.10.05</span></b><p>第一个梦入瓶，火漆「安」印落定</p></div>
-     <div class="citem"><b>第 1 潮 · 已涨<span>2023 春</span></b><p>两封旧信浮上水面，隔瓶发问已回应</p></div>
-     <div class="citem dim"><b>第 2 潮 · 将至<span>2027 春</span></b><p>距离涨潮还有 421 天 · 语音梦将在潮中回放</p></div>
-     <div class="citem dim"><b>第 3 潮<span>2028 春</span></b><p>酿卡成册，可邀同路人共阅</p></div>
-     <div class="citem dim" style="padding-bottom:2px"><b>开瓶 · 起岸<span>2028 秋</span></b><p>火漆融开，全部信与星光一起上岸</p></div>
+    <div class="ctide" id="calTl"></div>
     </div>
     <div class="tiny">潮期可提前 · 不可跳过 · 每一潮都有预告</div>
    </section>
@@ -903,21 +892,21 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
    </section>
    <section class="screen" id="s-mine">
     <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
-     <img id="amianAvatar" data-src="img/amian-front.png" alt="阿眠" style="width:48px;height:48px;animation:breathe 3.8s ease-in-out infinite;border-radius:50%;object-fit:cover;background:rgba(233,179,106,.12);border:1.5px solid rgba(233,179,106,.65);box-shadow:0 6px 16px rgba(5,6,20,.5)">
+     <img id="amianAvatar" data-src="img/amian-front.webp" alt="阿眠" style="width:48px;height:48px;animation:breathe 3.8s ease-in-out infinite;border-radius:50%;object-fit:cover;background:rgba(233,179,106,.12);border:1.5px solid rgba(233,179,106,.65);box-shadow:0 6px 16px rgba(5,6,20,.5)">
      <div><div style="font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:22px;letter-spacing:3px;color:#FFE9C4">第 001 号瓶</div>
-     <div style="font-family:Georgia,serif;font-style:italic;font-size:9.5px;letter-spacing:3px;color:rgba(244,241,232,.82)">MY BREWM · EST. 2022</div></div>
+     <div style="font-family:Georgia,serif;font-style:italic;font-size:9.5px;letter-spacing:3px;color:rgba(244,241,232,.82)">MY BREWM · <span id="mineEst">EST. 2022</span></div></div>
     </div>
     <div class="statgrid">
-     <div class="stat"><b>1462</b><p>酿龄 · 天</p></div>
-     <div class="stat"><b>2</b><p>封存的梦</p></div>
-     <div class="stat"><b>217</b><p>萃取养分 · 滴</p></div>
-     <div class="stat"><b>38</b><p>有治理的共鸣 · 次</p></div>
+     <div class="stat"><b id="mineAge">0</b><p>酿龄 · 天</p></div>
+     <div class="stat"><b id="mineDreams">0</b><p>封存的梦</p></div>
+     <div class="stat"><b id="mineNutri">0</b><p>萃取养分 · 滴</p></div>
+     <div class="stat"><b id="mineEcho">0</b><p>有治理的共鸣 · 次</p></div>
     </div>
     <div style="margin-top:14px">
      <div style="font-size:12px;letter-spacing:3px;color:#9AA3C7;margin-bottom:4px">成 就 徽 章</div>
      <div class="achvGrid" id="achvGrid"></div>
     </div>
-    <div class="feed" style="margin-top:12px">平安里程：1462 天 · 0 次惊扰 · 原文外发 <b id="mineOut">0</b> 次</div>
+    <div class="feed" style="margin-top:12px">平安里程：<b id="mineMile">0</b> 天 · 0 次惊扰 · 原文外发 <b id="mineOut">0</b> 次</div>
     <div class="rule"><span>双重授权</span><span>署名可溯</span><span>随时可撤</span></div>
     <div class="tiny">每一个数字，都是时间酿出来的</div>
     <button class="ghost" data-go="s-set" style="margin-top:12px">设置 · 让酿梦更懂你 ›</button>
@@ -974,7 +963,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     </div>
     <span class="openAm" style="position:relative;display:block;width:188px;margin:47px auto 0;font-size:0">
     <span class="entry-aur"></span>
-   <img src="img/amian-welcome.png" alt="阿眠" class="msway" style="display:block;width:184px;position:relative;z-index:1;filter:drop-shadow(0 16px 30px rgba(5,6,20,.65))">
+   <img src="img/amian-welcome.webp" alt="阿眠" class="msway" style="display:block;width:184px;position:relative;z-index:1;filter:drop-shadow(0 16px 30px rgba(5,6,20,.65))">
    <i class="twstar">✦</i>
   </span>
 
@@ -982,7 +971,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="openBottom" style="margin:48px 22px 0">
      <span class="entry-wrap"><button class="wax" id="entryBtn" data-go="s-store">开 始 酿 梦</button></span>
      </div>
-     <div class="tiny openFoot">六年一坛 · 平安封缄 · 演示数据均在瓶内生成</div>
+     <div class="tiny openFoot">六年一坛 · 平安封缄 · 数据只存在这台设备</div>
    </section>
 
    <section class="screen" id="s-voice">
@@ -990,7 +979,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="h-kai sm">语音梦 · 回放</div>
     <div class="tcap">潮水涨起时，声音也浮上来了</div>
     <div class="paper2">
-     <div class="lfrom">封于 2022.10.05 · 夜航<span>12″</span></div>
+     <div class="lfrom">示例 · 合成音预演<span>12″</span></div>
      <div class="wave"><i style="height:6px"></i><i style="height:17px"></i><i style="height:25px"></i><i style="height:26px"></i><i style="height:21px"></i><i style="height:12px"></i><i style="height:8px"></i><i style="height:14px"></i><i style="height:18px"></i><i style="height:20px"></i><i style="height:18px"></i><i style="height:10px"></i><i style="height:12px"></i><i style="height:22px"></i><i style="height:28px"></i><i style="height:26px"></i><i style="height:19px"></i><i style="height:8px"></i><i style="height:15px"></i><i style="height:22px"></i><i style="height:22px"></i><i style="height:18px"></i><i style="height:11px"></i><i style="height:7px"></i><i style="height:15px"></i><i style="height:21px"></i><i style="height:24px"></i><i style="height:21px"></i><i style="height:12px"></i><i style="height:11px"></i><i style="height:22px"></i><i style="height:27px"></i><i style="height:26px"></i><i style="height:19px"></i></div>
      <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
       <div class="waxdot vplay" style="width:34px;height:34px;font-size:13px;cursor:pointer" data-vc="0" data-sec="12">▶</div>
@@ -999,7 +988,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
      <div class="ltext" style="font-size:14px;margin-top:10px">「……要把工作室的灯，调成暖色的。」</div>
     </div>
     <div class="paper2">
-     <div class="lfrom">封于 2023.03.21<span>8″</span></div>
+     <div class="lfrom">示例 · 合成音预演<span>8″</span></div>
      <div class="wave"><i style="height:19px"></i><i style="height:10px"></i><i style="height:14px"></i><i style="height:23px"></i><i style="height:28px"></i><i style="height:25px"></i><i style="height:17px"></i><i style="height:7px"></i><i style="height:15px"></i><i style="height:20px"></i><i style="height:19px"></i><i style="height:15px"></i><i style="height:11px"></i><i style="height:8px"></i><i style="height:17px"></i><i style="height:24px"></i><i style="height:26px"></i><i style="height:22px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:22px"></i><i style="height:26px"></i><i style="height:24px"></i><i style="height:17px"></i><i style="height:8px"></i><i style="height:12px"></i><i style="height:15px"></i><i style="height:19px"></i><i style="height:19px"></i><i style="height:14px"></i><i style="height:7px"></i><i style="height:18px"></i><i style="height:26px"></i><i style="height:28px"></i></div>
      <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
       <div class="waxdot vplay" style="width:34px;height:34px;font-size:13px;cursor:pointer" data-vc="1" data-sec="8" data-plain="1">▶</div>
@@ -1017,8 +1006,8 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="signcard" id="signCard"></div>
     <div id="feedAuto"></div>
     <div class="statgrid">
-     <div class="stat"><b>217</b><p>累计养分 · 滴</p></div>
-     <div class="stat"><b>+38%</b><p>瓶中星光亮度</p></div>
+     <div class="stat"><b id="feedNutri">0</b><p>累计养分 · 滴</p></div>
+     <div class="stat"><b id="feedGlow">+0%</b><p>瓶中星光亮度</p></div>
     </div>
     <div class="ctide">
      <div class="citem"><b>10.14<span>昨晚</span></b><p>日记「把展板改到第三版」→ 萃取关键词：坚持 · 养分 +1</p></div>
@@ -1057,7 +1046,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="sharecard" style="margin-top:14px" id="scCard">
      <div class="sc-top"><svg width="24" height="24" viewBox="0 0 200 200"><g fill="#A6402F"><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/><circle cx="100" cy="100" r="14"/></g></svg><div><p>酿梦</p><small>BREWM</small></div></div>
      <div class="sc-quote" id="scQuote" style="font-size:14px;min-height:56px">「想在三十岁前，拥有一间自己的工作室。」</div>
-     <div class="sc-foot"><div class="est">Est. 2022 — Open 2028</div><div class="qr">码位</div></div>
+     <div class="sc-foot"><div class="est">Est. — </div><div class="qr">码位</div></div>
     </div>
     <div class="btnrow"><button class="ghost" id="quoteBtn2">换一句引言</button><button class="wax" id="makeBtn">按此卡面生成</button></div>
     <div class="btnrow"><button class="wax" id="saveCardBtn" hidden>存 入 相 册</button></div>
@@ -1277,19 +1266,15 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
 <script>
 var $=function(s){return document.querySelector(s)},$$=function(s){return document.querySelectorAll(s)};
 var state={
- nights:146,sealDays:1462,
- dreams:[
-  {t:'想在三十岁前，拥有一间自己的工作室，哪怕很小，门上要挂一块手写的木牌。',d:'2022.10.05'},
-  {t:'学会真正地休息，把日子过成可以回看的信。',d:'2023.03.21'}],
- letters:[
-  {from:'2022.10.05',tide:'第1潮',t:'今天我刚刚决定，要做一件十年后才看得出对不对的事……',q:'那件十年后才看得出对不对的事——你还在坚持吗？'},
-  {from:'2023.03.21',tide:'第2潮',t:'学会真正地休息，把日子过成可以回看的信。',q:'这一年，你睡得好吗？'}],
+ nights:0,sealDays:0,
+ dreams:[],
+ letters:[],
  feeds:['本周从你的日记里，萃取到 3 滴养分 · 瓶中又亮了一点',
   '梦见海，兑了一点潮声进瓶里',
   '夜风很轻，火漆纹路又深了一分',
-  '潮位上涨：距离第 2 潮还有 421 天',
+  '潮位上涨 · 下一潮在时间深处酝酿',
   '昨夜的语音梦，酿出了细小的光'],
- fi:0,voice:null,replies:{},shareIdx:0,ambi:false,night:true,aging:true,noanim:false,aiCtx:true,drift:false,sign:true,aiSendN:0,
+ fi:0,voice:null,replies:{},shareIdx:0,ambi:false,echoN:0,night:true,aging:true,noanim:false,aiCtx:true,drift:false,sign:true,aiSendN:0,
  sound:true,
  sound:true,ai:{ep:"https://api.openai.com/v1/chat/completions",key:"",model:"gpt-4o-mini"},
  notifyOn:false,chat:[]
@@ -1300,7 +1285,7 @@ var _saveFailAt=0;
 function saveAll(){try{localStorage.setItem(LSKEY,JSON.stringify({
  dreams:state.dreams,letters:state.letters,nights:state.nights,sound:state.sound,ambi:state.ambi,
  sound:state.sound,
- ai:state.ai,notifyOn:state.notifyOn,night:state.night,aging:state.aging,noanim:state.noanim,aiCtx:state.aiCtx,drift:state.drift,sign:state.sign,aiSendN:state.aiSendN||0,chat:state.chat.slice(-30),
+ ai:state.ai,notifyOn:state.notifyOn,night:state.night,aging:state.aging,noanim:state.noanim,aiCtx:state.aiCtx,drift:state.drift,sign:state.sign,aiSendN:state.aiSendN||0,echoN:state.echoN||0,chat:state.chat.slice(-30),
  qs:(function(){var a=[],el=document.querySelectorAll('#s-qseal .qitem input');for(var i=0;i<el.length;i++)a.push(el[i].value);return a})(),
  tideN:state.letters.filter(function(L){return L.mine}).length
   }));_saveFailAt=0;return true}catch(e){var n=Date.now();if(n-_saveFailAt>60000){_saveFailAt=n;try{if(!saveAll.hush)toast('本机存储写不进去 · 关页后这次的改动会丢')}catch(_){}}return false}}
@@ -1319,6 +1304,7 @@ function loadAll(){var raw=null;try{raw=localStorage.getItem(LSKEY)}catch(e){}
    if(typeof d.drift==="boolean")state.drift=d.drift;
    if(typeof d.sign==="boolean")state.sign=d.sign;
    if(typeof d.aiSendN==="number")state.aiSendN=d.aiSendN;
+   if(typeof d.echoN==="number")state.echoN=d.echoN;
   if(d.chat)state.chat=d.chat;
   if(d.qs)state.qs=d.qs;
   if(typeof d.sound==="boolean")state.sound=d.sound;
@@ -1453,6 +1439,7 @@ function renderWorld(){
  var pct=Math.min(100,(state.nights/1460*100)).toFixed(1)+'%';
  $('#tideline').style.setProperty('--p',pct);
  $('#feed').textContent=state.feeds[state.fi%state.feeds.length];
+  renderStats();
 }
 function renderFile(){
 
@@ -1704,9 +1691,42 @@ addEventListener('resize',function(){positionNavInd()});
 /* ── 设置项的落地效果 ── */
 function applyPart(){var h=new Date().getHours();document.documentElement.setAttribute('data-part',state.night===false?'day':(h<5?'deep':h<8?'dawn':h<19?'day':'night'))}
 function ageClass(ds){var p=String(ds||'').split('.');if(p.length<3)return '';var t=new Date(+p[0],+p[1]-1,+p[2]),days=Math.floor((Date.now()-t)/86400000);if(isNaN(days)||days<60)return '';return days>=240?'age-2':'age-1'}
+function firstDream(){var m=state.dreams.filter(function(d){return d.mine});return m.length?m[m.length-1]:null}
+function brewDays(){var f=firstDream();if(!f)return 0;var p=String(f.d||'').split('.');if(p.length<3)return 0;var t=new Date(+p[0],+p[1]-1,+p[2]);return isNaN(t)?0:Math.max(0,Math.floor((Date.now()-t.getTime())/864e5))}
+function nutriN(){var f=0;try{f=(JSON.parse(localStorage.getItem('brewm_feedlog')||'[]')).length}catch(e){}return f*3}
+function tideN(){return Math.max(1,state.letters.filter(function(L){return L.mine}).length)}
+function estYear(){var f=firstDream();return f?(+String(f.d).split('.')[0]||new Date().getFullYear()):new Date().getFullYear()}
+function estText(){return 'Est. '+estYear()+' — Open '+(estYear()+6)}
+function renderStats(){
+ state.sealDays=brewDays();var est=estYear();
+ var set=function(id,v){var e=document.getElementById(id);if(e)e.textContent=v};
+ set('mineAge',brewDays());set('mineDreams',state.dreams.filter(function(d){return d.mine}).length);
+ set('mineNutri',nutriN());set('mineEcho',state.echoN||0);set('mineMile',brewDays());
+ var me=document.getElementById('mineEst');if(me)me.textContent='MY BREWM · EST. '+est;
+ set('feedNutri',nutriN());set('feedGlow','+'+Math.round(Math.min(state.nights,600)/600*65)+'%');
+ $$('.est').forEach(function(e){e.textContent=estText()});
+ set('tn1Lab',state.letters.some(function(L){return L.mine})?'已开启':'待封缄');
+ set('tn2','封缄后 7 夜');set('tn3','封缄后 14 夜');set('tnOpen','封缄后 1460 夜');
+ var ro=document.getElementById('riteOpen');if(ro){var f=firstDream();var md=f?String(f.d).split('.').slice(1).join('.'):'10.05';ro.textContent='Open · '+(est+6)+'.'+md}
+ set('riteSub',firstDream()?'封缄那一晚，就是为这一刻酿的':'写下第一个梦，从今晚开始酿');
+ set('sealDays',state.sealDays);
+ $$('.nights').forEach(function(e){e.textContent=Math.max(1,state.nights)});
+ var tl=document.getElementById('calTl');
+ if(tl){var f2=firstDream();var steps=[TIDE_STEPS[0],TIDE_STEPS[1],TIDE_STEPS[2],1460];
+  var unlocked=state.letters.filter(function(L){return L.mine&&!L.unlockAt}).length;
+  var rows=[['封缄之日',f2?f2.d:'待封缄',f2?'第一个梦入瓶，火漆「安」印落定':'写下第一个梦，火漆「安」印落定']];
+  ['第 1 潮','第 2 潮','第 3 潮','开瓶 · 起岸'].forEach(function(nm,i){
+   var done=i===0&&unlocked>0;
+   var note=done?'旧信浮上水面，隔瓶发问已回应':(i===3?'火漆融开，全部信与星光一起上岸':(i===2?'酿卡成册，可邀同路人共阅':'语音梦将在潮中回放'));
+   rows.push([nm+(done?' · 已涨':(f2?' · 将至':'')),'封缄后 '+steps[i]+' 夜',note]);
+  });
+  tl.innerHTML=rows.map(function(r,i){return '<div class="citem'+(i>0?' dim':'')+'"><b>'+r[0]+'<span>'+r[1]+'</span></b><p>'+r[2]+'</p></div>'}).join('');
+ }
+}
 function applySettings(){
  try{document.documentElement.classList.toggle('noanim',!!state.noanim)}catch(e){}
  try{document.body.classList.toggle('no-aging',state.aging===false)}catch(e){}
+ renderStats();
  applyPart();
  try{renderShare()}catch(e){}
  var o=document.getElementById('pvOut');if(o)o.textContent=state.aiSendN||0;var m=document.getElementById('mineOut');if(m)m.textContent=state.aiSendN||0;
@@ -1943,7 +1963,7 @@ function genShareImg(){
   /* 顶部品牌 */
   x.textAlign='center';
   x.fillStyle='rgba(255,233,196,.92)';
-  x.font="400 44px 'LXGW WenKai','STKaiti','KaiTi',serif";
+  x.font="400 44px 'LXGW WenKai Lite','LXGW WenKai','STKaiti','KaiTi',serif";
   x.fillText('酿 梦',540,150);
   x.font="400 22px Georgia,serif";
   x.fillStyle='rgba(255,233,196,.55)';
@@ -1952,7 +1972,7 @@ function genShareImg(){
   x.fillRect(440,232,200,2);
   /* 梦文 */
   var txt=dr.t.replace(/^[「「]|[」」]$/g,'');
-  x.font="400 52px 'LXGW WenKai','STKaiti','KaiTi',serif";
+  x.font="400 52px 'LXGW WenKai Lite','LXGW WenKai','STKaiti','KaiTi',serif";
   var lines=wrapCJK(x,txt,780);
   var lh=96,startY=430-Math.min(lines.length-1,6)*48;
   x.fillStyle='#FFFDF6';
@@ -1961,7 +1981,7 @@ function genShareImg(){
   var tide='';
   var li=-1;state.letters.forEach(function(L,ix){if(li<0&&L.mine&&L.t===dr.t)li=ix});
   if(li>=0&&state.letters[li].tide)tide=state.letters[li].tide;
-  x.font="400 30px 'LXGW WenKai','STKaiti','KaiTi',serif";
+  x.font="400 30px 'LXGW WenKai Lite','LXGW WenKai','STKaiti','KaiTi',serif";
   x.fillStyle='rgba(233,179,106,.95)';
   x.fillText(dr.d+' '+tide+(state.sign===false?'':' · 第 001 号瓶'),540,startY+Math.min(lines.length,8)*lh+40);
   /* 火漆印 */
@@ -1980,7 +2000,7 @@ function genShareImg(){
    x.beginPath();x.arc(540,1350,150,0,7);x.fill();
    x.save();x.beginPath();x.arc(540,1350,142,0,7);x.clip();
    x.drawImage(qrImg,540-qs/2,1350-qs/2,qs,qs);x.restore();
-   x.font="400 30px 'LXGW WenKai','STKaiti','KaiTi',serif";
+   x.font="400 30px 'LXGW WenKai Lite','LXGW WenKai','STKaiti','KaiTi',serif";
    x.fillStyle='rgba(255,246,232,.85)';
    x.fillText('扫码 · 酿一坛自己的梦',540,1540);
    x.font="400 20px Georgia,serif";
@@ -2276,8 +2296,8 @@ $$('[data-say]').forEach(function(b){b.addEventListener('click',function(){
   setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},4000);
   toast('存档已导出 · 全文只属于你');buzz(12);return;
  }
- if(key==='light'){toast(m.light);buzz(15);return}
- if(key==='backsea'){pickNext();toast(m.backsea);return}
+ if(key==='light'){state.echoN=(state.echoN||0)+1;saveAll();renderStats();toast(m.light);buzz(15);return}
+ if(key==='backsea'){state.echoN=(state.echoN||0)+1;saveAll();renderStats();pickNext();toast(m.backsea);return}
  toast(m[key]||'好的');});});
 var PICKS=[
  {w:'晚舟 · 第 987 潮',p:'「三战上岸那天，我先去海边看了一场日出。」',s:'已封存 987 天 · 署名可溯 · 授权可撤'},
@@ -2422,8 +2442,8 @@ function drawCard(skin,quote){
  x.font="18px "+FFH;x.textAlign="center";x.fillStyle=muted;x.letterSpacing="4px";
  x.fillText("安 印 落 款",CW-170,Math.min(sy+126,fy-14));x.letterSpacing="0px";
  x.textAlign="left";x.font="italic 30px "+FFS;x.fillStyle=est;x.letterSpacing="2px";
- x.fillText("Est. 2022 — Open 2028",96,fy+70);
- x.font="22px "+FFH;x.fillStyle=muted;x.letterSpacing="3px";x.fillText(state.sign===false?"匿名封缄 · 由你守瓶":"第 001 号瓶 · 由你封缄",96,fy+114);x.letterSpacing="0px";
+ x.fillText(estText(),96,fy+70);
+ x.font="22px "+FFH;x.fillStyle=muted;x.letterSpacing="3px";x.fillText(state.sign===false?"匿名封缄 · 由你守瓶":"第 "+tideN()+" 潮 · 第 001 号瓶",96,fy+114);x.letterSpacing="0px";
  var qs=128,qx=CW-96-qs,qyy=fy+28;
  x.fillStyle="#FFFDF6";_rrect(x,qx,qyy,qs,qs,14);x.fill();
  if(skin==="paper"){x.strokeStyle="rgba(43,58,85,.16)";x.lineWidth=1.5;x.stroke()}
@@ -2830,7 +2850,7 @@ if(pdfBtn){pdfBtn.addEventListener('click',function(){
  });
  // 页脚
  x.textAlign='center';x.font='italic 22px Georgia,serif';x.fillStyle='#8A6F55';
- x.fillText('Est. 2022 — Open 2028',W/2,H-180);
+ x.fillText(estText(),W/2,H-180);
  x.font='20px -apple-system,PingFang SC,Microsoft YaHei';x.fillStyle='rgba(43,58,85,.5)';
  x.fillText('每一个梦，都会被平安送达未来',W/2,H-136);
  // 导出
