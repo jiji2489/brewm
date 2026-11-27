@@ -31,7 +31,7 @@ repeating-linear-gradient(180deg,transparent 0 46px,rgba(43,58,85,.04) 46px 47px
 .brand p{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:20px;letter-spacing:4px}
 .brand small{display:block;font-family:Georgia,serif;font-style:italic;font-size:10px;letter-spacing:4px;color:#8A6F55}
 .wmark{position:absolute;right:-70px;top:-70px;opacity:.05;pointer-events:none}
-.caption{margin-top:16px;font-size:12px;letter-spacing:3px;color:rgba(43,58,85,.45);text-align:center}
+.caption{margin-top:16px;font-size:12px;letter-spacing:3px;color:rgba(43,58,85,.72);text-align:center}
 .stage{display:flex;flex-direction:column;align-items:center}
 .phone{width:440px;height:956px;border-radius:54px;border:1px solid rgba(43,58,85,.28);background:#141632;box-shadow:0 40px 90px rgba(43,58,85,.22);overflow:hidden;display:flex;flex-direction:column;position:relative}
 
@@ -60,7 +60,7 @@ repeating-linear-gradient(180deg,transparent 0 46px,rgba(43,58,85,.04) 46px 47px
 .screen.on{opacity:1;transform:none;pointer-events:auto}
 .h-kai{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:30px;line-height:1.35;letter-spacing:2px;margin-top:8px;color:#FFE9C4;text-shadow:0 2px 14px rgba(10,10,30,.65)}
 .h-kai.sm{font-size:24px;margin-top:6px}
-.tcap{font-size:12.5px;color:rgba(244,241,232,.72);margin-top:6px;letter-spacing:1px}
+.tcap{font-size:12.5px;color:rgba(244,241,232,.86);margin-top:6px;letter-spacing:1px}
 .letter-in{margin-top:16px;background:#FFFDF6;border:1px solid rgba(43,58,85,.15);border-radius:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 24px rgba(43,58,85,.12);padding:14px;color:#2B3A55}
 .lhead{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:16px;color:#A6402F}
   /* ── 纸张噪点（纤维质感）── */
@@ -68,17 +68,17 @@ repeating-linear-gradient(180deg,transparent 0 46px,rgba(43,58,85,.04) 46px 47px
   .letter-in::after,.ltr::after,.sharecard::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.16;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'260'%20height%3D'260'%3E%3Cfilter%20id%3D'p'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'0.9'%20numOctaves%3D'2'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20type%3D'matrix'%20values%3D'0%200%200%200%200.32%200%200%200%200%200.26%200%200%200%200%200.18%200%200%200%200.55%200'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'260'%20height%3D'260'%20filter%3D'url(%23p)'%2F%3E%3C%2Fsvg%3E");background-size:260px 260px}
   .noanim .letter-in::after,.noanim .ltr::after,.noanim .sharecard::after{display:none}
 textarea{width:100%;border:none;outline:none;resize:none;background:transparent;font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:16.5px;line-height:1.9;color:#2B3A55;margin-top:6px;min-height:88px}
-textarea::placeholder{color:rgba(43,58,85,.3)}
-.count{text-align:right;font-size:11px;color:rgba(43,58,85,.4)}
+textarea::placeholder{color:rgba(43,58,85,.5)}
+.count{text-align:right;font-size:11px;color:rgba(43,58,85,.72)}
 .hold,.wax,.ghost{width:100%;border-radius:28px;padding:12px 0;font-size:14.5px;cursor:pointer;font-family:inherit;transition:.2s;letter-spacing:4px}
 .hold{margin-top:14px;background:rgba(255,255,255,.08);backdrop-filter:blur(3px);border:1.5px dashed rgba(244,241,232,.55);color:#F4F1E8}
 .hold.rec{border-style:solid;border-color:#E9B36A;color:#A6402F;animation:pulse 1.1s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(233,179,106,.45)}50%{box-shadow:0 0 0 9px rgba(233,179,106,0)}}
 .wax{margin-top:12px;background:#A6402F;color:#F6E7D3;border:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 8px 20px rgba(166,64,47,.32)}
 .wax:active{transform:scale(.98)}
-.ghost{margin-top:12px;background:rgba(255,255,255,.08);backdrop-filter:blur(3px);border:1px solid rgba(244,241,232,.4);color:#F4F1E8}
+.ghost{margin-top:12px;background:rgba(18,20,46,.6);backdrop-filter:blur(3px);border:1px solid rgba(244,241,232,.5);color:#F4F1E8}
 .vchip{margin-top:10px;font-size:12.5px;color:#6B5426;background:rgba(233,179,106,.16);border:1px solid rgba(233,179,106,.45);border-radius:10px;padding:8px 12px;display:inline-block}
-.tiny{margin-top:8px;text-align:center;font-size:11px;color:rgba(244,241,232,.55);letter-spacing:1px}
+.tiny{margin-top:8px;text-align:center;font-size:11px;color:rgba(244,241,232,.82);letter-spacing:1px}
 .wglow{position:absolute;top:150px;left:50%;width:230px;height:230px;margin-left:-115px;border-radius:50%;background:radial-gradient(circle,rgba(255,233,196,.9) 0%,rgba(245,184,92,.45) 42%,rgba(245,184,92,0) 72%);filter:blur(6px);opacity:.55;transform:scale(var(--gs,1));transform-origin:center;transition:transform .8s;pointer-events:none;mix-blend-mode:screen}
 .tide{margin-top:20px;position:relative;padding:0 6px}
 .tline{position:absolute;top:7px;left:16px;right:16px;height:2.5px;border-radius:2px;background:linear-gradient(90deg,#E9B36A var(--p,10%),rgba(43,58,85,.14) var(--p,10%))}
@@ -86,22 +86,22 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .tn{flex:1;text-align:center;position:relative}
 .tn i{display:block;width:12px;height:12px;border-radius:50%;margin:1px auto 0;background:#fff;border:2.5px solid rgba(43,58,85,.3);position:relative;z-index:1}
 .tn.done i{background:#E9B36A;border-color:#E9B36A;box-shadow:0 0 9px rgba(233,179,106,.75)}
-.tn p{font-size:10.5px;color:rgba(244,241,232,.68);margin-top:8px;line-height:1.5}
+.tn p{font-size:10.5px;color:rgba(244,241,232,.86);margin-top:8px;line-height:1.5}
 .feed{margin-top:16px;border-radius:14px;background:rgba(20,22,48,.55);backdrop-filter:blur(4px);border:1px solid rgba(233,179,106,.35);padding:12px 14px;font-size:12.5px;color:#F4F1E8;line-height:1.8;min-height:44px;letter-spacing:.5px}
 .ltr{animation:ltrIn .6s ease-out both;position:relative}.ltr:nth-child(2){animation-delay:.12s}.ltr:nth-child(3){animation-delay:.24s}.ltr{box-shadow:0 6px 24px rgba(5,6,20,.35),inset 0 1px 0 rgba(255,255,255,.06);margin-top:14px;background:#FFFDF6;border:1px solid rgba(43,58,85,.14);border-radius:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 24px rgba(43,58,85,.12);padding:14px;cursor:pointer;transition:.2s;color:#2B3A55;animation:bob 5.6s ease-in-out infinite}
 .ltr:nth-child(2n){animation-duration:6.4s;animation-delay:-2.9s}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-4px) rotate(.3deg)}}
 .lfrom{font-size:12px;color:#A6402F;letter-spacing:1px;display:flex;justify-content:space-between}
-.lfrom span{color:rgba(43,58,85,.4)}
+.lfrom span{color:rgba(43,58,85,.72)}
 .ltext{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:16px;line-height:1.85;margin-top:8px}
 .ask{display:none;margin-top:12px}
 .ltr.open .ask{display:block}
-.ask small{display:block;font-size:10.5px;color:rgba(43,58,85,.5);letter-spacing:1px;margin-bottom:6px}
+.ask small{display:block;font-size:10.5px;color:rgba(43,58,85,.72);letter-spacing:1px;margin-bottom:6px}
 .bub{background:#2B3A55;color:#F6F1E7;border-radius:14px 14px 14px 4px;padding:12px 14px;font-size:13px;line-height:1.75}
 .bub.me{background:#E9B36A;color:#2B3A55;border-radius:14px 14px 4px 14px;margin-top:10px}
 .replyarea{display:flex;gap:8px;margin-top:10px}
-.replyarea input{flex:1;border:1px solid rgba(43,58,85,.25);border-radius:10px;padding:8px 12px;font-size:12.5px;font-family:inherit;background:#fff;outline:none;color:#2B3A55}
-.replyarea button{border:none;background:#2B3A55;color:#F6F1E7;border-radius:10px;padding:0 14px;font-size:12.5px;cursor:pointer;font-family:inherit}
+.replyarea input{flex:1;border:1px solid rgba(43,58,85,.25);border-radius:10px;padding:8px 12px;font-size:16px;font-family:inherit;background:#fff;outline:none;color:#2B3A55}
+.replyarea button{border:none;background:#2B3A55;color:#F6F1E7;border-radius:10px;padding:0 14px;font-size:14px;cursor:pointer;font-family:inherit}
 .goShare{margin-top:10px;border:1px solid #E9B36A;color:#FFE9C4;background:rgba(233,179,106,.12);border-radius:10px;padding:8px 12px;font-size:12px;cursor:pointer;font-family:inherit;letter-spacing:2px}
 .sharecard{margin-top:14px;background:#FFFDF6;border:1px solid rgba(43,58,85,.16);border-radius:16px;box-shadow:0 14px 34px rgba(43,58,85,.12);padding:20px;position:relative;color:#2B3A55}
 .sc-top{display:flex;align-items:center;gap:8px}
@@ -110,34 +110,34 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .sc-quote{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:17px;line-height:2;margin-top:14px;min-height:96px}
 .sc-meta{display:flex;align-items:center;gap:8px;margin-top:12px}
 .waxdot{width:40px;height:40px;border-radius:47% 53% 52% 48%/51% 46% 55% 49%;background:radial-gradient(circle at 35% 30%,#C96A4A,#A6402F 55%,#7A281C);color:#F6E7D3;display:flex;align-items:center;justify-content:center;font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:19px;box-shadow:inset 0 0 0 4px rgba(246,231,211,.25),0 4px 10px rgba(166,64,47,.4)}
-.sc-meta p{font-size:11.5px;color:rgba(43,58,85,.6);letter-spacing:1px}
+.sc-meta p{font-size:11.5px;color:rgba(43,58,85,.8);letter-spacing:1px}
 .sc-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px;border-top:1px dashed rgba(43,58,85,.2);padding-top:12px}
 .sc-foot .est{font-family:Georgia,serif;font-style:italic;font-size:12.5px;color:#8A6F55;letter-spacing:1px}
-.qr{width:46px;height:46px;border:1.5px dashed rgba(43,58,85,.35);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(43,58,85,.4);writing-mode:vertical-rl;letter-spacing:2px}
+.qr{width:46px;height:46px;border:1.5px dashed rgba(43,58,85,.35);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(43,58,85,.72);writing-mode:vertical-rl;letter-spacing:2px}
 .btnrow{display:flex;gap:8px;margin-top:14px}
 .btnrow button{flex:1}
-.backbtn{display:inline-flex;align-items:center;gap:4px;margin:10px 0 2px;padding:8px 14px;border-radius:20px;border:1px solid rgba(244,241,232,.35);background:rgba(255,255,255,.08);backdrop-filter:blur(3px);color:#F4F1E8;font-size:12px;letter-spacing:2px;cursor:pointer;font-family:inherit}
+.backbtn{display:inline-flex;align-items:center;gap:4px;margin:10px 0 2px;padding:8px 14px;border-radius:20px;border:1px solid rgba(244,241,232,.45);background:rgba(18,20,46,.6);backdrop-filter:blur(3px);color:#F4F1E8;font-size:12px;letter-spacing:2px;cursor:pointer;font-family:inherit}
 .linkrow{display:flex;gap:8px;margin-top:12px}
-.navlink{flex:1;padding:10px 0;border-radius:12px;border:1px dashed rgba(244,241,232,.4);background:rgba(255,255,255,.07);color:#F4F1E8;font-size:12.5px;letter-spacing:2px;cursor:pointer;font-family:inherit}
+.navlink{flex:1;padding:10px 0;border-radius:12px;border:1px dashed rgba(244,241,232,.55);background:rgba(18,20,46,.62);color:#F4F1E8;font-size:12.5px;letter-spacing:2px;cursor:pointer;font-family:inherit}
 .navlink b{color:#FFE9C4;font-weight:400}
 .paper2{box-shadow:0 6px 24px rgba(5,6,20,.3),inset 0 1px 0 rgba(255,255,255,.08);margin-top:14px;background:#FFFDF6;border:1px solid rgba(43,58,85,.14);border-radius:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 24px rgba(43,58,85,.12);padding:14px;color:#2B3A55}
 .grow{display:flex;align-items:center;gap:8px;margin-top:10px}
 .grow .bar{flex:1;height:8px;border-radius:4px;background:rgba(43,58,85,.12);overflow:hidden}
 .grow .bar i{display:block;height:100%;width:52%;border-radius:4px;background:linear-gradient(90deg,#E9B36A,#F5B85C)}
 .chatbox{margin-top:14px}
-.rule{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.rule span{font-size:11px;color:#FFE9C4;border:1px solid rgba(233,179,106,.45);background:rgba(233,179,106,.1);border-radius:16px;padding:6px 12px;letter-spacing:1px}
+.rule{display:flex;flex-wrap:wrap;align-items:center;gap:0;margin-top:12px}
+.rule span{font-size:11px;color:rgba(244,241,232,.86);border:none;background:none;border-radius:0;padding:4px 12px 4px 0;letter-spacing:1px}.rule span+span::before{content:"·";margin-right:12px;color:rgba(244,241,232,.55)}
 .statgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:14px}
 .stat{background:rgba(20,22,48,.55);backdrop-filter:blur(4px);border:1px solid rgba(233,179,106,.35);border-radius:14px;padding:12px 14px;text-align:center}
 .stat b{display:block;font-family:Georgia,serif;font-size:22px;color:#FFE9C4;font-weight:400;letter-spacing:1px}
-.stat p{font-size:10.5px;color:rgba(244,241,232,.65);letter-spacing:1px;margin-top:4px}
+.stat p{font-size:10.5px;color:rgba(244,241,232,.86);letter-spacing:1px;margin-top:4px}
 .ctide{margin-top:14px;border-left:1.5px dashed rgba(233,179,106,.5);padding-left:16px}
 .citem{position:relative;padding:0 0 12px;animation:ltrIn .5s ease-out both}
 .citem::before{content:"";position:absolute;left:-21.5px;top:5px;width:9px;height:9px;border-radius:50%;background:#E9B36A;box-shadow:0 0 8px rgba(233,179,106,.8)}
 .citem.dim::before{background:rgba(244,241,232,.25);box-shadow:none}
 .citem b{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;color:#FFE9C4;font-size:13.5px;letter-spacing:1px;font-weight:400}
-.citem b span{font-size:10px;color:rgba(244,241,232,.5);margin-left:8px;letter-spacing:1px}
-.citem p{font-size:10.5px;color:rgba(244,241,232,.65);margin-top:4px;line-height:1.6}
+.citem b span{font-size:10px;color:rgba(244,241,232,.82);margin-left:8px;letter-spacing:1px}
+.citem p{font-size:10.5px;color:rgba(244,241,232,.86);margin-top:4px;line-height:1.6}
 .nite{text-align:center;margin-top:16px}
 .nite .h{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:30px;letter-spacing:6px;color:#FFE9C4;text-shadow:0 2px 16px rgba(10,10,30,.7)}
 .nite .chip{display:inline-block;margin-top:12px;font-size:11px;color:#FFE9C4;border:1px dashed rgba(233,179,106,.55);background:rgba(233,179,106,.1);border-radius:20px;padding:8px 16px;letter-spacing:2px}
@@ -151,15 +151,15 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .srow+.srow{border-top:1px solid rgba(244,241,232,.08)}
 .srow>svg{flex:0 0 16px;opacity:.85}
 .srow p{flex:1;font-size:12.5px;color:#F4F1E8;letter-spacing:1px}
-.srow p span{display:block;font-size:9.5px;color:rgba(244,241,232,.45);margin-top:2px;letter-spacing:.5px}
+.srow p span{display:block;font-size:9.5px;color:rgba(244,241,232,.78);margin-top:2px;letter-spacing:.5px}
 .srow .val{font-size:11px;color:rgba(233,179,106,.9);letter-spacing:1px}
 .seacard{margin-top:12px;background:#FFFDF6;border-radius:14px;padding:12px 14px;color:#2B3A55;border:1px solid rgba(43,58,85,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 24px rgba(43,58,85,.12)}
 .seacard .who{font-size:11px;color:#A6402F;display:flex;justify-content:space-between;letter-spacing:1px}
-.seacard .who span{color:rgba(43,58,85,.4)}
+.seacard .who span{color:rgba(43,58,85,.72)}
 .seacard p{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:14.5px;line-height:1.8;margin-top:6px}
 .riteday{text-align:center;margin-top:14px}
 .riteday .big{font-family:Georgia,serif;font-style:italic;font-size:28px;color:#FFE9C4;letter-spacing:2px}
-.riteday p{font-size:12px;color:rgba(244,241,232,.72);margin-top:6px;letter-spacing:1px}
+.riteday p{font-size:12px;color:rgba(244,241,232,.86);margin-top:6px;letter-spacing:1px}
 .sealfx{position:absolute;inset:0;background:rgba(246,241,232,.88);z-index:20;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
 .sealfx svg{animation:stamp .55s cubic-bezier(.2,1.4,.4,1) both}
 @keyframes stamp{0%{transform:scale(2.1) rotate(-10deg);opacity:0}70%{transform:scale(.94) rotate(2deg);opacity:1}100%{transform:scale(1) rotate(0)}}
@@ -168,7 +168,7 @@ textarea::placeholder{color:rgba(43,58,85,.3)}
 .offline-tip{position:absolute;left:12px;right:12px;top:calc(10px + env(safe-area-inset-top,0px));margin:0 auto;width:max-content;max-width:100%;transform:translateY(-10px);z-index:31;text-align:center;background:#A6402F;color:#FFF3E2;font-size:11.5px;letter-spacing:.6px;padding:7px 16px;border:1px solid rgba(255,233,196,.35);border-radius:18px;box-shadow:0 8px 22px rgba(0,0,0,.35);opacity:0;transition:.25s;pointer-events:none}
 .offline-tip.show{opacity:1;transform:translateY(0)}
 .navbar{position:absolute;left:0;right:0;bottom:0;height:64px;background:rgba(16,17,41,.88);border-top:1px solid rgba(244,241,232,.14);display:flex;z-index:10;backdrop-filter:blur(6px)}
-.navbar button{transition:color .25s;flex:1;border:none;background:transparent;font-family:inherit;font-size:11px;letter-spacing:2px;color:rgba(244,241,232,.48);cursor:pointer;position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:8px}
+.navbar button{transition:color .25s;flex:1;border:none;background:transparent;font-family:inherit;font-size:11px;letter-spacing:2px;color:rgba(244,241,232,.78);cursor:pointer;position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:8px}
 .navbar button svg{display:block;position:relative;z-index:1;width:30px;height:30px}
 .navbar button span{position:relative;z-index:1}
 .navbar button .ico-l{opacity:.38}.navbar button .ico-f{display:none}
@@ -196,7 +196,7 @@ body.full .brand,body.full .caption{display:none}
 #splash.off{opacity:0;visibility:hidden}
 .sp-in{text-align:center;animation:spPop .9s cubic-bezier(.2,1.2,.4,1) both}
 .sp-name{font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:44px;letter-spacing:18px;color:#F4F1E8;margin-top:20px;animation:spUp .8s .25s both}
-.sp-en{font-family:Georgia,serif;font-style:italic;font-size:11px;letter-spacing:5px;color:rgba(244,241,232,.55);margin-top:10px;animation:spUp .8s .4s both}
+.sp-en{font-family:Georgia,serif;font-style:italic;font-size:11px;letter-spacing:5px;color:rgba(244,241,232,.82);margin-top:10px;animation:spUp .8s .4s both}
 .sp-line{width:150px;height:2px;border-radius:2px;margin:20px auto 0;background:rgba(244,241,232,.12);overflow:hidden;animation:spUp .8s .5s both}
 .sp-line i{display:block;height:100%;width:100%;border-radius:2px;background:linear-gradient(90deg,transparent,#E9B36A,transparent);animation:spLine 1.5s linear infinite}
 .sp-tag{font-size:13px;letter-spacing:6px;color:#FFE9C4;margin-top:20px;animation:spUp .8s .6s both}
@@ -209,7 +209,7 @@ body.full .brand,body.full .caption{display:none}
 .gd-head{display:flex;align-items:flex-start;justify-content:space-between;padding:48px 24px 0}
 .gd-h{font-size:27px;line-height:1.45;font-weight:400;font-family:'LXGW WenKai','STKaiti','KaiTi','Noto Serif SC',serif;letter-spacing:2px;color:#FFE9C4;text-shadow:0 2px 14px rgba(10,10,30,.6)}
 .gd-badge{margin-top:8px;padding:4px 12px;border-radius:20px 4px 20px 4px;user-select:none;background:linear-gradient(135deg,#EDBC74,#D69E4E);color:#FFF6E8;font-size:13px;letter-spacing:2px;border:1px solid rgba(255,246,232,.35);box-shadow:0 2px 10px rgba(214,158,78,.3);box-shadow:0 6px 14px rgba(255,184,74,.45)}
-.gd-sub{padding:14px 28px 0;font-size:13.5px;color:rgba(244,241,232,.74);letter-spacing:1.5px;font-family:'LXGW WenKai','STKaiti','KaiTi',serif}
+.gd-sub{padding:14px 28px 0;font-size:13.5px;color:rgba(244,241,232,.86);letter-spacing:1.5px;font-family:'LXGW WenKai','STKaiti','KaiTi',serif}
 .gd-art{flex:1;display:flex;align-items:center;justify-content:center;padding:6px 20px}
 .gd-art svg{width:100%;max-width:386px;height:auto;filter:drop-shadow(0 20px 44px rgba(90,80,200,.3));animation:gdFloat 4.4s ease-in-out infinite}
   @keyframes gdFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
@@ -221,7 +221,7 @@ body.full .brand,body.full .caption{display:none}
 .gd-dots i.on{background:#E9B36A;box-shadow:0 0 8px rgba(233,179,106,.8)}
 .gd-btn{width:210px;border-radius:24px;padding:12px 0;font-size:15px;letter-spacing:4px;border:none;cursor:pointer;font-family:inherit;color:#FFF;background:#A6402F;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 10px 24px rgba(166,64,47,.45)}
 .gd-btn:active{transform:scale(.97)}
-.gd-skip{position:absolute;top:50px;right:22px;background:none;border:none;color:rgba(244,241,232,.5);font-size:13px;cursor:pointer;font-family:inherit;letter-spacing:1px;z-index:3}
+.gd-skip{position:absolute;top:50px;right:22px;background:none;border:none;color:rgba(244,241,232,.82);font-size:13px;cursor:pointer;font-family:inherit;letter-spacing:1px;z-index:3}
 .gd-wave{position:absolute;left:0;right:0;bottom:0;width:100%;height:64px;opacity:.28;pointer-events:none}
 .gd-pg{display:none}.gd-pg.on{display:flex;flex-direction:column;flex:1;animation:spUp .45s both}
 #s-set .srow{cursor:default}
@@ -231,20 +231,20 @@ body.full .brand,body.full .caption{display:none}
 .pickrow{display:flex;gap:8px;margin-top:14px}
 .pick{flex:1;border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;border:1.5px solid rgba(244,241,232,.3);background:rgba(255,255,255,.07);backdrop-filter:blur(3px);transition:.2s}
 .pick b{display:block;font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:13px;letter-spacing:2px;color:#F4F1E8;font-weight:400}
-.pick small{display:block;font-size:9px;letter-spacing:1px;color:rgba(244,241,232,.5);margin-top:4px}
+.pick small{display:block;font-size:9px;letter-spacing:1px;color:rgba(244,241,232,.82);margin-top:4px}
 .pick.on{border-color:#E9B36A;background:rgba(233,179,106,.16);box-shadow:0 6px 18px rgba(233,179,106,.2)}
 .pick.on b{color:#FFE9C4}
 .qitem{display:flex;gap:8px;align-items:center;margin-top:8px;background:#FFFDF6;border:1px solid rgba(43,58,85,.14);border-radius:12px;padding:8px 12px;color:#2B3A55}
 .qitem .qn{flex:none;width:21px;height:21px;border-radius:50%;background:#A6402F;color:#FFF6E8;font-size:12px;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif}
 .qitem input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:inherit;font-size:16px;line-height:1.55;color:#2B3A55;caret-color:#A6402F}
-.qitem input::placeholder{color:rgba(43,58,85,.35)}
+.qitem input::placeholder{color:rgba(43,58,85,.5)}
 .qyear{margin:16px 0 8px;text-align:center;font-size:10.5px;letter-spacing:3px;color:#E9B36A}
 .anscard{background:#FFFDF6;border:1px solid rgba(43,58,85,.14);border-radius:14px;padding:12px 12px;color:#2B3A55;box-shadow:0 10px 24px rgba(43,58,85,.12)}
 .anscard .who{font-size:11px;color:#A6402F;display:flex;justify-content:space-between;letter-spacing:1px;margin-bottom:2px}
-.anscard .who span{color:rgba(43,58,85,.4)}
+.anscard .who span{color:rgba(43,58,85,.72)}
 .anscard .qq{font-size:13.5px;line-height:1.7;margin-top:8px;font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif}
-.anscard .ans{margin:4px 0 2px;font-size:10.5px;color:rgba(43,58,85,.55);letter-spacing:1px;border-bottom:1px dashed rgba(43,58,85,.3);padding-bottom:8px}
-.anscard .ans b{color:#E9B36A;font-weight:normal}
+.anscard .ans{margin:4px 0 2px;font-size:10.5px;color:rgba(43,58,85,.72);letter-spacing:1px;border-bottom:1px dashed rgba(43,58,85,.3);padding-bottom:8px}
+.anscard .ans b{color:#8A5A1E;font-weight:normal}
 .wax.done{background:#8A6A32}
 .tiderow{position:relative;margin-top:14px;height:212px;border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#0C0F2C 0%,#161B42 52%,#222A5E 72%,#2C3566 100%);border:1px solid rgba(233,179,106,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 12px 28px rgba(6,8,24,.5)}
 .tiderow .moon{position:absolute;top:13px;right:17px;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 38% 34%,#FFF6DC,#E8CE96 60%,rgba(232,206,150,0) 74%);box-shadow:0 0 26px 9px rgba(255,233,196,.3)}
@@ -262,7 +262,7 @@ body.full .brand,body.full .caption{display:none}
 .noanim .tidecard{animation:none}
 .tstat{margin-top:12px;text-align:center;font-size:13.5px;color:#FFE9C4;letter-spacing:1.5px}
 .tstat i{font-style:normal;color:#E9B36A}
-.tstat2{margin-top:4px;text-align:center;font-size:11px;color:rgba(244,241,232,.62);letter-spacing:.5px}
+.tstat2{margin-top:4px;text-align:center;font-size:11px;color:rgba(244,241,232,.86);letter-spacing:.5px}
 @media (max-width:560px){.stage{transform:none!important;padding:0;margin:0}
 .phone{width:100vw;height:100vh;height:100dvh;border-radius:0;border:none;box-shadow:none}
 .screen{padding-top:calc(56px + env(safe-area-inset-top,0px));padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
@@ -307,13 +307,13 @@ button:focus-visible{outline:2px solid #E9B36A;outline-offset:2px}
 @media (prefers-reduced-motion: reduce){.markimg{animation:none}}
 .streak{margin-top:8px;font-size:11.5px;letter-spacing:1.5px;color:#FFE9C4;background:rgba(233,179,106,.12);border:1px solid rgba(233,179,106,.4);border-radius:16px;display:inline-block;padding:6px 14px}
 .signcard{margin-top:12px;background:linear-gradient(135deg,rgba(233,179,106,.16),rgba(233,179,106,.05));border:1px solid rgba(233,179,106,.45);border-radius:14px;padding:12px 14px;color:#FFE9C4;font-size:13.5px;line-height:1.8;letter-spacing:1px}
-.signcard small{display:block;margin-top:4px;font-size:10px;color:rgba(244,241,232,.55);letter-spacing:2px}
+.signcard small{display:block;margin-top:4px;font-size:10px;color:rgba(244,241,232,.82);letter-spacing:2px}
 .sharecard{transition:background .35s,color .35s,border-color .35s}
 .sharecard.sk-galaxy{background:linear-gradient(180deg,#0D1130 0%,#171E48 55%,#232B62 100%);border-color:rgba(233,179,106,.45);color:#F4F1E8}
 .sharecard.sk-galaxy .sc-quote{color:#F4F1E8}
 .sharecard.sk-galaxy .est{color:#E9B36A}
 .sharecard.sk-galaxy .sc-foot{border-top-color:rgba(233,179,106,.4)}
-.sharecard.sk-galaxy .qr{border-color:rgba(233,179,106,.5);color:rgba(244,241,232,.7)}
+.sharecard.sk-galaxy .qr{border-color:rgba(233,179,106,.5);color:rgba(244,241,232,.86)}
 .sharecard.sk-galaxy .sc-top p{color:#FFE9C4}
 .sharecard.sk-galaxy .sc-top small{color:rgba(233,179,106,.8)}
 .sharecard.sk-galaxy .sc-top svg path,.sharecard.sk-galaxy .sc-top svg circle{fill:#E9B36A}
@@ -321,7 +321,7 @@ button:focus-visible{outline:2px solid #E9B36A;outline-offset:2px}
 .sharecard.sk-wax .sc-quote{color:#FFF6E8}
 .sharecard.sk-wax .est{color:#E8CE96}
 .sharecard.sk-wax .sc-foot{border-top-color:rgba(232,206,150,.4)}
-.sharecard.sk-wax .qr{border-color:rgba(232,206,150,.5);color:rgba(255,246,232,.7)}
+.sharecard.sk-wax .qr{border-color:rgba(232,206,150,.5);color:rgba(255,246,232,.8)}
 .sharecard.sk-wax .sc-top p{color:#FFF6E8}
 .sharecard.sk-wax .sc-top small{color:#E8CE96}
 .sharecard.sk-wax .sc-top svg path,.sharecard.sk-wax .sc-top svg circle{fill:#E8CE96}
@@ -331,7 +331,7 @@ button:focus-visible{outline:2px solid #E9B36A;outline-offset:2px}
 .ccard img{width:252px;height:420px;border-radius:16px;display:block;box-shadow:0 14px 30px rgba(5,6,20,.5);border:1px solid rgba(233,179,106,.35)}
 .ccard.on img{border:2px solid #E9B36A;box-shadow:0 16px 34px rgba(233,179,106,.28)}
 .ccard .cc{margin-top:8px;font-size:13.5px;letter-spacing:2px;color:#FFE9C4}
-.ccard .cs{margin-top:4px;font-size:10.5px;letter-spacing:1px;color:rgba(244,241,232,.6)}
+.ccard .cs{margin-top:4px;font-size:10.5px;letter-spacing:1px;color:rgba(244,241,232,.86)}
 .srow.col{display:block}
 .srow.col input{width:100%;margin-top:8px;background:rgba(255,255,255,.06);border:1px solid rgba(244,241,232,.22);border-radius:10px;padding:8px 12px;color:#F4F1E8;font-size:14px;outline:none}
 .srow.col input:focus{border-color:#E9B36A}
@@ -418,21 +418,21 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   .breathOrb span{font-size:14px;letter-spacing:4px;color:#FFE9C4;text-shadow:0 1px 6px rgba(20,22,50,.6)}
   .breathBtn{margin-top:6px;padding:8px 24px;border-radius:20px;border:1px solid rgba(233,179,106,.55);
    background:rgba(233,179,106,.12);color:#FFE9C4;font-family:inherit;font-size:12.5px;letter-spacing:3px}
-  .breathCount{font-size:10.5px;letter-spacing:2px;color:rgba(244,241,232,.5);margin-top:10px;min-height:16px}
+  .breathCount{font-size:10.5px;letter-spacing:2px;color:rgba(244,241,232,.82);margin-top:10px;min-height:16px}
   .calWrap{margin-top:14px;padding:12px 14px;border:1px solid rgba(244,241,232,.12);border-radius:14px;background:rgba(12,13,34,.56);backdrop-filter:blur(3px)}
   .calHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
   .calHead b{font-weight:400;font-size:12.5px;letter-spacing:2px;color:#FFE9C4}
-  .calHead span{font-size:10.5px;color:rgba(244,241,232,.45);letter-spacing:1px}
+  .calHead span{font-size:10.5px;color:rgba(244,241,232,.78);letter-spacing:1px}
   .calGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-  .calGrid .wd{text-align:center;font-size:9px;color:rgba(244,241,232,.62);letter-spacing:1px;padding:2px 0}
+  .calGrid .wd{text-align:center;font-size:9px;color:rgba(244,241,232,.86);letter-spacing:1px;padding:2px 0}
   .calGrid .d{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:50%;
-   font-size:9.5px;color:rgba(244,241,232,.35);position:relative}
+   font-size:9.5px;color:rgba(244,241,232,.78);position:relative}
   .calGrid .d.void{visibility:hidden}
   .calGrid .d.hit::after{content:"✦";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
    font-size:15px;color:#E9B36A;opacity:.92;text-shadow:0 0 6px rgba(233,179,106,.5)}
   .calGrid .d.hit{color:transparent}
   .calGrid .d.today{box-shadow:inset 0 0 0 1.5px rgba(215,203,245,.75)}
-  .calGrid .d.future{opacity:.28}
+  .calGrid .d.future{opacity:.5}
   .achvGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
   .achv{width:100%;text-align:center;position:relative}
   .achv .ic{width:60px;height:60px;border-radius:50%;margin:0 auto 8px;position:relative;overflow:hidden;
@@ -441,7 +441,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   .achv.on .ic{box-shadow:0 6px 22px rgba(233,179,106,.3);border:2px solid #E9B36A}
   .achv:not(.on) .ic{border:1.5px solid rgba(244,241,232,.15);opacity:.35;filter:grayscale(1)}
   .achv b{display:block;font-size:10.5px;letter-spacing:1px;color:#FFE9C4;font-weight:normal}
-  .achv small{display:block;font-size:9px;color:rgba(244,241,232,.4);margin-top:2px;letter-spacing:.5px}
+  .achv small{display:block;font-size:9px;color:rgba(244,241,232,.78);margin-top:2px;letter-spacing:.5px}
   .achv .ic svg{width:38px;height:38px}
   .achv.on .ic{transform:scale(1)}
   .achv:not(.on) .ic{transform:scale(.85)}
@@ -515,11 +515,11 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
   .bs-ring svg{width:112px;height:112px;display:block}
   .bs-ring:not(.on) svg{filter:grayscale(1) brightness(.55)}
   .bs-name{font-size:17px;letter-spacing:4px;color:#FFE9C4;font-family:serif}
-  .bs-status{margin-top:8px;font-size:12.5px;letter-spacing:1px;color:rgba(244,241,232,.78)}
+  .bs-status{margin-top:8px;font-size:12.5px;letter-spacing:1px;color:rgba(244,241,232,.86)}
   .bs-status b{color:#E9B36A;font-weight:400}
   .bs-div{width:64px;height:1.5px;background:linear-gradient(90deg,transparent,#E9B36A,transparent);margin:16px auto}
   .bs-word{font-family:'LXGW WenKai','STKaiti','KaiTi',serif;font-size:14.5px;line-height:2;color:#FFF6E8;letter-spacing:1px;padding:0 8px}
-  .bs-tag{margin-top:14px;font-size:10px;letter-spacing:4px;color:rgba(233,179,106,.75)}
+  .bs-tag{margin-top:14px;font-size:10px;letter-spacing:4px;color:rgba(233,179,106,.8)}
   .noanim #badgeSheet{animation:none}  /* ── 开屏进入：极光渐变环 + 月光音效 ── */
   .entry-wrap{position:relative;display:block;width:200px;margin:0 auto}
   .entry-aur{position:absolute;left:50%;top:50%;width:170px;height:170px;margin:-109px 0 0 -85px;border-radius:50%;pointer-events:none;z-index:0;
@@ -548,6 +548,16 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
 @media (max-width:560px) and (max-height:790px){#s-open .openAm+div{display:none}}
 @media (max-width:560px) and (max-height:640px){#s-open .openBottom{position:static!important;margin:14px 22px 0}}
   .noanim #pxOpenBg,.noanim #s-open .entry-wrap{transform:none!important;transition:none}
+/* v6-82 交互规范修正 */
+#holdBtn{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.lops .lreply{color:#8A5A1E;background:rgba(233,179,106,.2);border:1px solid rgba(233,179,106,.75)}
+.paper2.age-1,.ltr.age-1{filter:sepia(.14) saturate(.92)}
+.paper2.age-2,.ltr.age-2{filter:sepia(.26) saturate(.84) brightness(.975)}
+body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
+#calMonths{background:rgba(12,13,34,.66);border:1px solid rgba(244,241,232,.12);border-radius:14px;padding:12px 12px 2px;backdrop-filter:blur(3px)}
+.tcap,.tiny,#s-world .tn p{text-shadow:0 1px 2px rgba(8,9,26,.85),0 0 6px rgba(8,9,26,.45)}
+.sw-stat{font-size:12px;color:#E9B36A;letter-spacing:1px;white-space:nowrap;padding:6px 0}
+#tideSearchIn,.replyarea input,#aiEp,#aiKey,#aiModel,.ledit-box textarea{font-size:16px!important}
   @media (prefers-reduced-motion:reduce){#pxOpenBg,#s-open .entry-wrap{transform:none!important;transition:none}}</style>
 </head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
@@ -736,8 +746,8 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
     <div class="paper2">
      <div class="lfrom">封于 2022.10.05<span>火漆完好</span></div>
      <div class="ltext">“想在三十岁前，拥有一间自己的工作室，哪怕很小。”</div>
-     <div class="grow"><span style="font-size:10.5px;color:rgba(43,58,85,.55)">沉淀刻度</span><div class="bar"><i></i></div><span style="font-size:10.5px;color:#A6402F">12/24</span></div>
-     <div style="margin-top:12px;font-size:12px;line-height:1.8;color:#6B5426;background:rgba(233,179,106,.14);border:1px solid rgba(233,179,106,.4);border-radius:10px;padding:8px 12px">AI 已萃取 <b>217 滴</b>养分 · 星光 +38% · 原文从未外传</div>
+     <div class="grow"><span style="font-size:10.5px;color:rgba(43,58,85,.72)">沉淀刻度</span><div class="bar"><i></i></div><span style="font-size:10.5px;color:#A6402F">12/24</span></div>
+     <div style="margin-top:12px;font-size:12px;line-height:1.8;color:#6B5426;background:rgba(233,179,106,.14);border:1px solid rgba(233,179,106,.4);border-radius:10px;padding:8px 12px">养分日记每天自动长一条 · 原文只存本机</div>
     </div>
     </div>
     <button class="ghost" data-go="s-append" style="margin-top:12px">给瓶里补一页 · 续写这个梦 ›</button>
@@ -816,7 +826,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
      <div class="ltext" style="font-size:17px;line-height:2;margin-top:12px">想在三十岁前，拥有一间自己的工作室，哪怕很小，门上要挂一块手写的木牌。</div>
      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:20px;border-top:1px dashed rgba(43,58,85,.2);padding-top:12px">
       <span style="font-family:Georgia,serif;font-style:italic;font-size:12px;color:#8A6F55">2026.10.11 · 于夜航</span>
-      <div style="width:44px;height:44px;border-radius:50%;border:1.5px dashed rgba(166,64,47,.5);color:rgba(166,64,47,.55);display:flex;align-items:center;justify-content:center;font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:12px">安</div>
+      <div style="width:44px;height:44px;border-radius:50%;border:1.5px dashed rgba(166,64,47,.5);color:rgba(166,64,47,.8);display:flex;align-items:center;justify-content:center;font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:12px">安</div>
      </div>
     </div>
     <div class="btnrow"><button class="ghost" data-go="s-store">再改改</button><button class="wax" data-go="s-world">就这样，封入瓶中</button></div>
@@ -844,7 +854,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
     <div class="nite">
      <svg width="64" height="64" viewBox="0 0 44 44" fill="#FFE9C4"><path d="M27,11 a12,12 0 1,0 6.5,21.5 A10,10 0 1,1 27,11 Z"/><path d="M30,13 l1.1,2.9 2.9,1.1 -2.9,1.1 -1.1,2.9 -1.1,-2.9 -2.9,-1.1 2.9,-1.1 Z"/></svg>
      <div class="h" style="margin-top:10px">夜航晚安</div>
-     <p style="font-size:11.5px;color:rgba(244,241,232,.7);letter-spacing:2px;margin-top:8px">第 146 夜 · 平安</p>
+     <p style="font-size:11.5px;color:rgba(244,241,232,.86);letter-spacing:2px;margin-top:8px">第 146 夜 · 平安</p>
     </div>
     <div class="feed" style="margin-top:16px;text-align:center">今夜瓶语：「梦见海，兑了一点潮声进瓶里。」</div>
     <div class="nite"><span class="chip">明晨 7:00 · 潮声轻轻唤醒你</span></div>
@@ -883,7 +893,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
     <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
      <img id="amianAvatar" data-src="img/amian-front.png" alt="阿眠" style="width:48px;height:48px;animation:breathe 3.8s ease-in-out infinite;border-radius:50%;object-fit:cover;background:rgba(233,179,106,.12);border:1.5px solid rgba(233,179,106,.65);box-shadow:0 6px 16px rgba(5,6,20,.5)">
      <div><div style="font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:22px;letter-spacing:3px;color:#FFE9C4">第 001 号瓶</div>
-     <div style="font-family:Georgia,serif;font-style:italic;font-size:9.5px;letter-spacing:3px;color:rgba(244,241,232,.55)">MY BREWM · EST. 2022</div></div>
+     <div style="font-family:Georgia,serif;font-style:italic;font-size:9.5px;letter-spacing:3px;color:rgba(244,241,232,.82)">MY BREWM · EST. 2022</div></div>
     </div>
     <div class="statgrid">
      <div class="stat"><b>1462</b><p>酿龄 · 天</p></div>
@@ -895,7 +905,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
      <div style="font-size:12px;letter-spacing:3px;color:#9AA3C7;margin-bottom:4px">成 就 徽 章</div>
      <div class="achvGrid" id="achvGrid"></div>
     </div>
-    <div class="feed" style="margin-top:12px">平安里程：1462 天 · 0 次惊扰 · 原文从未外传</div>
+    <div class="feed" style="margin-top:12px">平安里程：1462 天 · 0 次惊扰 · 原文外发 <b id="mineOut">0</b> 次</div>
     <div class="rule"><span>双重授权</span><span>署名可溯</span><span>随时可撤</span></div>
     <div class="tiny">每一个数字，都是时间酿出来的</div>
     <button class="ghost" data-go="s-set" style="margin-top:12px">设置 · 让酿梦更懂你 ›</button>
@@ -912,20 +922,20 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
       <button class="skbtn" data-skin="forest" style="flex:1;padding:6px;border-radius:10px;font-size:11px;cursor:pointer;border:1px solid rgba(244,241,232,.25);background:none;color:#9AA3C7;font-family:inherit">森林</button>
       <button class="skbtn" data-skin="sakura" style="flex:1;padding:6px;border-radius:10px;font-size:11px;cursor:pointer;border:1px solid rgba(244,241,232,.25);background:none;color:#9AA3C7;font-family:inherit">樱花</button>
      </div></div>
-     <div class="srow"><p>潮声唤醒<span>每日 7:00 · 涨潮与回信提醒</span></p><div class="sw on"></div></div>
+     <div class="srow"><p>涨潮提醒<span>涨潮时通知一次 · 仅页面在后台时有效</span></p><div class="sw" id="swNotify"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><rect x="8" y="17" width="7" height="10" rx="2" fill="#D7CBF5"/><path d="M17,17 L25,10 L25,34 L17,27 Z" fill="#D7CBF5"/><path d="M29,16 A9,9 0 0 1 29,28" stroke="#E9B36A" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="35" cy="13" r="2.4" fill="#BC4A32"/></svg><p>仪式音效<span>封缄 · 涨潮 · 开瓶的轻响</span></p><div class="sw" id="swSfx"></div></div>
      <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><path d="M7,22 L13,22 L16,13 L21,31 L26,17 L29,22 L37,22" stroke="#D7CBF5" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="37" cy="12" r="2.4" fill="#BC4A32"/></svg><p>环境底噪<span>夜间白噪音 · 安静陪伴</span></p><div class="sw" id="swAmbi"></div></div>
-     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><circle cx="22" cy="22" r="13" fill="#6B5BA8"/><path d="M25.4,21.3 A8.4,8.4 0 1 1 19.6,10.4 A7,7 0 0 0 25.4,21.3 Z" fill="#D7CBF5"/><circle cx="31" cy="13" r="2.2" fill="#E9B36A"/></svg><p>夜间模式<span>日落后自动进入夜航</span></p><div class="sw on"></div></div>
-     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><rect x="10" y="7" width="24" height="30" rx="3" fill="#D7CBF5"/><rect x="15" y="14" width="14" height="2.6" rx="1.3" fill="#6B5BA8"/><rect x="15" y="20" width="14" height="2.6" rx="1.3" fill="#6B5BA8"/><rect x="15" y="26" width="9" height="2.6" rx="1.3" fill="#E9B36A"/><circle cx="31" cy="10" r="2.4" fill="#BC4A32"/></svg><p>纸纹陈化<span>信纸与字迹随年份慢慢变旧</span></p><div class="sw on"></div></div>
-     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><circle cx="22" cy="22" r="5" fill="#D7CBF5"/><path d="M22,8 A14,14 0 0 1 36,22" stroke="#E9B36A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M22,36 A14,14 0 0 1 8,22" stroke="#E9B36A" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="36" cy="12" r="2.4" fill="#BC4A32"/></svg><p>减弱动效<span>跟随系统「减少动态效果」设定</span></p><div class="sw on"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><circle cx="22" cy="22" r="13" fill="#6B5BA8"/><path d="M25.4,21.3 A8.4,8.4 0 1 1 19.6,10.4 A7,7 0 0 0 25.4,21.3 Z" fill="#D7CBF5"/><circle cx="31" cy="13" r="2.2" fill="#E9B36A"/></svg><p>夜间模式<span>日落后底图自动调暗、调深</span></p><div class="sw on" id="swNight"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><rect x="10" y="7" width="24" height="30" rx="3" fill="#D7CBF5"/><rect x="15" y="14" width="14" height="2.6" rx="1.3" fill="#6B5BA8"/><rect x="15" y="20" width="14" height="2.6" rx="1.3" fill="#6B5BA8"/><rect x="15" y="26" width="9" height="2.6" rx="1.3" fill="#E9B36A"/><circle cx="31" cy="10" r="2.4" fill="#BC4A32"/></svg><p>纸纹陈化<span>信纸与字迹随年份慢慢变旧</span></p><div class="sw on" id="swAging"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><circle cx="22" cy="22" r="5" fill="#D7CBF5"/><path d="M22,8 A14,14 0 0 1 36,22" stroke="#E9B36A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M22,36 A14,14 0 0 1 8,22" stroke="#E9B36A" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="36" cy="12" r="2.4" fill="#BC4A32"/></svg><p>减弱动效<span>关掉呼吸、流星和位移动画</span></p><div class="sw" id="swNoanim"></div></div>
      <div class="srow link" id="guideReplay"><svg width="16" height="16" viewBox="0 0 44 44"><circle cx="22" cy="12" r="4" fill="#E9B36A"/><path d="M14,20 A8,8 0 0 1 30,20 L30,26 L14,26 Z" fill="#D7CBF5"/><rect x="19" y="28" width="6" height="8" rx="2" fill="#E9B36A"/><circle cx="34" cy="34" r="2.2" fill="#BC4A32"/></svg><p>新手引导<span>重看功能介绍</span></p><span class="val">›</span></div>
     </div>
     <div class="sgroup">
      <div class="gt">隐私与治理</div>
-     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><rect x="11" y="19" width="22" height="17" rx="4" fill="#D7CBF5"/><path d="M15,19 L15,14 A7,7 0 0 1 29,14 L29,19" stroke="#E9B36A" stroke-width="3.4" fill="none"/><circle cx="22" cy="27" r="3" fill="#6B5BA8"/><rect x="20.8" y="28" width="2.4" height="5" rx="1.2" fill="#6B5BA8"/></svg><p>原文本地加密<span>信的原文只存在你的设备上</span></p><div class="sw on"></div></div>
-     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><circle cx="22" cy="22" r="9" fill="none" stroke="#E9B36A" stroke-width="2.6"/><path d="M22,10 L24,19 L33,22 L24,25 L22,34 L20,25 L11,22 L20,19 Z" fill="#D7CBF5"/><circle cx="35" cy="10" r="2.4" fill="#BC4A32"/></svg><p>AI 萃取授权<span>只提炼养分 · 原文从不外传</span></p><div class="sw on"></div></div>
-     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><path d="M10,15 C15,9 29,9 34,15 L34,26 C29,32 15,32 10,26 Z" fill="#D7CBF5"/><path d="M14,20 q4,-3 8,0 t8,0" stroke="#6B5BA8" stroke-width="2.4" fill="none" stroke-linecap="round"/><circle cx="33" cy="12" r="2.4" fill="#BC4A32"/></svg><p>酿卡漂流<span>需二次确认 · 授权后可随时撤回</span></p><div class="sw"></div></div>
-     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><rect x="9" y="9" width="26" height="26" rx="4" fill="#D7CBF5"/><path d="M15,28 L20,20 L25,25 L30,15" stroke="#6B5BA8" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="30" r="2.4" fill="#E9B36A"/></svg><p>漂流署名<span>酿卡出海时显示瓶名</span></p><div class="sw on"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><rect x="11" y="19" width="22" height="17" rx="4" fill="#D7CBF5"/><path d="M15,19 L15,14 A7,7 0 0 1 29,14 L29,19" stroke="#E9B36A" stroke-width="3.4" fill="none"/><circle cx="22" cy="27" r="3" fill="#6B5BA8"/><rect x="20.8" y="28" width="2.4" height="5" rx="1.2" fill="#6B5BA8"/></svg><p>原文只存本机<span>只保存在这台设备的浏览器里，不经过服务器</span></p><div class="sw-stat">始终如此</div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><circle cx="22" cy="22" r="9" fill="none" stroke="#E9B36A" stroke-width="2.6"/><path d="M22,10 L24,19 L33,22 L24,25 L22,34 L20,25 L11,22 L20,19 Z" fill="#D7CBF5"/><circle cx="35" cy="10" r="2.4" fill="#BC4A32"/></svg><p>隔瓶长谈读取梦境<span>AI 对话会带上最近 3 个梦 · 关掉就不带</span></p><div class="sw on" id="swAiCtx"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><path d="M10,15 C15,9 29,9 34,15 L34,26 C29,32 15,32 10,26 Z" fill="#D7CBF5"/><path d="M14,20 q4,-3 8,0 t8,0" stroke="#6B5BA8" stroke-width="2.4" fill="none" stroke-linecap="round"/><circle cx="33" cy="12" r="2.4" fill="#BC4A32"/></svg><p>酿卡漂流<span>授权后才能进入共鸣广场 · 可随时撤回</span></p><div class="sw" id="swDrift"></div></div>
+     <div class="srow"><svg width="16" height="16" viewBox="0 0 44 44"><rect x="9" y="9" width="26" height="26" rx="4" fill="#D7CBF5"/><path d="M15,28 L20,20 L25,25 L30,15" stroke="#6B5BA8" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="30" r="2.4" fill="#E9B36A"/></svg><p>漂流署名<span>生成的酿卡上写「第 001 号瓶」</span></p><div class="sw on" id="swSign"></div></div>
     </div>
     <button class="ghost" data-go="s-privacy" style="margin-top:12px">查看完整隐私承诺 ›</button>
     <div class="sgroup">
@@ -947,7 +957,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
     <div class="openTop" style="text-align:center;margin-top:142px">
      <img src="img/mark-starheart.png" alt="星心宝相" class="markimg" style="width:118px;height:auto;display:inline-block">
      <div class="h-kai" style="font-size:42px;letter-spacing:14px;margin-top:20px">酿 梦</div>
-     <div style="font-family:Georgia,serif;font-style:italic;font-size:10.5px;letter-spacing:5px;color:rgba(244,241,232,.62);margin-top:12px">BREWM · BREW DREAMS WITH TIME</div>
+     <div style="font-family:Georgia,serif;font-style:italic;font-size:10.5px;letter-spacing:5px;color:rgba(244,241,232,.86);margin-top:12px">BREWM · BREW DREAMS WITH TIME</div>
      <p class="tcap" style="margin-top:24px;line-height:2.1;letter-spacing:3px">存入是下料 · 日常是发酵<br>回望是开坛 · 共鸣是分酿予人</p>
     </div>
     <span class="openAm" style="position:relative;display:block;width:172px;margin:14px auto 0;font-size:0">
@@ -971,7 +981,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
      <div class="wave"><i style="height:6px"></i><i style="height:17px"></i><i style="height:25px"></i><i style="height:26px"></i><i style="height:21px"></i><i style="height:12px"></i><i style="height:8px"></i><i style="height:14px"></i><i style="height:18px"></i><i style="height:20px"></i><i style="height:18px"></i><i style="height:10px"></i><i style="height:12px"></i><i style="height:22px"></i><i style="height:28px"></i><i style="height:26px"></i><i style="height:19px"></i><i style="height:8px"></i><i style="height:15px"></i><i style="height:22px"></i><i style="height:22px"></i><i style="height:18px"></i><i style="height:11px"></i><i style="height:7px"></i><i style="height:15px"></i><i style="height:21px"></i><i style="height:24px"></i><i style="height:21px"></i><i style="height:12px"></i><i style="height:11px"></i><i style="height:22px"></i><i style="height:27px"></i><i style="height:26px"></i><i style="height:19px"></i></div>
      <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
       <div class="waxdot vplay" style="width:34px;height:34px;font-size:13px;cursor:pointer" data-vc="0" data-sec="12">▶</div>
-      <p id="cap1" style="font-size:11px;color:rgba(43,58,85,.55)">潮声已褪去 · 女声还原本声</p>
+      <p id="cap1" style="font-size:11px;color:rgba(43,58,85,.72)">潮声已褪去 · 女声还原本声</p>
      </div>
      <div class="ltext" style="font-size:14px;margin-top:10px">「……要把工作室的灯，调成暖色的。」</div>
     </div>
@@ -980,7 +990,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
      <div class="wave"><i style="height:19px"></i><i style="height:10px"></i><i style="height:14px"></i><i style="height:23px"></i><i style="height:28px"></i><i style="height:25px"></i><i style="height:17px"></i><i style="height:7px"></i><i style="height:15px"></i><i style="height:20px"></i><i style="height:19px"></i><i style="height:15px"></i><i style="height:11px"></i><i style="height:8px"></i><i style="height:17px"></i><i style="height:24px"></i><i style="height:26px"></i><i style="height:22px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:22px"></i><i style="height:26px"></i><i style="height:24px"></i><i style="height:17px"></i><i style="height:8px"></i><i style="height:12px"></i><i style="height:15px"></i><i style="height:19px"></i><i style="height:19px"></i><i style="height:14px"></i><i style="height:7px"></i><i style="height:18px"></i><i style="height:26px"></i><i style="height:28px"></i></div>
      <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
       <div class="waxdot vplay" style="width:34px;height:34px;font-size:13px;cursor:pointer" data-vc="1" data-sec="8" data-plain="1">▶</div>
-      <p style="font-size:11px;color:rgba(43,58,85,.55)">原声回放 · 男声未经转写</p>
+      <p style="font-size:11px;color:rgba(43,58,85,.72)">原声回放 · 男声未经转写</p>
      </div>
      <div class="ltext" style="font-size:14px;margin-top:10px">「三战……这次真的上岸了。」</div>
     </div>
@@ -1061,7 +1071,7 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
      <p style="font-size:15px">「三战上岸那天，我先去海边看了一场日出。」</p>
      <div style="display:flex;align-items:center;gap:8px;margin-top:10px;border-top:1px dashed rgba(43,58,85,.2);padding-top:10px">
       <div class="waxdot" style="width:30px;height:30px;font-size:13px">安</div>
-      <p style="font-size:10.5px;color:rgba(43,58,85,.55)">已封存 987 天 · 署名可溯 · 授权可撤</p>
+      <p style="font-size:10.5px;color:rgba(43,58,85,.72)">已封存 987 天 · 署名可溯 · 授权可撤</p>
      </div>
     </div>
     <div class="btnrow"><button class="ghost" data-say="backsea">放回海里</button><button class="wax" data-say="light">点亮回应 ✦</button></div>
@@ -1072,14 +1082,14 @@ html[data-part="day"] .bgart img{filter:brightness(1.04)}
    <section class="screen" id="s-privacy">
     <button class="backbtn" data-go="s-set">‹ 返回设置</button>
     <div class="h-kai sm">隐私承诺</div>
-    <div class="tcap">原文本地加密 · 不外传</div>
+    <div class="tcap">你的原文，由你做主</div>
     <div class="ctide">
-     <div class="citem"><b>① 原文加密存本机<span>火漆即钥匙</span></b><p>信的原文加密后只存在你的设备，密钥不出门</p></div>
-     <div class="citem"><b>② AI 只读脱敏特征</b><p>萃取仅读取主题词与情绪特征，不读取原文</p></div>
+     <div class="citem"><b>① 原文只存本机<span>不经过服务器</span></b><p>信的原文只保存在这台设备的浏览器里，酿梦没有收集原文的服务器</p></div>
+     <div class="citem"><b>② AI 读取由你授权<span>默认不外发</span></b><p>不填 AI 接口时全在本机完成；填了接口，「隔瓶长谈」才会发送最近封存的 3 个梦，可以在设置里关掉</p></div>
      <div class="citem dim" style="padding-bottom:2px"><b>③ 养分回写瓶中</b><p>星光与潮位在你的瓶内更新，全程可查</p></div>
     </div>
     <div class="statgrid">
-     <div class="stat"><b>0</b><p>原文外传 · 次</p></div>
+     <div class="stat"><b id="pvOut">0</b><p>原文外发 · 次</p></div>
      <div class="stat"><b>100%</b><p>原文本地存储</p></div>
     </div>
     <div class="rule"><span>最小收集</span><span>可随时导出</span><span>可一键销瓶</span></div>
@@ -1266,7 +1276,7 @@ var state={
   '夜风很轻，火漆纹路又深了一分',
   '潮位上涨：距离第 2 潮还有 421 天',
   '昨夜的语音梦，酿出了细小的光'],
- fi:0,voice:null,replies:{},shareIdx:0,ambi:false,
+ fi:0,voice:null,replies:{},shareIdx:0,ambi:false,night:true,aging:true,noanim:false,aiCtx:true,drift:false,sign:true,aiSendN:0,
  sound:true,
  sound:true,ai:{ep:"https://api.openai.com/v1/chat/completions",key:"",model:"gpt-4o-mini"},
  notifyOn:false,chat:[]
@@ -1277,7 +1287,7 @@ var _saveFailAt=0;
 function saveAll(){try{localStorage.setItem(LSKEY,JSON.stringify({
  dreams:state.dreams,letters:state.letters,nights:state.nights,sound:state.sound,ambi:state.ambi,
  sound:state.sound,
- ai:state.ai,notifyOn:state.notifyOn,chat:state.chat.slice(-30),
+ ai:state.ai,notifyOn:state.notifyOn,night:state.night,aging:state.aging,noanim:state.noanim,aiCtx:state.aiCtx,drift:state.drift,sign:state.sign,aiSendN:state.aiSendN||0,chat:state.chat.slice(-30),
  qs:(function(){var a=[],el=document.querySelectorAll('#s-qseal .qitem input');for(var i=0;i<el.length;i++)a.push(el[i].value);return a})(),
  tideN:state.letters.filter(function(L){return L.mine}).length
   }));_saveFailAt=0;return true}catch(e){var n=Date.now();if(n-_saveFailAt>60000){_saveFailAt=n;try{if(!saveAll.hush)toast('本机存储写不进去 · 关页后这次的改动会丢')}catch(_){}}return false}}
@@ -1289,6 +1299,13 @@ function loadAll(){var raw=null;try{raw=localStorage.getItem(LSKEY)}catch(e){}
   if(typeof d.nights==="number")state.nights=d.nights;
   if(d.ai)state.ai=d.ai;
   state.notifyOn=!!d.notifyOn;
+   if(typeof d.night==="boolean")state.night=d.night;
+   if(typeof d.aging==="boolean")state.aging=d.aging;
+   if(typeof d.noanim==="boolean")state.noanim=d.noanim;
+   if(typeof d.aiCtx==="boolean")state.aiCtx=d.aiCtx;
+   if(typeof d.drift==="boolean")state.drift=d.drift;
+   if(typeof d.sign==="boolean")state.sign=d.sign;
+   if(typeof d.aiSendN==="number")state.aiSendN=d.aiSendN;
   if(d.chat)state.chat=d.chat;
   if(d.qs)state.qs=d.qs;
   if(typeof d.sound==="boolean")state.sound=d.sound;
@@ -1525,8 +1542,8 @@ function markSheet(key,cellEl){
     return '<button data-mk="'+mk.id+'" style="flex:1;padding:12px 0;border-radius:14px;border:1.5px solid '+(on?mk.c:'rgba(244,241,232,.25)')+';background:'+(on?'rgba(233,179,106,.12)':'rgba(255,255,255,.04)')+';cursor:pointer"><span style="display:inline-block;width:22px;height:22px">'+CAL_SVG[mk.id]+'</span><div style="font-size:10.5px;letter-spacing:2px;margin-top:3px;color:'+(on?mk.c:'rgba(244,241,232,.55)')+'">'+mk.n+'</div></button>';
   }).join('')
   +'<button data-mk="clear" style="flex:1;padding:12px 0;border-radius:14px;border:1.5px solid rgba(166,64,47,.5);background:none;color:#BC4A32;font-size:13px;font-family:inherit;cursor:pointer">✕<div style="font-size:10.5px;letter-spacing:2px;margin-top:3px">清除</div></button></div>';
- var host=document.querySelector('.phone')||document.body;host.appendChild(sh);
- var close=function(){sh.remove();document.removeEventListener('click',outside,true)};
+ var host=document.querySelector('.phone')||document.body;host.appendChild(sh);pushOv();
+ var close=function(noPop){sh.remove();document.removeEventListener('click',outside,true);__sheetCloses=__sheetCloses.filter(function(f){return f!==close});if(!noPop)popOv()};__sheetCloses.push(close);
  var outside=function(e){if(!sh.contains(e.target)){close()}};
  setTimeout(function(){document.addEventListener('click',outside,true)},50);
  sh.addEventListener('click',function(e){
@@ -1572,7 +1589,7 @@ function renderCalMonths(){
  var MARKS={star:{c:'#E9B36A',bg:'rgba(233,179,106,.16)',gl:'rgba(233,179,106,.55)',g:'✦'},heart:{c:'#D0603F',bg:'rgba(188,74,50,.18)',gl:'rgba(208,96,63,.5)',g:'❤'},moon:{c:'#D7CBF5',bg:'rgba(215,203,245,.16)',gl:'rgba(215,203,245,.5)',g:'☾'}};
  var html='';
  months.forEach(function(mo){
-  html+='<div style="margin-bottom:14px"><b style="font-size:14px;color:'+(mo.tide?'#FFE9C4':'#9AA3C7')+'">'+mo.y+'.'+String(mo.m).padStart(2,'0')+(mo.tide?' ✦ 涨潮':'')+'</b>';
+  html+='<div style="margin-bottom:14px"><b style="font-size:14px;color:'+(mo.tide?'#FFE9C4':'rgba(244,241,232,.88)')+'">'+mo.y+'.'+String(mo.m).padStart(2,'0')+(mo.tide?' ✦ 涨潮':'')+'</b>';
   html+='<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:6px">';
   mo.cells.forEach(function(c){
    if(c.d===0){html+='<span></span>';return}
@@ -1580,7 +1597,7 @@ function renderCalMonths(){
    var key=mo.y+'-'+String(mo.m).padStart(2,'0')+'-'+String(c.d).padStart(2,'0');
    var mk=marks[key];
    var mkHtml=mk&&MARKS[mk]?'<div style="width:15px;height:15px;margin:1px auto 0;filter:drop-shadow(0 0 3px '+MARKS[mk].gl+')">'+CAL_SVG[mk]+'</div>':'';
-   var col=mk&&MARKS[mk]?MARKS[mk].c:(isToday?'#E9B36A':'rgba(244,241,232,'+(mk?'.92':'.4')+')');
+   var col=mk&&MARKS[mk]?MARKS[mk].c:(isToday?'#E9B36A':'rgba(244,241,232,'+(mk?'1':'.85')+')');
    var cellBg=mk&&MARKS[mk]?MARKS[mk].bg:(isToday?'rgba(233,179,106,.15)':'');
    html+='<span data-cal="'+key+'" style="text-align:center;padding:3px 0;border-radius:10px;cursor:pointer;color:'+col+';font-weight:'+(mk||isToday?'bold':'normal')+';'+(cellBg?'background:'+cellBg+';':'')+'">'+c.d+mkHtml+'</span>';
   });
@@ -1600,18 +1617,18 @@ renderCalMonths();
  if(!state.dreams.length){
   box.innerHTML='<div class="paper2"><div class="lfrom">梦貘的欢迎信<span>第 000 号</span></div>'
    +'<div class="ltext">“瓶还是空的——这正是它最好的时候。写下第一个梦，或按住说一句，剩下的交给时间。”</div>'
-   +'<div style="margin-top:10px;font-size:11px;color:rgba(43,58,85,.55)">去 <b>存入</b> 封下第一个梦 · 潮汐即刻开始计时</div></div>';
+   +'<div style="margin-top:10px;font-size:11px;color:rgba(43,58,85,.72)">去 <b>存入</b> 封下第一个梦 · 潮汐即刻开始计时</div></div>';
   return;
  }
  state.dreams.forEach(function(D,i){
   var no=state.dreams.length-i;
-  var d=document.createElement('div');d.className='paper2';
+  var d=document.createElement('div');d.className='paper2 '+ageClass(D.d);
   d.innerHTML='<div class="lfrom">封于 '+esc(D.d)+'<span>'+(D.page?'发酵补页':'第 '+String(no).padStart(3,'0')+' 号梦')+'</span></div>'
    +'<div class="ltext">“'+esc(D.t)+'”</div>'
-   +'<div class="grow"><span style="font-size:10.5px;color:rgba(43,58,85,.55)">沉淀刻度</span>'
+   +'<div class="grow"><span style="font-size:10.5px;color:rgba(43,58,85,.72)">沉淀刻度</span>'
    +'<div class="bar"><i style="width:'+Math.min(88,20+ (state.dreams.length-i)*9)+'%"></i></div>'
    +'<span style="font-size:10.5px;color:#A6402F">'+Math.min(24,3+(state.dreams.length-i)*2)+'/24</span></div>'
-   +(i===state.dreams.length-1?'<div style="margin-top:12px;font-size:12px;line-height:1.8;color:#6B5426;background:rgba(233,179,106,.14);border:1px solid rgba(233,179,106,.4);border-radius:10px;padding:8px 12px">AI 已萃取养分 · 原文从未外传</div>':'');
+   +(i===state.dreams.length-1?'<div style="margin-top:12px;font-size:12px;line-height:1.8;color:#6B5426;background:rgba(233,179,106,.14);border:1px solid rgba(233,179,106,.4);border-radius:10px;padding:8px 12px">养分日记每天自动长一条 · 原文只存本机</div>':'');
    d.innerHTML+='<div class="fdel" data-i="'+i+'" style="margin-top:12px;text-align:right"><span style="font-size:11.5px;color:#A6402F;background:rgba(166,64,47,.08);border:1px solid rgba(166,64,47,.45);border-radius:12px;padding:5px 14px;letter-spacing:2px">删除此档</span></div>';
  box.appendChild(d);
  });
@@ -1655,8 +1672,8 @@ function badgeSheet(A,un,dt){
   +'<div class="bs-word">“'+word+'”</div>'
   +(un?'<div class="bs-tag">成 就 吉 祥 话</div>':'<div class="bs-tag">任 务 卷 轴</div>')
   +'</div>';
- var host=document.querySelector('.phone')||document.body;host.appendChild(sh);
- var close=function(){sh.remove();document.removeEventListener("click",outside,true)};
+ var host=document.querySelector('.phone')||document.body;host.appendChild(sh);pushOv();
+ var close=function(noPop){sh.remove();document.removeEventListener("click",outside,true);__sheetCloses=__sheetCloses.filter(function(f){return f!==close});if(!noPop)popOv()};__sheetCloses.push(close);
  var outside=function(e){if(!sh.querySelector(".bs-card").contains(e.target)){close()}};
  setTimeout(function(){document.addEventListener("click",outside,true)},60);
 }
@@ -1671,6 +1688,35 @@ function positionNavInd(){
 }
 addEventListener('resize',function(){positionNavInd()});
 
+/* ── 设置项的落地效果 ── */
+function applyPart(){var h=new Date().getHours();document.documentElement.setAttribute('data-part',state.night===false?'day':(h<5?'deep':h<8?'dawn':h<19?'day':'night'))}
+function ageClass(ds){var p=String(ds||'').split('.');if(p.length<3)return '';var t=new Date(+p[0],+p[1]-1,+p[2]),days=Math.floor((Date.now()-t)/86400000);if(isNaN(days)||days<60)return '';return days>=240?'age-2':'age-1'}
+function applySettings(){
+ try{document.documentElement.classList.toggle('noanim',!!state.noanim)}catch(e){}
+ try{document.body.classList.toggle('no-aging',state.aging===false)}catch(e){}
+ applyPart();
+ try{renderShare()}catch(e){}
+ var o=document.getElementById('pvOut');if(o)o.textContent=state.aiSendN||0;var m=document.getElementById('mineOut');if(m)m.textContent=state.aiSendN||0;
+}
+/* ── 系统返回：接入浏览器历史，返回手势回到上一屏或收起浮层，而不是直接退出 ── */
+var __sheetCloses=[],__popPending=false;
+function curScreen(){var sc=document.querySelector('.screen.on');return sc?sc.id:''}
+function pushOv(){if(history.state&&history.state.ov)return;try{history.pushState({ov:1},'')}catch(e){}}
+function popOv(){if(history.state&&history.state.ov){__popPending=true;try{history.back()}catch(e){__popPending=false}}}
+(function(){
+ var _show=window.show;
+ window.show=function(id){var before=curScreen();_show(id);var now=curScreen();if(now&&now!==before){try{history.pushState({s:now},'')}catch(e){}}};
+ try{history.replaceState({s:curScreen()||'s-open'},'')}catch(e){}
+ addEventListener('popstate',function(e){
+  if(__popPending){__popPending=false;return}
+  var st=e.state||{};
+  __sheetCloses.slice().forEach(function(f){try{f(true)}catch(x){}});
+  try{if(typeof guideEl!=='undefined'&&guideEl&&!guideEl.hidden)closeGuide(true)}catch(x){}
+  var id=st.s||'s-open';if(id===curScreen())return;
+  _show(id);
+  try{if(id==='s-world'&&typeof renderWorld==='function')renderWorld();if(id==='s-share'&&typeof renderShare==='function')renderShare();if(id==='s-file'&&typeof renderFile==='function')renderFile()}catch(x){}
+ });
+})();
 /* ── 开屏视差 ── */
 (function(){
  var tgt=null;
@@ -1707,6 +1753,7 @@ function unlockedCount(){
 }
 function renderLetters(){
  var box=$('#letters');if(!box)return;box.innerHTML='';
+ var firstOpen=true;
  var cap=$('#tideCap');
  var un=unlockedCount();
   var mineN=state.letters.filter(function(L){return !L.greet}).length;
@@ -1729,8 +1776,9 @@ function renderLetters(){
     +'<div class="cd" data-at="'+L.unlockAt+'">距涨潮还有 '+fmtLeft(L.unlockAt-Date.now())+'</div></div>';
    box.appendChild(d);return;
   }
-  d.className='ltr';
-  var ops=(L.mine&&!L.greet)? '<div class="lops"><span class="ledit" data-i="'+i+'">✎ 改</span><span class="ldel" data-i="'+i+'">✕ 删</span></div>':'';
+   d.className='ltr '+ageClass(L.from);
+   var hint='<span class="lreply" data-i="'+i+'">回一句 ⌄</span>';
+   var ops='<div class="lops">'+((L.mine&&!L.greet)?'<span class="ledit" data-i="'+i+'">✎ 改</span><span class="ldel" data-i="'+i+'">✕ 删</span>':'')+hint+'</div>';
   d.innerHTML='<div class="lfrom">来自 '+L.from+'<span>'+L.tide+'</span></div>'
    +'<div class="ltext">“'+esc(L.t)+'”</div>'
    +ops
@@ -1746,10 +1794,12 @@ function renderLetters(){
   }
   d.addEventListener('click',function(e){
    if(e.target.closest('.replyarea')||e.target.closest('.lops')||e.target.closest('.ledit-box'))return;
-   $$('.ltr').forEach(function(x){if(x!==d)x.classList.remove('open')});
+    $$('.ltr').forEach(function(x){if(x!==d){x.classList.remove('open');var oh=x.querySelector('.lreply');if(oh)oh.textContent='回一句 ⌄'}});
    d.classList.toggle('open');
+    var oh=d.querySelector('.lreply');if(oh)oh.textContent=d.classList.contains('open')?'收起 ⌃':'回一句 ⌄';
   });
   box.appendChild(d);
+   if(firstOpen){d.classList.add('open');var oh0=d.querySelector('.lreply');if(oh0)oh0.textContent='收起 ⌃';firstOpen=false}
  });
   if(!state.letters.length){
    var empty=document.createElement('div');empty.className='paper2';
@@ -1767,12 +1817,17 @@ $$('.replyGo').forEach(function(bt){
     if(state.letters[i])state.letters[i].reply=v;saveAll();buzz(12);
    out.innerHTML='<div class="bub me">“'+esc(v)+'”</div>'
     +'<button class="goShare" data-i="'+i+'">把这句酿上酿卡 ›</button>';
-   bindGoShare();
+    bindGoShare();inp.value='';
   });
  });
   if(typeof bindGoShare==='function')bindGoShare(); /* 渲染出来的「把这句酿上酿卡」也要能点 */
  /* 改 / 删（事件委托，重渲染不丢） */
  box.onclick=function(e){
+   var lr=e.target.closest('.lreply');
+   if(lr){var lc=lr.closest('.ltr');if(!lc)return;var willOpen=!lc.classList.contains('open');
+    $$('.ltr').forEach(function(x){if(x!==lc){x.classList.remove('open');var oh=x.querySelector('.lreply');if(oh)oh.textContent='回一句 ⌄'}});
+    lc.classList.toggle('open',willOpen);lr.textContent=willOpen?'收起 ⌃':'回一句 ⌄';
+    if(willOpen){var li=lc.querySelector('.replyarea input');if(li)try{li.focus({preventScroll:true})}catch(ferr){}}return}
   var led=e.target.closest('.ledit'),ldel=e.target.closest('.ldel');
   if(!led&&!ldel)return;
   var card=e.target.closest('.ltr');if(!card)return;
@@ -1816,7 +1871,7 @@ setInterval(function(){
   if(at<=now){changed=true;return}
   el.textContent='距涨潮还有 '+fmtLeft(at-now);
  });
- if(changed){renderLetters();saveAll();
+ if(changed){renderLetters();saveAll();try{if(state.notifyOn&&document.hidden&&('Notification' in window)&&Notification.permission==='granted')new Notification('酿梦 · 涨潮了',{body:'有一封旧信浮上了水面，回去看看吧。'})}catch(notifyErr){}
   if(tideVisible){buzz(30);toast('涨潮了 · 旧信浮上水面')}
    if(tideVisible)sfxPlay('tide');
    if(tideVisible)sfx('tide');
@@ -1851,7 +1906,7 @@ function wrapCJK(x,txt,max){
  return lines;
 }
 function genShareImg(){
- var dr=state.dreams&&state.dreams.length?state.dreams[state.dreams.length-1]:null;
+ var dr=state.dreams&&state.dreams.length?state.dreams[0]:null;
  if(!dr){toast('还没有封存过梦 · 先去写第一封');return}
  var btn=document.getElementById('shareLongBtn');
  if(btn){btn.textContent='酿制中 …';btn.disabled=true}
@@ -1891,11 +1946,11 @@ function genShareImg(){
   lines.slice(0,8).forEach(function(L,i){x.fillText(L,540,startY+i*lh)});
   /* 日期潮次 */
   var tide='';
-  var li=state.letters.length-1;
+  var li=-1;state.letters.forEach(function(L,ix){if(li<0&&L.mine&&L.t===dr.t)li=ix});
   if(li>=0&&state.letters[li].tide)tide=state.letters[li].tide;
   x.font="400 30px 'LXGW WenKai','STKaiti','KaiTi',serif";
   x.fillStyle='rgba(233,179,106,.95)';
-  x.fillText(dr.d+' '+tide,540,startY+Math.min(lines.length,8)*lh+40);
+  x.fillText(dr.d+' '+tide+(state.sign===false?'':' · 第 001 号瓶'),540,startY+Math.min(lines.length,8)*lh+40);
   /* 火漆印 */
   var sx=870,sy=startY+Math.min(lines.length,8)*lh+150;
   x.fillStyle='#A6402F';
@@ -1984,6 +2039,7 @@ function renderShare(){
   var q=qs[state.shareIdx%qs.length]||qs[0];
  $('#shareQuote').textContent='“'+q+'”';
  $('#sealDays').textContent=state.sealDays;
+  $$('[data-go="s-sea"]').forEach(function(b){b.textContent=state.drift?'去看漂流的海 · 共鸣广场 ›':'去看漂流的海 · 尚未授权漂流 ›'});
 }
 $$('.navbar button').forEach(function(b){
  b.addEventListener('click',function(){show(b.dataset.v);
@@ -2062,9 +2118,20 @@ function endRec(){
  }
  finish(s,true);
 }
+/* 触摸被系统打断（来电、下拉通知栏、切到后台）：停止并丢弃这一段，界面复位 */
+function cancelRec(){
+ if(!holdBtn.classList.contains('rec'))return;
+ clearInterval(holdT);
+ var mr=mediaRec;mediaRec=null;recChunks=[];
+ if(mr){mr.ondataavailable=null;mr.onstop=null;try{if(mr.state!=='inactive')mr.stop()}catch(err){}try{if(mr.stream)mr.stream.getTracks().forEach(function(t){t.stop()})}catch(err){}}
+ recUI(false);
+}
 holdBtn.addEventListener('pointerdown',startRec);
 holdBtn.addEventListener('pointerup',endRec);
 holdBtn.addEventListener('pointerleave',endRec);
+holdBtn.addEventListener('pointercancel',cancelRec);
+holdBtn.addEventListener('contextmenu',function(e){e.preventDefault()});
+addEventListener('visibilitychange',function(){if(document.hidden)cancelRec()});
 
 $('#sealBtn').addEventListener('click',function(){
  var t=$('#dreamText').value.trim();
@@ -2154,13 +2221,13 @@ function aiReply(msg,done){
  if(!ai.key){setTimeout(function(){done(localKeeper(msg))},700);return}
  var sys='你是"过去的用户自己"——酿梦 App 里隔瓶长谈的对方。用用户当年封下的梦与信作为记忆（见上下文），'+
   '以温柔、克制、略带书面的中文回信，不超过 45 个字，只回一句，不列清单，不复述用户原句。';
- var ctx=state.dreams.slice(0,3).map(function(D){return '封于'+D.d+'：'+D.t}).join('；');
+ var ctx=state.aiCtx===false?'':state.dreams.slice(0,3).map(function(D){return '封于'+D.d+'：'+D.t}).join('；');if(ctx)state.aiSendN=(state.aiSendN||0)+1;
  var hist=state.chat.slice(-8).map(function(m){return {role:m.me?'user':'assistant',content:m.t}});
  fetch(ai.ep||'https://api.openai.com/v1/chat/completions',{
   method:'POST',
   headers:{'Content-Type':'application/json','Authorization':'Bearer '+ai.key},
   body:JSON.stringify({model:ai.model||'gpt-4o-mini',max_tokens:120,
-   messages:[{role:'system',content:sys+'\n用户封存的梦：'+ctx}].concat(hist,{role:'user',content:msg})})
+   messages:[{role:'system',content:ctx?(sys+'\n用户封存的梦：'+ctx):sys}].concat(hist,{role:'user',content:msg})})
  }).then(function(r){return r.json()}).then(function(j){
   var t=j&&j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;
   if(t){done(t.trim())}else done(localKeeper(msg));
@@ -2227,9 +2294,9 @@ function gshow(i){gpi=Math.max(0,Math.min(2,i));
  $$('.gd-pg').forEach(function(p,ix){p.classList.toggle('on',ix===gpi)});
  $$('.gd-dots i').forEach(function(d,ix){d.classList.toggle('on',ix===gpi)});
  document.getElementById('gdNext').textContent=gpi===2?'开 始 酿 梦':'下一页';}
-function openGuide(){guideEl.hidden=false;requestAnimationFrame(function(){guideEl.classList.add('on')});gshow(0);}
-function closeGuide(){guideEl.classList.remove('on');setTimeout(function(){guideEl.hidden=true},420);
- try{localStorage.setItem('brewm_guide','1')}catch(e){}}
+function openGuide(){guideEl.hidden=false;requestAnimationFrame(function(){guideEl.classList.add('on')});gshow(0);pushOv();}
+function closeGuide(noPop){guideEl.classList.remove('on');setTimeout(function(){guideEl.hidden=true},420);
+ try{localStorage.setItem('brewm_guide','1')}catch(e){}if(!noPop)popOv();}
 document.getElementById('gdNext').addEventListener('click',function(){gpi===2?closeGuide():gshow(gpi+1)});
 document.getElementById('gdSkip').addEventListener('click',closeGuide);
 $$('.gd-dots i').forEach(function(d,ix){d.addEventListener('click',function(){gshow(ix)})});
@@ -2343,7 +2410,7 @@ function drawCard(skin,quote){
  x.fillText("安 印 落 款",CW-170,Math.min(sy+126,fy-14));x.letterSpacing="0px";
  x.textAlign="left";x.font="italic 30px "+FFS;x.fillStyle=est;x.letterSpacing="2px";
  x.fillText("Est. 2022 — Open 2028",96,fy+70);
- x.font="22px "+FFH;x.fillStyle=muted;x.letterSpacing="3px";x.fillText("第 1462 潮 · 由你封缄",96,fy+114);x.letterSpacing="0px";
+ x.font="22px "+FFH;x.fillStyle=muted;x.letterSpacing="3px";x.fillText(state.sign===false?"匿名封缄 · 由你守瓶":"第 001 号瓶 · 由你封缄",96,fy+114);x.letterSpacing="0px";
  var qs=128,qx=CW-96-qs,qyy=fy+28;
  x.fillStyle="#FFFDF6";_rrect(x,qx,qyy,qs,qs,14);x.fill();
  if(skin==="paper"){x.strokeStyle="rgba(43,58,85,.16)";x.lineWidth=1.5;x.stroke()}
@@ -2589,6 +2656,17 @@ if(qBtn){qBtn.addEventListener('click',function(){
  toast('三个问题已沉入瓶底 · 开瓶之日，由你作答');
 })}
 var _hadSave=loadAll();
+applySettings();
+function bindSwitch(id,key,after){var e=document.getElementById(id);if(!e)return;e.classList.toggle('on',!!state[key]);e.addEventListener('click',function(){state[key]=e.classList.contains('on');saveAll();if(after)after(state[key])})}
+/* 设置页里原来点了没反应的开关：逐个接上真实效果 */
+bindSwitch('swNight','night',function(){applyPart();toast(state.night?'日落后会自动调暗':'已关闭 · 全天保持白天配色')});
+bindSwitch('swAging','aging',function(){document.body.classList.toggle('no-aging',!state.aging);toast(state.aging?'纸纹陈化 · 已开启':'纸纹陈化 · 已关闭')});
+bindSwitch('swNoanim','noanim',function(){document.documentElement.classList.toggle('noanim',!!state.noanim);toast(state.noanim?'动效已减弱':'动效已恢复')});
+bindSwitch('swAiCtx','aiCtx',function(){toast(state.aiCtx?'隔瓶长谈可以读取梦境':'隔瓶长谈不再读取梦境')});
+bindSwitch('swDrift','drift',function(){renderShare();toast(state.drift?'已授权酿卡漂流':'已撤回酿卡漂流')});
+bindSwitch('swSign','sign',function(){toast(state.sign?'酿卡将署名':'酿卡将匿名')});
+if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){var eNa=document.getElementById('swNoanim');if(eNa){eNa.classList.add('on');eNa.style.pointerEvents='none';var spNa=eNa.parentNode.querySelector('span');if(spNa)spNa.textContent='系统已开启「减少动态效果」'}}
+$$('[data-go="s-sea"]').forEach(function(b){b.addEventListener('click',function(e){if(!state.drift){e.stopImmediatePropagation();e.preventDefault();toast('还没有授权酿卡漂流 · 到「我的 → 设置」里开启')}},true)});
 if(_hadSave&&state.voiceBlobSave)0;
 loadVoiceBlob().then(function(b){if(b){state.voiceBlob=b;window.vpSetClip&&vpSetClip(b);
  var _c1=document.getElementById('cap1');if(_c1)_c1.textContent='潮声已褪去 · 你的真声已就绪';
@@ -2769,7 +2847,7 @@ if(tideFF){tideFF.addEventListener('click',function(){
  var hit=0;state.letters.forEach(function(L){if(L.unlockAt&&L.unlockAt>Date.now()){L.unlockAt=0;hit++}});
  if(hit){saveAll();renderLetters();buzz(30);toast('潮水提前涨了 · '+hit+' 封信浮出')}else toast('潮水都已经涨过了');
 })}
-var swN=document.querySelector('#s-set .sw');
+var swN=document.getElementById('swNotify');
 var swSfx=document.getElementById("swSfx");
 if(swSfx){swSfx.classList.toggle("on",state.sound);
  swSfx.addEventListener("click",function(){
@@ -2781,9 +2859,11 @@ if(swSfx){swSfx.classList.toggle("on",state.sound);
 if(swN){swN.classList.toggle('on',state.notifyOn);
  swN.addEventListener('click',function(){
   state.notifyOn=swN.classList.contains('on');saveAll();
+  if(state.notifyOn&&!('Notification' in window)){swN.classList.remove('on');state.notifyOn=false;saveAll();toast('这台设备的浏览器不支持通知')}
   if(state.notifyOn&&('Notification' in window)){
    Notification.requestPermission().then(function(p){
-    if(p==='granted'){try{new Notification('酿梦 · 星光 +1',{body:'今晚的潮声，已经替你收好。晚安。'})}catch(e){}}
+    if(p!=='granted'){swN.classList.remove('on');state.notifyOn=false;saveAll();toast('通知权限没有开启 · 可以在浏览器设置里打开')}
+    if(p==='granted'){try{new Notification('酿梦 · 涨潮提醒已开启',{body:'旧信浮上水面时，会在这里提醒你（仅页面在后台运行时有效）。'})}catch(e){}}
    });
   }
  });
@@ -2924,8 +3004,7 @@ document.addEventListener('pointerdown',function(e){
  var seen=false;try{seen=!!localStorage.getItem("brewm_seen")}catch(e){}
  ping(seen?"return":"open");
  try{localStorage.setItem("brewm_seen","1")}catch(e){}
- var part=h<5?'deep':h<8?'dawn':h<19?'day':'night';
- document.documentElement.setAttribute('data-part',part);
+  applyPart();
  try{var t=localStorage.getItem('brewm_tapir'),key=new Date().toDateString();
   if(t!==key){localStorage.setItem('brewm_tapir',key);
    setTimeout(function(){toast('今日星光签 · 「'+sign+'」')},2600);}
