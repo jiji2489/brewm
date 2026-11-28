@@ -689,7 +689,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
 
    <section class="screen" id="s-world">
     <div class="wglow" id="wglow"></div>
-    <div class="h-kai sm">瓶中世界 · 第 <span class="nights">146</span> 夜</div>
+    <div class="h-kai sm">瓶中世界 · 第 <span class="nights">1</span> 夜</div>
     <div class="tcap">昨夜，你的梦又亮了一点</div>
     <div class="streak" id="streakChip">连续 · 第 1 夜</div>
     <div class="tide">
@@ -829,13 +829,13 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="tcap">封缄之前，最后读一遍</div>
     <div class="paper2" style="padding:20px 20px">
      <div class="lhead">亲爱的未来的我：</div>
-     <div class="ltext" style="font-size:17px;line-height:2;margin-top:12px">想在三十岁前，拥有一间自己的工作室，哪怕很小，门上要挂一块手写的木牌。</div>
+     <div class="ltext" id="letterText" style="font-size:17px;line-height:2;margin-top:12px">（封缄之前，最后读一遍）</div>
      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:20px;border-top:1px dashed rgba(43,58,85,.2);padding-top:12px">
-      <span style="font-family:Georgia,serif;font-style:italic;font-size:12px;color:#8A6F55">2026.10.11 · 于夜航</span>
+      <span id="dreamDate" style="font-family:Georgia,serif;font-style:italic;font-size:12px;color:#8A6F55">于夜航</span>
       <div style="width:44px;height:44px;border-radius:50%;border:1.5px dashed rgba(166,64,47,.5);color:rgba(166,64,47,.8);display:flex;align-items:center;justify-content:center;font-family:-apple-system,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;font-size:12px">安</div>
      </div>
     </div>
-    <div class="btnrow"><button class="ghost" data-go="s-store">再改改</button><button class="wax" data-go="s-world">就这样，封入瓶中</button></div>
+    <div class="btnrow"><button class="ghost" id="letterBack" data-go="s-store">再改改</button><button class="wax" id="letterSeal">就这样，封入瓶中</button></div>
     <div class="tiny">成笺后字体与纸纹将随年份陈化</div>
    </section>
 
@@ -855,13 +855,13 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="nite">
      <svg width="64" height="64" viewBox="0 0 44 44" fill="#FFE9C4"><path d="M27,11 a12,12 0 1,0 6.5,21.5 A10,10 0 1,1 27,11 Z"/><path d="M30,13 l1.1,2.9 2.9,1.1 -2.9,1.1 -1.1,2.9 -1.1,-2.9 -2.9,-1.1 2.9,-1.1 Z"/></svg>
      <div class="h" style="margin-top:10px">夜航晚安</div>
-     <p style="font-size:11.5px;color:rgba(244,241,232,.86);letter-spacing:2px;margin-top:8px">第 146 夜 · 平安</p>
+     <p style="font-size:11.5px;color:rgba(244,241,232,.86);letter-spacing:2px;margin-top:8px">第 <span class="nights">1</span> 夜 · 平安</p>
     </div>
     <div class="feed" style="margin-top:16px;text-align:center">今夜瓶语：「梦见海，兑了一点潮声进瓶里。」</div>
-    <div class="nite"><span class="chip">明晨 7:00 · 潮声轻轻唤醒你</span></div>
+    <div class="nite"><span class="chip" id="nightWake">潮声陪你入夜 · 不设闹钟，不扰清梦</span></div>
     <div class="moncard" style="width:208px;height:208px;margin:4px auto 0;animation:breathe 3.8s ease-in-out infinite"><img src="img/mon-night.webp" alt="守梦貘值夜"></div>
     <div class="tiny">守梦貘值夜中 · 噩梦由它悄悄吃掉</div>
-    <button class="ghost" data-go="s-world" style="margin-top:16px">灭灯 · 过一夜 +1</button>
+    <button class="ghost" id="nightGo" data-go="s-world" style="margin-top:16px">灭灯 · 过一夜 +1</button>
     <div class="tiny">星光在你睡着的时候生长</div>
    
     <div class="breathWrap" id="breathWrap">
@@ -979,13 +979,13 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="h-kai sm">语音梦 · 回放</div>
     <div class="tcap">潮水涨起时，声音也浮上来了</div>
     <div class="paper2">
-     <div class="lfrom">示例 · 合成音预演<span>12″</span></div>
+     <div class="lfrom" id="vc1From">示例 · 合成音预演<span>12″</span></div>
      <div class="wave"><i style="height:6px"></i><i style="height:17px"></i><i style="height:25px"></i><i style="height:26px"></i><i style="height:21px"></i><i style="height:12px"></i><i style="height:8px"></i><i style="height:14px"></i><i style="height:18px"></i><i style="height:20px"></i><i style="height:18px"></i><i style="height:10px"></i><i style="height:12px"></i><i style="height:22px"></i><i style="height:28px"></i><i style="height:26px"></i><i style="height:19px"></i><i style="height:8px"></i><i style="height:15px"></i><i style="height:22px"></i><i style="height:22px"></i><i style="height:18px"></i><i style="height:11px"></i><i style="height:7px"></i><i style="height:15px"></i><i style="height:21px"></i><i style="height:24px"></i><i style="height:21px"></i><i style="height:12px"></i><i style="height:11px"></i><i style="height:22px"></i><i style="height:27px"></i><i style="height:26px"></i><i style="height:19px"></i></div>
      <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
       <div class="waxdot vplay" style="width:34px;height:34px;font-size:13px;cursor:pointer" data-vc="0" data-sec="12">▶</div>
       <p id="cap1" style="font-size:11px;color:rgba(43,58,85,.72)">潮声已褪去 · 女声还原本声</p>
      </div>
-     <div class="ltext" style="font-size:14px;margin-top:10px">「……要把工作室的灯，调成暖色的。」</div>
+     <div class="ltext" id="vc1Text" style="font-size:14px;margin-top:10px">「……要把工作室的灯，调成暖色的。」</div>
     </div>
     <div class="paper2">
      <div class="lfrom">示例 · 合成音预演<span>8″</span></div>
@@ -1009,13 +1009,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
      <div class="stat"><b id="feedNutri">0</b><p>累计养分 · 滴</p></div>
      <div class="stat"><b id="feedGlow">+0%</b><p>瓶中星光亮度</p></div>
     </div>
-    <div class="ctide">
-     <div class="citem"><b>10.14<span>昨晚</span></b><p>日记「把展板改到第三版」→ 萃取关键词：坚持 · 养分 +1</p></div>
-     <div class="citem"><b>10.12</b><p>日记「给木牌刻好了字」→ 萃取关键词：手艺 · 养分 +1</p></div>
-     <div class="citem"><b>10.11</b><p>封缄一个新的梦 · 星光 +1</p></div>
-     <div class="citem dim"><b>10.09</b><p>阴雨天 · 瓶里安静，潮位未动</p></div>
-     <div class="citem dim" style="padding-bottom:2px"><b>10.07</b><p>日记「夜跑五公里」→ 萃取关键词：元气 · 养分 +1</p></div>
-    </div>
+    <div class="ctide" id="feedTl"></div>
     <div class="feed" style="margin-top:14px">萃取只读取主题词与情绪特征 · 原文始终留在本地</div>
     <div class="tiny">每一天，都被认真酿进瓶里</div>
    </section>
@@ -1025,7 +1019,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="h-kai sm">补一页 · 发酵期追加</div>
     <div class="tcap">原文封缄不可改 · 瓶里可以追加新页</div>
     <div class="letter-in">
-     <div class="lhead">补给 2028 年的我：</div>
+     <div class="lhead" id="appendTo">补给 未来的我：</div>
      <textarea id="appendText" maxlength="120" placeholder="写一段此刻的进展，放进同一只瓶里……"></textarea>
      <div class="count"><span id="appendCnt">0</span>/120</div>
     </div>
@@ -1045,7 +1039,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     </div>
     <div class="sharecard" style="margin-top:14px" id="scCard">
      <div class="sc-top"><svg width="24" height="24" viewBox="0 0 200 200"><g fill="#A6402F"><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(60 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(120 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(180 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(240 100 100)"/><path d="M100,95 C90,92 84,82 86,69 C87.5,57 93,50 100,50 C107,50 113,57 114,69 C116,82 110,92 100,95 Z" transform="rotate(300 100 100)"/><circle cx="100" cy="100" r="14"/></g></svg><div><p>酿梦</p><small>BREWM</small></div></div>
-     <div class="sc-quote" id="scQuote" style="font-size:14px;min-height:56px">「想在三十岁前，拥有一间自己的工作室。」</div>
+     <div class="sc-quote" id="scQuote" style="font-size:14px;min-height:56px">「存下一个梦，酿给未来的自己。」</div>
      <div class="sc-foot"><div class="est">Est. — </div><div class="qr">码位</div></div>
     </div>
     <div class="btnrow"><button class="ghost" id="quoteBtn2">换一句引言</button><button class="wax" id="makeBtn">按此卡面生成</button></div>
@@ -1088,7 +1082,8 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <div class="ctide">
      <div class="citem"><b>① 原文只存本机<span>不经过服务器</span></b><p>信的原文只保存在这台设备的浏览器里，酿梦没有收集原文的服务器</p></div>
      <div class="citem"><b>② AI 读取由你授权<span>默认不外发</span></b><p>不填 AI 接口时全在本机完成；填了接口，「隔瓶长谈」才会发送最近封存的 3 个梦，可以在设置里关掉</p></div>
-     <div class="citem dim" style="padding-bottom:2px"><b>③ 养分回写瓶中</b><p>星光与潮位在你的瓶内更新，全程可查</p></div>
+     <div class="citem"><b>③ 养分回写瓶中</b><p>星光与潮位在你的瓶内更新，全程可查</p></div>
+     <div class="citem dim" style="padding-bottom:2px"><b>④ 匿名计数<span>只报次数，不带内容</span></b><p>打开、回访、封缄、录音这四件事每发生一次，会向一个第三方开源计数服务（abacus.jasoncameron.dev）发一个计数请求，请求里只有事件名，没有梦的任何内容。不想被计数，拦截这个域名即可。</p></div>
     </div>
     <div class="statgrid">
      <div class="stat"><b id="pvOut">0</b><p>原文外发 · 次</p></div>
@@ -1113,7 +1108,7 @@ body.no-aging .age-1,body.no-aging .age-2{filter:none!important}
     <button class="gd-skip" id="gdSkip">跳过</button>
     <div class="gd-pg on">
      <div class="gd-head"><div class="gd-h">封存梦想<br>仪式感，满格</div><div class="gd-badge">储</div></div>
-     <div class="gd-sub">写信或说给瓶听 · 火漆「安」印封缄 · 封存不可修改</div>
+     <div class="gd-sub">写信或说给瓶听 · 火漆「安」印封缄 · 随夜慢慢生长</div>
      <div class="gd-art"><svg viewBox="0 0 320 260">
  <defs>
   <linearGradient id="gbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#23264E"/><stop offset="1" stop-color="#151731"/></linearGradient>
@@ -1433,7 +1428,7 @@ function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('show');
  clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('show')},1900)}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function renderWorld(){
- $$('.nights').forEach(function(e){e.textContent=state.nights});
+ $$('.nights').forEach(function(e){e.textContent=state.nights+1});
  var s=(0.75+Math.min(state.nights,600)/600*0.65).toFixed(3);
  var g=$('#wglow');if(g)g.style.setProperty('--gs',s);
  var pct=Math.min(100,(state.nights/1460*100)).toFixed(1)+'%';
@@ -1707,10 +1702,10 @@ function renderStats(){
  $$('.est').forEach(function(e){e.textContent=estText()});
  set('tn1Lab',state.letters.some(function(L){return L.mine})?'已开启':'待封缄');
  set('tn2','封缄后 7 夜');set('tn3','封缄后 14 夜');set('tnOpen','封缄后 1460 夜');
- var ro=document.getElementById('riteOpen');if(ro){var f=firstDream();var md=f?String(f.d).split('.').slice(1).join('.'):'10.05';ro.textContent='Open · '+(est+6)+'.'+md}
+ var ro=document.getElementById('riteOpen');if(ro){var f=firstDream();var md=f?String(f.d).split('.').slice(1).join('.'):'10.05';ro.textContent=f?('Open · '+(est+6)+'.'+md):'Open · 封下第一个梦后起算'}
  set('riteSub',firstDream()?'封缄那一晚，就是为这一刻酿的':'写下第一个梦，从今晚开始酿');
  set('sealDays',state.sealDays);
- $$('.nights').forEach(function(e){e.textContent=Math.max(1,state.nights)});
+ $$('.nights').forEach(function(e){e.textContent=state.nights+1});
  var tl=document.getElementById('calTl');
  if(tl){var f2=firstDream();var steps=[TIDE_STEPS[0],TIDE_STEPS[1],TIDE_STEPS[2],1460];
   var unlocked=state.letters.filter(function(L){return L.mine&&!L.unlockAt}).length;
@@ -2119,9 +2114,9 @@ function startRec(e){
   mediaRec.onstop=function(){
    stream.getTracks().forEach(function(t){t.stop()});
    if(recChunks.length){
-    var blob=new Blob(recChunks,{type:(mr&&mr.mimeType)||mediaRecMime||'audio/webm'});
+    var blob=new Blob(recChunks,{type:mediaRecMime||'audio/webm'});
     state.voiceBlob=blob;
-    window.vpSetClip(blob);ping('voice');
+    window.vpSetClip(blob);ping('voice');try{saveVoiceBlob(blob)}catch(e){}
    }
   };
   mediaRec.start();
@@ -2142,7 +2137,7 @@ function endRec(){
    var oldOnstop=mr.onstop;
    mr.onstop=function(){
     if(doneOnce)return;doneOnce=true;
-    if(oldOnstop)oldOnstop();
+    try{if(oldOnstop)oldOnstop()}catch(e){}
     finish(s,false);
    };
    try{mr.stop()}catch(err){finish(s,true)}
@@ -2178,7 +2173,7 @@ $('#sealBtn').addEventListener('click',function(){
   t:dream,q:'那天写下的心愿——现在离它更近了吗？',unlockAt:Date.now()+step*TIDE_UNIT,mine:1});
 saveAll.hush=true;var saved=saveAll();saveAll.hush=false;buzz(20);ping('seal');sfx('seal'); sfxPlay('seal');
  var fx=$('#sealFx');fx.hidden=false;
- setTimeout(function(){fx.hidden=true;state.voice=null;state.voiceBlob=null;saveVoiceBlob(null);
+ setTimeout(function(){fx.hidden=true;state.voice=null;
   $('#voiceChip').hidden=true;
    if(saved){$('#dreamText').value='';$('#cnt').textContent='0'}
    renderFile();renderWorld();show('s-world');toast(saved?'已封入瓶中 · 平安':'已收进瓶口 · 本机存储写不进去，文字先替你留在纸上');
@@ -2239,7 +2234,7 @@ function chatPush(txt,me){var bx=document.querySelector('#s-chat .chatbox');
  d.textContent='“'+txt+'”';bx.appendChild(d);bx.scrollTop=bx.scrollHeight;
  state.chat.push({me:me?1:0,t:txt});if(state.chat.length>40)state.chat.shift();saveAll();}
 function chatRestore(){var bx=document.querySelector('#s-chat .chatbox');if(!bx)return;
- if(state.chat.length){bx.innerHTML='';
+ bx.innerHTML='';if(state.chat.length){
   state.chat.forEach(function(m){var d=document.createElement('div');
    d.className='bub'+(m.me?' me':'');d.textContent='“'+m.t+'”';bx.appendChild(d)});
   bx.scrollTop=bx.scrollHeight}}
@@ -2273,8 +2268,7 @@ $$('.chatgo').forEach(function(b){b.addEventListener('click',function(){
  var d=document.createElement('div');d.className='bub thinking';d.textContent='···';
  b.parentNode.parentNode.querySelector('.chatbox').appendChild(d);
  aiReply(v,function(rep){
-  d.textContent='“'+rep+'”';
-  saveAll();buzz(10);
+  try{if(d.parentNode)d.parentNode.removeChild(d)}catch(e){} chatPush(rep,false);buzz(10);
  });
 })});
 chatRestore();
@@ -2454,7 +2448,7 @@ function drawCard(skin,quote){
  return c}
 /* ═══ 酿卡交互：皮肤 / 换引言 / 生成 / 存入相册 ═══ */
 var cardSkin="paper",cardGen=false,qi=0;
-var QUOTES=["想在三十岁前，拥有一间自己的工作室。","三年后，搬到听得见海的城市。","做一个温柔而坚定的大人。","把喜欢的事，做成能养活自己的事。"];
+var QUOTES=["存下一个梦，酿给未来的自己。"];
 $$(".pick").forEach(function(p){p.addEventListener("click",function(){
  $$(".pick").forEach(function(q){q.classList.remove("on")});p.classList.add("on");
  cardSkin=({"信笺白":"paper","星河蓝":"galaxy","火漆红":"wax"})[p.dataset.name]||"paper";
@@ -2464,7 +2458,7 @@ $$(".pick").forEach(function(p){p.addEventListener("click",function(){
  if(cardGen)genCard(true)})});
 var quoteBtn=$("#quoteBtn2");
 if(quoteBtn)quoteBtn.addEventListener("click",function(){
- qi=(qi+1)%QUOTES.length;
+ if(QUOTES.length<2){toast('封下更多梦，引言就有得换');return}qi=(qi+1)%QUOTES.length;
  var sq=$("#scQuote");if(sq)sq.textContent="「"+QUOTES[qi]+"」";
  if(cardGen)genCard(true);else toast("换了一句引言")});
 var makeBtn=$("#makeBtn");
@@ -3108,6 +3102,83 @@ try{if(!document.getElementById('achvGrid').childNodes.length){renderAchievement
 try{var _na=checkAchievements();if(_na.length){_na.forEach(function(A){toast('🏆 解锁成就 · '+A.name)});buzz(20)}}catch(e){}
 
 
+
+/* ── v6-86：从 0 开始收尾——非核心屏里的演示内容改成真实数据；两处假流程修成真的 ── */
+function __esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+/* 梦信成笺：读存入页此刻写的字（或刚录的语音）；空信纸不给封 */
+function renderLetter(){
+ var lt=document.getElementById('letterText'),dt=document.getElementById('dreamDate'),bt=document.getElementById('letterSeal');
+ if(!lt||!bt)return;
+ var t=($('#dreamText')&&$('#dreamText').value.trim())||'',has=!!(t||state.voice);
+ if(t)lt.textContent=t;
+ else if(state.voice)lt.textContent='一段 '+state.voice+'″ 的语音梦';
+ else lt.textContent='信纸还是空的。回去写一句，或按住说一句。';
+ lt.style.opacity=has?'':'.6';
+ if(dt){dt.textContent=todayStr()+' · 于夜航';dt.style.display=has?'':'none'}
+ bt.style.display=has?'':'none';
+ var bk=document.getElementById('letterBack');if(bk)bk.textContent=has?'再改改':'回去写一句';
+}
+/* 养分日记的「瓶中记事」：只列真发生过的（封缄、补页），按日期新到旧 */
+function renderFeedTl(){
+ var el=document.getElementById('feedTl');if(!el)return;
+ var it=[];
+ state.dreams.forEach(function(d){if(!d.mine)return;it.push({d:String(d.d||''),t:d.page?'补了一页进展 · 瓶里又厚了一页':'封缄一个新的梦 · 星光 +1'})});
+ if(!it.length){el.innerHTML='<div class="citem dim" style="padding-bottom:2px"><p>还没有封缄记录 · 封下第一个梦，这里开始记账</p></div>';return}
+ it.sort(function(a,b){return a.d<b.d?1:(a.d>b.d?-1:0)});
+ el.innerHTML=it.map(function(x){var p=x.d.split('.');return '<div class="citem"><b>'+__esc(p.slice(1).join('.'))+'</b><p>'+__esc(x.t)+'</p></div>'}).join('');
+}
+/* 隔瓶长谈：没有对话记录时，由过去的你先开口一句（取自你封下的梦），不摆别人的对话 */
+function chatOpen(){
+ if(state.chat.length)return;
+ var d=state.dreams.filter(function(x){return x.mine});
+ chatPush(d.length?('「'+d[0].t+'」——那天写下的心愿，现在离它更近了吗？'):'瓶还是空的。写下第一个梦，潮水才有话对你说。',false);
+}
+/* 晚安夜航：夜数跟着真实数据走；唤醒说明如实 */
+function renderNight(){
+ var w=document.getElementById('nightWake');
+ if(w)w.textContent=state.notifyOn?'涨潮时轻轻提醒一次 · 仅页面在后台时有效':'潮声陪你入夜 · 不设闹钟，不扰清梦';
+ var n=document.querySelector('#s-night .nights');if(n)n.textContent=state.nights+1;
+}
+function renderAppend(){var a=document.getElementById('appendTo');if(a)a.textContent='补给 '+(estYear()+2)+' 年的我：'}
+/* 酿卡工坊：引言只用你自己的梦和回信；一个都没有时用一句中性话，不拿别人的梦充数 */
+function syncQuotes(){
+ var qs=shareQuotes();if(!qs.length)qs=['存下一个梦，酿给未来的自己。'];
+ QUOTES.splice.apply(QUOTES,[0,QUOTES.length].concat(qs));
+ if(qi>=QUOTES.length)qi=0;
+ var sq=document.getElementById('scQuote');if(sq&&!cardGen)sq.textContent='「'+QUOTES[qi]+'」';
+}
+/* 语音页第一张卡：有真声时如实标注 */
+function vc1Labels(blob){
+ var f=document.getElementById('vc1From'),t=document.getElementById('vc1Text');if(!f||!t)return;
+ if(blob){f.innerHTML='你的真声 · 只在这台设备'+(state.voice?'<span>'+state.voice+'″</span>':'');t.textContent='（你的原声 · 不做转写，只在本机回放）'}
+ else{f.innerHTML='示例 · 合成音预演<span>12″</span>';t.textContent='「……要把工作室的灯，调成暖色的。」'}
+}
+function __onShow(id){
+ try{
+  if(id==='s-letter')renderLetter();
+  else if(id==='s-chat'){chatRestore();chatOpen()}
+  else if(id==='s-feed')renderFeedTl();
+  else if(id==='s-night')renderNight();
+  else if(id==='s-append')renderAppend();
+  else if(id==='s-share')renderShare();
+  else if(id==='s-card')syncQuotes();
+ }catch(e){}
+}
+(function(){
+ /* 任何方式切屏（按钮、底栏、系统返回）都会走到这里 */
+ var last=null;
+ new MutationObserver(function(){var now=curScreen();if(now!==last){last=now;__onShow(now)}}).observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:['class']});
+ /* 梦信成笺的「就这样，封入瓶中」：走存入页同一个封缄流程 */
+ var bt=document.getElementById('letterSeal');if(bt)bt.addEventListener('click',function(){try{$('#sealBtn').click()}catch(e){}});
+ /* 夜航页的「灭灯 · 过一夜」：真的过一夜（回到瓶中页看生长） */
+ var g=document.getElementById('nightGo');if(g)g.addEventListener('click',function(){try{if(typeof nightBusy!=='undefined'&&nightBusy)return;var nb=document.getElementById('nightBtn');if(nb)nb.click()}catch(e){}});
+ /* 有真声时改语音页第一张卡的标注 */
+ var _vc=window.vpSetClip;window.vpSetClip=function(blob){var r=_vc.apply(this,arguments);try{vc1Labels(blob)}catch(e){}setTimeout(function(){vc1Labels(blob)},0);return r};
+ var rd=document.getElementById('vredo');if(rd)rd.addEventListener('click',function(){setTimeout(function(){vc1Labels(null)},0)});
+ vc1Labels((window.VP&&VP.clipBlob)||null);
+ chatRestore();
+ __onShow(curScreen());
+})();
 </script>
 <script>window.addEventListener('load',function(){setTimeout(function(){if(typeof positionNavInd==='function')positionNavInd()},300)});</script>
 </body></html>
